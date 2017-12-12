@@ -1,0 +1,197 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    x:Class="ComplexWriter.MainWindowDictionary"
+                    xmlns:custom="clr-namespace:CustomControls;assembly=CustomControls"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib"
+                    xmlns:global="clr-namespace:ComplexWriter.global"
+                    xmlns:complexWriter="clr-namespace:ComplexWriter">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="global/global.xaml"/>
+        <ResourceDictionary Source="global/Tooltip.xaml"/>
+        <ResourceDictionary>
+            <global:BoolToCornerRadius x:Key="CornerRadius"/>
+          
+
+         
+            
+            
+            <Style x:Key="myTop" TargetType="custom:MaskedImageButtonEnlarge" BasedOn="{StaticResource topBtn}">
+                <Setter Property="Tag" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type complexWriter:MainWindow}}}"/>
+            </Style>
+
+            <Style x:Key="ToggleBtnStyle" TargetType="ToggleButton">
+                <Setter Property="Cursor" Value="{StaticResource overCursor}"/>
+                <Setter Property="Margin" Value="0,0,10,0"></Setter>
+                <Setter Property="Tag" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type complexWriter:MainWindow}}}"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="ToggleButton">
+                            <Border Width="24" Height="24" Name="Border" Background="{DynamicResource TitleBrush}" RenderTransformOrigin="0.5,0.5" RenderOptions.BitmapScalingMode="HighQuality">
+                                <Border.OpacityMask>
+                                    <ImageBrush ImageSource="/Images/arrowDown.png" Stretch="Uniform"/>
+                                </Border.OpacityMask>
+                                <Border.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform ScaleX="{StaticResource MinScale}" ScaleY="{StaticResource MinScale}" x:Name="theScale" />
+                                        <RotateTransform Angle="-90" x:Name="theAngle" />
+                                    </TransformGroup>
+                                </Border.RenderTransform>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsChecked" Value="True">
+                                    <Trigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="theAngle" Storyboard.TargetProperty="Angle" To="0" Duration="00:00:00.300"></DoubleAnimation>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.EnterActions>
+                                    <Trigger.ExitActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="theAngle" Storyboard.TargetProperty="Angle" To="-90" Duration="00:00:00.300"></DoubleAnimation>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.ExitActions>
+                                </Trigger>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Trigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="theScale" Storyboard.TargetProperty="ScaleX" To="{StaticResource MaxScale}" Duration="00:00:00.300"></DoubleAnimation>
+                                                <DoubleAnimation Storyboard.TargetName="theScale" Storyboard.TargetProperty="ScaleY" To="{StaticResource MaxScale}" Duration="00:00:00.300"></DoubleAnimation>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.EnterActions>
+                                    <Trigger.ExitActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="theScale" Storyboard.TargetProperty="ScaleX" To="{StaticResource MinScale}" Duration="00:00:00.300"></DoubleAnimation>
+                                                <DoubleAnimation Storyboard.TargetName="theScale" Storyboard.TargetProperty="ScaleY" To="{StaticResource MinScale}" Duration="00:00:00.300"></DoubleAnimation>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.ExitActions>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="{x:Type complexWriter:MainWindow}" TargetType="{x:Type complexWriter:MainWindow}">
+                <Setter Property="WindowStyle" Value="None"/>
+                <Setter Property="AllowsTransparency" Value="True"/>
+                <Setter Property="MinHeight" Value="474"/>
+                <Setter Property="MinWidth" Value="600"/>
+                <Setter Property="Cursor" Value="{StaticResource standardCursor}"/>
+                <Setter Property="Background" Value="Transparent"></Setter>
+                <Setter Property="FontFamily" Value="{StaticResource defaultFont}"></Setter>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type complexWriter:MainWindow}">
+                            <Grid Margin="20" Name="BorderGrid"  Effect="{StaticResource WindowShadow}" 
+                                  Opacity="{Binding RelativeSource={RelativeSource AncestorType=Window},Path=IsActive,Converter={StaticResource ActivOpacityConverter}}">
+                                <Border Background="Transparent" CornerRadius="3">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+                                        <!-- This is the ContentPresenter that displays the window content. -->
+                                      
+                                        <!-- Window Border Content -->
+                                        <!-- System Button -->
+                                       <!-- Window Title -->
+                                        <Grid Grid.Row="0" HorizontalAlignment="Left"  Margin="10,0,0,0">
+                                            <Thumb Grid.Row="0"
+                                                   Cursor="{StaticResource moveCursor}"  DragStarted="OnDragStarted" DragCompleted="RaiseDragCompleted" DragDelta="MoveWindow"
+                                                   Tag="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}}">
+                                                <Thumb.Template>
+                                                    <ControlTemplate TargetType="Thumb">
+                                                        <Border Background="{StaticResource BackColorBrush}" CornerRadius="{Binding ElementName= ToggleButtons,Path=IsChecked,Converter={StaticResource CornerRadius}}" />
+                                                    </ControlTemplate>
+                                                </Thumb.Template>
+                                            </Thumb>
+                                         
+                                            
+
+                                            <StackPanel Orientation="Horizontal" Grid.Row="0" HorizontalAlignment="Right">
+                                                <TextBlock  VerticalAlignment="Center" TextAlignment="Left"
+                                                       Foreground="{DynamicResource TitleBrush}"
+                                                       IsHitTestVisible="False"
+                                                       Margin="40,0,4,0" FontFamily="{StaticResource defaultFont}"
+                                                       FontSize="8"
+                                                       Padding="0,0,0,0"
+                                                       Text="{Binding RelativeSource=
+                                     {RelativeSource TemplatedParent}, Path=Title}" />
+                                                <custom:MaskedImageButtonEnlarge
+                                                                                 Style="{StaticResource myTop}"
+                                                                                 ButtonMask="Images/Restart.png"
+                                                                                 Click="Restart" Margin="10,0,0,0">
+                                                    <Button.ToolTip>
+                                                        <ToolTip Style="{StaticResource tipTest}" Content="Neustarten"></ToolTip>
+                                                    </Button.ToolTip>
+                                                </custom:MaskedImageButtonEnlarge>
+                                                <ToggleButton x:Name="TopMost"
+                                                                                 Style="{StaticResource ToggleBtnStyle2}"
+                                                              IsChecked="{Binding RelativeSource={RelativeSource AncestorType= complexWriter:MainWindow},Path=IsTopMost,Mode=TwoWay}"
+                                                    Margin="0,0,4,0">
+                                                    <ToggleButton.ToolTip>
+                                                        <ToolTip Style="{StaticResource tipTest}" Content="Immer im Vordergrund anzeigen"></ToolTip>
+                                                    </ToggleButton.ToolTip>
+                                                </ToggleButton>
+                                                <ToggleButton IsChecked="True" x:Name="ToggleButtons"
+                                                                                 Style="{StaticResource ToggleBtnStyle}"
+                                                                                 Click="FocusBox"
+                                                    Margin="0,0,4,0">
+                                                    <ToggleButton.ToolTip>
+                                                        <ToolTip Style="{StaticResource tipTest}" Content="Minimieren"></ToolTip>
+                                                    </ToggleButton.ToolTip>
+                                                </ToggleButton>
+                                                <custom:MaskedImageButtonEnlarge
+                                                                                 Style="{StaticResource myTop}"
+                                                                                 ButtonMask="Images/power.png"
+                                                                                 Click="CloseMe" Margin="0,0,4,0">
+                                                    <Button.ToolTip>
+                                                        <ToolTip Style="{StaticResource tipTest}" Content="Beenden"></ToolTip>
+                                                    </Button.ToolTip>
+                                                </custom:MaskedImageButtonEnlarge>
+                                               </StackPanel>
+                                        </Grid>
+                                        <Border ClipToBounds="True" Grid.Row="0" Grid.RowSpan="2" IsHitTestVisible="True" Name="Border" Visibility="{Binding ElementName=ToggleButtons,Path=IsChecked,Converter={StaticResource FalseHideConverterHideStylePopup},ConverterParameter={x:Static complexWriter:MainWindow.Global}}">
+                                           <Grid>
+                                                <ContentPresenter IsHitTestVisible="True" Content="{Binding RelativeSource={RelativeSource AncestorType=complexWriter:MainWindow},Path=Content}"/>
+                                            </Grid>
+                                        </Border>
+                                    </Grid>
+                                </Border>
+                                <Border Margin="30,30,100,10" Visibility="{Binding ElementName=Border,Path=Visibility}">
+                                    <Grid>
+                                     
+                                       
+                                        <Thumb Name="PART_SizeS"
+                                               Style="{StaticResource TransparentWindowResizeThumbStyle}"
+                                               Cursor="{StaticResource SizeNS}"
+                                               Height="4"
+                                               Tag="{Binding RelativeSource={RelativeSource TemplatedParent}}"
+                                               VerticalAlignment="Bottom"  DragStarted="OnDragStarted" DragCompleted="RaiseDragCompleted"
+                                               Margin="16,0,16,0" DragDelta="DragAThumb" />
+                                        
+                                        <Thumb Name="PART_SizeE"
+                                               Cursor="{StaticResource SizeWE}"
+                                               Style="{StaticResource TransparentWindowResizeThumbStyle}"
+                                               Width="4"  DragStarted="OnDragStarted" DragCompleted="RaiseDragCompleted"
+                                               Tag="{Binding RelativeSource={RelativeSource TemplatedParent}}"
+                                               HorizontalAlignment="Right"
+                                               Margin="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ShowToolbar,Converter={StaticResource MarginConverter}}" DragDelta="DragAThumb" />
+                                    </Grid>
+                                </Border>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>
+

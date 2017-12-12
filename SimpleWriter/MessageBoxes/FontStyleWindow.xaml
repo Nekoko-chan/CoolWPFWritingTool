@@ -1,0 +1,440 @@
+﻿<messageBoxes:MessageResultWindow x:Class="ComplexWriter.MessageBoxes.FontStyleWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        WindowStartupLocation="CenterOwner"
+        Loaded="LoadWindow"
+        xmlns:messageBoxes="clr-namespace:ComplexWriter.MessageBoxes"
+        xmlns:commands1="clr-namespace:ComplexWriter.Commands"
+     
+        xmlns:customControls="clr-namespace:CustomControls;assembly=CustomControls"
+        xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
+        xmlns:complexWriter="clr-namespace:ComplexWriter"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
+        Title="Schriftart anpassen..." >
+    <Window.InputBindings>
+        <KeyBinding Key="A" Modifiers="Alt" Command="{x:Static commands1:CancelCommand.CancelOnA}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=messageBoxes:FontStyleWindow}}" />
+        <KeyBinding Key="Enter" Modifiers="Alt" Command="{x:Static commands1:OkCommand.OkOnEnterOrO}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=messageBoxes:FontStyleWindow}}" />
+    </Window.InputBindings>
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="FontStyleWindowDictionary.xaml"/>
+                <ResourceDictionary Source="../global/global.xaml"/>
+                <ResourceDictionary Source="../global/Scrollbars.xaml"/>
+                <ResourceDictionary Source="../global/checkbox.xaml"/>
+                <ResourceDictionary Source="../global/ListBox.xaml"/>
+                <ResourceDictionary Source="../global/Expander.xaml"/>
+                <ResourceDictionary Source="../global/GroupBox.xaml"/>
+                <ResourceDictionary Source="../global/ScrollViewer.xaml"/>
+                <ResourceDictionary Source="../global/MenuItem.xaml"/>
+
+                <ResourceDictionary Source="../global/UpDowns.xaml"/>
+                <ResourceDictionary Source="../global/Combobox.xaml"/>
+                <ResourceDictionary>
+
+                    <CollectionViewSource x:Key="Fonts" Source="{Binding Source={x:Static complexWriter:MainWindow.Global},Path=FontFamilies}" >
+                        <CollectionViewSource.GroupDescriptions>
+                            <PropertyGroupDescription PropertyName="Group" />
+                        </CollectionViewSource.GroupDescriptions>
+                        <CollectionViewSource.SortDescriptions>
+                            <componentModel:SortDescription PropertyName="Group" Direction="Ascending"/>
+                            <componentModel:SortDescription PropertyName="Family.Source" Direction="Ascending"/>
+                        </CollectionViewSource.SortDescriptions>
+                        
+                    </CollectionViewSource>
+                    <Style x:Key="bord" TargetType="Border">
+                        <Setter Property="Margin" Value="-5,0,30,0"/>
+                    </Style>
+
+                    <ObjectDataProvider MethodName="GetType"
+        ObjectType="{x:Type system:Type}" x:Key="colorsTypeOdp">
+                        <ObjectDataProvider.MethodParameters>
+                            <system:String>System.Windows.Media.Colors, PresentationCore,
+                Version=3.0.0.0, Culture=neutral,
+                PublicKeyToken=31bf3856ad364e35</system:String>
+                        </ObjectDataProvider.MethodParameters>
+                    </ObjectDataProvider>
+
+                    <ObjectDataProvider ObjectInstance="{StaticResource colorsTypeOdp}"
+        MethodName="GetProperties" x:Key="colorPropertiesOdp">
+                    </ObjectDataProvider>
+
+                    <Style x:Key="PredefBorder" TargetType="Button">
+                        <Setter Property="Height" Value="20"/>
+                        <Setter Property="Width" Value="20"/>
+                        <Setter Property="Margin" Value="1"></Setter>
+                        <Setter Property="BorderThickness" Value="1"/>
+                        <Setter Property="SnapsToDevicePixels" Value="True"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border 
+                                            BorderBrush="{TemplateBinding BorderBrush}"
+                                            BorderThickness="{TemplateBinding BorderThickness}" Padding="1">
+                                        
+                                        <Border BorderBrush="Black" BorderThickness="1" Background="{TemplateBinding Background}"/>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                         <Trigger Property="IsMouseOver" Value="True">
+                                             <Setter Property="BorderBrush" Value="{StaticResource DarkerTitleBrush}"/>
+                                         </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+
+                    <DataTemplate x:Key="ColorTemplate" DataType="Color">
+                        <Button Style="{StaticResource PredefBorder}" Click="UpdateColor" MouseRightButtonUp="UpdateColor2">
+                            <Button.BorderBrush>
+                                <MultiBinding Converter="{StaticResource EqualColorConverter}">
+                                    <Binding RelativeSource="{RelativeSource Self}" Path="Background"/>
+                                    <Binding RelativeSource="{RelativeSource AncestorType=messageBoxes:FontStyleWindow}" Path="TextForground"/>
+                                    <Binding RelativeSource="{RelativeSource AncestorType=messageBoxes:FontStyleWindow}" Path="TextBackground"/>
+                                </MultiBinding>
+                            </Button.BorderBrush>
+                            <Button.Background>
+                                <SolidColorBrush Color="{Binding Path=Name}" />
+                            </Button.Background>
+                        </Button>
+                    </DataTemplate>
+
+                    <DataTemplate x:Key="ColorTemplate2" DataType="Color">
+                        <Button Style="{StaticResource PredefBorder}" Click="UpdateColorWithRemoveCheck" MouseRightButtonDown="UpdateColor2" PreviewMouseDown="CheckDouble">
+                            <Button.BorderBrush>
+                                <MultiBinding Converter="{StaticResource EqualColorConverter}">
+                                    <Binding RelativeSource="{RelativeSource Self}" Path="Background"/>
+                                    <Binding RelativeSource="{RelativeSource AncestorType=messageBoxes:FontStyleWindow}" Path="TextForground"/>
+                                    <Binding RelativeSource="{RelativeSource AncestorType=messageBoxes:FontStyleWindow}" Path="TextBackground"/>
+                                </MultiBinding>
+                            </Button.BorderBrush>
+                            <Button.ToolTip>
+                                <ToolTip Style="{StaticResource tipTest}" Content="Strg + Klick zum löschen"></ToolTip>
+                            </Button.ToolTip>
+                            <Button.Background>
+                                <SolidColorBrush Color="{Binding}" />
+                            </Button.Background>
+                        </Button>
+                    </DataTemplate>
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid Cursor="{StaticResource standardCursor}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Border Grid.Row="1" Grid.Column="1" Effect="{StaticResource WindowShadow}" Style="{StaticResource bord}" BorderThickness="1" BorderBrush="#FF054049"></Border>
+        <Border Grid.Row="1" Grid.Column="1" Style="{StaticResource bord}"  Background="{StaticResource BackgroundBrush}">
+
+            <Grid>
+                <Thumb Effect="{StaticResource WindowShadow}" Grid.Row="0" VerticalAlignment="Top" Height="10" Margin="0,-3,20,0"
+                                                   Cursor="{StaticResource moveCursor}" DragDelta="MoveWindow"
+                                                   Tag="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}}">
+                    <Thumb.Template>
+                        <ControlTemplate TargetType="Thumb">
+                            <Border Background="{StaticResource BackColorBrush}" CornerRadius="10,0,10,10" />
+                        </ControlTemplate>
+                    </Thumb.Template>
+                </Thumb>
+            </Grid>
+        </Border>
+        <Border Grid.Column="1" Grid.Row="1" Style="{StaticResource bord}" Background="{StaticResource background}" IsHitTestVisible="False"/>
+
+        <Grid Grid.Row="1" Grid.Column="1"  Margin="10,27,45,15" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Border Background="{DynamicResource BackColorBrush}"  SnapsToDevicePixels="True" ClipToBounds="True"
+                    BorderBrush="{DynamicResource BackColorBrush}"  CornerRadius="4" BorderThickness="1"
+                    Cursor="{StaticResource standardCursor}" Margin="10">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Border BorderBrush="{DynamicResource TitleBrush}" Margin="2" BorderThickness="1" CornerRadius="2">
+                        <TextBox Name="FilterBox" Style="{StaticResource realtextBoxStyle}" Foreground="{DynamicResource TitleBrush}" CaretBrush="{DynamicResource TitleBrush}" TextChanged="FilterFonts"></TextBox>
+                    </Border>
+                    <ListBox Name="box" ClipToBounds="True" SelectionChanged="ScrollToElement" Background="{DynamicResource BackColorBrush}" Loaded="ShowFirst"
+                             Style="{StaticResource AListBox}" Margin="3" SnapsToDevicePixels="True"
+                             ItemsSource="{Binding Source={StaticResource Fonts}}" Grid.Row="1"
+                             SelectedItem="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:FontStyleWindow},Path=TheFontFamily}">
+                        <ListBox.GroupStyle>
+                            <GroupStyle>
+                                <GroupStyle.Panel>
+                                    <ItemsPanelTemplate>
+                                        <DockPanel />
+                                    </ItemsPanelTemplate>
+                                </GroupStyle.Panel>
+                                <GroupStyle.ContainerStyle>
+                                    <Style TargetType="{x:Type GroupItem}">
+                                        <Setter Property="Tag" Value=""/>
+                                        <Setter Property="DockPanel.Dock" Value="Top"></Setter>
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="{x:Type GroupItem}">
+                                                    <Expander IsExpanded="false" Style="{StaticResource TheExpanderLeft}"
+                                                              Margin="5" VerticalAlignment="Top"
+                                                              BorderBrush="{DynamicResource TitleBrush}" HorizontalAlignment="Stretch">
+                                                        <Expander.Header>
+                                                            <TextBlock FontFamily="{StaticResource defaultFont}"
+                                                                           FontSize="{StaticResource fontSizeLarge}"
+                                                                           Foreground="{DynamicResource BackColorBrush}">
+                                                                    <Run Text="{Binding Name,Mode=OneWay}" /> (
+                                                                    <Run Text="{Binding ItemCount,Mode=OneWay}"></Run>)
+                                                            </TextBlock>
+                                                        </Expander.Header>
+                                                        <ItemsPresenter />
+                                                    </Expander>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </GroupStyle.ContainerStyle>
+                            </GroupStyle>
+                        </ListBox.GroupStyle>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate DataType="complexWriter:FontElement">
+                                <Border Background="Transparent">
+                                    <TextBlock Padding="4" FontFamily="{Binding Family}" IsHitTestVisible="False"
+                                               FontSize="{StaticResource fontSizeExtraLarge}"
+                                               Text="{Binding Family, Converter={StaticResource FamilyDisplayConverter}}">
+
+                                    </TextBlock>
+                                </Border>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox></Grid>
+            </Border>
+            <Grid Grid.Column="1" Grid.Row="0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Border Background="{DynamicResource BackColorBrush}"
+                        BorderBrush="{DynamicResource BackColorBrush}" CornerRadius="4" BorderThickness="1"
+                        Cursor="{StaticResource standardCursor}" Padding="5" Margin="10">
+
+                    <xctk:DoubleUpDown Style="{StaticResource doubleTest}"
+                                                       PreviewTextInput="CheckText" VerticalAlignment="Stretch"
+                                                       Increment="0.25"
+                                                       Cursor="{StaticResource overCursor}"
+                                                       Minimum="0" Maximum="2000" FontSize="20"
+                                                       Value="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:FontStyleWindow},Path=TheFontSize,Mode=TwoWay}"
+                                                       FontFamily="{StaticResource numberFont}" Name="DoubleUpDown" />
+                </Border>
+                <WrapPanel  Orientation="Horizontal" Grid.Row="1">
+
+                    <customControls:MaskedToggleButtonEnlarge 
+                        IsEnabled="{Binding ElementName=box,Path=SelectedItem,Converter={StaticResource BoldAllowedConverter},Mode=OneWay}"
+                        IsChecked="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:FontStyleWindow},Path=TheFontWeight,Converter={StaticResource FontWeightConverter},Mode=TwoWay}"
+                                                                              Width="32"
+                                                                              Height="32"
+                                                                              ButtonMask="../Images/Bold.png"
+                                                                              ButtonColor="Black">
+                        <ToggleButton.ToolTip>
+                            <ToolTip Style="{StaticResource tipTest}" Content="Fett"/>
+                        </ToggleButton.ToolTip>
+                    </customControls:MaskedToggleButtonEnlarge>
+                    <customControls:MaskedToggleButtonEnlarge 
+                        IsEnabled="True"
+                        IsChecked="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:FontStyleWindow},Path=TheFontStyle,Converter={StaticResource FontStyleConverter},Mode=TwoWay}"
+                        
+                                                                              Width="32"
+                                                                              Height="32"
+                                                                              ButtonMask="../Images/Italic.png"
+                                                                              ButtonColor="Black">
+                        <ToggleButton.ToolTip>
+                            <ToolTip Style="{StaticResource tipTest}" Content="Kursiv"/>
+                        </ToggleButton.ToolTip>
+                    </customControls:MaskedToggleButtonEnlarge>
+                    <customControls:MaskedToggleButtonEnlarge 
+                        IsEnabled="{Binding ElementName=box,Path=SelectedItem,Converter={StaticResource CondensedAllowedConverter},Mode=OneWay}"
+                        IsChecked="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:FontStyleWindow},Path=TheFontStretch,Converter={StaticResource FontStretchConverter},Mode=TwoWay}"
+                        
+                                                                              Width="32"
+                                                                              Height="32"
+                                                                              ButtonMask="../Images/Condensed.png"
+                                                                              ButtonColor="Black">
+                        <ToggleButton.ToolTip>
+                            <ToolTip Style="{StaticResource tipTest}" Content="Zusammengepressen"/>
+                        </ToggleButton.ToolTip>
+                    </customControls:MaskedToggleButtonEnlarge>
+                    <customControls:MaskedToggleButtonEnlarge  Margin="15,0,0,0"
+                        IsChecked="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:FontStyleWindow},Path=TheTextDecoration,Converter={StaticResource UnderlineConverter},Mode=TwoWay}"
+                        
+                                                                              Width="32"
+                                                                              Height="32"
+                                                                              ButtonMask="../Images/Underline.png"
+                                                                              ButtonColor="Black">
+                        <ToggleButton.ToolTip>
+                            <ToolTip Style="{StaticResource tipTest}" Content="Unterstrichen"/>
+                        </ToggleButton.ToolTip>
+                    </customControls:MaskedToggleButtonEnlarge>
+                    <customControls:MaskedToggleButtonEnlarge 
+                        IsChecked="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:FontStyleWindow},Path=TheTextDecoration,Converter={StaticResource StrikeConverter},Mode=TwoWay}"
+                        
+                                                                              Width="32"
+                                                                              Height="32"
+                                                                              ButtonMask="../Images/Strikeout.png"
+                                                                              ButtonColor="Black">
+                        <ToggleButton.ToolTip>
+                            <ToolTip Style="{StaticResource tipTest}" Content="Durchgestrichen"/>
+                        </ToggleButton.ToolTip>
+                    </customControls:MaskedToggleButtonEnlarge>
+                    
+                </WrapPanel>
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <GroupBox Margin="0,5,0,0" Grid.Column="1" BorderBrush="{DynamicResource TitleBrush}" Style="{StaticResource BoldTitleGroupBox}" Visibility="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ShowPredefined,Converter={StaticResource falseHideConverter}}">
+                        <GroupBox.Header>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="Eigene Farben"
+                                                           FontSize="{StaticResource fontSizeMedium}"
+                                                           FontFamily="{StaticResource defaultFont}"
+                                                           Foreground="{StaticResource BackColorBrush}">
+                                </TextBlock>
+                                <customControls:MaskedImageButtonEnlarge Grid.Column="1"  ButtonColor="{StaticResource BackColorBrush}" ButtonMask="../Images/Add.png" Width="20" Height="20" Click="AddPredefined">
+                                    <Button.ToolTip>
+                                        <ToolTip Style="{StaticResource tipTest}" Content="Farbe hinzufügen (Doppelte werden ignoriert!)"></ToolTip>
+                                    </Button.ToolTip>
+                                </customControls:MaskedImageButtonEnlarge>
+                            </Grid>
+                        </GroupBox.Header>
+                        <ScrollViewer VerticalScrollBarVisibility="Auto">
+                            <ItemsControl ItemTemplate="{StaticResource ColorTemplate2}" ItemsSource="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:FontStyleWindow},Path=PredefinedColors}">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                            </ItemsControl>
+                        </ScrollViewer>
+                    </GroupBox>
+                    <GroupBox Margin="0,5,5,0" Grid.Column="0" BorderBrush="{DynamicResource TitleBrush}" Style="{StaticResource BoldTitleGroupBox}" Visibility="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ShowPredefined,Converter={StaticResource falseHideConverter}}">
+                        <GroupBox.Header>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="Systemfarben"
+                                                           FontSize="{StaticResource fontSizeMedium}"
+                                                           FontFamily="{StaticResource defaultFont}"
+                                                           Foreground="{StaticResource BackColorBrush}">
+                                </TextBlock>
+                            </Grid>
+                        </GroupBox.Header>
+                            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalContentAlignment="Stretch"
+                                          VerticalContentAlignment="Stretch">
+                                <ItemsControl ItemTemplate="{StaticResource ColorTemplate}"
+                                              ItemsSource="{Binding Source={StaticResource colorPropertiesOdp}}">
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <WrapPanel />
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                </ItemsControl>
+                            </ScrollViewer>
+                    </GroupBox>
+                </Grid>
+            </Grid>
+            <StackPanel Grid.ColumnSpan="2" Grid.Row="1" Grid.Column="0" Orientation="Horizontal">
+                <Border Width="16" Height="16" BorderBrush="DarkOrchid" BorderThickness="1"  Margin="0,0,10,0"/>
+                <TextBlock Text=": Vordergrundfarbe" FontFamily="{StaticResource defaultFont}" FontSize="10"></TextBlock>
+                <Border Width="16" Height="16" BorderBrush="OrangeRed" BorderThickness="1" Margin="20,0,10,0"/>
+                <TextBlock Text=": Hintergrundfarbe" FontFamily="{StaticResource defaultFont}" FontSize="10"></TextBlock>
+            </StackPanel>
+                <StackPanel Grid.ColumnSpan="2" Grid.Row="2" Grid.Column="0" Orientation="Horizontal">
+                    <customControls:GlassButton3 Style="{StaticResource GlassButtonStyle}" Click="resetFore" Content="Vordergrund zurücksetzen"></customControls:GlassButton3>
+                <customControls:GlassButton3 Style="{StaticResource GlassButtonStyle}" Click="resetBack"  Content="Hintergrund zurücksetzen"></customControls:GlassButton3>
+                <Border Width="3" BorderBrush="Black"></Border>
+            </StackPanel>
+            <GroupBox Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Background="Transparent" 
+                        BorderBrush="Black" Style="{StaticResource BoldTitleGroupBox}" BorderThickness="1" Height="120"
+                        Cursor="{StaticResource standardCursor}" Padding="5,0,5,5" Margin="10">
+                <GroupBox.Header>
+                    <TextBlock Foreground="{DynamicResource TitleBrush}" Text="{Binding ElementName=box,Path=SelectedItem, Converter={StaticResource FontElementDisplayConverter}}" FontSize="{StaticResource fontSizeSmall}" FontFamily="{StaticResource defaultFont}"></TextBlock>
+                </GroupBox.Header>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <CheckBox Grid.Row="1"
+                        IsChecked="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:FontStyleWindow},Path=ShowExample,Mode=TwoWay}"
+                        Visibility="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:FontStyleWindow},Path=PreviewVisibility}" Style="{StaticResource globalCheckbox}" Content="Beispiel Text verwenden" FontFamily="{StaticResource defaultFont}" FontSize="{StaticResource fontSizeMedium}"></CheckBox>
+                    <ScrollViewer Style="{StaticResource TransparentScrollviewer}" Grid.Row="2" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" 
+                                   Foreground="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:FontStyleWindow},Path=TextForground}"
+                                   Background="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:FontStyleWindow},Path=TextBackground}"
+                                   FontFamily="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:FontStyleWindow},Path=TheFontFamily.Family}"
+                                   FontSize="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:FontStyleWindow},Path=TheFontSize}"
+                                   FontWeight="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:FontStyleWindow},Path=TheFontWeight}"
+                                   FontStretch="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:FontStyleWindow},Path=TheFontStretch}"
+                                   FontStyle="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:FontStyleWindow},Path=TheFontStyle}"
+                                   TextDecorations="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:FontStyleWindow},Path=TheTextDecoration}"
+                                   Text="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:FontStyleWindow},Path=PreviewText}" />
+                        </ScrollViewer>
+                    </Grid>
+             
+            </GroupBox>
+        </Grid>
+
+
+        <Border Grid.Column="0" Grid.Row="1"  Background="{StaticResource BackColorBrush}"  MinWidth="22" Padding="4,10" CornerRadius="10,0,0,10" Effect="{StaticResource WindowShadow}" Margin="0,-3,0,15">
+            
+        </Border>
+        
+        
+        <Border Name="buttonBorder" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right" Margin="0,-2,20,0" Background="{StaticResource BackColorBrush}" Effect="{StaticResource WindowShadow}" CornerRadius="0,0,10,10">
+            <StackPanel Orientation="Horizontal" >
+                <customControls:GlassButton3 Style="{StaticResource GlassButtonStyle}" Click="CloseWithTag">
+                    <TextBlock TextAlignment="Center">
+                        <Run FontWeight="Bold" FontSize="25">O</Run><Run>K</Run>
+                    </TextBlock>
+                    <customControls:GlassButton3.Tag>
+                        <x:Static Member="MessageBoxResult.OK"/>
+                    </customControls:GlassButton3.Tag>
+                </customControls:GlassButton3>
+                <customControls:GlassButton3 Style="{StaticResource GlassButtonStyle}" x:Name="ForFocus" Click="CloseWithTag"   Margin="20,4,4,4">
+                    <TextBlock Width="100" TextAlignment="Center">
+                        <Run FontWeight="Bold" FontSize="25">A</Run><Run>bbrechen</Run>
+                    </TextBlock>
+                    <customControls:GlassButton3.Tag>
+                        <x:Static Member="MessageBoxResult.Cancel"/>
+                    </customControls:GlassButton3.Tag>
+                </customControls:GlassButton3>
+
+              
+
+            </StackPanel>
+        </Border>
+
+
+    </Grid>
+</messageBoxes:MessageResultWindow>

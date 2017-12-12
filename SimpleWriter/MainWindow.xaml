@@ -1,0 +1,1555 @@
+﻿<Window x:Class="ComplexWriter.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:customControls="clr-namespace:CustomControls;assembly=CustomControls"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:ComplexWriter="clr-namespace:ComplexWriter"
+        xmlns:commands="clr-namespace:ComplexWriter.Commands"
+        xmlns:searchAndReplace="clr-namespace:ComplexWriter.SearchAndReplace"
+        xmlns:messageBoxes="clr-namespace:ComplexWriter.MessageBoxes"
+        xmlns:characterNames="clr-namespace:ComplexWriter.CharacterNames"
+        xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
+        Title="Cool Editor" Height="444" Width="616">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="MainWindowDictionary.xaml"/>
+                <ResourceDictionary Source="global/global.xaml"/>
+                <ResourceDictionary Source="global/Scrollbars.xaml"/>
+                <ResourceDictionary Source="global/UpDowns.xaml"/>
+                <ResourceDictionary Source="global/Combobox.xaml"/>
+                <ResourceDictionary Source="global/Buttons.xaml"/>
+                <ResourceDictionary Source="KeyHelp.xaml"/>
+                <ResourceDictionary Source="global/MenuItem.xaml"/>
+                <ResourceDictionary Source="ColorSet/Colors.xaml"/>
+                <ResourceDictionary>
+                    <Cursor x:Key="waitCursor">Images/Wait.ani</Cursor>
+
+                    <Style x:Key="tipblock" TargetType="TextBlock">
+                        <Setter Property="FontFamily" Value="{StaticResource defaultFont}"/>
+                        <Setter Property="FontSize" Value="{StaticResource fontSizeSmall}"/>
+                    </Style>
+
+                    <Style x:Key="tipblock2" TargetType="TextBlock" BasedOn="{StaticResource tipblock}">
+                        <Setter Property="Margin" Value="10,0,0,0"/>
+                    </Style>
+
+                    <Style x:Key="disableBox" TargetType="Border">
+                        <Setter Property="BorderBrush" Value="{DynamicResource TitleBrush}"></Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Opacity" Value="0.5"></Setter>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+
+                    <SolidColorBrush x:Key="back1" Color ="{StaticResource BackColor}"></SolidColorBrush>
+                    <SolidColorBrush x:Key="back2" Color ="{StaticResource BackColor}"></SolidColorBrush>
+                    <SolidColorBrush x:Key="back3" Color ="{StaticResource BackColor}"></SolidColorBrush>
+
+                    <SolidColorBrush x:Key="fore1" Color ="{StaticResource TitleColor}"></SolidColorBrush>
+                    <SolidColorBrush x:Key="fore2" Color ="{StaticResource TitleColor}"></SolidColorBrush>
+                    <SolidColorBrush x:Key="fore3" Color ="{StaticResource TitleColor}"></SolidColorBrush>
+
+                    <DataTemplate x:Key="tipTemplate"  DataType="ComplexWriter:ComplexStyle" >
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <TextBlock Style="{StaticResource tipblock}" Text="Schriftart"/>
+                            <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource tipblock2}">
+                                <Run Text="{Binding FontFamily, Mode=OneWay, Converter={StaticResource OwnFontFamilyTextConverter}}"/><Run Text=" ("/><Run Text="{Binding FontGroupString, Mode=OneWay}"/><Run Text=")"/>
+                            </TextBlock>
+                            <TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource tipblock}" Text="Schriftgröße"/>
+                            <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource tipblock2}" Text="{Binding FontSize, Mode=OneWay}"/>
+                            <TextBlock Grid.Row="2" Grid.Column="0" Style="{StaticResource tipblock2}" Text="Kursiv" FontStyle="Italic" Visibility="{Binding IsItalic, Mode=OneWay, Converter={StaticResource falseCollapsedConverter}}"></TextBlock>
+                            <TextBlock Grid.Row="3" Grid.Column="0" Style="{StaticResource tipblock2}" Text="Fett" FontWeight="Bold" Visibility="{Binding IsBold, Mode=OneWay, Converter={StaticResource falseCollapsedConverter}}"></TextBlock>
+                            <TextBlock Grid.Row="4" Grid.Column="0" Style="{StaticResource tipblock2}" Text="Unterstrichen" TextDecorations="Underline" Visibility="{Binding IsUnderlined, Mode=OneWay, Converter={StaticResource falseCollapsedConverter}}"/>
+                            <TextBlock Grid.Row="5" Grid.Column="0" Style="{StaticResource tipblock2}" Text="Durchgestrichen" TextDecorations="Strikethrough"  Visibility="{Binding IsStrikedOut, Mode=OneWay, Converter={StaticResource falseCollapsedConverter}}"></TextBlock>
+                            <TextBlock Grid.Row="6" Grid.Column="0" Style="{StaticResource tipblock2}" Text="Zusammengepressen" FontStretch="Condensed" Visibility="{Binding IsCondenced, Mode=OneWay, Converter={StaticResource falseCollapsedConverter}}"></TextBlock>
+                        </Grid>
+                    </DataTemplate>
+
+
+                    <ImageBrush x:Key="CopyIcon" ImageSource="Images/Copy.png" Stretch="Uniform"/>
+                    <ImageBrush x:Key="CutIcon" ImageSource="Images/Cut.png" Stretch="Uniform"/>
+                    <ImageBrush x:Key="PasteIcon" ImageSource="Images/PasteStyle.png" Stretch="Uniform"/>
+                    <ImageBrush x:Key="PasteNonStyleIcon" ImageSource="Images/Paste.png" Stretch="Uniform"/>
+                    <ImageBrush x:Key="AddDictionary" ImageSource="Images/bookClosed.png" Stretch="Uniform"/>
+                    <ImageBrush x:Key="DictionaryEntry" ImageSource="Images/bookOpen.png" Stretch="Uniform"/>
+                    <ImageBrush x:Key="IgnoreEntry" ImageSource="Images/ignore.png" Stretch="Uniform"/>
+                    <ImageBrush x:Key="IDIcon" ImageSource="Images/id.png" Stretch="Uniform"/>
+
+                    <ImageBrush x:Key="ProtagonistIcon" ImageSource="Images/Protagonist.png" Stretch="Uniform"/>
+                    <ImageBrush x:Key="AntagonistIcon" ImageSource="Images/Antagonist.png" Stretch="Uniform"/>
+                    <ImageBrush x:Key="SideIcon" ImageSource="Images/SideCharacter.png" Stretch="Uniform"/>
+                    <ImageBrush x:Key="LocalitiesIcon" ImageSource="Images/Location.png" Stretch="Uniform"/>
+                    <ImageBrush x:Key="SpeciesIcon" ImageSource="Images/Species.png" Stretch="Uniform"/>
+                    <ImageBrush x:Key="OtherIcon" ImageSource="Images/Other.png" Stretch="Uniform"/>
+
+                    <Style x:Key="SymbolButton" TargetType="Button">
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Setter Property="Foreground" Value="{DynamicResource TitleBrush}"/>
+                        <Setter Property="Cursor" Value="{StaticResource overCursor}"></Setter>
+                        <Setter Property="FontFamily" Value="{StaticResource defaultFont}"></Setter>
+                        <Setter Property="FontSize" Value="{StaticResource fontSizeLarge}"></Setter>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Name="view" RenderTransformOrigin="0.5,0.5" BorderBrush="{DynamicResource TitleBrush}" BorderThickness="1" CornerRadius="3" Padding="2.5">
+                                        <Border.Background>
+                                            <MultiBinding Converter="{StaticResource QuoteButtonBackgroundConverter}">
+                                                <Binding Source="{StaticResource BackColorBrush}"/>
+                                                <Binding Source="{StaticResource SelectionBrush}"/>
+                                                <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Content" />
+                                                <Binding RelativeSource="{RelativeSource AncestorType=ComplexWriter:MainWindow}" Path="CurrentText.OpeningQuote" />
+                                                <Binding RelativeSource="{RelativeSource AncestorType=ComplexWriter:MainWindow}" Path="CurrentText.ClosingQuote" />
+                                                <Binding RelativeSource="{RelativeSource AncestorType=ComplexWriter:MainWindow}" Path="CurrentText.SingleOpeningQuote" />
+                                                <Binding RelativeSource="{RelativeSource AncestorType=ComplexWriter:MainWindow}" Path="CurrentText.SingleClosingQuote" />
+                                            </MultiBinding>
+                                        </Border.Background>
+                                        <Border.RenderTransform>
+                                            <ScaleTransform ScaleX="0.7" ScaleY="0.7"></ScaleTransform>
+                                        </Border.RenderTransform>
+                                        <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center">
+                                            <TextBlock.Foreground>
+                                                <MultiBinding Converter="{StaticResource QuoteButtonBackgroundConverter}">
+                                                    <Binding Source="{StaticResource TitleBrush}"/>
+                                                    <Binding Source="{StaticResource BackColorBrush}"/>
+                                                    <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Content" />
+                                                    <Binding RelativeSource="{RelativeSource AncestorType=ComplexWriter:MainWindow}" Path="CurrentText.OpeningQuote" />
+                                                    <Binding RelativeSource="{RelativeSource AncestorType=ComplexWriter:MainWindow}" Path="CurrentText.ClosingQuote" />
+                                                    <Binding RelativeSource="{RelativeSource AncestorType=ComplexWriter:MainWindow}" Path="CurrentText.SingleOpeningQuote" />
+                                                    <Binding RelativeSource="{RelativeSource AncestorType=ComplexWriter:MainWindow}" Path="CurrentText.SingleClosingQuote" />
+                                                </MultiBinding>
+                                            </TextBlock.Foreground>
+                                        </ContentPresenter>
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Trigger.EnterActions>
+                                                <BeginStoryboard>
+                                                    <Storyboard>
+                                                        <DoubleAnimation To="1" Duration="00:00:00.300"  Storyboard.TargetName="view" Storyboard.TargetProperty="(Control.RenderTransform).(ScaleTransform.ScaleY)"/>
+                                                        <DoubleAnimation To="1" Duration="00:00:00.300"  Storyboard.TargetName="view" Storyboard.TargetProperty="(Control.RenderTransform).(ScaleTransform.ScaleX)"/>
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </Trigger.EnterActions>
+                                            <Trigger.ExitActions>
+                                                <BeginStoryboard>
+                                                    <Storyboard>
+                                                        <DoubleAnimation To="0.7" Duration="00:00:00.300"  Storyboard.TargetName="view" Storyboard.TargetProperty="(Control.RenderTransform).(ScaleTransform.ScaleY)"/>
+                                                        <DoubleAnimation To="0.7" Duration="00:00:00.300"  Storyboard.TargetName="view" Storyboard.TargetProperty="(Control.RenderTransform).(ScaleTransform.ScaleX)"/>
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </Trigger.ExitActions>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+
+                    <Style x:Key="bord" TargetType="Border">
+                        <Setter Property="Margin" Value="-5,0,30,15"/>
+                    </Style>
+                    <Style x:Key="rimageButton" TargetType="customControls:MaskedImageButtonEnlarge">
+                        <Setter Property="Width" Value="24"/>
+                        <Setter Property="Height" Value="24"/>
+                        <Setter Property="Cursor" Value="{StaticResource overCursor}"/>
+                        <Setter Property="ButtonColor" Value="{DynamicResource TitleBrush}"/>
+                        <Setter Property="Margin" Value="2"/>
+                    </Style>
+
+                    <Style x:Key="rtimageButton" TargetType="customControls:MaskedToggleButtonEnlarge">
+                        <Setter Property="Width" Value="24"/>
+                        <Setter Property="Height" Value="24"/>
+                        <Setter Property="Cursor" Value="{StaticResource overCursor}"/>
+                        <Setter Property="ButtonColor" Value="{DynamicResource TitleBrush}"/>
+                        <Setter Property="Margin" Value="2"/>
+                    </Style>
+                    <Style x:Key="BorderStyle" TargetType="Border">
+                        <Setter Property="BorderBrush" Value="{DynamicResource TitleBrush}"/>
+                        <Setter Property="BorderThickness" Value="1"/>
+                        <Setter Property="SnapsToDevicePixels" Value="True"/>
+                        <Setter Property="Margin" Value="2"/>
+                        <Setter Property="Height" Value="35"/>
+                    </Style>
+                    <Style TargetType="{x:Type ToggleButton}" x:Key="textBoxCommands">
+                        <Setter Property="Cursor" Value="{StaticResource overCursor}"/>
+                        <Setter Property="Content" Value=
+         "{Binding RelativeSource={RelativeSource Self}, Path=Command.Text}" />
+                        <Setter Property="CommandTarget" Value="{Binding ElementName=Box}" />
+                    </Style>
+                    <Style TargetType="{x:Type Button}" x:Key="textBoxCommandsNormal">
+                        <Setter Property="Cursor" Value="{StaticResource overCursor}"/>
+                        <Setter Property="Content" Value=
+         "{Binding RelativeSource={RelativeSource Self}, Path=Command.Text}" />
+                        <Setter Property="CommandTarget" Value="{Binding ElementName=Box}" />
+                    </Style>
+
+                    <Style x:Key="TextButton" TargetType="{x:Type Button}">
+                        <Setter Property="Cursor" Value="{StaticResource overCursor}"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Viewbox>
+                                        <Border>
+                                            <ContentPresenter RenderTransformOrigin="0.5,0.5"
+                                                              VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                        </Border>
+                                        <Viewbox.RenderTransform>
+                                            <ScaleTransform x:Name="scaleMe" ScaleX="1.02" ScaleY="1.02" />
+                                        </Viewbox.RenderTransform>
+                                    </Viewbox>
+                                    <ControlTemplate.Triggers>
+                                        <EventTrigger RoutedEvent="MouseEnter">
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <DoubleAnimation From="1.02" To="1.3" Duration="00:00:00.250" Storyboard.TargetName="scaleMe" Storyboard.TargetProperty="ScaleX" />
+                                                    <DoubleAnimation From="1.02" To="1.3" Duration="00:00:00.250" Storyboard.TargetName="scaleMe" Storyboard.TargetProperty="ScaleY" />
+
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </EventTrigger>
+                                        <EventTrigger RoutedEvent="MouseLeave">
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <DoubleAnimation From="1.3" To="1.02" Duration="00:00:00.250" Storyboard.TargetName="scaleMe" Storyboard.TargetProperty="ScaleX" />
+                                                    <DoubleAnimation From="1.3" To="1.02" Duration="00:00:00.250" Storyboard.TargetName="scaleMe" Storyboard.TargetProperty="ScaleY" />
+
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </EventTrigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+
+                    <Style x:Key="borderForTooltip"  TargetType="Border">
+                        <!--<Setter Property="Margin" Value="3"/>-->
+                        <Setter Property="Padding" Value="3"/>
+                        <Setter Property="Background" Value="{StaticResource BackgroundBrush}"/>
+                    </Style>
+
+                    <Style x:Key="tootipBox" TargetType="RichTextBox" BasedOn="{StaticResource textBoxStyle3}">
+                        <Setter Property="Background" Value="{StaticResource BackgroundBrush}"></Setter>
+                    </Style>
+
+                    <CollectionViewSource x:Key="Styles" IsLiveSortingRequested="True" Source="{Binding RelativeSource={RelativeSource AncestorType=ComplexWriter:MainWindow},Path=ApplyableStyles.Styles}" >
+                        <CollectionViewSource.SortDescriptions>
+                            <componentModel:SortDescription PropertyName="Caption" Direction="Ascending"/>
+                        </CollectionViewSource.SortDescriptions>
+                    </CollectionViewSource>
+
+                    <CollectionViewSource x:Key="Styles2" IsLiveSortingRequested="True" Source="{Binding RelativeSource={RelativeSource AncestorType=ComplexWriter:MainWindow},Path=CurrentText.Styles.Styles}" >
+                        <CollectionViewSource.SortDescriptions>
+                            <componentModel:SortDescription PropertyName="IsDefault" Direction="Descending"></componentModel:SortDescription>
+                            <componentModel:SortDescription PropertyName="Caption" Direction="Ascending"/>
+                        </CollectionViewSource.SortDescriptions>
+                    </CollectionViewSource>
+
+
+                    <CollectionViewSource x:Key="Fonts" Source="{Binding RelativeSource={RelativeSource AncestorType=ComplexWriter:MainWindow},Path=FontFamilies}" >
+                        <CollectionViewSource.GroupDescriptions>
+                            <PropertyGroupDescription PropertyName="Group" />
+                        </CollectionViewSource.GroupDescriptions>
+                        <CollectionViewSource.SortDescriptions>
+                            <componentModel:SortDescription PropertyName="Group" Direction="Ascending"/>
+                            <componentModel:SortDescription PropertyName="Family.Source" Direction="Ascending"/>
+                        </CollectionViewSource.SortDescriptions>
+
+                    </CollectionViewSource>
+
+
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="15"/>
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Row="1" Grid.Column="1"  Style="{StaticResource bord}" BorderThickness="1" BorderBrush="#FF054049"  Margin="0,0,90,10"></Border>
+
+        <Border Grid.Row="1" Grid.Column="1" Style="{StaticResource bord}" Background="{StaticResource BackgroundBrush}" CornerRadius="0,0,3,0" Margin="0,0,90,10"/>
+        <Border Grid.Row="1" Grid.Column="1" Style="{StaticResource bord}" Background="Black" CornerRadius="0,0,3,0" Margin="0,0,90,10">
+            <Border.Visibility>
+                <MultiBinding Converter="{StaticResource IfThenElseMultiConverter}">
+                    <Binding RelativeSource="{RelativeSource AncestorType=ComplexWriter:MainWindow}" Path="UseBlackBackground"/>
+                    <Binding>
+                        <Binding.Source>
+                            <Visibility>Visible</Visibility>
+                        </Binding.Source>
+                    </Binding>
+                    <Binding>
+                        <Binding.Source>
+                            <Visibility>Collapsed</Visibility>
+                        </Binding.Source>
+                    </Binding>
+                </MultiBinding>
+            </Border.Visibility>
+        </Border>
+
+        <Grid Grid.Row="1" Grid.Column="1">
+
+            <Grid Margin="0,10,35,28">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Border Grid.Column="1" Padding="40,0" Visibility="{Binding RelativeSource={RelativeSource AncestorType=ComplexWriter:MainWindow},Path=CurrentText.ReadOnly,Converter={StaticResource falseCollapsedConverter}}" HorizontalAlignment="Center" BorderBrush="{StaticResource BackColorBrush}" BorderThickness="0,0,0,1">
+                    <TextBlock Text="Die Datei ist schreibgeschützt, Doppelklick auf Tab zum entsperren" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,2" FontFamily="{StaticResource defaultFont}"/>
+                </Border>
+                <Border Grid.Column="1" Grid.Row="1" Margin="5,0,5,10" IsHitTestVisible="False">
+                    <Image VerticalAlignment="Bottom" HorizontalAlignment="Right" RenderOptions.BitmapScalingMode="HighQuality" 
+                           Source="{Binding RelativeSource={RelativeSource AncestorType=ComplexWriter:MainWindow},Path=CurrentText.Watermark.ImageSource}"
+                           Width="{Binding RelativeSource={RelativeSource AncestorType=ComplexWriter:MainWindow},Path=CurrentText.Watermark.Size.Width}"
+                           Height="{Binding RelativeSource={RelativeSource AncestorType=ComplexWriter:MainWindow},Path=CurrentText.Watermark.Size.Height}"
+                           Opacity="{Binding RelativeSource={RelativeSource AncestorType=ComplexWriter:MainWindow},Path=CurrentText.Watermark.Opacity}"
+                           />
+                </Border>
+
+                <RichTextBox Grid.Column="1" Margin="12,0,-12,5" Grid.Row="1" x:Name="Box" 
+                                 ScrollViewer.ScrollChanged="ScrollChanged" SnapsToDevicePixels="False"
+                              xml:lang="de-DE"
+                                 SpellCheck.IsEnabled="{Binding RelativeSource={RelativeSource AncestorType=ComplexWriter:MainWindow},Path=CurrentText.SpellCheckEnabled}"
+                                 IsInactiveSelectionHighlightEnabled="True" AutoWordSelection="False"
+                                 Style="{StaticResource textBoxStyle3}" TextChanged="Textchanged"
+                                 PreviewKeyDown="HandleKeysPreview" SelectionChanged="UpdateInfos"
+                             IsReadOnly="{Binding RelativeSource={RelativeSource AncestorType=ComplexWriter:MainWindow},Path=CurrentText.ReadOnly}"
+                                Foreground="Black">
+                    <RichTextBox.CaretBrush>
+                        <MultiBinding Converter="{StaticResource IfThenElseMultiConverter}">
+                            <Binding RelativeSource="{RelativeSource AncestorType=ComplexWriter:MainWindow}" Path="UseBlackBackground"/>
+                            <Binding Source="{StaticResource DarkerTitleBrush}"/>
+                            <Binding Source="{StaticResource BackColorBrush}"/>
+                        </MultiBinding>
+                    </RichTextBox.CaretBrush>
+
+                    <RichTextBox.Cursor>
+                        <MultiBinding Converter="{StaticResource IfThenElseMultiConverter}">
+                            <Binding RelativeSource="{RelativeSource AncestorType=ComplexWriter:MainWindow}" Path="CurrentText.ReadOnly"/>
+                            <Binding Source="{StaticResource Beam}"/>
+                            <Binding Source="{StaticResource Beam2}"/>
+                        </MultiBinding>
+                    </RichTextBox.Cursor>
+                    <RichTextBox.ContextMenu>
+                        <ContextMenu Name="ContextMenu" Style="{StaticResource context}">
+                            <ContextMenu.CommandBindings>
+                                <CommandBinding Command="commands:OwnPasteCommand.Paste"
+                                                    CanExecute="CanExecuteRerollCommand"
+                                                    Executed="ExecuteRerollCommand" />
+                            </ContextMenu.CommandBindings>
+                            <!--<MenuItem Command="ApplicationCommands.Cut"/>
+                            <MenuItem Command="ApplicationCommands.Copy"/>
+                            <MenuItem Command="ApplicationCommands.Paste"/>
+                            <MenuItem Command="commands:OwnPasteCommand.Paste" CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=RichTextBox}}"/>-->
+                        </ContextMenu>
+                    </RichTextBox.ContextMenu>
+                    <RichTextBox.Resources>
+                        <ResourceDictionary>
+                            <!--<SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}"
+                                                 Color="{x:Static SystemColors.HighlightColor}" />-->
+                            <Style TargetType="{x:Type Paragraph}">
+                                <Setter Property="Margin" Value="0"></Setter>
+                                <Setter Property="Language" Value="de-DE" />
+                            </Style>
+                            <Style TargetType="{x:Type List}">
+                                <Setter Property="Language" Value="de-DE" />
+                                <Setter Property="Margin" Value="0" />
+                            </Style>
+                            <Style TargetType="{x:Type FlowDocument}">
+                                <Setter Property="TextAlignment" Value="Justify" />
+                            </Style>
+                        </ResourceDictionary>
+                    </RichTextBox.Resources>
+                </RichTextBox>
+               
+                <Border Grid.Row="0" Grid.RowSpan="3" Grid.Column="2" VerticalAlignment="Top" IsEnabled="{Binding RelativeSource={RelativeSource AncestorType=ComplexWriter:MainWindow},Path=CurrentText.ReadOnly,Converter={StaticResource InvertBoolConverter}}"
+                         Visibility="{Binding ElementName=options,Path=IsChecked, Converter={StaticResource falseHideConverter}}"
+                        >
+                    <Grid Margin="12,-15,-48,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Border SnapsToDevicePixels="True" Grid.Column="1" Visibility="{Binding ElementName=quotes,Path=IsChecked, Converter={StaticResource falseHideConverter}}"
+                         Background="{StaticResource BackColorBrush}" Margin="-12,0,0,0" CornerRadius="0,5,5,0">
+                            <ItemsControl Name="OpeningQuotes" Height="Auto" VerticalAlignment="Top" Margin="12,2,2,2">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <UniformGrid Columns="2"/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate DataType="system:String">
+                                        <Button Content="{Binding}" Style="{StaticResource SymbolButton}" Height="{Binding RelativeSource={RelativeSource Self}, Path=ActualWidth}" Click="InsertQuoteSymbol"/>
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </Border>
+                        <Border Grid.Column="0" SnapsToDevicePixels="True" Background="{DynamicResource BackColorBrush}" CornerRadius="0,5,5,5"
+                                >
+                            <WrapPanel Cursor="{StaticResource overCursor}" HorizontalAlignment="Center"
+                                       Margin="0,10,0,0" Width="50">
+
+
+                                <Border Style="{StaticResource disableBox}" BorderThickness="0,0,0,3.5">
+
+                                    <customControls:MaskedToggleButtonEnlarge
+                                        Style="{StaticResource textBoxCommands}"
+                                        Width="24"
+                                        Command="EditingCommands.ToggleBullets"
+                                        Height="24"
+                                        Click="Changes"
+                                        ButtonMask="Images/BulletList.png"
+                                        x:Name="buttetBtn"
+                                        ButtonColor="{DynamicResource TitleBrush}">
+                                        <ToggleButton.ToolTip>
+                                            <ToolTip Style="{StaticResource tipTest}" Content="Liste"></ToolTip>
+                                        </ToggleButton.ToolTip>
+                                    </customControls:MaskedToggleButtonEnlarge>
+                                </Border>
+                                <Border Style="{StaticResource disableBox}" BorderThickness="0,0,0,3.5">
+                                    <customControls:MaskedToggleButtonEnlarge Style="{StaticResource textBoxCommands}"
+                                                                              Width="24"
+                                                                              Command="EditingCommands.ToggleNumbering"
+                                                                              Height="24"
+                                                                              Click="Changes"
+                                                                              ButtonMask="Images/NumbersList.png"
+                                                                              x:Name="numberingBtn"
+                                                                              ButtonColor="{DynamicResource TitleBrush}">
+                                        <ToggleButton.ToolTip>
+                                            <ToolTip Style="{StaticResource tipTest}" Content="Nummerierte Liste"></ToolTip>
+                                        </ToggleButton.ToolTip>
+                                    </customControls:MaskedToggleButtonEnlarge>
+                                </Border>
+                                <Border Style="{StaticResource disableBox}" BorderThickness="0,0,0,3.5">
+                                    <customControls:MaskedImageButtonEnlarge
+                                        Style="{StaticResource textBoxCommandsNormal}"
+                                        Width="24"
+                                        Height="24"
+                                        ButtonMask="Images/Indent.png"
+                                        x:Name="plusindentBtn"
+                                        ButtonColor="{DynamicResource TitleBrush}" Click="ChangeLeftIndent">
+                                        <Button.Tag>
+                                            <system:Int32>1</system:Int32>
+                                        </Button.Tag>
+                                        <Button.ToolTip>
+                                            <ToolTip Style="{StaticResource tipTest}" Content="Abstand vergrößern"></ToolTip>
+                                        </Button.ToolTip>
+                                    </customControls:MaskedImageButtonEnlarge>
+                                </Border>
+                                <Border Style="{StaticResource disableBox}" BorderThickness="0,0,0,3.5">
+                                    <customControls:MaskedImageButtonEnlarge
+                                        Style="{StaticResource textBoxCommandsNormal}"
+                                        Width="24"
+
+                                        Height="24"
+                                        ButtonMask="Images/IndentRemove.png"
+                                        x:Name="minusindentBtn"
+                                        ButtonColor="{DynamicResource TitleBrush}" Click="ChangeLeftIndent">
+                                        <Button.Tag>
+                                            <system:Int32>-1</system:Int32>
+                                        </Button.Tag>
+                                        <Button.ToolTip>
+                                            <ToolTip Style="{StaticResource tipTest}" Content="Abstand verringern"></ToolTip>
+                                        </Button.ToolTip>
+                                    </customControls:MaskedImageButtonEnlarge>
+                                </Border>
+                                <Border Style="{StaticResource disableBox}" BorderThickness="0,0,0,3.5">
+                                    <customControls:MaskedImageButtonEnlarge
+                                        Style="{StaticResource textBoxCommandsNormal}"
+                                        Width="24"
+                                        Height="24"
+                                        ButtonMask="Images/IndentRight.png"
+                                        x:Name="plusindentRightBtn"
+                                        ButtonColor="{DynamicResource TitleBrush}" Click="ChangeRightIndent">
+                                        <Button.Tag>
+                                            <system:Int32>1</system:Int32>
+                                        </Button.Tag>
+                                        <Button.ToolTip>
+                                            <ToolTip Style="{StaticResource tipTest}"
+                                                     Content="Abstand rechts vergrößern">
+                                            </ToolTip>
+                                        </Button.ToolTip>
+                                    </customControls:MaskedImageButtonEnlarge>
+                                </Border>
+                                <Border Style="{StaticResource disableBox}" BorderThickness="0,0,0,3.5">
+                                    <customControls:MaskedImageButtonEnlarge
+                                        Style="{StaticResource textBoxCommandsNormal}"
+                                        Width="24"
+                                        Height="24"
+                                        ButtonMask="Images/IndentRemoveRight.png"
+                                        x:Name="minusindentRightBtn"
+                                        ButtonColor="{DynamicResource TitleBrush}" Click="ChangeRightIndent">
+                                        <Button.Tag>
+                                            <system:Int32>-1</system:Int32>
+                                        </Button.Tag>
+                                        <Button.ToolTip>
+                                            <ToolTip Style="{StaticResource tipTest}"
+                                                     Content="Abstand rechts verringern">
+                                            </ToolTip>
+                                        </Button.ToolTip>
+                                    </customControls:MaskedImageButtonEnlarge>
+                                </Border>
+                                <Border Style="{StaticResource disableBox}" BorderThickness="0,0,0,1.5">
+                                    <customControls:MaskedToggleButtonEnlarge Style="{StaticResource textBoxCommands}"
+                                                                              Width="24"
+                                                                              Command="EditingCommands.AlignLeft"
+                                                                              Height="24"
+                                                                              ButtonMask="Images/AlignLeft.png"
+                                                                              x:Name="leftBtn"
+                                                                              ButtonColor="{DynamicResource TitleBrush}"
+                                                                              Click="UpdateOtherElements">
+                                        <ToggleButton.ToolTip>
+                                            <ToolTip Style="{StaticResource tipTest}" Content="Linksbündiger Text"></ToolTip>
+                                        </ToggleButton.ToolTip>
+                                    </customControls:MaskedToggleButtonEnlarge>
+                                </Border>
+                                <Border Style="{StaticResource disableBox}" BorderThickness="0,0,0,1.5">
+                                    <customControls:MaskedToggleButtonEnlarge Style="{StaticResource textBoxCommands}"
+                                                                              Width="24"
+                                                                              Command="EditingCommands.AlignCenter"
+                                                                              Height="24"
+                                                                              ButtonMask="Images/AlignCenter.png"
+                                                                              x:Name="centerBtn"
+                                                                              ButtonColor="{DynamicResource TitleBrush}"
+                                                                              Click="UpdateOtherElements">
+                                        <ToggleButton.ToolTip>
+                                            <ToolTip Style="{StaticResource tipTest}" Content="Zentrierter Text"></ToolTip>
+                                        </ToggleButton.ToolTip>
+                                    </customControls:MaskedToggleButtonEnlarge>
+                                </Border>
+                                <Border Style="{StaticResource disableBox}" BorderThickness="0,0,0,3.5">
+                                    <customControls:MaskedToggleButtonEnlarge Style="{StaticResource textBoxCommands}"
+                                                                              Width="24"
+                                                                              Command="EditingCommands.AlignRight"
+                                                                              Height="24"
+                                                                              ButtonMask="Images/AlignRight.png"
+                                                                              x:Name="rightBtn"
+                                                                              ButtonColor="{DynamicResource TitleBrush}"
+                                                                              Click="UpdateOtherElements">
+                                        <ToggleButton.ToolTip>
+                                            <ToolTip Style="{StaticResource tipTest}" Content="Rechtsbündiger Text"></ToolTip>
+                                        </ToggleButton.ToolTip>
+                                    </customControls:MaskedToggleButtonEnlarge>
+                                </Border>
+                                <Border Style="{StaticResource disableBox}" BorderThickness="0,0,0,3.5">
+                                    <customControls:MaskedToggleButtonEnlarge Style="{StaticResource textBoxCommands}"
+                                                                              Width="24"
+                                                                              Command="EditingCommands.AlignJustify"
+                                                                              Height="24"
+                                                                              ButtonMask="Images/AlignJustify.png"
+                                                                              x:Name="justifyBtn"
+                                                                              ButtonColor="{DynamicResource TitleBrush}"
+                                                                              Click="UpdateOtherElements">
+                                        <ToggleButton.ToolTip>
+                                            <ToolTip Style="{StaticResource tipTest}" Content="Blocktext"></ToolTip>
+                                        </ToggleButton.ToolTip>
+                                    </customControls:MaskedToggleButtonEnlarge>
+                                </Border>
+                                <Border Style="{StaticResource disableBox}" BorderThickness="0,0,0,1.5">
+                                    <customControls:MaskedImageButtonEnlarge
+                                        Style="{StaticResource textBoxCommandsNormal}"
+                                        Width="24"
+                                        Height="24"
+                                        ButtonMask="Images/Fonts.png"
+                                        ButtonColor="{DynamicResource TitleBrush}" Click="ChangeFontWithDialog">
+                                        <customControls:MaskedImageButtonEnlarge.ToolTip>
+                                            <ToolTip Style="{StaticResource tipTest}"
+                                                     Content="Schriftart anpassen... (Strg+T)" />
+                                        </customControls:MaskedImageButtonEnlarge.ToolTip>
+                                    </customControls:MaskedImageButtonEnlarge>
+                                </Border>
+                                <Border Style="{StaticResource disableBox}" BorderThickness="0,0,0,1.5">
+                                    <customControls:MaskedToggleButtonEnlarge Style="{StaticResource textBoxCommands}"
+                                                                              Width="24"
+                                                                              Command="EditingCommands.ToggleItalic"
+                                                                              Height="24"
+                                                                              ButtonMask="Images/Italic.png"
+                                                                              x:Name="italicBtn"
+                                                                              ButtonColor="{DynamicResource TitleBrush}"
+                                                                              Click="UpdateOtherElements">
+                                        <ToggleButton.ToolTip>
+                                            <ToolTip Style="{StaticResource tipTest}" Content="Schräggestellter Text"></ToolTip>
+                                        </ToggleButton.ToolTip>
+                                    </customControls:MaskedToggleButtonEnlarge>
+                                </Border>
+
+                                <Border Style="{StaticResource disableBox}" BorderThickness="0,0,0,1.5">
+                                    <customControls:MaskedToggleButtonEnlarge Style="{StaticResource textBoxCommands}"
+                                                                              Width="24"
+                                                                              Command="EditingCommands.ToggleBold"
+                                                                              Height="24"
+                                                                              ButtonMask="Images/Bold.png"
+                                                                              x:Name="boldBtn"
+                                                                              ButtonColor="{DynamicResource TitleBrush}"
+                                                                              Click="UpdateOtherElements">
+                                        <ToggleButton.ToolTip>
+                                            <ToolTip Style="{StaticResource tipTest}" Content="Fettgedruckter Text"></ToolTip>
+                                        </ToggleButton.ToolTip>
+                                    </customControls:MaskedToggleButtonEnlarge>
+                                </Border>
+
+                                <Border Style="{StaticResource disableBox}" BorderThickness="0,0,0,1.5">
+                                    <customControls:MaskedToggleButtonEnlarge Style="{StaticResource textBoxCommands}"
+                                                                              Width="24"
+                                                                              Command="EditingCommands.ToggleUnderline"
+                                                                              Height="24"
+                                                                              ButtonMask="Images/Underline.png"
+                                                                              x:Name="underlineBtn"
+                                                                              ButtonColor="{DynamicResource TitleBrush}"
+                                                                              Click="UpdateOtherElements">
+                                        <ToggleButton.ToolTip>
+                                            <ToolTip Style="{StaticResource tipTest}" Content="Unterstrichener Text"></ToolTip>
+                                        </ToggleButton.ToolTip>
+                                    </customControls:MaskedToggleButtonEnlarge>
+                                </Border>
+                                <Border Style="{StaticResource disableBox}" BorderThickness="0,0,0,3.5">
+                                    <customControls:MaskedToggleButtonEnlarge
+                                        Width="24"
+                                        Height="24"
+                                        ButtonMask="Images/Strikeout.png"
+                                        x:Name="strikeoutBtn"
+                                        ButtonColor="{DynamicResource TitleBrush}"
+                                        Click="StrikeTextOut">
+                                        <ToggleButton.ToolTip>
+                                            <ToolTip Style="{StaticResource tipTest}" Content="Durchgestrichener Text"></ToolTip>
+                                        </ToggleButton.ToolTip>
+                                    </customControls:MaskedToggleButtonEnlarge>
+                                </Border>
+                                <Border Style="{StaticResource disableBox}" Width="24" BorderThickness="0,0,0,3.5"></Border>
+
+                                <Border Style="{StaticResource disableBox}" BorderThickness="0,0,0,3.5">
+                                    <customControls:MaskedImageButtonEnlarge
+                                        Style="{StaticResource textBoxCommandsNormal}"
+                                        Width="24"
+                                        Command="EditingCommands.IncreaseFontSize"
+                                        Height="24"
+                                        ButtonMask="Images/IncreaseFont.png"
+                                        x:Name="plusFontsizeBtn"
+                                        ButtonColor="{DynamicResource TitleBrush}" Click="Changes">
+                                        <Button.ToolTip>
+                                            <ToolTip Style="{StaticResource tipTest}" Content="Schriftgröße vergrößern"></ToolTip>
+                                        </Button.ToolTip>
+                                    </customControls:MaskedImageButtonEnlarge>
+                                </Border>
+                                <Border Style="{StaticResource disableBox}" BorderThickness="0,0,0,3.5">
+                                    <customControls:MaskedImageButtonEnlarge
+                                        Style="{StaticResource textBoxCommandsNormal}"
+                                        Width="24"
+                                        Command="EditingCommands.DecreaseFontSize"
+                                        Height="24"
+                                        ButtonMask="Images/DecreaseFont.png"
+                                        x:Name="minusFontSizeBtn"
+                                        ButtonColor="{DynamicResource TitleBrush}" Click="Changes">
+                                        <Button.ToolTip>
+                                            <ToolTip Style="{StaticResource tipTest}" Content="Schriftgröße verringern"></ToolTip>
+                                        </Button.ToolTip>
+                                    </customControls:MaskedImageButtonEnlarge>
+                                </Border>
+
+                                <Border Style="{StaticResource disableBox}" BorderThickness="0,0,0,3.5">
+                                    <customControls:MaskedImageButtonEnlarge
+                                        Style="{StaticResource textBoxCommandsNormal}"
+                                        Width="24"
+                                        Height="24"
+                                        ButtonMask="Images/Textcolor.png"
+                                        x:Name="textColorBtn"
+                                        ButtonColor="MediumVioletRed" Click="ChangesTextColor">
+                                        <Button.ToolTip>
+                                            <ToolTip Style="{StaticResource tipTest}"
+                                                     Content="Vordergrundfarbe ändern...">
+                                            </ToolTip>
+                                        </Button.ToolTip>
+                                    </customControls:MaskedImageButtonEnlarge>
+                                </Border>
+                                <Border Style="{StaticResource disableBox}" BorderThickness="0,0,0,3.5">
+                                    <customControls:MaskedImageButtonEnlarge
+                                        Style="{StaticResource textBoxCommandsNormal}"
+                                        Width="24"
+                                        Height="24"
+                                        ButtonMask="Images/bucket.png"
+                                        x:Name="textBackColorBtn"
+                                        ButtonColor="{DynamicResource TitleBrush}" Click="ChangesTextBackgroundColor">
+                                        <Button.ToolTip>
+                                            <ToolTip Style="{StaticResource tipTest}"
+                                                     Content="Hintergrundfarbe ändern...">
+                                            </ToolTip>
+                                        </Button.ToolTip>
+                                    </customControls:MaskedImageButtonEnlarge>
+                                </Border>
+                                <Border Style="{StaticResource disableBox}" BorderThickness="0,0,0,1.5">
+                                    <customControls:MaskedImageButtonEnlarge
+                                        Style="{StaticResource textBoxCommandsNormal}"
+                                        Width="24"
+                                        Height="24"
+                                        ButtonMask="Images/symbol.png"
+                                        x:Name="specialCharacterBtn"
+                                        ButtonColor="{DynamicResource TitleBrush}" Click="InsertSpecialCharacter">
+                                        <Button.ToolTip>
+                                            <ToolTip Style="{StaticResource tipTest}"
+                                                     Content="Sonderzeichen einfügen...">
+                                            </ToolTip>
+                                        </Button.ToolTip>
+                                    </customControls:MaskedImageButtonEnlarge>
+                                </Border>
+                                <Border Style="{StaticResource disableBox}" BorderThickness="0,0,0,1.5">
+                                    <Button Style="{StaticResource TextButton}"
+                                            Width="24"
+                                            Height="24"
+                                            FontFamily="{Binding RelativeSource={RelativeSource AncestorType=ComplexWriter:MainWindow},Path=CurrentSymbolFont}"
+                                            FontSize="{StaticResource fontSizeMedium}"
+                                            Visibility="{Binding RelativeSource={RelativeSource AncestorType=ComplexWriter:MainWindow},Path=CurrentSymbol,Converter={StaticResource hideEmptyConverter}}"
+                                            Content="{Binding RelativeSource={RelativeSource AncestorType=ComplexWriter:MainWindow},Path=CurrentSymbol}"
+                                            x:Name="singleSpecialCharacterBtn"
+                                            Foreground="{DynamicResource TitleBrush}"
+                                            Click="InsertLastSpecialCharacter">
+                                        <Button.ToolTip>
+                                            <ToolTip Style="{StaticResource tipTest}"
+                                                     Content="Letztes Sonderzeichen einfügen...">
+                                            </ToolTip>
+                                        </Button.ToolTip>
+                                    </Button>
+                                </Border>
+                                <Border BorderThickness="0,0,0,0" Style="{StaticResource disableBox}">
+                                    <customControls:MaskedImageButtonEnlarge
+                                        Style="{StaticResource textBoxCommandsNormal}"
+                                        Width="24"
+                                        Height="24"
+                                        ButtonMask="Images/1291282236_image.png"
+                                        ButtonColor="{DynamicResource TitleBrush}" Click="InsertAnImage">
+                                        <Button.ToolTip>
+                                            <ToolTip Style="{StaticResource tipTest}" Content="Bild einfügen..."></ToolTip>
+                                        </Button.ToolTip>
+                                    </customControls:MaskedImageButtonEnlarge>
+                                </Border>
+                                <Border Style="{StaticResource disableBox}" BorderThickness="0,0,0,0">
+                                    <customControls:MaskedImageButtonEnlarge
+                                        Style="{StaticResource textBoxCommandsNormal}"
+                                        Width="24"
+                                        Height="24"
+                                        ButtonMask="Images/page.png"
+                                        ButtonColor="{DynamicResource TitleBrush}" Click="AddSectionWithPageBreak">
+                                        <Button.ToolTip>
+                                            <ToolTip Style="{StaticResource tipTest}"
+                                                     Content="Neuen Bereich mit Seitenumbruch erstellen">
+                                            </ToolTip>
+                                        </Button.ToolTip>
+                                    </customControls:MaskedImageButtonEnlarge>
+                                </Border>
+                                <!---->
+                                <Border>
+                                    <customControls:MaskedToggleButtonEnlarge
+                                        IsChecked="{Binding RelativeSource={RelativeSource AncestorType=ComplexWriter:MainWindow},Path=CurrentText.SpellCheckEnabled,Mode=TwoWay}"
+                                        Width="24"
+                                        Height="24"
+                                        ButtonMask="Images/spellcheck.png"
+                                        x:Name="CheckSpelling"
+                                        ButtonColor="{DynamicResource TitleBrush}">
+                                        <ToggleButton.ToolTip>
+                                            <ToolTip Style="{StaticResource tipTest}"
+                                                     Content="Rechtschreibprüfung an/aus">
+                                            </ToolTip>
+                                        </ToggleButton.ToolTip>
+                                    </customControls:MaskedToggleButtonEnlarge>
+                                </Border>
+
+                            </WrapPanel>
+
+                        </Border></Grid>
+                </Border>
+                <Border Width="150" Visibility="{Binding RelativeSource={RelativeSource AncestorType=ComplexWriter:MainWindow},Path=ShowNameList,Converter={StaticResource falseCollapsedConverter}}" Grid.Row="0" Grid.RowSpan="3" Margin="0,-5,-12,0" Grid.Column="0" >
+                    <characterNames:CharacterNameControl Names="{Binding RelativeSource={RelativeSource AncestorType=ComplexWriter:MainWindow},Path=CurrentText.Characters}" TextClicked="TextClicked"/>
+                </Border>
+                <searchAndReplace:SearchAndReplaceControl Grid.Column="0" Grid.ColumnSpan="3" IsClosedFromWithin="FocusTextbox" MatchingChanged="UpdateView" Grid.Row="2" Visibility="Collapsed" x:Name="SearchAndReplaceControl" Margin="0,0,25,0"/>
+            </Grid>
+
+            <Thumb  Grid.Row="0" VerticalAlignment="Top" Height="10" Margin="0,-3,70,0"
+                          DragStarted="OnDragStarted" DragCompleted="RaiseDragCompleted"
+                                                   Cursor="{StaticResource moveCursor}" DragDelta="MoveWindow"
+                                                   Tag="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}}">
+                <Thumb.Template>
+                    <ControlTemplate TargetType="Thumb">
+                        <Border Background="{StaticResource BackColorBrush}" CornerRadius="0,0,10,0" />
+                    </ControlTemplate>
+                </Thumb.Template>
+            </Thumb>
+        </Grid>
+
+        <!--<Border Grid.Column="1" Grid.Row="1" Style="{StaticResource bord}" Background="{StaticResource background}" IsHitTestVisible="False"/>-->
+
+
+        <Thumb Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0" Background="{StaticResource BackColorBrush}" Margin="10,23,0,0" Cursor="{StaticResource moveCursor}" HorizontalAlignment="Left" Height="32" Width="150" 
+               DragDelta="MoveWindow"   DragStarted="OnDragStarted" DragCompleted="RaiseDragCompleted"
+                                                   Tag="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}}">
+            <Thumb.Template>
+                <ControlTemplate TargetType="Thumb">
+                    <Border Background="{TemplateBinding Background}" >
+                        <Border.OpacityMask>
+                            <DrawingBrush>
+                                <DrawingBrush.Drawing>
+                                    <GeometryDrawing Brush="{StaticResource BackColorBrush}">
+                                        <GeometryDrawing.Geometry>
+                                            <CombinedGeometry GeometryCombineMode="Exclude">
+                                                <CombinedGeometry.Geometry1>
+                                                    <RectangleGeometry Rect="0,0,150,32"></RectangleGeometry>
+                                                </CombinedGeometry.Geometry1>
+                                                <CombinedGeometry.Geometry2>
+                                                    <EllipseGeometry Center="150,0" RadiusX="36" RadiusY="32"></EllipseGeometry>
+                                                </CombinedGeometry.Geometry2>
+                                            </CombinedGeometry>
+                                        </GeometryDrawing.Geometry>
+                                    </GeometryDrawing>
+                                </DrawingBrush.Drawing>
+                            </DrawingBrush>
+                        </Border.OpacityMask>
+                        <ToggleButton Style="{StaticResource FeatherBtn}" Margin="3,-10,0,0" VerticalAlignment="Stretch"
+                                      IsChecked="{Binding UseBlackBackground, RelativeSource={RelativeSource AncestorType={x:Type ComplexWriter:MainWindow}}}"
+                                                    HorizontalAlignment="Left" Width="{Binding RelativeSource={RelativeSource Self},Path=ActualHeight}"
+                                                    RenderOptions.BitmapScalingMode="HighQuality">
+                            <ToggleButton.ToolTip>
+                                <ToolTip Style="{StaticResource tipTest}" Content="Schwarz als Hintergrund"/>
+                            </ToggleButton.ToolTip>
+                        </ToggleButton>
+                    </Border>
+                </ControlTemplate>
+            </Thumb.Template>
+        </Thumb>
+        <Border Grid.Column="1" Grid.Row="0" Visibility="{Binding ElementName=options,Path=IsChecked,Converter={StaticResource falseHideConverter}}" HorizontalAlignment="Right" Width="20" Height="20" Margin="0,0,50,0" VerticalAlignment="Bottom" Background="{DynamicResource BackColorBrush}">
+            <Border.OpacityMask>
+                <DrawingBrush>
+                    <DrawingBrush.Drawing>
+                        <GeometryDrawing Brush="{StaticResource BackColorBrush}">
+                            <GeometryDrawing.Geometry>
+                                <CombinedGeometry GeometryCombineMode="Exclude">
+                                    <CombinedGeometry.Geometry1>
+                                        <RectangleGeometry Rect="0,0,20,20"></RectangleGeometry>
+                                    </CombinedGeometry.Geometry1>
+                                    <CombinedGeometry.Geometry2>
+                                        <EllipseGeometry Center="20,0" RadiusX="20" RadiusY="16"></EllipseGeometry>
+                                    </CombinedGeometry.Geometry2>
+                                </CombinedGeometry>
+                            </GeometryDrawing.Geometry>
+                        </GeometryDrawing>
+                    </DrawingBrush.Drawing>
+                </DrawingBrush>
+            </Border.OpacityMask>
+        </Border>
+        <Border Grid.Column="1" Grid.Row="0" Background="{StaticResource BackColorBrush}" Margin="10,0,70,0" VerticalAlignment="Bottom" HorizontalAlignment="Right" CornerRadius="10,10,0,0">
+            <StackPanel Orientation="Horizontal">
+                <customControls:MaskedImageButtonEnlarge x:Name="NewFileBtn"  Style="{StaticResource rimageButton}" ButtonMask="Images/new.png" Click="MakeNewFile">
+                    <Button.ToolTip>
+                        <ToolTip Style="{StaticResource tipTest}" Content="Neue Datei erstellen (Strg+N)"></ToolTip>
+                    </Button.ToolTip>
+                </customControls:MaskedImageButtonEnlarge>
+                <Popup PlacementTarget="{Binding ElementName=NewFileBtn}" Placement="Right" VerticalOffset="30" Name="newPopup" MaxHeight="600" MaxWidth="600" StaysOpen="False">
+                    <Border Background="{StaticResource BackColorBrush}" BorderBrush="{DynamicResource TitleBrush}" BorderThickness="1">
+                        <DockPanel>
+                            <Button DockPanel.Dock="Top" Content="Komplett leer"  Style="{StaticResource FittingButton}" Click="MakeEmpty" Padding="10,5" />
+                            <Button DockPanel.Dock="Top" Content="Anhand einer Stildatei"  Style="{StaticResource FittingButton}" Click="MakeEmptyStyle" Padding="10,5" />
+                            <Button DockPanel.Dock="Top" Content="Nach aktuellem Vorbild"  Style="{StaticResource FittingButton}" Click="MakeEmptyCurrent" Padding="10,5" />
+                            <Button DockPanel.Dock="Top" Content="Nach Referenzdatei"  Style="{StaticResource FittingButton}" Click="MakeEmptyReference" Padding="10,5" />
+                        </DockPanel>
+                    </Border>
+                </Popup>
+                <customControls:MaskedImageButtonEnlarge Style="{StaticResource rimageButton}" Margin="2,2,15,2" ButtonMask="Images/open.png" Click="OpenFile">
+                    <Button.ToolTip>
+                        <ToolTip Style="{StaticResource tipTest}" Content="Datei laden...  (Ctrl+O)"></ToolTip>
+                    </Button.ToolTip>
+                </customControls:MaskedImageButtonEnlarge>
+                <!--<customControls:MaskedImageButtonEnlarge Style="{StaticResource rimageButton}" ButtonMask="Images/save.png" Click="SaveCurrentFile" IsEnabled="{Binding RelativeSource={RelativeSource AncestorType=ComplexWriter:MainWindow},Path=CurrentText.IsChanged}">
+                    <Button.ToolTip>
+                        <ToolTip Style="{StaticResource tipTest}" Content="Datei speichern  (Ctrl+S)"></ToolTip>
+                    </Button.ToolTip>
+                </customControls:MaskedImageButtonEnlarge>
+                <customControls:MaskedImageButtonEnlarge Style="{StaticResource rimageButton}" ButtonMask="Images/saveAll.png" Click="SaveAllFiles">
+                    <Button.ToolTip>
+                        <ToolTip Style="{StaticResource tipTest}" Content="Alle Dateien speichern  (Alt+S)"></ToolTip>
+                    </Button.ToolTip>
+                </customControls:MaskedImageButtonEnlarge>-->
+                                    <customControls:MaskedImageButtonEnlarge Style="{StaticResource rimageButton}" ButtonMask="Images/save.png" Click="SaveCurrentFile" 
+                                                                          Visibility="{Binding RelativeSource={RelativeSource AncestorType=ComplexWriter:MainWindow}, Path=ShowSaveFile, Converter={StaticResource falseCollapsedConverter}}"
+                                                                             Margin="2,2,2,2">
+                                        <Button.ToolTip>
+                                            <ToolTip Style="{StaticResource tipTest}" Content="Datei speichern(Ctrl+S)"></ToolTip>
+                                        </Button.ToolTip>
+                                    </customControls:MaskedImageButtonEnlarge>
+                                    <customControls:MaskedImageButtonEnlarge Style="{StaticResource rimageButton}" ButtonMask="Images/saveAll.png" Click="SaveAllFiles" 
+                                                                          Visibility="{Binding RelativeSource={RelativeSource AncestorType=ComplexWriter:MainWindow}, Path=ShowSaveFile, Converter={StaticResource falseCollapsedConverter}}"
+                                                                             Margin="2,2,2,2">
+                                        <Button.ToolTip>
+                                            <ToolTip Style="{StaticResource tipTest}" Content="Alle Dateien speichern"></ToolTip>
+                                        </Button.ToolTip>
+                                    </customControls:MaskedImageButtonEnlarge>
+                                    <customControls:MaskedImageButtonEnlarge Style="{StaticResource rimageButton}" ButtonMask="Images/saveAs.png" Click="SaveCurrentFileAs"  Margin="2,2,15,2">
+                                        <Button.ToolTip>
+                                            <ToolTip Style="{StaticResource tipTest}" Content="Datei speichern unter...  (Ctrl+Shift+S)"></ToolTip>
+                                        </Button.ToolTip>
+                                    </customControls:MaskedImageButtonEnlarge>
+
+                                    <Border Width="1.5" SnapsToDevicePixels="True" Background="{DynamicResource TitleBrush}" Margin="1" CornerRadius="2"></Border>
+                <customControls:MaskedImageButtonEnlarge IsEnabled="{Binding CurrentText.ReadOnly, Converter={StaticResource InvertBoolConverter}, RelativeSource={RelativeSource AncestorType={x:Type ComplexWriter:MainWindow}}}"  Style="{StaticResource rimageButton}" ButtonMask="Images/TopOnlyQuoteEven.png" Click="UpdateQuotations">
+                    <customControls:MaskedImageButtonEnlarge.ToolTip>
+                        <ToolTip Style="{StaticResource tipTest}" Content="Anführungszeichen anpassen..."/>
+                    </customControls:MaskedImageButtonEnlarge.ToolTip>
+                </customControls:MaskedImageButtonEnlarge>
+                <customControls:MaskedImageButtonEnlarge IsEnabled="{Binding CurrentText.ReadOnly, Converter={StaticResource InvertBoolConverter}, RelativeSource={RelativeSource AncestorType={x:Type ComplexWriter:MainWindow}}}"  Style="{StaticResource rimageButton}" ButtonMask="Images/1291282236_image.png" Click="ChangeWatermark">
+                    <customControls:MaskedImageButtonEnlarge.ToolTip>
+                        <ToolTip Style="{StaticResource tipTest}" Content="Wasserzeichen anpassen..."/>
+                    </customControls:MaskedImageButtonEnlarge.ToolTip>
+                </customControls:MaskedImageButtonEnlarge>
+                                        <customControls:MaskedImageButtonEnlarge IsEnabled="true"  Style="{StaticResource rimageButton}" ButtonMask="Images/sideImage.png" Click="ChangeSideImage">
+                                            <customControls:MaskedImageButtonEnlarge.ToolTip>
+                                                <ToolTip Style="{StaticResource tipTest}" Content="Seitebild anpassen..."/>
+                                            </customControls:MaskedImageButtonEnlarge.ToolTip>
+                                        </customControls:MaskedImageButtonEnlarge>
+                                        <customControls:MaskedImageButtonEnlarge IsEnabled="true" x:Name="lineHightBtn"  Style="{StaticResource rimageButton}" ButtonMask="Images/line.png" Click="ChangeLineHeight">
+                                            <customControls:MaskedImageButtonEnlarge.ToolTip>
+                                                <ToolTip Style="{StaticResource tipTest}" Content="Zeilenabstand bestimmen..."/>
+                                            </customControls:MaskedImageButtonEnlarge.ToolTip>
+                                        </customControls:MaskedImageButtonEnlarge>
+                                        <Popup PlacementTarget="{Binding ElementName=lineHightBtn}" Placement="Right" VerticalOffset="30" Name="lineHightPopup" MaxHeight="600" MaxWidth="600" StaysOpen="False" Closed="UpdateBlocks">
+                                            <Border Background="{StaticResource BackColorBrush}" BorderBrush="{DynamicResource TitleBrush}" BorderThickness="1">
+                                                <DockPanel>
+                                                    <Button DockPanel.Dock="Top" Content="Automatisch"  Style="{StaticResource FittingButton}" Click="SetAutomatical" Padding="10,5" />
+                                                    <xctk:DoubleUpDown DockPanel.Dock="Top" Minimum="1" ValueChanged="UpdateIdent" x:Name="LineHightDouble" Style="{StaticResource doubleTest}" PreviewKeyUp="ClosePop"/>
+                                                </DockPanel>
+                                            </Border>
+                                        </Popup>
+                                        <Border Width="1.5" SnapsToDevicePixels="True" Background="{DynamicResource TitleBrush}" Margin="1" CornerRadius="2"></Border>
+                <customControls:MaskedImageButtonEnlarge x:Name="errors"  Style="{StaticResource rimageButton}" 
+                	ButtonMask="Images/info.png" Click="ShowOrActivateWindow">
+                    <customControls:MaskedImageButtonEnlarge.IsEnabled>
+                        <MultiBinding Converter="{StaticResource HasItemsConverter}">
+                            <Binding RelativeSource="{RelativeSource AncestorType={x:Type ComplexWriter:MainWindow}}" Path="ErrorMessages.Count"/>
+                            <Binding RelativeSource="{RelativeSource AncestorType={x:Type ComplexWriter:MainWindow}}" Path="ErrorWindow"/>
+                        </MultiBinding>
+                    </customControls:MaskedImageButtonEnlarge.IsEnabled>
+                    <customControls:MaskedImageButtonEnlarge.ToolTip>
+                        <ToolTip Style="{StaticResource tipTest}" Content="Meldungen ansehen..."/>
+                    </customControls:MaskedImageButtonEnlarge.ToolTip>
+                </customControls:MaskedImageButtonEnlarge>
+                                        <customControls:MaskedImageButtonEnlarge Name="richExport" Style="{StaticResource rimageButton}" ButtonMask="Images/rtf.png" Click="ExportRtf">
+                                            <Button.ToolTip>
+                                                <ToolTip Style="{StaticResource tipTest}" Content="Als RichTextFile exportieren"></ToolTip>
+                                            </Button.ToolTip>
+                                        </customControls:MaskedImageButtonEnlarge>
+                                        <customControls:MaskedImageButtonEnlarge Name="xamlExport" Style="{StaticResource rimageButton}" ButtonMask="Images/Xaml.png" Click="ExportXaml">
+                    <Button.ToolTip>
+                        <ToolTip Style="{StaticResource tipTest}" Content="Xaml-Code des FlowDocuments anzeigen... (Ctrl+P)"></ToolTip>
+                    </Button.ToolTip>
+                </customControls:MaskedImageButtonEnlarge>
+                <customControls:MaskedImageButtonEnlarge  Name="Export" Style="{StaticResource rimageButton}" ButtonMask="Images/Export.png" Click="ExportToPdf"  Margin="2,2,10,2">
+                    <Button.ToolTip>
+                        <ToolTip Style="{StaticResource tipTest}" Content="Exportieren  (Ctrl+E)"></ToolTip>
+                    </Button.ToolTip>
+                </customControls:MaskedImageButtonEnlarge>
+                <Border Width="1.5" SnapsToDevicePixels="True" Background="{DynamicResource TitleBrush}" Margin="1" CornerRadius="2"></Border>
+                <!--<customControls:MaskedToggleButtonEnlarge  IsChecked="{Binding RelativeSource={RelativeSource AncestorType=ComplexWriter:MainWindow},Path=ShowToolbar}" Width="25" Height="25"   Name="options" ButtonMask="Images/EditStyle.png" ButtonColor="{DynamicResource TitleBrush}" Margin="5,-1">-->
+                <!--<customControls:MaskedToggleButtonEnlarge  IsChecked="{Binding RelativeSource={RelativeSource AncestorType=ComplexWriter:MainWindow},Path=ShowNameList}" Width="25" Height="25" ButtonMask="Images/id.png" ButtonColor="{DynamicResource TitleBrush}" Margin="5,-1">
+                    <ToggleButton.ToolTip>
+                        <ToolTip Style="{StaticResource tipTest}" Content="Elemente zum Einfügen anzeigen"></ToolTip>
+                    </ToggleButton.ToolTip>
+                </customControls:MaskedToggleButtonEnlarge>-->
+                                    <customControls:MaskedToggleButtonEnlarge  IsChecked="true" Width="25" Height="25"   Name="options" ButtonMask="Images/EditStyle.png" ButtonColor="{DynamicResource TitleBrush}" Margin="5,-1">
+                                        <ToggleButton.ToolTip>
+                                            <ToolTip Style="{StaticResource tipTest}" Content="Optionen Anzeigen"></ToolTip>
+                                        </ToggleButton.ToolTip>
+                                    </customControls:MaskedToggleButtonEnlarge>
+                                        <customControls:MaskedToggleButtonEnlarge Visibility="{Binding ElementName=options,Path=IsChecked,Converter={StaticResource falseHideConverter}}" Width="25" Height="25"  Name="quotes" ButtonMask="Images/QuoteForMenu.png" ButtonColor="{DynamicResource TitleBrush}" Margin="5,-1">
+                                        <ToggleButton.ToolTip>
+                                            <ToolTip Style="{StaticResource tipTest}" Content="Anführungszeichen anzeigen"></ToolTip>
+                                        </ToggleButton.ToolTip>
+                                    </customControls:MaskedToggleButtonEnlarge>
+                                </StackPanel>
+        </Border>
+        <Border Grid.Column="0" Grid.Row="1" Grid.RowSpan="2" Background="{StaticResource BackColorBrush}"  MinWidth="22" Padding="4,10" CornerRadius="10,0,0,10"  Margin="0,-3,0,10">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <Thumb Grid.Row="1" Cursor="{StaticResource SizeWE}" DragDelta="DragDelta" Name="leftThumb"  DragStarted="OnDragStarted" DragCompleted="RaiseDragCompleted"
+                                                   Tag="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}}">
+                    <Thumb.Template>
+                        <ControlTemplate TargetType="Thumb">
+                            <Border Background="Transparent" CornerRadius="10,0,10,10" />
+                        </ControlTemplate>
+                    </Thumb.Template>
+                </Thumb>
+               
+                <StackPanel Grid.Row="0" Height="Auto">
+                   
+                    <customControls:MaskedToggleButtonEnlarge x:Name="ApplyButton2" Cursor="{StaticResource overCursor}" ButtonColor="{DynamicResource TitleBrush}" Width="24" Height="24" ButtonMask="Images/paint_brush2.png" IsChecked="{Binding ShowStylePopup, RelativeSource={RelativeSource AncestorType={x:Type ComplexWriter:MainWindow}}}">
+                        <customControls:MaskedToggleButtonEnlarge.ToolTip>
+                            <ToolTip Style="{StaticResource tipTest}" Content="Stilfenster anzeigen"/>
+                        </customControls:MaskedToggleButtonEnlarge.ToolTip>
+                    </customControls:MaskedToggleButtonEnlarge>
+                    <customControls:MaskedToggleButtonEnlarge  IsChecked="{Binding RelativeSource={RelativeSource AncestorType=ComplexWriter:MainWindow},Path=ShowNameList}" Width="24" Height="24" ButtonMask="Images/id.png" ButtonColor="{DynamicResource TitleBrush}">
+                        <ToggleButton.ToolTip>
+                            <ToolTip Style="{StaticResource tipTest}" Content="Elemente zum Einfügen anzeigen"></ToolTip>
+                        </ToggleButton.ToolTip>
+                    </customControls:MaskedToggleButtonEnlarge>
+
+                                       
+                                            <Popup Placement="Absolute" x:Name="StylePopup2" MaxHeight="600" StaysOpen="True" AllowsTransparency="True" Cursor="{StaticResource standardCursor}">
+                                            <Popup.IsOpen>
+                                                <MultiBinding Converter="{StaticResource ShowStylesMultiConverter}">
+                                                    <Binding RelativeSource="{RelativeSource AncestorType=Window}" Path="IsActive" Mode="OneWay"/>
+                                                    <Binding RelativeSource="{RelativeSource AncestorType=ComplexWriter:MainWindow}" Path="ShowStylePopup" Mode="OneWay"/>
+                                                    <Binding RelativeSource="{RelativeSource AncestorType=ComplexWriter:MainWindow}" Path="IsMinimized" Mode="OneWay"/>
+                                                    <Binding RelativeSource="{RelativeSource AncestorType=ComplexWriter:MainWindow}" Path="WindowState" Mode="OneWay"/>
+                                                </MultiBinding>
+                                            </Popup.IsOpen>
+
+                                           
+                                                <Border Effect="{StaticResource WindowShadow}" Cursor="{StaticResource standardCursor}"
+                                Width="320" CornerRadius="3" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Border.Background>
+                                <MultiBinding Converter="{StaticResource IfThenElseMultiConverter}">
+                                    <Binding RelativeSource="{RelativeSource AncestorType=ComplexWriter:MainWindow}" Path="PopupIsAttachedToMainWindow"></Binding>
+                                    <Binding Source="{StaticResource BackColorBrush}"/>
+                                    <Binding Source="{StaticResource BackColorBrushStripes}"/>
+                                </MultiBinding>
+                            </Border.Background>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <DockPanel Grid.Row="0" Grid.Column="1" >
+                                    <ToggleButton Style="{StaticResource ToggleBtnStyle2}" DockPanel.Dock="Right" IsChecked="{Binding RelativeSource={RelativeSource AncestorType=ComplexWriter:MainWindow},Path=PopupIsAttachedToMainWindow}">
+                                        <ToggleButton.ToolTip>
+                                            <ToolTip Style="{StaticResource tipTest}" Content="Position am Hauptfenster fixieren"></ToolTip>
+                                        </ToggleButton.ToolTip>
+                                    </ToggleButton>
+                                    <Thumb IsHitTestVisible="{Binding RelativeSource={RelativeSource AncestorType=ComplexWriter:MainWindow},Path=PopupIsAttachedToMainWindow,Converter={StaticResource InvertBoolConverter}}"
+                                           Cursor="{StaticResource moveCursor}"
+                                           DockPanel.Dock="Right" Style="{StaticResource TransparentWindowResizeThumbStyle}" DragDelta="DragPopup"/>
+                                </DockPanel>
+                                <Thumb IsHitTestVisible="{Binding RelativeSource={RelativeSource AncestorType=ComplexWriter:MainWindow},Path=PopupIsAttachedToMainWindow,Converter={StaticResource InvertBoolConverter}}" 
+                                           Cursor="{StaticResource moveCursor}"
+                                       Grid.Column="0" DragDelta="DragPopup" Grid.Row="2" Grid.ColumnSpan="3" Style="{StaticResource TransparentWindowResizeThumbStyle}" Height="10"/>
+                                <Thumb IsHitTestVisible="{Binding RelativeSource={RelativeSource AncestorType=ComplexWriter:MainWindow},Path=PopupIsAttachedToMainWindow,Converter={StaticResource InvertBoolConverter}}"
+                                           Cursor="{StaticResource moveCursor}"
+                                       Grid.Column="0" DragDelta="DragPopup" Grid.Row="0" Grid.RowSpan="3" Style="{StaticResource TransparentWindowResizeThumbStyle}" Width="10"/>
+                                <Thumb IsHitTestVisible="{Binding RelativeSource={RelativeSource AncestorType=ComplexWriter:MainWindow},Path=PopupIsAttachedToMainWindow,Converter={StaticResource InvertBoolConverter}}"
+                                           Cursor="{StaticResource moveCursor}"
+                                       Grid.Column="2" DragDelta="DragPopup" Grid.Row="0" Grid.RowSpan="3" Style="{StaticResource TransparentWindowResizeThumbStyle}" Width="10"/>
+                                <Border Background="{StaticResource BackColorBrush}" Grid.Row="1" Grid.Column="1">
+                                    <DockPanel LastChildFill="True">
+                                        <Button DockPanel.Dock="Bottom" Content="Alle Stile löschen"
+                                                Style="{StaticResource FittingButton}" Click="ClearStyles2"
+                                                Padding="10,5" />
+                                        <Button DockPanel.Dock="Bottom" Content="Stilliste an Dokument angleichen"
+                                                Style="{StaticResource FittingButton}" Click="ClearStyles3"
+                                                Padding="10,5" />
+
+                                        <Border DockPanel.Dock="Bottom" BorderBrush="{DynamicResource TitleBrush}"
+                                                BorderThickness="0,0,0,1">
+                                            <Button Content="Stile importieren"
+                                                    Style="{StaticResource FittingButton}" Click="ImportCurrentStyle"
+                                                    Padding="10,5" />
+                                        </Border>
+                                        <Button DockPanel.Dock="Bottom" Content="Stile exportieren"
+                                                Style="{StaticResource FittingButton}" Click="ExportCurrentStyle"
+                                                Padding="10,5" />
+                                        <Border DockPanel.Dock="Bottom" BorderBrush="{DynamicResource TitleBrush}"
+                                                BorderThickness="0,0,0,1">
+                                            <Button Content="Auswahlstil hinzunehmen"
+                                                    Style="{StaticResource FittingButton}"
+                                                    Click="CopyStyle2" Padding="10,5" />
+                                        </Border>
+                                        <ScrollViewer DockPanel.Dock="Top" VerticalScrollBarVisibility="Auto"
+                                                      Style="{StaticResource TopScroller}">
+                                            <ItemsControl
+                                                ItemsSource="{Binding Source={StaticResource Styles2}}">
+                                                <ItemsControl.ItemsPanel>
+                                                    <ItemsPanelTemplate>
+                                                        <StackPanel />
+                                                    </ItemsPanelTemplate>
+                                                </ItemsControl.ItemsPanel>
+                                                <ItemsControl.ItemTemplate>
+                                                    <DataTemplate DataType="ComplexWriter:ComplexStyle">
+                                                        <Grid>
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="Auto" SharedSizeGroup="right" />
+                                                                <ColumnDefinition Width="*" SharedSizeGroup="left" />
+                                                            </Grid.ColumnDefinitions>
+                                                            <Grid.RowDefinitions>
+                                                                <RowDefinition Height="Auto" />
+                                                                <RowDefinition Height="*" />
+                                                            </Grid.RowDefinitions>
+                                                            <Border Grid.RowSpan="2" Grid.ColumnSpan="2"
+                                                                    BorderBrush="{DynamicResource TitleBrush}"
+                                                                    SnapsToDevicePixels="True" BorderThickness="0,0,0,1" />
+                                                            <TextBox Style="{StaticResource realtextBoxStyle}" Grid.Row="0"
+                                                                     Grid.Column="0" Grid.ColumnSpan="2"
+                                                                     SelectionBrush="{DynamicResource TitleBrush}"
+                                                                     Text="{Binding Caption, UpdateSourceTrigger=LostFocus}"
+                                                                     FontSize="{StaticResource fontSizeSmall}"
+                                                                     FontFamily="{StaticResource defaultFont}"
+                                                                     Foreground="{DynamicResource TitleBrush}"
+                                                                     CaretBrush="{DynamicResource TitleBrush}"
+                                                                     Visibility="{Binding HasCaption, Converter={StaticResource falseCollapsedConverter}}"
+                                                                     Margin="0,0,0,5" />
+
+                                                            <Button Grid.Row="1" Grid.Column="1"
+                                                                    Style="{StaticResource ContentOnlyButton}"
+                                                                    Margin="0,0,10,3" Tag="{Binding}" Click="ApplyStyle">
+                                                                <Button.ToolTip>
+                                                                    <ToolTip Style="{StaticResource tipTest}" Content="{Binding}" ContentTemplate="{StaticResource tipTemplate}"/>
+                                                                </Button.ToolTip>
+                                                                <Button.ContextMenu>
+                                                                    <ContextMenu Style="{StaticResource context}">
+                                                                        <MenuItem Style="{StaticResource menuItem}"
+                                                                                  Tag="{Binding}"
+                                                                                  Header="Ausgewählten Stil bearbeiten"
+                                                                                  Click="EditCurrentLocal">
+                                                                            <MenuItem.Icon>
+                                                                                <ImageBrush
+                                                                                    ImageSource="Images/EditStyle.png" />
+                                                                            </MenuItem.Icon>
+                                                                        </MenuItem>
+                                                                        <MenuItem Style="{StaticResource menuItem}"
+                                                                                  Tag="{Binding}"
+                                                                                  Header="Stil aktualisieren"
+                                                                                  Click="ChangeThisToSelected">
+                                                                            <MenuItem.Icon>
+                                                                                <ImageBrush
+                                                                                    ImageSource="Images/StilAktualisieren.png" />
+                                                                            </MenuItem.Icon>
+                                                                        </MenuItem>
+                                                                        <Separator Style="{StaticResource shortsep}"/>
+                                                                        <MenuItem Style="{StaticResource menuItem}"
+                                                                                  Tag="{Binding}"
+                                                                                  Header="Stil im Dokument ersetzen"
+                                                                                  Click="ChangeCurrentToThis">
+                                                                            <MenuItem.Icon>
+                                                                                <ImageBrush
+                                                                                    ImageSource="Images/StilAnwenden.png" />
+                                                                            </MenuItem.Icon>
+                                                                        </MenuItem>
+
+                                                                        <Separator Style="{StaticResource shortsep}"/>
+
+                                                                        <MenuItem Style="{StaticResource menuItem}"
+                                                                                  Tag="{Binding}"
+                                                                                  Header="Stil aus dem Dokument entfernen"
+                                                                                  Click="EmptyStyle" >
+                                                                            <MenuItem.Icon>
+                                                                                <ImageBrush
+                                                                                    ImageSource="Images/deleteStyle.png" />
+                                                                            </MenuItem.Icon>
+                                                                        </MenuItem>
+
+                                                                        <MenuItem Style="{StaticResource menuItem}"
+                                                                                  Tag="{Binding}"
+                                                                                  Header="Stil als default verwenden"
+                                                                                  Click="SetDefaultStyle" >
+                                                                        </MenuItem>
+                                                                        <Separator Style="{StaticResource shortsep}"/>
+                                                                        <MenuItem Style="{StaticResource menuItem}"
+                                                                                  Tag="{Binding}"
+                                                                                  Header="Vorkommen zählen"
+                                                                                  Click="CountStylePositions" >
+                                                                        </MenuItem>
+                                                                        <MenuItem Style="{StaticResource menuItem}"
+                                                                                  Tag="{Binding}"
+                                                                                  Header="Zum ersten Vorkommen springen"
+                                                                                  Click="GoToFirstCall" >
+                                                                        </MenuItem>
+
+                                                                    </ContextMenu>
+                                                                </Button.ContextMenu>
+                                                                <StackPanel>
+                                                                    <Border Style="{StaticResource borderForTooltip}">
+                                                                        <TextBlock>
+                                                                            <Run Text="Beispieltext"
+                                                                                 FontFamily="{Binding FontFamily}"
+                                                                                 FontSize="{Binding FontSize}"
+                                                                                 Foreground="{Binding ForegroundBrush}"
+                                                                                 Background="{Binding BackgroundBrush}"
+                                                                                 FontStyle="{Binding Style}"
+                                                                                 FontStretch="{Binding Stretch}"
+                                                                                 FontWeight="{Binding Weight}"
+                                                                                 TextDecorations="{Binding Decoration}" />
+                                                                        </TextBlock>
+                                                                    </Border>
+                                                                </StackPanel>
+                                                            </Button>
+                                                            <customControls:MaskedImageButtonEnlarge Grid.Row="1"
+                                                                                                     VerticalAlignment="Center"
+                                                                                                     Grid.Column="0"
+                                                                                                     ButtonColor="{DynamicResource TitleBrush}"
+                                                                                                     ButtonMask="Images/blackout.png"
+                                                                                                     Width="20" Height="20"
+                                                                                                     Tag="{Binding}" Visibility="{Binding Path=IsDefault,Converter={StaticResource TrueHideConverter}}"
+                                                                                                     Click="RemoveStyleFromList2">
+                                                              
+                                                                <Button.ToolTip>
+                                                                    <ToolTip Style="{StaticResource tipTest}"
+                                                                             Content="Stil entfernen">
+                                                                    </ToolTip>
+                                                                </Button.ToolTip>
+                                                            </customControls:MaskedImageButtonEnlarge>
+                                                            <Border Grid.Column="0" Grid.Row="0" Grid.RowSpan="2" Grid.ColumnSpan="2" IsHitTestVisible="False" Background="{DynamicResource TitleBrush}" Opacity="0.4">
+                                                                <Border.Visibility>
+                                                                    <MultiBinding Converter="{StaticResource VisibleOnsameStyleOnly}">
+                                                                        <Binding/>
+                                                                        <Binding RelativeSource="{RelativeSource AncestorType=ComplexWriter:MainWindow}" Path="CurrentStyle"/>
+                                                                    </MultiBinding>
+                                                                </Border.Visibility>
+                                                            </Border>
+
+
+                                                        </Grid>
+                                                    </DataTemplate>
+                                                </ItemsControl.ItemTemplate>
+                                            </ItemsControl>
+                                        </ScrollViewer>
+
+                                    </DockPanel>
+                                </Border>
+                            </Grid>
+                        </Border>
+                    </Popup>
+
+                                        <Popup Placement="Absolute" x:Name="ImagePopup" MaxHeight="600" StaysOpen="True" AllowsTransparency="True" Cursor="{StaticResource standardCursor}">
+                                            <Popup.ContextMenu>
+                                                <ContextMenu Style="{StaticResource context}">
+                                                    <MenuItem Style="{StaticResource menuItem}" Background="{StaticResource back1}" Foreground="{StaticResource fore1}" Header="Bild ändern" Click="ChangeSideImage"/>
+                                                    <MenuItem Style="{StaticResource menuItem}" Background="{StaticResource back2}" Foreground="{StaticResource fore2}"  Header="Spiegeln" Click ="FlipTheImage"/>
+                                                    <MenuItem Style="{StaticResource menuItem}" Background="{StaticResource back3}" Foreground="{StaticResource fore3}" Header="Bild entfernen" Click="RemoveImage"/>
+                                                </ContextMenu>
+                                            </Popup.ContextMenu>
+                                            <Popup.IsOpen>
+                                                <MultiBinding Converter="{StaticResource ShowStylesMultiConverter}">
+                                                    <Binding RelativeSource="{RelativeSource AncestorType=Window}" Path="IsActive" Mode="OneWay"/>
+                                                    <Binding RelativeSource="{RelativeSource AncestorType=ComplexWriter:MainWindow}" Path="ShowImagePopup" Mode="OneWay"/>
+                                                    <Binding RelativeSource="{RelativeSource AncestorType=ComplexWriter:MainWindow}" Path="IsMinimized" Mode="OneWay"/>
+                                                    <Binding RelativeSource="{RelativeSource AncestorType=ComplexWriter:MainWindow}" Path="WindowState" Mode="OneWay"/>
+                                                </MultiBinding>
+                                            </Popup.IsOpen>
+                                            <Grid>
+                                                <Image x:Name="imageForPopup" RenderOptions.BitmapScalingMode="HighQuality" RenderTransformOrigin="0.5,0.5" RenderTransform="{Binding RelativeSource={RelativeSource AncestorType=ComplexWriter:MainWindow}, Path=FlipImage, Converter={StaticResource FlipConverter}}" />
+                                                <Thumb
+                                                    IsHitTestVisible="true"
+                                                    Cursor="{StaticResource moveCursor}"
+                                                    Style="{StaticResource TransparentThumb}"
+                                                    DragDelta="DragPopup2" />
+                                            </Grid>
+
+                                        </Popup>
+
+                                    </StackPanel>
+
+            </Grid>
+        </Border>
+
+        <Border Grid.Column="1" Grid.Row="1" Background="{StaticResource BackColorBrush}"  VerticalAlignment="Bottom" Margin="-5,10,60,10" CornerRadius="{Binding ElementName=SearchAndReplaceControl,Path=Visibility,Converter={StaticResource VisibilityBorderConverter}}" >
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                                        <Thumb Name="PART_SizeSE" Grid.Column="0" Grid.ColumnSpan="2"
+                                               Style="{StaticResource TransparentWindowResizeThumbStyle}"
+                                               Cursor="{StaticResource SizeNWSE}"
+                                               Width="16"
+                                               Tag="{Binding RelativeSource={RelativeSource TemplatedParent}}"
+                                               Height="16"
+                                               VerticalAlignment="Bottom"  DragStarted="OnDragStarted" DragCompleted="RaiseDragCompleted"
+                                               HorizontalAlignment="Right" DragDelta="DragDelta2" />
+                                        <Border BorderBrush="{StaticResource DarkerTitleBrush}" BorderThickness="1,1,1,1" CornerRadius="0,5,5,0" Margin="5,2,2,2">
+                    <ScrollViewer Style="{StaticResource TabScroller}" VerticalScrollBarVisibility="Hidden" HorizontalScrollBarVisibility="Auto">
+                        <ItemsControl x:Name="FileList">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Horizontal" >
+                                    </StackPanel>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate DataType="ComplexWriter:TextFile">
+                                    <Button Cursor="{StaticResource overCursor}" Style="{StaticResource tablikeButton}" PreviewMouseUp="CloseOnMiddle" Tag="{Binding}" Click="UpdateFile" >
+                                        <Button.ContextMenu>
+                                            <ContextMenu Style="{StaticResource context}">
+                                                <MenuItem Style="{StaticResource menuItem}" Header="Alle bis auf dieses schließen" Tag="{Binding}" Click="CloseAllButThis">
+                                                    <MenuItem.Icon>
+                                                        <ImageBrush ImageSource="Images/blackoutSmall.png" />
+                                                    </MenuItem.Icon>
+                                                </MenuItem>
+                                                <Separator Style="{StaticResource shortsep}"/>
+                                                <MenuItem Style="{StaticResource menuItem}" Header="Passwort vergeben / ändern" Tag="{Binding}" Click="SetChangePassword">
+                                                    <MenuItem.Icon>
+                                                        <ImageBrush ImageSource="Images/lock.png"/>
+                                                    </MenuItem.Icon>
+                                                </MenuItem>
+                                                <MenuItem Style="{StaticResource menuItem}" Header="Von der Festplatte löschen" Tag="{Binding}" Click="DeleteFromDisk" IsEnabled="{Binding Filepath,Converter={StaticResource IsNotEmptyConverter}}">
+                                                    <MenuItem.Icon>
+                                                        <ImageBrush ImageSource="Images/DeleteAll.png"/>
+                                                    </MenuItem.Icon>
+                                                </MenuItem>
+                                                <MenuItem Style="{StaticResource menuItem}" Header="Datei umbenennen" Tag="{Binding}" Click="RenameFile" IsEnabled="{Binding Filepath,Converter={StaticResource IsNotEmptyConverter}}">
+                                                    <MenuItem.Icon>
+                                                        <ImageBrush ImageSource="Images/rename.png"/>
+                                                    </MenuItem.Icon>
+                                                </MenuItem>
+                                                <MenuItem Style="{StaticResource menuItem}" IsCheckable="True" IsChecked="{Binding ReadOnly}" Header="Nur lesen" Tag="{Binding}" IsEnabled="{Binding Filepath,Converter={StaticResource IsNotEmptyConverter}}">
+                                                    <MenuItem.Icon>
+                                                        <ImageBrush ImageSource="Images/glasses.png"/>
+                                                    </MenuItem.Icon>
+                                                </MenuItem>
+                                                <Separator Style="{StaticResource titlesep}" Tag="Datei erstellen"/>
+
+                                                <MenuItem Style="{StaticResource menuItem}" Header="Leere Datei" Click="MakeEmpty">
+                                                    <MenuItem.Icon>
+                                                        <ImageBrush ImageSource="Images/new.png"/>
+                                                    </MenuItem.Icon>
+                                                </MenuItem>
+                                                <MenuItem Style="{StaticResource menuItem}" Header="Anhand einer Stildatei" Click="MakeEmptyStyle">
+                                                    <MenuItem.Icon>
+                                                        <ImageBrush ImageSource="Images/new.png"/>
+                                                    </MenuItem.Icon>
+                                                </MenuItem>
+                                                <MenuItem Style="{StaticResource menuItem}" Header="nach aktuellem Vorbild" Click="MakeEmptyCurrent">
+                                                    <MenuItem.Icon>
+                                                        <ImageBrush ImageSource="Images/new.png"/>
+                                                    </MenuItem.Icon>
+                                                </MenuItem>
+                                                <MenuItem Style="{StaticResource menuItem}" Header="Anhand einer Referenzdatei" Click="MakeEmptyReference">
+                                                    <MenuItem.Icon>
+                                                        <ImageBrush ImageSource="Images/new.png"/>
+                                                    </MenuItem.Icon>
+                                                </MenuItem>
+
+                                            </ContextMenu>
+                                        </Button.ContextMenu>
+                                        <Button.Background>
+                                            <MultiBinding Converter="{StaticResource ColorTabConverter}">
+                                                <Binding
+                                                    RelativeSource="{RelativeSource AncestorType=ComplexWriter:MainWindow}"
+                                                    Path="CurrentText" />
+                                                <Binding />
+                                                <Binding Path="IsExtended"/>
+                                                <Binding Source="{StaticResource RtfBrush}"/>
+                                                <Binding Source="{StaticResource BackColorBrush}" />
+                                                <Binding Source="{StaticResource TitleBrush}" />
+                                                <Binding Source="{StaticResource BackColorBrush}" />
+                                            </MultiBinding>
+                                        </Button.Background>
+                                        <Grid Margin="2,0">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="Auto"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Border Width="16" Height="16" RenderOptions.BitmapScalingMode="HighQuality"  Visibility="{Binding Password,Converter={StaticResource collapseEmptyConverter}}">
+                                                <Border.ToolTip>
+                                                    <ToolTip Style="{StaticResource tipTest}" Content="Diese Datei ist mit einem Passwort versehen"></ToolTip>
+                                                </Border.ToolTip>
+                                                <Border.OpacityMask>
+                                                    <ImageBrush ImageSource="Images/lock.png"></ImageBrush>
+                                                </Border.OpacityMask>
+                                                <Border.Background>
+                                                    <MultiBinding Converter="{StaticResource ColorTabConverter}">
+                                                        <Binding
+                                                            RelativeSource="{RelativeSource AncestorType=ComplexWriter:MainWindow}"
+                                                            Path="CurrentText" />
+                                                        <Binding />
+                                                        <Binding Path="IsExtended"/>
+                                                        <Binding Source="{StaticResource BackColorBrush}" />
+                                                        <Binding Source="{StaticResource RtfBrush}"></Binding>
+                                                        <Binding Source="{StaticResource BackColorBrush}" />
+                                                        <Binding Source="{StaticResource TitleBrush}" />
+                                                    </MultiBinding>
+                                                </Border.Background>
+                                            </Border>
+                                            <Border Grid.Column="1" Width="16" Height="16" RenderOptions.BitmapScalingMode="HighQuality"  Visibility="{Binding ReadOnly,Converter={StaticResource falseCollapsedConverter}}">
+                                                <Border.ToolTip>
+                                                    <ToolTip Style="{StaticResource tipTest}" Content="Die Datei kann nicht editiert werden"></ToolTip>
+                                                </Border.ToolTip>
+                                                <Border.OpacityMask>
+                                                    <ImageBrush ImageSource="Images/glasses.png"></ImageBrush>
+                                                </Border.OpacityMask>
+                                                <Border.Background>
+                                                    <MultiBinding Converter="{StaticResource ColorTabConverter}">
+                                                        <Binding
+                                                            RelativeSource="{RelativeSource AncestorType=ComplexWriter:MainWindow}"
+                                                            Path="CurrentText" />
+                                                        <Binding />
+                                                        <Binding Path="IsExtended"/>
+                                                        <Binding Source="{StaticResource BackColorBrush}" />
+                                                        <Binding Source="{StaticResource RtfBrush}"></Binding>
+                                                        <Binding Source="{StaticResource BackColorBrush}" />
+                                                        <Binding Source="{StaticResource TitleBrush}" />
+                                                    </MultiBinding>
+                                                </Border.Background>
+                                            </Border>
+                                            <TextBlock Text="{Binding Display}" MaxWidth="150" Grid.Column="2"
+                                                       FontFamily="{StaticResource defaultFont}"
+                                                       FontSize="12" VerticalAlignment="Center"
+                                                       TextTrimming="CharacterEllipsis">
+                                                <TextBlock.ToolTip>
+                                                    <ToolTip Style="{StaticResource tipTest}">
+                                                        <TextBlock TextWrapping="WrapWithOverflow">
+                                                            <Run FontSize="{StaticResource fontSizeMedium}" Text="{Binding Filepath}"/>
+                                                            <LineBreak/>
+                                                            <Run FontSize="{StaticResource fontSizeSmall}" Text="(Rechtsklick für weitere Optionen)"/>
+                                                        </TextBlock>
+                                                    </ToolTip>
+                                                </TextBlock.ToolTip>
+                                                <TextBlock.Foreground>
+                                                    <MultiBinding Converter="{StaticResource ColorTabConverter}">
+                                                        <Binding
+                                                            RelativeSource="{RelativeSource AncestorType=ComplexWriter:MainWindow}"
+                                                            Path="CurrentText" />
+                                                        <Binding />
+                                                        <Binding Path="IsExtended"/>
+                                                        <Binding Source="{StaticResource BackColorBrush}" />
+                                                        <Binding Source="{StaticResource RtfBrush}"></Binding>
+                                                        <Binding Source="{StaticResource BackColorBrush}" />
+                                                        <Binding Source="{StaticResource TitleBrush}" />
+                                                    </MultiBinding>
+                                                </TextBlock.Foreground>
+                                            </TextBlock>
+                                            <TextBlock Grid.Column="3" Text="{Binding IsChangeString}"
+                                                       FontFamily="{StaticResource defaultFont}"
+                                                       FontSize="12" VerticalAlignment="Center"
+                                                       >
+                                                <TextBlock.ToolTip>
+                                                    <ToolTip Style="{StaticResource tipTest}">
+                                                        <TextBlock>
+                                                            <Run FontSize="{StaticResource fontSizeMedium}" Text="{Binding Filepath}"/>
+                                                            <LineBreak/>
+                                                            <Run FontSize="{StaticResource fontSizeSmall}" Text="(Rechtsklick für weitere Optionen)"/>
+                                                        </TextBlock>
+                                                    </ToolTip>
+                                                </TextBlock.ToolTip>
+                                                <TextBlock.Foreground>
+                                                    <MultiBinding Converter="{StaticResource ColorTabConverter}">
+                                                        <Binding
+                                                            RelativeSource="{RelativeSource AncestorType=ComplexWriter:MainWindow}"
+                                                            Path="CurrentText" />
+                                                        <Binding />
+                                                        <Binding Path="IsExtended"/>
+                                                        <Binding Source="{StaticResource BackColorBrush}" />
+                                                        <Binding Source="{StaticResource RtfBrush}"></Binding>
+                                                        <Binding Source="{StaticResource BackColorBrush}" />
+                                                        <Binding Source="{StaticResource TitleBrush}" />
+                                                    </MultiBinding>
+                                                </TextBlock.Foreground>
+                                            </TextBlock>
+                                            <customControls:MaskedImageButtonEnlarge Width="16" Height="16" Grid.Column="4" ButtonMask="Images/blackout.png" Tag="{Binding}" Click="CloseClicked">
+                                                <customControls:MaskedImageButtonEnlarge.ButtonColor>
+                                                    <MultiBinding Converter="{StaticResource ColorTabConverter}">
+                                                        <Binding
+                                                            RelativeSource="{RelativeSource AncestorType=ComplexWriter:MainWindow}"
+                                                            Path="CurrentText" />
+                                                        <Binding />
+                                                        <Binding Path="IsExtended"/>
+                                                        <Binding Source="{StaticResource BackColorBrush}" />
+                                                        <Binding Source="{StaticResource RtfBrush}"></Binding>
+                                                        <Binding Source="{StaticResource BackColorBrush}" />
+                                                        <Binding Source="{StaticResource TitleBrush}" />
+                                                    </MultiBinding>
+                                                </customControls:MaskedImageButtonEnlarge.ButtonColor>
+                                            </customControls:MaskedImageButtonEnlarge>
+                                        </Grid>
+                                    </Button>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </ScrollViewer>
+                </Border>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" MinHeight="25" Grid.Column="1"
+                            Margin="10,0">
+                    <Border Width="16" Height="16" Background="{StaticResource BackColorBrush}" RenderOptions.BitmapScalingMode="HighQuality"
+                            Name="SaveProvider" Visibility="Hidden">
+                        <Border.OpacityMask>
+                            <ImageBrush ImageSource="Images/save.png" />
+                        </Border.OpacityMask>
+                    </Border>
+                    <Border Name="ErrorProvider" Width="16" Height="16" Visibility="Hidden" Background="{StaticResource BackColorBrush}" RenderOptions.BitmapScalingMode="HighQuality"
+                        >
+                        <Border.OpacityMask>
+                            <ImageBrush ImageSource="Images/errorNuke.png" />
+                        </Border.OpacityMask>
+                    </Border>
+                    <Button Name="SaveErrorProvider" Width="16" Height="16" Visibility="Hidden" Style="{StaticResource ContentOnlyButton}" MouseDoubleClick="OnShowErrorWindow">
+                        <Border Background="Red" RenderOptions.BitmapScalingMode="HighQuality"
+                            >
+                            <Border.OpacityMask>
+                                <ImageBrush ImageSource="Images/errorNuke.png" />
+                            </Border.OpacityMask>
+                        </Border>
+                    </Button>
+                    <customControls:MaskedImageButtonEnlarge  Cursor="{StaticResource overCursor}" ButtonColor="{DynamicResource TitleBrush}" Width="24" Height="24" ButtonMask="Images/Search.png" RenderOptions.BitmapScalingMode="HighQuality"
+                            Name="SearchBar" Visibility="{Binding ElementName=SearchAndReplaceControl,Path=Visibility,Converter={StaticResource InvertVisibilityConverter}}" Click="SwitchSearchBar">
+                        <Button.ToolTip>
+                            <ToolTip Style="{StaticResource tipTest}" Content="Suche anzeigen"></ToolTip>
+                        </Button.ToolTip>
+                    </customControls:MaskedImageButtonEnlarge>
+                    <customControls:MaskedImageButtonEnlarge  Cursor="{StaticResource overCursor}" ButtonColor="{DynamicResource TitleBrush}" Width="24" Height="24" ButtonMask="Images/questionMark.png" RenderOptions.BitmapScalingMode="HighQuality" Click="OpenAbout"
+                            Name="Info">
+                    </customControls:MaskedImageButtonEnlarge>
+                    <Popup PlacementTarget="{Binding ElementName=Info}" AllowsTransparency="True" Placement="Top" IsOpen="{Binding ElementName=Info, Path=IsMouseOver, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
+                        <Border Effect="{StaticResource WindowShadow}" Cursor="{StaticResource standardCursor}" Child="{StaticResource Keys}"
+                                Width="500" CornerRadius="3" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center">
+                            <Border.Background>
+                                <MultiBinding Converter="{StaticResource IfThenElseMultiConverter}">
+                                    <Binding RelativeSource="{RelativeSource AncestorType=ComplexWriter:MainWindow}" Path="PopupIsAttachedToMainWindow"></Binding>
+                                    <Binding Source="{StaticResource BackColorBrush}"/>
+                                    <Binding Source="{StaticResource BackColorBrushStripes}"/>
+                                </MultiBinding>
+                            </Border.Background>
+                        </Border>
+                    </Popup>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

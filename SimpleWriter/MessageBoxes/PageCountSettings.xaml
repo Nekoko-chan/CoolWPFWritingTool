@@ -1,0 +1,362 @@
+﻿<messageBoxes:MessageResultWindow x:Class="ComplexWriter.MessageBoxes.PageCountSettings"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        WindowStartupLocation="CenterOwner"
+        ShowInTaskbar="True"
+        xmlns:messageBoxes="clr-namespace:ComplexWriter.MessageBoxes"
+        xmlns:commands1="clr-namespace:ComplexWriter.Commands"
+        xmlns:listViewLayout="clr-namespace:Itenso.Windows.Controls.ListViewLayout;assembly=Itenso.Windows.Controls.ListViewLayout"
+        xmlns:complexWriter="clr-namespace:ComplexWriter"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
+        xmlns:customControls="clr-namespace:CustomControls;assembly=CustomControls"
+        xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        Title="Meldungen ansehen..." >
+    <Window.InputBindings>
+        <KeyBinding Key="O" Command="{x:Static commands1:OkCommand.OkOnEnterOrO}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=messageBoxes:PageCountSettings}}" />
+        <KeyBinding Key="Enter" Command="{x:Static commands1:OkCommand.OkOnEnterOrO}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=messageBoxes:PageCountSettings}}" />
+        <KeyBinding Key="Escape" Command="{x:Static commands1:CancelCommand.CancelOnA}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=messageBoxes:PageCountSettings}}" />
+        <KeyBinding Key="A" Command="{x:Static commands1:CancelCommand.CancelOnA}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=messageBoxes:PageCountSettings}}" />
+    </Window.InputBindings>
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="PageCountSettingsDictionary.xaml"/>
+                <ResourceDictionary Source="../global/global.xaml"/>
+                <ResourceDictionary Source="../global/Scrollbars.xaml"/>
+                <ResourceDictionary Source="../global/GroupBox.xaml"/>
+                <ResourceDictionary Source="../global/checkbox.xaml"/>
+                <ResourceDictionary Source="../global/ListBox.xaml"/>
+                
+                <ResourceDictionary Source="../global/ToggleButton.xaml"/>
+                    
+                <ResourceDictionary Source="../global/UpDowns.xaml"/>
+                <ResourceDictionary Source="../global/Combobox.xaml"/>
+                <ResourceDictionary>
+
+                    <Style x:Key="bord" TargetType="Border">
+                        <Setter Property="Margin" Value="-5,0,30,0"/>
+                    </Style>
+                    
+                    <Style x:Key="groups" TargetType="GroupBox" BasedOn="{StaticResource BoldTitleGroupBox}">
+                        <Setter Property="Foreground" Value="{DynamicResource TitleBrush}"/>
+                        <Setter Property="BorderBrush" Value="Black"/>
+                        <Setter Property="FontSize" Value="{StaticResource fontSizeMedium}"/>
+                        <Setter Property="FontFamily" Value="{StaticResource defaultFont}"/>
+                        <Setter Property="Margin" Value="2.5"></Setter>
+                    </Style>
+
+                    <CollectionViewSource x:Key="Fonts" Source="{Binding Source={x:Static complexWriter:MainWindow.Global},Path=FontFamilies}" >
+                        <CollectionViewSource.GroupDescriptions>
+                            <PropertyGroupDescription PropertyName="Group" />
+                        </CollectionViewSource.GroupDescriptions>
+                        <CollectionViewSource.SortDescriptions>
+                            <componentModel:SortDescription PropertyName="Source" Direction="Ascending"/>
+                        </CollectionViewSource.SortDescriptions>
+                    </CollectionViewSource>
+
+                    <ObjectDataProvider MethodName="GetType"
+        ObjectType="{x:Type system:Type}" x:Key="colorsTypeOdp">
+                        <ObjectDataProvider.MethodParameters>
+                            <system:String>System.Windows.Media.Colors, PresentationCore,
+                Version=3.0.0.0, Culture=neutral,
+                PublicKeyToken=31bf3856ad364e35</system:String>
+                        </ObjectDataProvider.MethodParameters>
+                    </ObjectDataProvider>
+
+                    <ObjectDataProvider ObjectInstance="{StaticResource colorsTypeOdp}"
+        MethodName="GetProperties" x:Key="colorPropertiesOdp">
+                    </ObjectDataProvider>
+
+                    <Style x:Key="PredefBorder" TargetType="Button">
+                        <Setter Property="Height" Value="20"/>
+                        <Setter Property="Width" Value="20"/>
+                        <Setter Property="BorderBrush" Value="Black"/>
+                        <Setter Property="Margin" Value="1"></Setter>
+                        <Setter Property="BorderThickness" Value="1"/>
+                        <Setter Property="SnapsToDevicePixels" Value="True"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border Background="{TemplateBinding Background}"
+                                            BorderBrush="{TemplateBinding BorderBrush}"
+                                            BorderThickness="{TemplateBinding BorderThickness}"/>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="BorderBrush" Value="{StaticResource DarkerTitleBrush}"/>
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+
+                    <DataTemplate x:Key="ColorTemplate" DataType="Color">
+                        <Button Style="{StaticResource PredefBorder}" Click="UpdateColor">
+                            <Button.Background>
+                                <SolidColorBrush Color="{Binding Path=Name}" />
+                            </Button.Background>
+                        </Button>
+                    </DataTemplate>
+
+                    <DataTemplate x:Key="ColorTemplate2" DataType="Color">
+                        <Button Style="{StaticResource PredefBorder}" Click="UpdateColor">
+                            <Button.Background>
+                                <SolidColorBrush Color="{Binding}" />
+                            </Button.Background>
+                        </Button>
+                    </DataTemplate>
+
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid Cursor="{StaticResource standardCursor}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+       
+        <Border Grid.Row="1" Grid.Column="1" Effect="{StaticResource WindowShadow}" Style="{StaticResource bord}" BorderThickness="1" BorderBrush="#FF054049"></Border>
+        <Border Grid.Row="1" Grid.Column="1" Style="{StaticResource bord}"  Background="{StaticResource BackgroundBrush}">
+
+            <Grid>
+                <Thumb Effect="{StaticResource WindowShadow}" Grid.Row="0" VerticalAlignment="Top" Height="10" Margin="0,-3,20,0"
+                                                   Cursor="{StaticResource moveCursor}" DragDelta="MoveWindow"
+                                                   Tag="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}}">
+                    <Thumb.Template>
+                        <ControlTemplate TargetType="Thumb">
+                            <Border Background="{StaticResource BackColorBrush}" CornerRadius="10,0,10,10" />
+                        </ControlTemplate>
+                    </Thumb.Template>
+                </Thumb>
+            </Grid>
+        </Border>
+        <Border Grid.Column="1" Grid.Row="1" Style="{StaticResource bord}" Background="{StaticResource background}" IsHitTestVisible="False"/>
+
+        <Grid Grid.Row="1" Grid.Column="1" Margin="5,15,50,15">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="0.5*"/>
+            </Grid.RowDefinitions>
+
+            <GroupBox Style="{StaticResource groups}">
+                <GroupBox.Header>
+                    <Grid>
+                        <TextBlock Text="Schriftart:" />
+                        <TextBlock HorizontalAlignment="Right" Text="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:PageCountSettings},Path=PageCountElement.FontFamily,Converter={StaticResource FamilyDisplayConverter}}"></TextBlock>
+                    </Grid>
+                </GroupBox.Header>
+
+                <Grid Background="Black" Margin="3">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <ListBox ClipToBounds="True" SelectionChanged="ScrollToElement" Background="Black"
+                             Style="{StaticResource AListBox}" SnapsToDevicePixels="True"
+                             ItemsSource="{Binding Source={StaticResource Fonts}}"
+                             SelectedItem="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:PageCountSettings},Path=PageCountElement.FontFamily}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate DataType="complexWriter:FontElement">
+                                <Border>
+                                    <TextBlock Padding="4" FontFamily="{Binding Family}"
+                                               FontSize="{StaticResource fontSizeExtraLarge}"
+                                               Text="{Binding Converter={StaticResource FamilyDisplayConverter}}" />
+                                </Border>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    <Border Grid.Row="1" BorderBrush="{DynamicResource TitleBrush}" BorderThickness="0,1,0,0">
+                        <xctk:DoubleUpDown Style="{StaticResource doubleTest}"
+                                           PreviewTextInput="CheckText" VerticalAlignment="Stretch"
+                                           Cursor="{StaticResource overCursor}"
+                                           Minimum="1" Maximum="50" FontSize="20"
+                                           Value="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:PageCountSettings},Path=PageCountElement.FontSize,Mode=TwoWay}"
+                                           FontFamily="{StaticResource numberFont}" Name="DoubleUpDown" /></Border>
+                </Grid>
+            </GroupBox>
+            <GroupBox Grid.Row ="1" Style="{StaticResource groups}" >
+                <GroupBox.Header>
+                    <Grid>
+                        <TextBlock Text="Farbe:" />
+                        <Border Width="100" HorizontalAlignment="Right" Background="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:PageCountSettings},Path=PageCountElement.ForgroundBrush}"/>
+                    </Grid>
+                </GroupBox.Header>
+
+                <Grid Grid.Row="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <GroupBox Margin="0,5,0,0" Grid.Column="1" BorderBrush="Black" Style="{StaticResource BoldTitleGroupBox}">
+                        <GroupBox.Header>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="Eigene Farben"
+                                                           FontSize="{StaticResource fontSizeMedium}"
+                                                           FontFamily="{StaticResource defaultFont}"
+                                                           Foreground="{DynamicResource TitleBrush}">
+                                </TextBlock>
+                               </Grid>
+                        </GroupBox.Header>
+                        <ScrollViewer VerticalScrollBarVisibility="Auto">
+                            <ItemsControl ItemTemplate="{StaticResource ColorTemplate2}" ItemsSource="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:PageCountSettings},Path=PredefinedColors}">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel Margin="5" Background="Black"/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                            </ItemsControl>
+                        </ScrollViewer>
+                    </GroupBox>
+                    <GroupBox Margin="0,5,5,0" Grid.Column="0" BorderBrush="Black" Style="{StaticResource BoldTitleGroupBox}">
+                        <GroupBox.Header>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Text="Systemfarben"
+                                                           FontSize="{StaticResource fontSizeMedium}"
+                                                           FontFamily="{StaticResource defaultFont}"
+                                                           Foreground="{DynamicResource TitleBrush}">
+                                </TextBlock>
+                            </Grid>
+                        </GroupBox.Header>
+                        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalContentAlignment="Stretch"
+                                          VerticalContentAlignment="Stretch">
+                            <ItemsControl ItemTemplate="{StaticResource ColorTemplate}"
+                                              ItemsSource="{Binding Source={StaticResource colorPropertiesOdp}}">
+                                <ItemsControl.ItemsPanel>
+                                    <ItemsPanelTemplate>
+                                        <WrapPanel  Background="Black" Margin="5"/>
+                                    </ItemsPanelTemplate>
+                                </ItemsControl.ItemsPanel>
+                            </ItemsControl>
+                        </ScrollViewer>
+                    </GroupBox>
+                </Grid>
+            </GroupBox>
+            <GroupBox Grid.Row="2" Style="{StaticResource groups}" Header="Aussehen">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <CheckBox Style="{StaticResource globalCheckbox}" Foreground="Black"
+                              IsChecked="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:PageCountSettings},Path=PageCountElement.UseLeadingZero}"
+                              FontSize="{StaticResource fontSizeMedium}" FontFamily="{StaticResource defaultFont}"
+                              Content="Null voranstellen">
+                    </CheckBox>
+                    <Border Grid.Row="1" Background="White">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Border BorderBrush="Black" BorderThickness="0,0,1,0" >
+                                <TextBlock  VerticalAlignment="Center" HorizontalAlignment="Center"
+                                           FontSize="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:PageCountSettings},Path=PageCountElement.FontSize}"
+                                           FontFamily="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:PageCountSettings},Path=PageCountElement.FontFamily}"
+                                           Foreground="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:PageCountSettings},Path=PageCountElement.ForgroundBrush}">
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource LeadingZeroConverter}">
+                                            <Binding
+                                                RelativeSource="{RelativeSource AncestorType=messageBoxes:PageCountSettings}"
+                                                Path="PageCountElement.UseLeadingZero">
+                                            </Binding>
+                                            <Binding>
+                                                <Binding.Source>
+                                                    <system:Int16>10</system:Int16>
+                                                </Binding.Source>
+                                            </Binding>
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </Border>
+                            <Border Grid.Column="1"  BorderBrush="Black" BorderThickness="0,0,1,0" >
+                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center"
+                                           FontSize="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:PageCountSettings},Path=PageCountElement.FontSize}"
+                                           FontFamily="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:PageCountSettings},Path=PageCountElement.FontFamily}"
+                                           Foreground="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:PageCountSettings},Path=PageCountElement.ForgroundBrush}">
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource LeadingZeroConverter}">
+                                            <Binding
+                                                RelativeSource="{RelativeSource AncestorType=messageBoxes:PageCountSettings}"
+                                                Path="PageCountElement.UseLeadingZero">
+                                            </Binding>
+                                            <Binding>
+                                                <Binding.Source>
+                                                    <system:Int16>100</system:Int16>
+                                                </Binding.Source>
+                                            </Binding>
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </Border>
+                            <Border Grid.Column="2"  BorderBrush="Black" BorderThickness="0,0,0,0" >
+                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center"
+                                           FontSize="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:PageCountSettings},Path=PageCountElement.FontSize}"
+                                           FontFamily="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:PageCountSettings},Path=PageCountElement.FontFamily}"
+                                           Foreground="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:PageCountSettings},Path=PageCountElement.ForgroundBrush}">
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource LeadingZeroConverter}">
+                                            <Binding
+                                                RelativeSource="{RelativeSource AncestorType=messageBoxes:PageCountSettings}"
+                                                Path="PageCountElement.UseLeadingZero">
+                                            </Binding>
+                                            <Binding>
+                                                <Binding.Source>
+                                                    <system:Int16>1000</system:Int16>
+                                                </Binding.Source>
+                                            </Binding>
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </Border>
+
+                        </Grid>
+                    </Border>
+                </Grid>
+            </GroupBox>
+
+        </Grid>
+
+        <Border Grid.Column="0" Grid.Row="1"  Background="{StaticResource BackColorBrush}"  MinWidth="22" Padding="4,10" CornerRadius="10,0,0,10" Effect="{StaticResource WindowShadow}" Margin="0,-3,0,15">
+           
+        </Border>
+        <Border Name="buttonBorder" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right" Margin="0,-2,20,0" Background="{StaticResource BackColorBrush}" Effect="{StaticResource WindowShadow}" CornerRadius="0,0,10,10">
+            <StackPanel Orientation="Horizontal">
+                <customControls:GlassButton3 Style="{StaticResource GlassButtonStyle}" Click="CloseWithTag">
+                    <TextBlock>
+                        <Run FontWeight="Bold" FontSize="25">O</Run><Run>k</Run>
+                    </TextBlock>
+                    <customControls:GlassButton3.Tag>
+                        <x:Static Member="MessageBoxResult.OK"/>
+                    </customControls:GlassButton3.Tag>
+                </customControls:GlassButton3>
+                <customControls:GlassButton3 Style="{StaticResource GlassButtonStyle}" Visibility="{Binding RelativeSource={RelativeSource AncestorType= messageBoxes:QuestionBox},Path=CanCanel,Converter={StaticResource falseCollapsedConverter}}" Margin="20,4,4,4" Click="CloseWithTag">
+                    <TextBlock>
+                        <Run FontWeight="Bold" FontSize="25">A</Run><Run>bbrechen</Run>
+                    </TextBlock>
+                    <customControls:GlassButton3.Tag>
+                        <x:Static Member="MessageBoxResult.Cancel"/>
+                    </customControls:GlassButton3.Tag>
+                </customControls:GlassButton3>
+            </StackPanel>
+        </Border>
+
+
+    </Grid>
+</messageBoxes:MessageResultWindow>

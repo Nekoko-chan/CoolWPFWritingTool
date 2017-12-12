@@ -1,0 +1,17 @@
+﻿<Window x:Class="ComplexWriter.Testblock"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Testblock" Height="300" Width="300">
+    <StackPanel>
+        <StackPanel  TextOptions.TextFormattingMode="Display">
+            <TextBlock x:Name="block1">Display - ClearType</TextBlock>
+            <TextBlock x:Name="block2" TextOptions.TextRenderingMode="Grayscale">Display - Grayscale</TextBlock>
+            <TextBlock x:Name="block3" TextOptions.TextRenderingMode="Aliased">Display - Aliased</TextBlock>
+        </StackPanel>
+        <StackPanel TextOptions.TextFormattingMode="Ideal">
+            <TextBlock x:Name="block4">Ideal - ClearType</TextBlock>
+            <TextBlock x:Name="block5" TextOptions.TextRenderingMode="Grayscale">Ideal - Grayscale</TextBlock>
+            <TextBlock x:Name="block6" TextOptions.TextRenderingMode="Aliased">Ideal - Aliased</TextBlock>
+        </StackPanel>
+    </StackPanel>
+</Window>

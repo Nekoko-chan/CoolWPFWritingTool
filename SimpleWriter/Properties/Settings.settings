@@ -1,0 +1,123 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="ComplexWriter.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="LastFileName" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="LastFontName" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="LastFontSize" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">12</Value>
+    </Setting>
+    <Setting Name="LastSize" Type="System.Windows.Size" Scope="User">
+      <Value Profile="(Default)">525,450</Value>
+    </Setting>
+    <Setting Name="StartPosition" Type="System.Windows.Point" Scope="User">
+      <Value Profile="(Default)">100,100</Value>
+    </Setting>
+    <Setting Name="UseFrenchQuotes" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="QuoteStyle" Type="ComplexWriter.ButtonState" Scope="User">
+      <Value Profile="(Default)">State1</Value>
+    </Setting>
+    <Setting Name="LastSizeErrorWindow" Type="System.Windows.Size" Scope="User">
+      <Value Profile="(Default)">700,400</Value>
+    </Setting>
+    <Setting Name="StartPositionErrorWindow" Type="System.Windows.Point" Scope="User">
+      <Value Profile="(Default)">100,100</Value>
+    </Setting>
+    <Setting Name="CheckSpelling" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="Upgraded" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="TopMost" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="OpenFilenames" Type="ComplexWriter.OpenFiles" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="Style" Type="ComplexWriter.ComplexStyle" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="Styles" Type="ComplexWriter.ComplexStyles" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="WatermarkPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="WatermarkSize" Type="System.Windows.Size" Scope="User">
+      <Value Profile="(Default)">100,100</Value>
+    </Setting>
+    <Setting Name="WatermarkOpacity" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="DefaultFolder" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="ColorList" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="ShowFontStylePopup" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="FontStylePopupIsAttached" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="FontStylePopupLocation" Type="System.Nullable&lt;System.Windows.Point&gt;" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="AskForPasswordOnTabChange" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="AskForPassword" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="AllowEmptyQuestions" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="SaveAutomatical" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="HideQuestion" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="UseBlackBackground" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="Symbol" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="CurrentSymbolFont" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="ShowToolbar" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="DefaultExportPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="ImageFolder" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="ShowNames" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="ImagePopupLocation" Type="System.Nullable&lt;System.Windows.Point&gt;" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="Watermark" Type="System.Byte[]" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="FlipImage" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="InitialDirectory" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+  </Settings>
+</SettingsFile>

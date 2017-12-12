@@ -1,0 +1,930 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{575542EF-2ACA-419B-8E7C-04663AFC1370}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ComplexWriter</RootNamespace>
+    <AssemblyName>ComplexWriter</AssemblyName>
+    <TargetFrameworkVersion>v4.6.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>feather.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BlendModeEffects, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dlls\BlendModeEffects.dll</HintPath>
+    </Reference>
+    <Reference Include="Bornander.UI, Version=1.1.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dlls\Bornander.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="CustomControls, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dlls\CustomControls.dll</HintPath>
+    </Reference>
+    <Reference Include="ExtensionObjects, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dlls\ExtensionObjects.dll</HintPath>
+    </Reference>
+    <Reference Include="Ionic.Zip, Version=1.9.1.8, Culture=neutral, PublicKeyToken=edbe51ad942a3f5c, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dlls\Ionic.Zip.dll</HintPath>
+    </Reference>
+    <Reference Include="Itenso.Windows.Controls.ListViewLayout, Version=1.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dlls\Itenso.Windows.Controls.ListViewLayout.dll</HintPath>
+    </Reference>
+    <Reference Include="MigraDoc.DocumentObjectModel-WPF, Version=1.31.3066.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dlls\MigraDoc.DocumentObjectModel-WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="MigraDoc.Rendering-WPF, Version=1.31.3066.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dlls\MigraDoc.Rendering-WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="MigraDoc.RtfRendering-WPF, Version=1.31.3066.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dlls\MigraDoc.RtfRendering-WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp-WPF, Version=1.32.2608.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dlls\PdfSharp-WPF.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp.Xps, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dlls\PdfSharp.Xps.dll</HintPath>
+    </Reference>
+    <Reference Include="ReachFramework" />
+    <Reference Include="ShaderEffectLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dlls\ShaderEffectLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="Shaders, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dlls\Shaders.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="Xceed.Wpf.Toolkit, Version=1.9.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dlls\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ClickOpensContextMenuBehavior.cs" />
+    <Compile Include="MessageBoxes\FileOpener.xaml.cs">
+      <DependentUpon>FileOpener.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MessageBoxes\FileOpenerDictionary.xaml.cs">
+      <DependentUpon>FileOpenerDictionary.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TreeViewDirectOverItem.cs" />
+    <Compile Include="Watermark.cs" />
+    <Resource Include="Images\line.png" />
+    <Resource Include="Images\rtf.png" />
+    <Resource Include="Images\QuoteForMenu.png" />
+    <Resource Include="Images\diskdrive.png" />
+    <Resource Include="Images\me.png" />
+    <Resource Include="Images\power.png" />
+    <Resource Include="Images\Restart.png" />
+    <Resource Include="Images\sideImage.png" />
+    <Resource Include="Images\Antagonist.png" />
+    <Resource Include="Images\Location.png" />
+    <Resource Include="Images\Other.png" />
+    <Resource Include="Images\Protagonist.png" />
+    <Resource Include="Images\SideCharacter.png" />
+    <Resource Include="Images\Species.png" />
+    <Resource Include="Images\AddEdit.png" />
+    <Resource Include="Images\splashscreen.png" />
+    <Resource Include="Images\pinguSmall.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Images\id.png" />
+    <Resource Include="Images\IndentRemoveRight.png" />
+    <Resource Include="Images\IndentRight.png" />
+    <Resource Include="Images\blackoutSmall.png" />
+    <Resource Include="Images\Fonts.png" />
+    <Resource Include="Images\deleteStyle.png" />
+    <Resource Include="Images\rename.png" />
+    <Resource Include="Images\EditStyle.png" />
+    <Resource Include="Images\StilAktualisieren.png" />
+    <Resource Include="Images\StilAnwenden.png" />
+    <Resource Include="Images\featherBlack2.png" />
+    <Resource Include="Images\pagebreak.png" />
+    <Resource Include="Images\questionMark.png" />
+    <Resource Include="Images\update.png" />
+    <Page Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="AutoCorrectElement.cs" />
+    <Compile Include="Character.cs" />
+    <Compile Include="CharacterNames\CharacterNameControl.xaml.cs">
+      <DependentUpon>CharacterNameControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CharacterNames\NameClickedEvent.cs" />
+    <Compile Include="CharacterNames\TextButton.xaml.cs" />
+    <Compile Include="DispatcherHelper.cs" />
+    <Compile Include="DocumentPaginatorWrapper.cs" />
+    <Compile Include="EnumHelper.cs" />
+    <Compile Include="ErrorMessageItem.cs" />
+    <Compile Include="FontClass.cs" />
+    <Compile Include="FontFamilyExtension.cs" />
+    <Compile Include="global\CountDown.cs" />
+    <Compile Include="MatchEventArgs.cs" />
+    <Compile Include="MessageBoxes\ColorWindow.xaml.cs">
+      <DependentUpon>ColorWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MessageBoxes\ColorWindowDictionary.cs">
+      <DependentUpon>ColorWindowDictionary.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MessageBoxes\CharacterEditor.xaml.cs">
+      <DependentUpon>CharacterEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MessageBoxes\CharacterEditorDictionary.xaml.cs">
+      <DependentUpon>CharacterEditorDictionary.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MessageBoxes\TextInputMultilineDictionary.xaml.cs">
+      <DependentUpon>TextInputMultilineDictionary.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MessageBoxes\TextInputMultiline.xaml.cs">
+      <DependentUpon>TextInputMultiline.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MessageBoxes\SecurityDialog.xaml.cs">
+      <DependentUpon>SecurityDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MessageBoxes\SecurityDialogDictionary.xaml.cs">
+      <DependentUpon>SecurityDialogDictionary.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MessageBoxes\PrintBackgroundDialog.xaml.cs">
+      <DependentUpon>PrintBackgroundDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MessageBoxes\PageCountSettings.xaml.cs">
+      <DependentUpon>PageCountSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MessageBoxes\PrintBackgroundDialogDictionary.xaml.cs">
+      <DependentUpon>PrintBackgroundDialogDictionary.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MessageBoxes\SaveMessage.xaml.cs">
+      <DependentUpon>SaveMessage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MessageBoxes\ErrorWindow2.xaml.cs">
+      <DependentUpon>ErrorWindow2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MessageBoxes\PageCountSettingsDictionary.xaml.cs">
+      <DependentUpon>PageCountSettingsDictionary.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MessageBoxes\SaveMessageDictionary.xaml.cs">
+      <DependentUpon>SaveMessageDictionary.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MessageBoxes\ErrorWindow2Dictionary.xaml.cs">
+      <DependentUpon>ErrorWindow2Dictionary.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MessageBoxes\FontStyleWindow.xaml.cs">
+      <DependentUpon>FontStyleWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MessageBoxes\PrintDialogHelper.xaml.cs">
+      <DependentUpon>PrintDialogHelper.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MessageBoxes\PrintDialogHelperDictionary.xaml.cs">
+      <DependentUpon>PrintDialogHelperDictionary.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MessageBoxes\PasswordInput.xaml.cs">
+      <DependentUpon>PasswordInput.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MessageBoxes\QuoteWindow.xaml.cs">
+      <DependentUpon>QuoteWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MessageBoxes\QuoteWindowDictionary.xaml.cs">
+      <DependentUpon>QuoteWindowDictionary.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MessageBoxes\SimpleInput.xaml.cs">
+      <DependentUpon>SimpleInput.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MessageBoxes\TextInput.xaml.cs">
+      <DependentUpon>TextInput.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MessageBoxes\FontStyleWindowDictionary.xaml.cs">
+      <DependentUpon>FontStyleWindowDictionary.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MessageBoxes\PasswordInputDictionary.xaml.cs">
+      <DependentUpon>PasswordInputDictionary.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MessageBoxes\SimpleInputDictionary.xaml.cs">
+      <DependentUpon>SimpleInputDictionary.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MessageBoxes\TextInputDictionary.xaml.cs">
+      <DependentUpon>TextInputDictionary.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MessageBoxes\DictionaryItem.cs" />
+    <Compile Include="MessageBoxes\MessageResultWindow.cs" />
+    <Compile Include="MessageBoxes\SpecialUnicode.cs" />
+    <Compile Include="MessageBoxes\DictionaryEditor.xaml.cs">
+      <DependentUpon>DictionaryEditor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MessageBoxes\SymbolWindow.xaml.cs">
+      <DependentUpon>SymbolWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MessageBoxes\DictionaryEditorDictionary.xaml.cs">
+      <DependentUpon>DictionaryEditorDictionary.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MessageBoxes\SymbolWindowDictionary.xaml.cs">
+      <DependentUpon>SymbolWindowDictionary.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MessageBoxes\ErrorWindowDictionary.cs">
+      <DependentUpon>ErrorWindowDictionary.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MessageBoxes\ImagePickerDictionary.cs">
+      <DependentUpon>ImagePickerDictionary.xaml</DependentUpon>
+    </Compile>
+    <Page Include="About.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Content Include="ColorSet\Colors.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Page Include="CharacterNames\CharacterNameControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CharacterNames\TextButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="DesignHelper.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="global\Buttons.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="global\checkbox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="global\ColorPicker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="global\Combobox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="global\Converter.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="global\global.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="global\ListElementsForOpener.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="global\GridView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="global\Expander.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="global\GroupBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="global\ListBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="global\ListView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="global\MenuItem.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="global\PageViewer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="global\RepeatButtons.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="global\Scrollbars.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="global\ScrollViewer2.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="global\ScrollViewer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="global\SmallerSlider.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="global\Slider.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="global\SliderVertical.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="global\SpectrumSlider.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="global\ToggleButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="global\Tooltip.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="global\TreeView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="global\UpDowns.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="global\Viewer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="KeyHelp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="About.xaml.cs">
+      <DependentUpon>About.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Commands\OwnPasteCommand.cs" />
+    <Compile Include="Commands\OkCommand.cs" />
+    <Compile Include="Commands\CancelEndDialogCommand.cs" />
+    <Compile Include="Commands\EmptyFileCommand.cs" />
+    <Compile Include="Commands\CancelCommand.cs" />
+    <Compile Include="Commands\NoCommand.cs" />
+    <Compile Include="Commands\YesCommand.cs" />
+    <Compile Include="Commands\StoreNameDialogCommand.cs" />
+    <Compile Include="ComplexStyle.cs" />
+    <Compile Include="DesignHelper.xaml.cs">
+      <DependentUpon>DesignHelper.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="global\Converters.cs" />
+    <Compile Include="Commands\IgnoreCommand.cs" />
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="MainWindowDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MessageBoxes\CloseSettingsMessageBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MessageBoxes\AboutDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MessageBoxes\CharacterEditor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MessageBoxes\CharacterEditorDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MessageBoxes\FileOpener.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MessageBoxes\FileOpenerDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MessageBoxes\TextInputMultilineDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MessageBoxes\TextInputMultiline.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MessageBoxes\SecurityDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MessageBoxes\SecurityDialogDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MessageBoxes\PrintBackgroundDialog.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MessageBoxes\PageCountSettings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MessageBoxes\PrintBackgroundDialogDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MessageBoxes\SaveMessage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MessageBoxes\ErrorWindow2.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MessageBoxes\PageCountSettingsDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MessageBoxes\SaveMessageDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MessageBoxes\ErrorWindow2Dictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MessageBoxes\FontStyleWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MessageBoxes\PrintDialogHelper.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MessageBoxes\PrintDialogHelperDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MessageBoxes\PasswordInput.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MessageBoxes\QuoteWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MessageBoxes\QuoteWindowDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MessageBoxes\SimpleInput.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MessageBoxes\TextInput.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MessageBoxes\DictionaryEditor.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MessageBoxes\FontStyleWindowDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MessageBoxes\PasswordInputDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MessageBoxes\SimpleInputDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MessageBoxes\TextInputDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MessageBoxes\SymbolWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MessageBoxes\DictionaryEditorDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MessageBoxes\SymbolWindowDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MessageBoxes\ImagePicker.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MessageBoxes\ImagePickerDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <DependentUpon>ImagePicker.xaml</DependentUpon>
+    </Page>
+    <Page Include="MessageBoxes\ErrorWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MessageBoxes\ErrorWindowDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MessageBoxes\ColorWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MessageBoxes\ColorWindowDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <DependentUpon>ColorWindow.xaml</DependentUpon>
+    </Page>
+    <Page Include="MessageBoxes\XamlMessageBoxDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <DependentUpon>XamlMessageBox.xaml</DependentUpon>
+    </Page>
+    <Page Include="MessageBoxes\XamlMessageBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MessageBoxes\MessageBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MessageBoxes\MessageBoxDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <DependentUpon>MessageBox.xaml</DependentUpon>
+    </Page>
+    <Page Include="MessageBoxes\QuestionBoxDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <DependentUpon>QuestionBox.xaml</DependentUpon>
+    </Page>
+    <Page Include="MessageBoxes\CloseSettingsMessageBoxDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+      <DependentUpon>CloseSettingsMessageBox.xaml</DependentUpon>
+    </Page>
+    <Page Include="MessageBoxes\QuestionBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MyPageViewer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SearchAndReplace\SearchAndReplaceControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SplashScreen.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Testblock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ThreeStateButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="MainWindowDictionary.xaml.cs">
+      <DependentUpon>MainWindowDictionary.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MessageBoxes\CloseSettingsMessageBox.xaml.cs">
+      <DependentUpon>CloseSettingsMessageBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MessageBoxes\AboutDictionary.xaml.cs">
+      <DependentUpon>AboutDictionary.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MessageBoxes\ImagePicker.xaml.cs">
+      <DependentUpon>ImagePicker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MessageBoxes\ErrorWindow.xaml.cs">
+      <DependentUpon>ErrorWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MessageBoxes\UnicodeElement.cs" />
+    <Compile Include="MessageBoxes\XamlMessageBoxDictionary.xaml.cs">
+      <DependentUpon>XamlMessageBoxDictionary.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MessageBoxes\XamlMessageBox.xaml.cs">
+      <DependentUpon>XamlMessageBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MessageBoxes\MessageBox.xaml.cs">
+      <DependentUpon>MessageBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MessageBoxes\MessageBoxDictionary.xaml.cs">
+      <DependentUpon>MessageBoxDictionary.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MessageBoxes\QuestionBoxDictionary.xaml.cs">
+      <DependentUpon>QuestionBoxDictionary.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MessageBoxes\CloseSettingsMessageBoxDictionary.xaml.cs">
+      <DependentUpon>CloseSettingsMessageBoxDictionary.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MessageBoxes\QuestionBox.xaml.cs">
+      <DependentUpon>QuestionBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MessageListener.cs" />
+    <Compile Include="MyGroupStyleSelector.cs" />
+    <Compile Include="MyPageViewer.xaml.cs">
+      <DependentUpon>MyPageViewer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OpenFiles.cs" />
+    <Compile Include="PageBreakHelper.cs" />
+    <Compile Include="PageCountElement.cs" />
+    <Compile Include="PasswordHelper.cs" />
+    <Compile Include="PdfHelper.cs" />
+    <Compile Include="PrintSettings.cs" />
+    <Compile Include="QuotationHelper.cs" />
+    <Compile Include="ReplaceLogic.cs" />
+    <Compile Include="Settings.cs" />
+    <Compile Include="SingleInstance.cs" />
+    <Compile Include="Splasher.cs" />
+    <Compile Include="SplashScreen.xaml.cs" />
+    <Compile Include="Sva.cs" />
+    <Compile Include="SearchAndReplace\DocumentHelper.cs" />
+    <Compile Include="SearchAndReplace\FindAndReplaceManager.cs" />
+    <Compile Include="SearchAndReplace\RegexSearch.cs" />
+    <Compile Include="SearchAndReplace\SearchAndReplaceControl.xaml.cs">
+      <DependentUpon>SearchAndReplaceControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SpezialSettingsConverter.cs" />
+    <Compile Include="Testblock.xaml.cs">
+      <DependentUpon>Testblock.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TextFile.cs" />
+    <Compile Include="ThreeStateButton.xaml.cs">
+      <DependentUpon>ThreeStateButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UIServices.cs" />
+    <Compile Include="Utilities.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <Resource Include="StandardFont\AveriaSansLibre-Bold.ttf" />
+    <Resource Include="StandardFont\AveriaSansLibre-BoldItalic.ttf" />
+    <Resource Include="StandardFont\AveriaSansLibre-Italic.ttf" />
+    <Resource Include="StandardFont\AveriaSansLibre-Light.ttf" />
+    <Resource Include="StandardFont\AveriaSansLibre-LightItalic.ttf" />
+    <Resource Include="StandardFont\AveriaSansLibre-Regular.ttf" />
+    <Resource Include="StandardFont\SourceSansPro-Regular.ttf" />
+    <Resource Include="Images\wait.ani" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <AppDesigner Include="Properties\" />
+    <Resource Include="Images\1428607399_vector_65_13-128.png" />
+    <Resource Include="1428607390_473800.ico" />
+    <Resource Include="Images\new.png" />
+    <Resource Include="Images\info.png" />
+    <Resource Include="Images\question.png" />
+    <Resource Include="Images\Play.png" />
+    <Resource Include="Images\BulletList.png" />
+    <Resource Include="Images\NumbersList.png" />
+    <Resource Include="Images\AlignCenter.png" />
+    <Resource Include="Images\AlignLeft.png" />
+    <Resource Include="Images\AlignRight.png" />
+    <Resource Include="Images\AlignJustify.png" />
+    <Resource Include="Images\Indent.png" />
+    <Resource Include="Images\IndentRemove.png" />
+    <Resource Include="Images\Bold.png" />
+    <Resource Include="Images\Italic.png" />
+    <Resource Include="Images\Strikeout.png" />
+    <Resource Include="Images\Underline.png" />
+    <Resource Include="Images\Textcolor.png" />
+    <Resource Include="Images\bucket.png" />
+    <Resource Include="Images\blackout.png" />
+    <Resource Include="Images\frenchQuote.png" />
+    <Resource Include="Images\paint_brush.png" />
+    <Resource Include="Images\pipette.png" />
+    <Resource Include="Images\errorNuke.png" />
+    <Resource Include="Images\Warning.png" />
+    <Resource Include="Images\symbol.png" />
+    <Resource Include="Images\Export.png" />
+    <Resource Include="Images\TopBottomQuote.png" />
+    <Resource Include="Images\TopOnlyQuote.png" />
+    <Resource Include="Images\TopOnlyQuoteEven.png" />
+    <Resource Include="Images\DecreaseFont.png" />
+    <Resource Include="Images\IncreaseFont.png" />
+    <Resource Include="1429807892_37413.ico" />
+    <Resource Include="Images\1429808007_text.png" />
+    <Resource Include="Images\Xaml.png" />
+    <Resource Include="Images\myself.png" />
+    <Resource Include="Images\1291282236_image.png" />
+    <Resource Include="Images\Link.png" />
+    <Resource Include="Images\LinkBreak.png" />
+    <Resource Include="Images\arrowDown.png" />
+    <Resource Include="Images\DeleteAll.png" />
+    <Resource Include="Images\collapseAll.png" />
+    <Resource Include="Images\expandAll.png" />
+    <Resource Include="Images\Bubble1.png" />
+    <Resource Include="Images\Bubble3.png" />
+    <Resource Include="Images\Copy.png" />
+    <Resource Include="Images\Cut.png" />
+    <Resource Include="Images\Paste.png" />
+    <Resource Include="Images\PasteStyle.png" />
+    <Resource Include="Images\bookClosed.png" />
+    <Resource Include="Images\bookOpen.png" />
+    <Resource Include="Images\ignore.png" />
+    <Resource Include="Images\spellcheck.png" />
+    <Resource Include="Images\1289560354_Redo.png" />
+    <Resource Include="Images\Search.png" />
+    <Resource Include="Images\replaceAll.png" />
+    <Resource Include="Images\replace.png" />
+    <Resource Include="Images\pin1.png" />
+    <Resource Include="feather.ico" />
+    <Resource Include="Images\feather.png" />
+    <Resource Include="Images\Font.png" />
+    <Resource Include="Images\clipboard.png" />
+    <Resource Include="Images\Textblock.cur" />
+    <Resource Include="Images\Current.png" />
+    <Resource Include="Images\DeleteDict.png" />
+    <Resource Include="Images\UndoDeleteDict.png" />
+    <Resource Include="Images\Add.png" />
+    <Resource Include="Images\bookOpenEdit.png" />
+    <Resource Include="Images\Checkmark.png" />
+    <Resource Include="Images\saveAll.png" />
+    <Resource Include="Images\pdfDrive.png" />
+    <Resource Include="Images\Increse.png" />
+    <Resource Include="Images\Decrese.png" />
+    <Resource Include="Images\Zoom100.png" />
+    <Resource Include="Images\page.png" />
+    <Resource Include="Images\pageCount.png" />
+    <Resource Include="Images\pageCountSettings.png" />
+    <Resource Include="Images\pipette2.png" />
+    <Resource Include="Images\paint_brush2.png" />
+    <Resource Include="Images\Seitenumbruch.png" />
+    <Resource Include="Images\arrowLeft.png" />
+    <Resource Include="Images\arrowRight.png" />
+    <Resource Include="Images\Eye.png" />
+    <Resource Include="Images\EyeClosed.png" />
+    <Resource Include="Images\CornerQuoutes.png" />
+    <Resource Include="Images\open.png" />
+    <Resource Include="Images\save.png" />
+    <Resource Include="Images\saveAs.png" />
+    <Resource Include="Images\downCycle.png" />
+    <Resource Include="Images\upCycle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="StandardFont\expressway rg.ttf" />
+    <Resource Include="StandardFont\Sports World-Regular.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\fog.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\cursor2.cur" />
+    <Resource Include="Images\cursor.cur" />
+    <Resource Include="Images\LORU.cur" />
+    <Resource Include="Images\LR.cur" />
+    <Resource Include="Images\LURO.cur" />
+    <Resource Include="Images\Move.cur" />
+    <Resource Include="Images\UD.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\exit.png" />
+    <Resource Include="Images\mini.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\lock.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Condensed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\glasses.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Textblock2.cur" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.6.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.6.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

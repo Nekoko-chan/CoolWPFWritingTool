@@ -1,0 +1,163 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="global.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <!-- SrollViewer ScrollBar Repeat Buttons (at each end) -->
+    <Style x:Key="TransparentRepeater" TargetType="{x:Type RepeatButton}">
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="OverridesDefaultStyle" Value="true"/>
+        <Setter Property="Focusable" Value="false"/>
+        <Setter Property="Background" Value="Transparent"></Setter>
+        <Setter Property="Cursor" Value="{StaticResource overCursor}"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RepeatButton}">
+                    <Border 
+          Name="Border"
+                        VerticalAlignment="Stretch"
+                        HorizontalAlignment="Stretch"
+          Background="Red"
+          BorderBrush="Transparent"
+          BorderThickness="1.5"/>
+                        
+                </ControlTemplate>
+
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!-- HorizontalScrollBar Template using the previously created Templates -->
+    <ControlTemplate x:Key="HorizontalScrollBarTransparent"
+            TargetType="{x:Type ScrollBar}">
+        <Grid Margin="0,30" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="30"/>
+            </Grid.ColumnDefinitions>
+            <Border 
+      Grid.ColumnSpan="2" Cursor="{StaticResource standardCursor}"
+      Background="Transparent" />
+            <RepeatButton
+      Grid.Column="0"
+      Style="{StaticResource TransparentRepeater}"
+                ClickMode="Hover"
+      Width="30"
+      Command="ScrollBar.LineLeftCommand" >
+                <RepeatButton.IsEnabled>
+                    <MultiBinding Converter="{StaticResource IsDifferentConverter}">
+                        <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Minimum"/>
+                        <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Value"/>
+                    </MultiBinding>
+                </RepeatButton.IsEnabled>
+            </RepeatButton>
+            <RepeatButton
+      Grid.Column="2"
+      Style="{StaticResource TransparentRepeater}"
+      Width="30"
+                ClickMode="Hover"
+      Command="ScrollBar.LineRightCommand">
+                <RepeatButton.IsEnabled>
+                    <MultiBinding Converter="{StaticResource IsDifferentConverter}">
+                        <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Maximum"/>
+                        <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Value"/>
+                    </MultiBinding>
+                </RepeatButton.IsEnabled>
+            </RepeatButton>
+        </Grid>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="VerticalScrollBarTransparent"
+            TargetType="{x:Type ScrollBar}">
+        <Grid Margin="30,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="30"/>
+            </Grid.RowDefinitions>
+            <Border
+      Grid.RowSpan="3" Cursor="{StaticResource standardCursor}"
+      Background="Transparent" />
+            <RepeatButton
+      Grid.Row="0"
+      Style="{StaticResource TransparentRepeater}"
+                Width="Auto" HorizontalAlignment="Stretch"
+      Command="ScrollBar.LineUpCommand"
+                ClickMode="Hover">
+                <RepeatButton.IsEnabled>
+                    <MultiBinding Converter="{StaticResource IsDifferentConverter}">
+                        <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Minimum"/>
+                        <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Value"/>
+                    </MultiBinding>
+                </RepeatButton.IsEnabled>
+            </RepeatButton>
+            <RepeatButton
+      Grid.Row="2"
+      Style="{StaticResource TransparentRepeater}"
+      Command="ScrollBar.LineDownCommand"
+                ClickMode="Hover"
+                Width="Auto" HorizontalAlignment="Stretch"
+      >
+                <RepeatButton.IsEnabled>
+                    <MultiBinding Converter="{StaticResource IsDifferentConverter}">
+                        <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Maximum"/>
+                        <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Value"/>
+                    </MultiBinding>
+                </RepeatButton.IsEnabled>
+            </RepeatButton>
+        </Grid>
+    </ControlTemplate>
+
+
+    <Style x:Key="TransparentScrollbar" TargetType="{x:Type ScrollBar}">
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+        <Setter Property="Focusable" Value="True"></Setter>
+        <Setter Property="ContextMenu" Value="{x:Null}"/>
+        <Setter Property="OverridesDefaultStyle" Value="true"/>
+        <Style.Triggers>
+            <Trigger Property="Orientation" Value="Horizontal">
+                <Setter Property="VerticalAlignment" Value="Stretch"/>
+                <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                <Setter Property="Template"
+                        Value="{StaticResource HorizontalScrollBarTransparent}" />
+            </Trigger>
+            <Trigger Property="Orientation" Value="Vertical">
+                <Setter Property="Template"
+                        Value="{StaticResource VerticalScrollBarTransparent}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+
+    <Style x:Key="TransparentScrollviewer" TargetType="ScrollViewer">
+        <Setter Property="OverridesDefaultStyle" Value="True"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ScrollViewer}">
+                    <Grid>
+                        <ScrollContentPresenter />
+
+                        <ScrollBar Style="{StaticResource TransparentScrollbar}" Name="PART_VerticalScrollBar" 
+            Value="{TemplateBinding VerticalOffset}"
+            Maximum="{TemplateBinding ScrollableHeight}"
+            ViewportSize="{TemplateBinding ViewportHeight}"
+            Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}"/>
+                        
+                        <ScrollBar Name="PART_HorizontalScrollBar"
+            Orientation="Horizontal"
+           
+                                   Style="{StaticResource TransparentScrollbar}"
+            
+            Value="{TemplateBinding HorizontalOffset}"
+            Maximum="{TemplateBinding ScrollableWidth}"
+            ViewportSize="{TemplateBinding ViewportWidth}"
+            Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}"/>
+
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

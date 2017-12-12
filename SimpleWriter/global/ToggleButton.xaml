@@ -1,0 +1,118 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+    
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="global.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+
+    <system:Double x:Key="MinScale">0.8</system:Double>
+
+
+    <Style x:Key="ToggleBtnStyle" TargetType="ToggleButton">
+        <Setter Property="Cursor" Value="{StaticResource overCursor}"/>
+        <Setter Property="Margin" Value="0,0,10,0"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    <Border Width="16" Height="16" Name="Border" Background="{StaticResource BackColorBrush}" RenderTransformOrigin="0.5,0.5" RenderOptions.BitmapScalingMode="HighQuality">
+                        <Border.OpacityMask>
+                            <ImageBrush ImageSource="../Images/arrowDown.png" Stretch="Uniform"/>
+                        </Border.OpacityMask>
+                        <Border.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleX="{StaticResource MinScale}" ScaleY="{StaticResource MinScale}" x:Name="theScale" />
+                                <RotateTransform Angle="-90" x:Name="theAngle" />
+                            </TransformGroup>
+                        </Border.RenderTransform>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="theAngle" Storyboard.TargetProperty="Angle" To="0" Duration="00:00:00.300"></DoubleAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="theAngle" Storyboard.TargetProperty="Angle" To="-90" Duration="00:00:00.300"></DoubleAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="theScale" Storyboard.TargetProperty="ScaleX" To="1" Duration="00:00:00.300"></DoubleAnimation>
+                                        <DoubleAnimation Storyboard.TargetName="theScale" Storyboard.TargetProperty="ScaleY" To="1" Duration="00:00:00.300"></DoubleAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="theScale" Storyboard.TargetProperty="ScaleX" To="{StaticResource MinScale}" Duration="00:00:00.300"></DoubleAnimation>
+                                        <DoubleAnimation Storyboard.TargetName="theScale" Storyboard.TargetProperty="ScaleY" To="{StaticResource MinScale}" Duration="00:00:00.300"></DoubleAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <Style x:Key="SimpleToggleStyle" TargetType="ToggleButton">
+        <Setter Property="Cursor" Value="{StaticResource overCursor}"/>
+        <Setter Property="Margin" Value="0,0,0,0"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    <Grid>
+                        <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"
+                                          RenderTransformOrigin="0.5,0.5" Name="content">
+                            <ContentPresenter.RenderTransform>
+                                <ScaleTransform ScaleX="{StaticResource MinScale}" ScaleY="{StaticResource MinScale}" />
+                            </ContentPresenter.RenderTransform>
+                        </ContentPresenter>
+                        <Border Width="16" Height="16" VerticalAlignment="Bottom" Background="{StaticResource DarkerTitleBrush}" HorizontalAlignment="Right"  Name="Check" Visibility="Collapsed">
+                            <Border.OpacityMask>
+                                <ImageBrush ImageSource="../Images/Checkmark.png" Stretch="Uniform"></ImageBrush>
+                            </Border.OpacityMask>
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="Check" Property="Visibility" Value="Visible"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="content" Storyboard.TargetProperty="(ContentPresenter.RenderTransform).(ScaleTransform.ScaleX)" To="1" Duration="00:00:00.300"></DoubleAnimation>
+                                        <DoubleAnimation Storyboard.TargetName="content" Storyboard.TargetProperty="(ContentPresenter.RenderTransform).(ScaleTransform.ScaleY)" To="1" Duration="00:00:00.300"></DoubleAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="content" Storyboard.TargetProperty="(ContentPresenter.RenderTransform).(ScaleTransform.ScaleX)" To="{StaticResource MinScale}" Duration="00:00:00.300"></DoubleAnimation>
+                                        <DoubleAnimation Storyboard.TargetName="content" Storyboard.TargetProperty="(ContentPresenter.RenderTransform).(ScaleTransform.ScaleY)" To="{StaticResource MinScale}" Duration="00:00:00.300"></DoubleAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

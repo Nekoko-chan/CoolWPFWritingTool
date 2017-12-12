@@ -1,0 +1,779 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                    xmlns:customControls="clr-namespace:CustomControls;assembly=CustomControls"
+                    xmlns:complexWriter="clr-namespace:ComplexWriter"
+                    xmlns:messageBoxes="clr-namespace:ComplexWriter.MessageBoxes">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="Converter.xaml"/>
+        <ResourceDictionary Source="../ColorSet/Colors.xaml"/>
+        <ResourceDictionary Source="Expander.xaml"/>
+        <ResourceDictionary>
+
+            <Cursor x:Key="standardCursor">../Images/cursor.cur</Cursor>
+            <Cursor x:Key="overCursor">../Images/cursor2.cur</Cursor>
+            <Cursor x:Key="moveCursor">../Images/Move.cur</Cursor>
+            <Cursor x:Key="SizeNESW">../Images/LURO.cur</Cursor>
+            <Cursor x:Key="SizeNS">../Images/UD.cur</Cursor>
+            <Cursor x:Key="SizeWE">../Images/LR.cur</Cursor>
+            <Cursor x:Key="SizeNWSE">../Images/LORU.cur</Cursor>
+            <Cursor x:Key="Beam">../Images/Textblock.cur</Cursor>
+            <Cursor x:Key="Beam2">../Images/Textblock.cur</Cursor>
+
+            <Border x:Key="bord">
+                <Border.Background>
+                    <LinearGradientBrush  EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FF4CB0C0" Offset="0" />
+                        <GradientStop Color="#FF016FA3" Offset="0.49" />
+                        <GradientStop Color="#024795" Offset="0.50" />
+                        <GradientStop Color="#2C5198" Offset="1" />
+                    </LinearGradientBrush>
+                </Border.Background>
+            </Border>
+
+            <!--<FontFamily x:Key="defaultFont">pack://application:,,,/StandardFont/#Expressway Rg</FontFamily>-->
+            <FontFamily x:Key="defaultFont">pack://application:,,,/StandardFont/#Averia Sans Libre</FontFamily>
+            <FontFamily x:Key="numberFont">pack://application:,,,/StandardFont/#Sports World</FontFamily>
+            
+
+
+
+            <ImageBrush x:Key="CurrentItem" ImageSource="../Images/Current.png" Stretch="Uniform"/>
+           
+
+            <!--SizeNESW SizeNS SizeWE -->
+            
+            <SolidColorBrush Color="#FF4A8CFF" x:Key="mouseOver" Opacity="0.7"/>
+            <SolidColorBrush Color="#FFFFFF4A" x:Key="mouseOverOld" Opacity="0.7"/>
+            <SolidColorBrush Color="#FF1E2C6E" x:Key="dark2"/>
+            <SolidColorBrush Color="#FF3447A2" x:Key="dark"/>
+
+
+            <sys:Double x:Key="fontSizeMonthTitle">30</sys:Double>
+            <sys:Double x:Key="fontSizeExtraLarge">24</sys:Double>
+            <sys:Double x:Key="fontSizeLarge">21</sys:Double>
+            <sys:Double x:Key="fontSizeMedium">19</sys:Double>
+            <sys:Double x:Key="fontSizeSmall">15</sys:Double>
+            <sys:Double x:Key="fontSizeTab">17</sys:Double>
+            
+            <sys:Double x:Key="fontSizeNumberSmall">12</sys:Double>
+            <sys:Double x:Key="fontSizeNumberMedium">17</sys:Double>
+            <sys:Double x:Key="fontSizeMonthNumberTitle">26</sys:Double>
+            <sys:Double x:Key="fontSizeNumberExtraLarge">22</sys:Double>
+            <sys:Double x:Key="fontSizeNumberLarge">19</sys:Double>
+
+
+            <SolidColorBrush x:Key="background2" Color="#DDFFFFFF">
+    </SolidColorBrush>
+    <ImageBrush ImageSource="../Images/fog.png" x:Key="back" Stretch="None" TileMode="FlipXY" Opacity="0.5"/>
+
+            <LinearGradientBrush x:Key ="selected"  EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#4C8BC0" Offset="0" />
+                <GradientStop Color="#015CA3" Offset="0.49" />
+                <GradientStop Color="#024795" Offset="0.50" />
+                <GradientStop Color="#2C5198" Offset="1" />
+            </LinearGradientBrush>
+
+            <DrawingBrush x:Key="background" Viewport="0,0,800,600" ViewportUnits="Absolute" TileMode="FlipXY">
+                <DrawingBrush.Drawing>
+                    <DrawingGroup>
+                        <!--<GeometryDrawing Brush="{StaticResource background2}">
+                    <GeometryDrawing.Geometry>
+                        <RectangleGeometry Rect="0,0,800,600"/>
+                    </GeometryDrawing.Geometry>
+                </GeometryDrawing>-->
+                        <GeometryDrawing Brush="{StaticResource back}">
+                            <GeometryDrawing.Geometry>
+                                <RectangleGeometry Rect="0,0,800,600"/>
+                            </GeometryDrawing.Geometry>
+                        </GeometryDrawing>
+                    </DrawingGroup>
+                </DrawingBrush.Drawing>
+            </DrawingBrush>
+
+
+            <DashStyle x:Key="Dashes" Dashes="6,3,4,3,2,0,2,3,4,3">
+            </DashStyle>
+
+
+            <DrawingBrush x:Key="deletion" Viewport="0,0,16,34" ViewportUnits="Absolute" TileMode="FlipX">
+                <DrawingBrush.Drawing>
+                    <DrawingGroup>
+                        <GeometryDrawing Brush="Transparent">
+                            <GeometryDrawing.Geometry>
+                                <RectangleGeometry Rect="0,0,16,34"/>
+                            </GeometryDrawing.Geometry>
+                        </GeometryDrawing>
+                        <GeometryDrawing>
+                            <GeometryDrawing.Pen>
+                                <Pen Brush="Black" Thickness="1" DashStyle="{StaticResource Dashes}" />
+                            </GeometryDrawing.Pen>
+                            <GeometryDrawing.Geometry>
+                                <PathGeometry>
+                                    <PathGeometry.Figures>
+                                        <PathFigure StartPoint="0,34">
+                                            <LineSegment Point="16,0" IsStroked="True"/>
+                                        </PathFigure>
+                                        <PathFigure StartPoint="0,0">
+                                            <LineSegment Point="16,34" IsStroked="True"/>
+                                        </PathFigure>
+                                    </PathGeometry.Figures>
+                                </PathGeometry>
+                            </GeometryDrawing.Geometry>
+                        </GeometryDrawing>
+                    </DrawingGroup>
+                </DrawingBrush.Drawing>
+            </DrawingBrush>
+            <ControlTemplate TargetType="Button" x:Key="simpleBtn">
+                <Grid ClipToBounds="True">
+                    <Border Height="32" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" Width="200" CornerRadius="5,10,5,10">
+                        <Grid>
+                            <TextBlock Text="{TemplateBinding Content}" Foreground="{TemplateBinding Foreground}" FontSize="{StaticResource fontSizeMedium}" FontFamily="{StaticResource defaultFont}" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="7,2,7,2"/>
+                            <TextBlock Visibility="Hidden" Text="{TemplateBinding Content}" Name="mouseOverBorder" Foreground="{TemplateBinding Foreground}" FontSize="{StaticResource fontSizeMedium}" FontFamily="{StaticResource defaultFont}" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="7,2,7,2">
+                                <TextBlock.Effect>
+                                    <BlurEffect Radius="7"/>
+                                </TextBlock.Effect>
+                            </TextBlock>
+                        </Grid>
+                    </Border>
+
+                </Grid>
+                <ControlTemplate.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Cursor" Value="{StaticResource overCursor}"/>
+                        <Setter TargetName="mouseOverBorder" Property="Visibility" Value="Visible"></Setter>
+                    </Trigger>
+                </ControlTemplate.Triggers>
+            </ControlTemplate>
+
+            <DrawingBrush 
+    x:Key="lightCheckboard"
+    Viewport="0,0,20,20" ViewportUnits="Absolute" TileMode="Tile">
+                <DrawingBrush.Drawing>
+                    <DrawingGroup>
+                        <GeometryDrawing Brush="White">
+                            <GeometryDrawing.Geometry>
+                                <RectangleGeometry Rect="0,0 100,100" />
+                            </GeometryDrawing.Geometry>
+                        </GeometryDrawing>
+                        <GeometryDrawing Brush="LightGray">
+                            <GeometryDrawing.Geometry>
+                                <GeometryGroup>
+                                    <RectangleGeometry Rect="0,0 50,50" />
+                                    <RectangleGeometry Rect="50,50 50,50" />
+                                </GeometryGroup>
+                            </GeometryDrawing.Geometry>
+                        </GeometryDrawing>
+                    </DrawingGroup>
+                </DrawingBrush.Drawing>
+            </DrawingBrush>
+
+
+            <Style x:Key="TransparentWindowResizeThumbStyle"
+           TargetType="{x:Type Thumb}">
+                <Setter Property="Background" Value="{StaticResource BackColorBrush}" />
+                <Setter Property="Opacity" Value="0.01"></Setter>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Thumb}">
+                            <Border Background="{TemplateBinding Background}" />
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="TransparentThumb"
+           TargetType="{x:Type Thumb}">
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Thumb}">
+                            <Border Background="{TemplateBinding Background}" />
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="TransparentWindowResizeThumbStyle2"
+           TargetType="{x:Type Thumb}">
+                <Setter Property="Background" Value="{StaticResource BackColorBrush}" />
+                <Setter Property="Opacity" Value="0.01"></Setter>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Thumb}">
+                            <Border Background="{TemplateBinding Background}" />
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Style.Triggers>
+                    <Trigger Property="IsHitTestVisible" Value="False">
+                        <Setter Property="Opacity" Value="1"></Setter>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+
+
+            <DropShadowEffect x:Key="WindowShadow" Color="#FF21539B" Opacity="0.2" BlurRadius="6" ShadowDepth="3"/>
+
+            <!-- MultiLineReadOnlyPasswordbox -->
+
+            <Style x:Key="MultiLineReadOnlyPasswordbox" TargetType="{x:Type PasswordBox}">
+                <Setter Property="Cursor" Value="{StaticResource Beam}"></Setter>
+                <Setter Property="FontSize" Value="{DynamicResource fontSizeMedium}"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type PasswordBox}">
+                            <Border CornerRadius="5,10,5,10" BorderThickness="1.5" Name="theBorder">
+                                <Grid Margin="0,0,0,0">
+                                    <TextBlock VerticalAlignment="{Binding AcceptsReturn, Converter={StaticResource multilieHelperConverter}}" Text="{TemplateBinding Tag}" Foreground="{TemplateBinding Foreground}" OpacityMask="#49000000" FontFamily="{StaticResource defaultFont}" FontSize="{StaticResource fontSizeMedium}">
+                                        <TextBlock.Visibility>
+                                            <MultiBinding Converter="{StaticResource textInputToVisibilityConverter}">
+                                                <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Text.IsEmpty" />
+                                                <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="IsFocused" />
+                                                <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="IsReadOnly" />
+                                                <Binding>
+                                                    <Binding.Source>
+                                                        <sys:Boolean>True</sys:Boolean>
+                                                    </Binding.Source>
+                                                </Binding>
+                                            </MultiBinding>
+                                        </TextBlock.Visibility>
+                                    </TextBlock>
+                                    <ScrollViewer x:Name="PART_ContentHost" VerticalAlignment="{Binding AcceptsReturn, Converter={StaticResource multilieHelperConverter}}" Foreground="{TemplateBinding Foreground}" BorderBrush="Transparent" Background="Transparent" BorderThickness="0" FontFamily="{TemplateBinding FontFamily}" FontSize="{TemplateBinding FontSize}" Height="Auto" />
+                                </Grid>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter Property="BorderBrush" TargetName="theBorder" Value="Transparent"/>
+                                    <Setter Property="Background" TargetName="theBorder" Value="Transparent"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="MultiLineReadOnlyTextbox" TargetType="{x:Type TextBox}">
+                <Setter Property="Cursor" Value="{StaticResource Beam}"></Setter>
+                <Setter Property="FontSize" Value="{DynamicResource fontSizeMedium}"/>
+                <Setter Property="SelectionBrush" Value="{DynamicResource SelectionBrush}"/>
+                <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TextBox}">
+                    <Border CornerRadius="5,10,5,10" BorderThickness="1.5" Name="theBorder">
+                        <Grid Margin="0,0,0,0">
+                                    <TextBlock VerticalAlignment="{Binding AcceptsReturn, Converter={StaticResource multilieHelperConverter}}" Text="{TemplateBinding Tag}" Foreground="{TemplateBinding Foreground}" OpacityMask="#49000000" FontFamily="{StaticResource defaultFont}" FontSize="{StaticResource fontSizeMedium}">
+                                <TextBlock.Visibility>
+                                    <MultiBinding Converter="{StaticResource textInputToVisibilityConverter}">
+                                        <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Text.IsEmpty" />
+                                        <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="IsFocused" />
+                                        <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="IsReadOnly" />
+                                        <Binding>
+                                            <Binding.Source>
+                                                <sys:Boolean>True</sys:Boolean>
+                                            </Binding.Source>
+                                        </Binding>
+                                    </MultiBinding>
+                                </TextBlock.Visibility>
+                            </TextBlock>
+                            <ScrollViewer x:Name="PART_ContentHost" VerticalAlignment="{Binding AcceptsReturn, Converter={StaticResource multilieHelperConverter}}" Foreground="{TemplateBinding Foreground}" BorderBrush="Transparent" Background="Transparent" BorderThickness="0" FontFamily="{TemplateBinding FontFamily}" FontSize="{TemplateBinding FontSize}" Height="Auto" />
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsReadOnly" Value="true">
+                            <Setter Property="BorderBrush" TargetName="theBorder" Value="Transparent"/>
+                            <Setter Property="Background" TargetName="theBorder" Value="Transparent"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+
+
+            <Style  x:Key="imageButton" TargetType="Button">
+                <Setter Property="Cursor" Value="../Images/cursor2.cur"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Grid>
+
+                                <Image Name="cont" Source="{TemplateBinding Content, Converter={StaticResource imageImageSourceConverter}}" Width="24" Height="24"/>
+                                <Image Name="over" Opacity="0.6" Visibility="Hidden" Source="{TemplateBinding Content, Converter={StaticResource imageImageSourceConverter}}" Width="24" Height="24">
+                                    <Image.Effect>
+                                        <BlurEffect Radius="7"></BlurEffect>
+                                    </Image.Effect>
+                                </Image>
+
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Visibility" TargetName="over" Value="Visible"></Setter>
+                                </Trigger>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter TargetName="cont" Property="Opacity" Value="0.4"></Setter>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style  x:Key="imageButtonSmall" TargetType="Button">
+                <Setter Property="Cursor" Value="../Images/cursor2.cur"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Grid>
+
+                                <Image Name="cont" Source="{TemplateBinding Content, Converter={StaticResource imageImageSourceConverter}}" Width="16" Height="16"/>
+                                <Image Name="over" Opacity="0.6" Visibility="Hidden" Source="{TemplateBinding Content, Converter={StaticResource imageImageSourceConverter}}" Width="16" Height="16">
+                                    <Image.Effect>
+                                        <BlurEffect Radius="7"></BlurEffect>
+                                    </Image.Effect>
+                                </Image>
+
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Visibility" TargetName="over" Value="Visible"></Setter>
+                                </Trigger>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter TargetName="cont" Property="Opacity" Value="0.4"></Setter>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style  x:Key="imageButtonBlack" TargetType="Button">
+                <Setter Property="Cursor" Value="../Images/cursor2.cur"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Grid Background="{StaticResource BackColorBrush}">
+
+                                <Image Name="cont" Source="{TemplateBinding Content, Converter={StaticResource imageImageSourceConverter}}" Width="24" Height="24"/>
+                                <Image Name="over" Opacity="0.6" Visibility="Hidden" Source="{TemplateBinding Content, Converter={StaticResource imageImageSourceConverter}}" Width="24" Height="24">
+                                    <Image.Effect>
+                                        <BlurEffect Radius="7"></BlurEffect>
+                                    </Image.Effect>
+                                </Image>
+
+                            </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Visibility" TargetName="over" Value="Visible"></Setter>
+                                </Trigger>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter TargetName="cont" Property="Opacity" Value="0.4"></Setter>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            
+            <Style x:Key="textBoxStyle" TargetType="RichTextBox">
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="AcceptsReturn" Value="False"/>
+                <Setter Property="Cursor" Value="{StaticResource Beam}"></Setter>
+                <Setter Property="BorderBrush" Value="Transparent"/>
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+                <Setter Property="SnapsToDevicePixels" Value="True"/>
+                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type TextBoxBase}">
+                            <Border 
+          Name="Border"
+          CornerRadius="2" 
+          Padding="2"
+          Background="{TemplateBinding Background}"
+          BorderBrush="{TemplateBinding BorderBrush}"
+          BorderThickness="1" >
+                                <ScrollViewer  Margin="0" x:Name="PART_ContentHost" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter TargetName="Border" Property="Background" Value="Transparent"/>
+                                    <Setter TargetName="Border" Property="BorderBrush" Value="Transparent"/>
+                                    <Setter Property="Foreground" Value="WhiteSmoke"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="topBtn" TargetType="customControls:MaskedImageButtonEnlarge">
+                <!--<Setter Property="Width" Value="64"/>
+                <Setter Property="Height" Value="64"/>-->
+                <Setter Property="VerticalAlignment" Value="Top"/>
+                <Setter Property="HorizontalAlignment" Value="Right"/>
+                <Setter Property="Cursor" Value="{StaticResource overCursor}"/>
+                <Setter Property="Width" Value="24"/>
+                <Setter Property="Height" Value="24"/>
+                <Setter Property="ButtonColor" Value="{DynamicResource TitleBrush}"></Setter>
+                <Setter Property="Tag" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type messageBoxes:MessageResultWindow}}}"/>
+            </Style>
+
+            <Style x:Key="realtextBoxStyle" TargetType="TextBox">
+                <Setter Property="Background" Value="Transparent"/>
+                <Setter Property="AcceptsReturn" Value="False"/>
+                <Setter Property="BorderBrush" Value="Transparent"/>
+                <Setter Property="Cursor" Value="{StaticResource Beam}"></Setter>
+                <Setter Property="BorderThickness" Value="0"/>
+                <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
+                <Setter Property="SnapsToDevicePixels" Value="True"/>
+                <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type TextBoxBase}">
+                            <Border 
+          Name="Border"
+          CornerRadius="2" 
+          Padding="2"
+          Background="{TemplateBinding Background}"
+          BorderBrush="{TemplateBinding BorderBrush}"
+          BorderThickness="1" >
+                                <ScrollViewer Margin="0" x:Name="PART_ContentHost" HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter TargetName="Border" Property="Background" Value="Transparent"/>
+                                    <Setter TargetName="Border" Property="BorderBrush" Value="Transparent"/>
+                                    <Setter Property="Foreground" Value="WhiteSmoke"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="textBoxStyle3" BasedOn="{StaticResource textBoxStyle}" TargetType="RichTextBox">
+                <Style.Resources>
+                    <SolidColorBrush x:Key="{x:Static SystemColors.InactiveSelectionHighlightBrushKey}" Color="{StaticResource DarkerTitleColor}" />
+                </Style.Resources>
+                <Setter Property="Padding" Value="4"/>
+                <Setter Property="SelectionBrush" Value="{DynamicResource SelectionBrush}"/>
+                <Setter Property="AcceptsReturn" Value="True"/>
+                <Setter Property="AcceptsTab" Value="True"/>
+                <Setter Property="FontSize" Value="15"/>
+                <Setter Property="VerticalScrollBarVisibility" Value="Auto"/>
+            </Style>
+
+
+            <DrawingBrush x:Key="BorderMask">
+                <DrawingBrush.Drawing>
+                    <GeometryDrawing Brush="{StaticResource BackColorBrush}">
+                        <GeometryDrawing.Geometry>
+                            <CombinedGeometry GeometryCombineMode="Exclude">
+                                <CombinedGeometry.Geometry1>
+                                    <RectangleGeometry Rect="0,0,400,20"></RectangleGeometry>
+                                </CombinedGeometry.Geometry1>
+                                <CombinedGeometry.Geometry2>
+                                    <CombinedGeometry>
+                                        <CombinedGeometry.Geometry1>
+                                            <EllipseGeometry Center="4,10" RadiusX="16" RadiusY="16" />
+                                        </CombinedGeometry.Geometry1>
+                                        <CombinedGeometry.Geometry2>
+                                            <EllipseGeometry Center="400,10" RadiusX="16" RadiusY="16" />
+                                        </CombinedGeometry.Geometry2>
+                                    </CombinedGeometry>
+
+                                </CombinedGeometry.Geometry2>
+                            </CombinedGeometry>
+                        </GeometryDrawing.Geometry>
+                    </GeometryDrawing>
+                </DrawingBrush.Drawing>
+            </DrawingBrush>
+
+            <Style x:Key="HookBorder" TargetType="Border">
+                <Setter Property="Width" Value="400"/>
+                <Setter Property="Height" Value="20"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="OpacityMask" Value="{StaticResource BorderMask}"/>
+                <Setter Property="VerticalAlignment" Value="Top"/>
+                <Setter Property="Background" Value="{StaticResource BackColorBrush}"/>
+            </Style>
+
+            <Style x:Key="defaultWindow" TargetType="Window">
+                <Setter Property="WindowStyle" Value="None"/>
+                <Setter Property="AllowsTransparency" Value="True"/>
+                <Setter Property="Background" Value="Transparent"></Setter>
+                <Setter Property="FontFamily" Value="{StaticResource defaultFont}"></Setter>
+                <Setter Property="Width" Value="800"/>
+                <Setter Property="Cursor" Value="{StaticResource standardCursor}"></Setter>
+                <Setter Property="Height" Value="600"/>
+                <Setter Property="MinWidth" Value="350"/>
+                <Setter Property="MinHeight" Value="400"/>
+            </Style>
+            
+               <Style x:Key="StandardBtn" TargetType="Button">
+                        <Setter Property="Margin" Value="4"/>
+                        <Setter Property="Padding" Value="4"/>
+                        <Setter Property="FontFamily" Value="{DynamicResource defaultFont}"/>
+                        <Setter Property="FontSize" Value="15"/>
+                    </Style>
+
+            <Style x:Key="GlassButtonStyle" TargetType="customControls:GlassButton3" BasedOn="{StaticResource StandardBtn}">
+                <Setter Property="CornerRadius" Value="3"/>
+                <Setter Property="BorderColor" Value="{StaticResource ButtonBorder}"/>
+                <Setter Property="LightColor" Value="{StaticResource ButtonLight}"/>
+                <Setter Property="HighlightColor" Value="{StaticResource ButtonHighlight}"/>
+                <Setter Property="ShadowColor" Value="{StaticResource ButtonShadow}"></Setter>
+                <Setter Property="ButtonColor" Value="{StaticResource BackColorBrush}"></Setter>
+                <Setter Property="HasDropShadow" Value="False"></Setter>
+                <Setter Property="DifferentWhenFocus" Value="True"/>
+                <Setter Property="Cursor" Value="{StaticResource overCursor}"/>
+                <Setter Property="FocusBrush" Value="{StaticResource ButtonFocus}"></Setter>
+                <Setter Property="Foreground" Value="{DynamicResource TitleBrush}"/>
+                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                <Setter Property="VerticalContentAlignment" Value="Center"/>
+                <Setter Property="Padding" Value="5"/>
+            </Style>
+
+
+            <Style x:Key="ExpandableGroup" TargetType="{x:Type GroupItem}">
+                <Setter Property="DockPanel.Dock" Value="Top"></Setter>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type GroupItem}">
+                            <Expander Style="{StaticResource TheExpander}" Tag="{Binding Name}" Margin="5" IsExpanded="{Binding ItemCount, Converter={StaticResource DefaultExpandedConverter},Mode=OneWay}"
+                                                                  VerticalAlignment="Top" Padding="-1"
+                                                                  BorderBrush="Black">
+                                <Expander.Header>
+                                    <StackPanel Orientation="Horizontal" Margin="-5,0,0,0">
+                                        <Border RenderOptions.BitmapScalingMode="HighQuality" Width="20" Height="20" Margin="0,0,5,0" VerticalAlignment="Center" Background="{DynamicResource TitleBrush}" OpacityMask="{StaticResource CurrentItem}">
+                                            <Border.Visibility>
+                                                <MultiBinding Converter="{StaticResource IsNewestGroupConverter}">
+                                                    <Binding Path="Name" Mode="OneWay"/>
+                                                    <Binding RelativeSource="{RelativeSource AncestorType=messageBoxes:ErrorWindow2}" Path="CurrentGroup"/>
+                                                </MultiBinding>
+                                            </Border.Visibility>
+                                        </Border>
+                                        <TextBlock FontFamily="{StaticResource defaultFont}"
+                                                   FontSize="{StaticResource fontSizeMedium}"
+                                                   Foreground="{DynamicResource TitleBrush}">
+                                            <Run Text="{Binding Name,Mode=OneWay}" />(
+                                            <Run Text="{Binding ItemCount,Mode=OneWay}"></Run>)
+                                        </TextBlock>
+                                        
+                                    </StackPanel>
+                                </Expander.Header>
+                                <ItemsPresenter  />
+                            </Expander>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="ExpandableGroupError" TargetType="{x:Type GroupItem}">
+                <Setter Property="DockPanel.Dock" Value="Top"></Setter>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type GroupItem}">
+                            <Expander Style="{StaticResource TheExpander}" Tag="{Binding Name}" Margin="5" IsExpanded="{Binding ItemCount, Converter={StaticResource DefaultExpandedConverter},Mode=OneWay}"
+                                                                  VerticalAlignment="Top" Padding="-1"
+                                                                  BorderBrush="Red">
+                                <Expander.Header>
+                                    <TextBlock FontFamily="{StaticResource defaultFont}"
+                                                                           FontSize="{StaticResource fontSizeMedium}"
+                                                                           Foreground="Black">
+                                                                    <Run Text="{Binding Name,Mode=OneWay}" />(<Run Text="{Binding ItemCount,Mode=OneWay}"></Run>)
+                                    </TextBlock>
+                                </Expander.Header>
+                                <ItemsPresenter  />
+                            </Expander>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="NonExpandableGroup" TargetType="{x:Type GroupItem}">
+                <Setter Property="DockPanel.Dock" Value="Top"></Setter>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type GroupItem}">
+                            <ItemsPresenter />
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+
+            <ImageBrush x:Key="pageBreakImage" ImageSource="../Images/Seitenumbruch.png" Viewport="0,0,279,16" ViewportUnits="Absolute" TileMode="Tile"></ImageBrush>
+            <Style x:Key="PageBreaker" TargetType="Paragraph">
+                <Setter Property="Background" Value="{StaticResource pageBreakImage}"/>
+                <Setter Property="FontSize" Value="11.5"/>
+                <Setter Property="Margin" Value="0"/>
+                <Setter Property="BreakPageBefore" Value="True"/>
+            </Style>
+
+            <DrawingBrush  x:Key="pageBreakImage2" Viewport="0,0,5,5" ViewportUnits="Absolute" TileMode="Tile">
+                <DrawingBrush.Drawing>
+                    <DrawingGroup>
+                        <GeometryDrawing Brush="Transparent">
+                            <GeometryDrawing.Geometry>
+                                <RectangleGeometry Rect="0,0,5,5"/>
+                            </GeometryDrawing.Geometry>
+                        </GeometryDrawing>
+                        <GeometryDrawing>
+                            <GeometryDrawing.Pen>
+                                <Pen Brush="White" Thickness="0.1"/>
+                            </GeometryDrawing.Pen>
+                            <GeometryDrawing.Geometry>
+                                <GeometryGroup>
+                                    <LineGeometry StartPoint="2.5,0" EndPoint="2.5,5" />
+                                    <LineGeometry StartPoint="0,2.5" EndPoint="5,2.5" />
+                                </GeometryGroup>
+                            </GeometryDrawing.Geometry>
+                        </GeometryDrawing>
+
+                        <GeometryDrawing>
+                            <GeometryDrawing.Pen>
+                                <Pen Brush="Black" Thickness="0.1"/>
+                            </GeometryDrawing.Pen>
+                            <GeometryDrawing.Geometry>
+                                <GeometryGroup>
+                                    <LineGeometry StartPoint="2,0" EndPoint="2,5" />
+                                    <LineGeometry StartPoint="0,2" EndPoint="5,2" />
+                                </GeometryGroup>
+                            </GeometryDrawing.Geometry>
+                        </GeometryDrawing>
+
+                    </DrawingGroup>
+                </DrawingBrush.Drawing>
+            </DrawingBrush>
+
+
+
+
+            <sys:Double x:Key="MinScale">0.76</sys:Double>
+            <sys:Double x:Key="MaxScale">0.94</sys:Double>
+
+            <sys:Double x:Key="MinScale2">0.60</sys:Double>
+            <sys:Double x:Key="MaxScale2">0.80</sys:Double>
+
+
+            <Style x:Key="ToggleBtnStyle2" TargetType="ToggleButton">
+                <Setter Property="Margin" Value="0,0,10,0"></Setter>
+                <Setter Property="Cursor" Value="{StaticResource overCursor}"/>
+                <Setter Property="Background" Value="{DynamicResource TitleBrush}"/>
+                <Setter Property="Tag" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type complexWriter:MainWindow}}}"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="ToggleButton">
+                            <Border Width="24" Height="24" Name="Border" Background="{TemplateBinding Background}" RenderTransformOrigin="0.5,0.5" RenderOptions.BitmapScalingMode="HighQuality">
+                                <Border.OpacityMask>
+                                    <ImageBrush ImageSource="/Images/pin1.png" Stretch="Uniform"/>
+                                </Border.OpacityMask>
+                                <Border.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform ScaleX="{StaticResource MinScale2}" ScaleY="{StaticResource MinScale2}" x:Name="theScale" />
+                                        <RotateTransform Angle="90" x:Name="theAngle" />
+                                    </TransformGroup>
+                                </Border.RenderTransform>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsChecked" Value="True">
+                                    <Trigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="theAngle" Storyboard.TargetProperty="Angle" To="0" Duration="00:00:00.300"></DoubleAnimation>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.EnterActions>
+                                    <Trigger.ExitActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="theAngle" Storyboard.TargetProperty="Angle" To="90" Duration="00:00:00.300"></DoubleAnimation>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.ExitActions>
+                                </Trigger>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Trigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="theScale" Storyboard.TargetProperty="ScaleX" To="{StaticResource MaxScale2}" Duration="00:00:00.300"></DoubleAnimation>
+                                                <DoubleAnimation Storyboard.TargetName="theScale" Storyboard.TargetProperty="ScaleY" To="{StaticResource MaxScale2}" Duration="00:00:00.300"></DoubleAnimation>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.EnterActions>
+                                    <Trigger.ExitActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="theScale" Storyboard.TargetProperty="ScaleX" To="{StaticResource MinScale2}" Duration="00:00:00.300"></DoubleAnimation>
+                                                <DoubleAnimation Storyboard.TargetName="theScale" Storyboard.TargetProperty="ScaleY" To="{StaticResource MinScale2}" Duration="00:00:00.300"></DoubleAnimation>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.ExitActions>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+
+
+            <Style x:Key="EyeToggleButton" TargetType="ToggleButton">
+                <Setter Property="Margin" Value="0,0,10,0"></Setter>
+                <Setter Property="Cursor" Value="{StaticResource overCursor}"/>
+                <Setter Property="Background" Value="{DynamicResource TitleBrush}"/>
+                <Setter Property="Tag" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type complexWriter:MainWindow}}}"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="ToggleButton">
+                            <Border Width="24" Height="24" Name="Border" Background="{TemplateBinding Background}" RenderTransformOrigin="0.5,0.5" RenderOptions.BitmapScalingMode="HighQuality">
+                                <Border.OpacityMask>
+                                    <ImageBrush ImageSource="/Images/EyeClosed.png" Stretch="Uniform"/>
+                                </Border.OpacityMask>
+                                <Border.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform ScaleX="{StaticResource MinScale2}" ScaleY="{StaticResource MinScale2}" x:Name="theScale" />
+                                    </TransformGroup>
+                                </Border.RenderTransform>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsChecked" Value="True">
+                                    <Setter TargetName="Border" Property="OpacityMask">
+                                        <Setter.Value>
+                                            <ImageBrush ImageSource="/Images/Eye.png" Stretch="Uniform"/>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Trigger>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Trigger.EnterActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="theScale" Storyboard.TargetProperty="ScaleX" To="{StaticResource MaxScale2}" Duration="00:00:00.300"></DoubleAnimation>
+                                                <DoubleAnimation Storyboard.TargetName="theScale" Storyboard.TargetProperty="ScaleY" To="{StaticResource MaxScale2}" Duration="00:00:00.300"></DoubleAnimation>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.EnterActions>
+                                    <Trigger.ExitActions>
+                                        <BeginStoryboard>
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="theScale" Storyboard.TargetProperty="ScaleX" To="{StaticResource MinScale2}" Duration="00:00:00.300"></DoubleAnimation>
+                                                <DoubleAnimation Storyboard.TargetName="theScale" Storyboard.TargetProperty="ScaleY" To="{StaticResource MinScale2}" Duration="00:00:00.300"></DoubleAnimation>
+                                            </Storyboard>
+                                        </BeginStoryboard>
+                                    </Trigger.ExitActions>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+        </ResourceDictionary>
+        </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>

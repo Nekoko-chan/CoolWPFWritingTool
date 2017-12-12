@@ -1,0 +1,491 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:presentationOptions="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options" 
+                    
+                    xmlns:customControls="clr-namespace:CustomControls;assembly=CustomControls"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="../global/global.xaml"/>
+        <ResourceDictionary Source="../global/GroupBox.xaml"/>
+        <ResourceDictionary Source="../global/SpectrumSlider.xaml"/>
+        <ResourceDictionary Source="../global/Tooltip.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <ObjectDataProvider MethodName="GetType"
+        ObjectType="{x:Type system:Type}" x:Key="colorsTypeOdp">
+        <ObjectDataProvider.MethodParameters>
+            <system:String>System.Windows.Media.Colors, PresentationCore,
+                Version=3.0.0.0, Culture=neutral,
+                PublicKeyToken=31bf3856ad364e35</system:String>
+        </ObjectDataProvider.MethodParameters>
+    </ObjectDataProvider>
+
+    <ObjectDataProvider ObjectInstance="{StaticResource colorsTypeOdp}"
+        MethodName="GetProperties" x:Key="colorPropertiesOdp">
+    </ObjectDataProvider>
+    
+    
+
+
+    <DrawingBrush 
+    x:Key="CheckerBrush"
+    Viewport="0,0,10,10" ViewportUnits="Absolute" TileMode="Tile">
+        <DrawingBrush.Drawing>
+            <DrawingGroup>
+                <GeometryDrawing Brush="White">
+                    <GeometryDrawing.Geometry>
+                        <RectangleGeometry Rect="0,0 100,100" />
+                    </GeometryDrawing.Geometry>
+                </GeometryDrawing>
+                <GeometryDrawing Brush="LightGray">
+                    <GeometryDrawing.Geometry>
+                        <GeometryGroup>
+                            <RectangleGeometry Rect="0,0 50,50" />
+                            <RectangleGeometry Rect="50,50 50,50" />
+                        </GeometryGroup>
+                    </GeometryDrawing.Geometry>
+                </GeometryDrawing>
+            </DrawingGroup>
+        </DrawingBrush.Drawing>
+    </DrawingBrush>
+
+    <!--  Height="20" BorderBrush="" BorderThickness="1.5" SnapsToDevicePixels="True"-->
+    
+    <Style x:Key="PredefBorder" TargetType="Border">
+        <Setter Property="Height" Value="20"/>
+        <Setter Property="Width" Value="20"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource TitleBrush}"/>
+        <Setter Property="BorderThickness" Value="1.5"/>
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+      <Style.Triggers>
+          <Trigger Property="IsMouseOver" Value="True">
+              <Setter Property="BorderBrush" Value="{StaticResource DarkerTitleBrush}"/>
+          </Trigger>
+      </Style.Triggers>
+    </Style>
+        
+    
+    <Style x:Key="MySliderRepeatButtonStyle" TargetType="{x:Type RepeatButton}">
+        <Setter Property="OverridesDefaultStyle" Value="true"/>
+        <Setter Property="IsTabStop" Value="false"/>
+        <Setter Property="Focusable" Value="false"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RepeatButton}">
+                    <Rectangle Fill="Transparent"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="MyCustomThumbForSlider" TargetType="{x:Type Thumb}">
+        <Setter Property="OverridesDefaultStyle" Value="True"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Thumb}">
+                    <Border Width="10" Height="25" HorizontalAlignment="Left" VerticalAlignment="Center" CornerRadius="2,5,0,0">
+                        <Border x:Name="ABorder" Height="Auto" VerticalAlignment="Stretch" Width="10" HorizontalAlignment="Left" BorderBrush="#FF555555" BorderThickness="1" CornerRadius="2,5,0,0" Background="#FFCBCDFF" Margin="0,5,0,-1">
+                            <Grid>
+                                <Border x:Name="DarkMeBorder" CornerRadius="2,5,0,0" Opacity="0" Background="Black"></Border>
+                                <Border x:Name="LightBorder" CornerRadius="2,5,0,0" Margin="1">
+                                    <Border.OpacityMask>
+                                        <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                                            <GradientStop Color="#67000000" Offset="0.6" />
+                                            <GradientStop Color="#00000000" Offset="1" />
+                                        </LinearGradientBrush>
+                                    </Border.OpacityMask>
+                                    <Border.Background>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <GradientStop Color="White" Offset="0" />
+                                            <GradientStop Color="#9DFEFEFE" Offset="0.394" />
+                                            <GradientStop Color="#FFFEFEFE" Offset="0.43000000000000005" />
+                                            <GradientStop Color="Transparent" Offset="0.46699999999999997" />
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                </Border>
+                                <Border x:Name="ShadowBorder" CornerRadius="2,5,0,0" Margin="1">
+                                    <Border.OpacityMask>
+                                        <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                                            <GradientStop Color="#00000000" Offset="0" />
+                                            <GradientStop Color="#67000000" Offset="1" />
+                                        </LinearGradientBrush>
+                                    </Border.OpacityMask>
+                                    <Border.Background>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <GradientStop Color="#00000000" Offset="0.57" />
+                                            <GradientStop Color="Black" Offset="1" />
+                                        </LinearGradientBrush>
+                                    </Border.Background>
+                                </Border>
+                            </Grid>
+                        </Border>
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="DarkMeBorder" Property="Opacity" Value="0.2" />
+                        </Trigger>
+                        <Trigger Property="IsDragging" Value="True">
+                            <Setter TargetName="DarkMeBorder" Property="Opacity" Value="0.4" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style x:Key="MyCustomStyleForSlider" TargetType="{x:Type Slider}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Slider}">
+                    <Border Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto" MinHeight="{TemplateBinding MinHeight}"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <TickBar x:Name="TopTick" Visibility="Collapsed" Fill="{TemplateBinding Foreground}" Placement="Top" Height="4" Grid.Row="0"/>
+                            <TickBar x:Name="BottomTick" Visibility="Collapsed" Fill="{TemplateBinding Foreground}" Placement="Bottom" Height="4" Grid.Row="0"/>
+                            <Track x:Name="PART_Track" Grid.Row="1">
+                                <Track.DecreaseRepeatButton>
+                                    <RepeatButton  Style="{StaticResource  MySliderRepeatButtonStyle}" Command="{x:Static Slider.DecreaseLarge}"/>
+                                </Track.DecreaseRepeatButton>
+                                <Track.IncreaseRepeatButton>
+                                    <RepeatButton Style="{StaticResource MySliderRepeatButtonStyle}" Command="{x:Static Slider.IncreaseLarge}"/>
+                                </Track.IncreaseRepeatButton>
+                                <Track.Thumb>
+                                    <Thumb x:Name="Thumb" Style="{StaticResource MyCustomThumbForSlider}" Background="Black"/>
+                                </Track.Thumb>
+                            </Track>
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="MyCustomColorPicker"
+         TargetType="{x:Type customControls:ColorPicker}">
+        <Setter Property="ShowPredefined" Value="True"/>
+        <Setter Property="FontFamily" Value="{StaticResource defaultFont}"/>
+        <Setter Property="Foreground" Value="{DynamicResource TitleBrush}"/>
+        <Setter Property="FontSize" Value="{StaticResource fontSizeMedium}"/>
+        <Setter Property="Cursor" Value="{StaticResource standardCursor}"></Setter>
+        <Setter Property="MouseOverCursor" Value="{StaticResource  overCursor}"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type customControls:ColorPicker}">
+
+                    <Border 
+            Height="{TemplateBinding Height}"
+            Width="{TemplateBinding Width}"
+            Background="{TemplateBinding Background}"
+            BorderBrush="{TemplateBinding BorderBrush}"
+            BorderThickness="{TemplateBinding BorderThickness}">
+
+                        <Grid Margin="{TemplateBinding Padding}">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="300" />
+                                <ColumnDefinition Width="20*" />
+                                <ColumnDefinition Width="80*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition />
+                            </Grid.RowDefinitions>
+
+                            <Border Grid.Row="1" Grid.Column="0" 
+                Background="{StaticResource CheckerBrush}"
+                BorderBrush="Transparent" 
+                BorderThickness="2">
+
+                                <Border Name="PART_ColorDetail" 
+                  HorizontalAlignment="Stretch" 
+                  VerticalAlignment="Stretch"
+                  Cursor="Cross">
+                                    <Border.Background>
+                                        <DrawingBrush 
+                      Opacity="1">
+                                            <DrawingBrush.Drawing>
+                                                <DrawingGroup>
+                                                    <GeometryDrawing>
+                                                        <GeometryDrawing.Geometry>
+                                                            <RectangleGeometry Rect="0,0,100,100" />
+                                                        </GeometryDrawing.Geometry>
+                                                        <GeometryDrawing.Brush>
+                                                            <SolidColorBrush 
+                                Color="{Binding ElementName=PART_ColorSlider, Path=SelectedColor}" />
+                                                        </GeometryDrawing.Brush>
+                                                    </GeometryDrawing>
+                                                    <GeometryDrawing>
+                                                        <GeometryDrawing.Geometry>
+                                                            <RectangleGeometry Rect="0,0,100,100" />
+                                                        </GeometryDrawing.Geometry>
+                                                        <GeometryDrawing.Brush>
+                                                            <LinearGradientBrush StartPoint="0.5,1" EndPoint="0.5,0">
+                                                                <GradientStop Offset="0.0" Color="Black" />
+                                                                <GradientStop Offset="1.0" 
+                                 Color="{Binding ElementName=PART_ColorSlider,Path=SelectedColor}" />
+                                                            </LinearGradientBrush>
+                                                        </GeometryDrawing.Brush>
+                                                    </GeometryDrawing>
+                                                    <DrawingGroup presentationOptions:Freeze="True">
+                                                        <GeometryDrawing>
+                                                            <GeometryDrawing.Geometry>
+                                                                <RectangleGeometry Rect="0,0,100,100" />
+                                                            </GeometryDrawing.Geometry>
+                                                            <GeometryDrawing.Brush>
+                                                                <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                                                                    <GradientStop Offset="0.0" Color="White" />
+                                                                    <GradientStop Offset="1" Color="Black" />
+                                                                </LinearGradientBrush>
+                                                            </GeometryDrawing.Brush>
+                                                        </GeometryDrawing>
+                                                        <DrawingGroup.OpacityMask>
+                                                            <LinearGradientBrush StartPoint="0,0.5" EndPoint="1,0.5">
+                                                                <GradientStop Offset="0.0" Color="#FF000000" />
+                                                                <GradientStop Offset="1" Color="#00000000" />
+                                                            </LinearGradientBrush>
+                                                        </DrawingGroup.OpacityMask>
+                                                    </DrawingGroup>
+                                                </DrawingGroup>
+                                            </DrawingBrush.Drawing>
+                                        </DrawingBrush>
+                                    </Border.Background>
+                                    <Path 
+                Name="PART_ColorMarker" 
+                StrokeThickness="1.4"
+                Fill="Transparent">
+                                        <Path.Data>
+                                            <GeometryGroup>
+                                                <EllipseGeometry RadiusX="7" RadiusY="7" Center="7,7" />
+                                                <LineGeometry StartPoint="0,0" EndPoint="14,14" />
+                                                <LineGeometry StartPoint="14,0" EndPoint="0,14" />
+                                            </GeometryGroup>
+                                        </Path.Data>
+                                        <Path.Stroke>
+                                            <SolidColorBrush 
+                        x:Name="markerBrush"
+                        Color="WhiteSmoke" />
+                                        </Path.Stroke>
+                                    </Path>
+                                </Border>
+                            </Border>
+
+                            <customControls:SpectrumSlider 
+                x:Name="PART_ColorSlider"
+                                Style="{StaticResource theSpectrumSlider}"
+                Grid.Column="1" Grid.Row="1"
+                Value="0"
+                Margin="5,0,0,0"
+                IsMoveToPointEnabled="True"
+                
+                IsSnapToTickEnabled="False"
+                Maximum="360" />
+
+
+                            <Grid Grid.Column="2" Grid.Row="1"
+                Margin="5,0,5,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+
+
+                                <StackPanel    Grid.Row="0"
+                  Grid.ColumnSpan="3" Orientation="Vertical">
+
+                                    <Border
+                  
+                    BorderBrush="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}"
+                    BorderThickness="2"
+                    Background="{StaticResource CheckerBrush}"
+                    Margin="0">
+                                        <StackPanel Orientation="Vertical">
+                                            <Border Margin="5,5,5,0" BorderBrush="Black" BorderThickness="1"
+                                                    CornerRadius="5,5,0,0"
+                      HorizontalAlignment="Stretch"
+                      MinWidth="50" MinHeight="50"  Cursor="{StaticResource overCursor}"
+                      VerticalAlignment="Stretch" x:Name="PART_SelectedColorRectangle">
+                                                <Border.Background>
+                                                    <SolidColorBrush 
+                          Color="{Binding StartColor, RelativeSource={RelativeSource TemplatedParent}}" />
+                                                </Border.Background>
+                                            </Border>
+                                            <Border Margin="5,-1,5,5"  BorderBrush="Black" BorderThickness="1"
+                                                     CornerRadius="0,0,5,5"
+                      HorizontalAlignment="Stretch"
+                      MinWidth="50" MinHeight="50"
+                      VerticalAlignment="Stretch">
+                                                <Border.Background>
+                                                    <SolidColorBrush 
+                          Color="{Binding SelectedColor, RelativeSource={RelativeSource TemplatedParent}}" />
+                                                </Border.Background>
+                                            </Border>
+                                        </StackPanel>
+                                    </Border>
+                                    <TextBlock FontFamily="{TemplateBinding FontFamily}" Margin="0,5">
+                    <Bold>Transparenz</Bold>
+                                    </TextBlock>
+                                    <Border BorderBrush="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}"
+                    BorderThickness="2,2,2,2"
+                    Background="{StaticResource CheckerBrush}"
+                    VerticalAlignment="Top"
+                  
+                    Margin="0,2,0,5">
+
+                                        <Slider
+                        Style="{StaticResource MyCustomStyleForSlider}" Height="25"
+                      x:Name="opacitySlider"
+                      Orientation="Horizontal"
+                      Minimum="0" Maximum="1"
+                      TickFrequency="0.01" 
+                      SmallChange="0.01"
+                        Cursor="{Binding MouseOverCursor, RelativeSource={RelativeSource TemplatedParent}}"
+                      LargeChange="0.02"
+                      IsDirectionReversed="True"
+                      Value="{Binding ScA, RelativeSource={RelativeSource TemplatedParent}}">
+                                            <Slider.Background>
+                                                <LinearGradientBrush StartPoint="0,0.5" EndPoint="1,0.5">
+                                                    <GradientStop Offset="0.0" Color="{Binding ColorForTransperancy, RelativeSource={RelativeSource TemplatedParent}}" />
+                                                    <GradientStop Offset="1.0" Color="Transparent" />
+                                                </LinearGradientBrush>
+                                            </Slider.Background>
+                                        </Slider>
+                                    </Border>
+                                </StackPanel>
+
+                                <Grid Margin="2,7,0,0"
+                  Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="2" >
+                                <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Label Grid.ColumnSpan="2"
+                     FontFamily="{TemplateBinding FontFamily}"
+                     FontSize="{TemplateBinding FontSize}"
+                     Foreground="{TemplateBinding Foreground}">
+                                        <Bold>#HEX-String</Bold>
+                                    </Label>
+                                    <StackPanel Orientation="Horizontal" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2">
+                                        <Border BorderBrush="{DynamicResource TitleBrush}" BorderThickness="1" CornerRadius="5">
+                                            <TextBox Style="{StaticResource realtextBoxStyle}" Width="100"
+                                                     FontFamily="{TemplateBinding FontFamily}"
+                                                     MaxLength="9" IsReadOnly="True"
+                                                     CaretBrush="{DynamicResource TitleBrush}"
+                                                     FontSize="{TemplateBinding FontSize}"
+                                                     Foreground="{TemplateBinding Foreground}"
+                                                     Text="{Binding HexadecimalString, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}" />
+                                            </Border>
+                                        <customControls:MaskedImageButtonEnlarge Cursor="{Binding MouseOverCursor, RelativeSource={RelativeSource TemplatedParent}}" Margin="5,0,0,0" x:Name="PART_ToClipButton" ButtonMask="../Images/Copy.png" ButtonColor="{DynamicResource TitleBrush}" Width="32" Height="32">
+                                            <Button.ToolTip>
+                                                <ToolTip Content="In die Zwischenablage kopieren" Style="{StaticResource tipTest}"></ToolTip>
+                                            </Button.ToolTip>
+                                        </customControls:MaskedImageButtonEnlarge>
+                                        <customControls:MaskedImageButtonEnlarge Cursor="{Binding MouseOverCursor, RelativeSource={RelativeSource TemplatedParent}}" Margin="5,0,0,0" x:Name="PART_FromClipButton" ButtonMask="../../Images/clipboard.png" ButtonColor="{DynamicResource TitleBrush}"  
+                                                                                 Width="32" Height="32">
+                                            <Button.ToolTip>
+                                                <ToolTip Content="Aus der Zwischenablage einf&#252;gen"
+                                                         Style="{StaticResource tipTest}">
+                                                </ToolTip>
+                                            </Button.ToolTip>
+                                        </customControls:MaskedImageButtonEnlarge>
+                                    </StackPanel>
+                                    <GroupBox Margin="0,5,0,0" Grid.Column="1" BorderBrush="{DynamicResource TitleBrush}" Grid.Row="2" Style="{StaticResource BoldTitleGroupBox}" Visibility="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ShowPredefined,Converter={StaticResource falseHideConverter}}">
+                                        <GroupBox.Header>
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                </Grid.ColumnDefinitions>
+                                                <TextBlock Text="Eigene Farben"
+                                                           FontSize="{StaticResource fontSizeMedium}"
+                                                           FontFamily="{StaticResource defaultFont}"
+                                                           Foreground="{StaticResource BackColorBrush}">
+                                                </TextBlock>
+                                                <customControls:MaskedImageButtonEnlarge x:Name="PART_Predefined" Grid.Column="1"  ButtonColor="{StaticResource BackColorBrush}" ButtonMask="../Images/Add.png" Width="20" Height="20">
+                                                    <Button.ToolTip>
+                                                        <ToolTip Style="{StaticResource tipTest}" Content="Farbe hinzufügen (Doppelte werden ignoriert!)"></ToolTip>
+                                                    </Button.ToolTip>
+                                                </customControls:MaskedImageButtonEnlarge>
+                                            </Grid>
+                                        </GroupBox.Header>
+                                        <ScrollViewer VerticalScrollBarVisibility="Auto">
+                                            <ItemsControl x:Name="PART_ItemsControl"
+                                                ItemsSource="{Binding RelativeSource={RelativeSource TemplatedParent},Path=PredefinedColors}">
+                                                <ItemsControl.ItemsPanel>
+                                                    <ItemsPanelTemplate>
+                                                        <WrapPanel/>
+                                                    </ItemsPanelTemplate>
+                                                </ItemsControl.ItemsPanel>
+                                                <ItemsControl.ItemTemplate>
+                                                    <DataTemplate DataType="Color">
+                                                        <Border Style="{StaticResource PredefBorder}">
+                                                            <Border.ToolTip>
+                                                                <ToolTip Style="{StaticResource tipTest}" Content="Strg + Klick zum löschen"></ToolTip>
+                                                            </Border.ToolTip>
+                                                            <Border.Background>
+                                                                <SolidColorBrush Color="{Binding}" />
+                                                            </Border.Background>
+                                                        </Border>
+                                                    </DataTemplate>
+                                                </ItemsControl.ItemTemplate>
+                                            </ItemsControl>
+                                        </ScrollViewer>
+                                    </GroupBox>
+                                    <GroupBox Margin="0,5,5,0" Grid.Column="0" BorderBrush="{DynamicResource TitleBrush}" Grid.Row="2" Style="{StaticResource BoldTitleGroupBox}" Visibility="{Binding RelativeSource={RelativeSource TemplatedParent},Path=ShowPredefined,Converter={StaticResource falseHideConverter}}">
+                                        <GroupBox.Header>
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="Auto"/>
+                                                </Grid.ColumnDefinitions>
+                                                <TextBlock Text="Systemfarben"
+                                                           FontSize="{StaticResource fontSizeMedium}"
+                                                           FontFamily="{StaticResource defaultFont}"
+                                                           Foreground="{StaticResource BackColorBrush}">
+                                                </TextBlock>
+                                            </Grid>
+                                        </GroupBox.Header>
+                                        <ScrollViewer VerticalScrollBarVisibility="Auto">
+                                            <ItemsControl x:Name="PART_ItemsControl2"
+                                                ItemsSource="{Binding Source={StaticResource colorPropertiesOdp}}">
+                                                <ItemsControl.ItemsPanel>
+                                                    <ItemsPanelTemplate>
+                                                        <WrapPanel/>
+                                                    </ItemsPanelTemplate>
+                                                </ItemsControl.ItemsPanel>
+                                                <ItemsControl.ItemTemplate>
+                                                    <DataTemplate DataType="Color">
+                                                        <Border Style="{StaticResource PredefBorder}">
+                                                            <Border.Background>
+                                                                <SolidColorBrush Color="{Binding Path=Name}" />
+                                                            </Border.Background>
+                                                        </Border>
+                                                    </DataTemplate>
+                                                </ItemsControl.ItemTemplate>
+                                            </ItemsControl>
+                                        </ScrollViewer>
+                                    </GroupBox>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </Border>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

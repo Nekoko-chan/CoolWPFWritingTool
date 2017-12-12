@@ -1,0 +1,214 @@
+﻿<messageBoxes:MessageResultWindow x:Class="ComplexWriter.MessageBoxes.SaveMessage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        WindowStartupLocation="CenterOwner"
+        ShowInTaskbar="True"
+        xmlns:messageBoxes="clr-namespace:ComplexWriter.MessageBoxes"
+        xmlns:commands1="clr-namespace:ComplexWriter.Commands"
+        xmlns:listViewLayout="clr-namespace:Itenso.Windows.Controls.ListViewLayout;assembly=Itenso.Windows.Controls.ListViewLayout"
+        xmlns:complexWriter="clr-namespace:ComplexWriter"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
+        xmlns:customControls="clr-namespace:CustomControls;assembly=CustomControls"
+        xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
+        Title="Meldungen ansehen..." >
+    <Window.InputBindings>
+        <KeyBinding Key="O" Command="{x:Static commands1:OkCommand.OkOnEnterOrO}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=messageBoxes:SaveMessage}}" />
+        <KeyBinding Key="Enter" Command="{x:Static commands1:OkCommand.OkOnEnterOrO}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=messageBoxes:SaveMessage}}" />
+        <KeyBinding Key="Escape" Command="{x:Static commands1:OkCommand.OkOnEnterOrO}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=messageBoxes:SaveMessage}}" />
+    </Window.InputBindings>
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="SaveMessageDictionary.xaml"/>
+                <ResourceDictionary Source="../global/global.xaml"/>
+                <ResourceDictionary Source="../global/Scrollbars.xaml"/>
+                <ResourceDictionary Source="../global/Expander.xaml"/>
+                <ResourceDictionary Source="../global/GridView.xaml"/>
+                <ResourceDictionary Source="../global/ToggleButton.xaml"/>
+                    
+                <ResourceDictionary Source="../global/UpDowns.xaml"/>
+                <ResourceDictionary Source="../global/Combobox.xaml"/>
+                <ResourceDictionary>
+
+                    <Style x:Key="bord" TargetType="Border">
+                        <Setter Property="Margin" Value="-5,0,30,0"/>
+                    </Style>
+                 
+                    <Style x:Key="TitleBlock" TargetType="TextBlock">
+                        <Setter Property="Foreground" Value="{DynamicResource TitleBrush}"/>
+                        <Setter Property="FontFamily" Value="{StaticResource defaultFont}"/>
+                        <Setter Property="FontSize" Value="{StaticResource fontSizeMedium}"/>
+                    </Style>
+                    
+                           
+                    <CollectionViewSource x:Key="PersonsViewSource" IsLiveGroupingRequested="True" IsLiveSortingRequested="True" Source="{Binding Source={x:Static complexWriter:MainWindow.Global},Path=ErrorMessages}" >
+                        <CollectionViewSource.GroupDescriptions>
+                            <PropertyGroupDescription PropertyName="GroupName" />
+                        </CollectionViewSource.GroupDescriptions>
+                        <CollectionViewSource.SortDescriptions>
+                            <componentModel:SortDescription PropertyName="OccuranceTime" Direction="Ascending"/>
+                        </CollectionViewSource.SortDescriptions>
+                    </CollectionViewSource>
+
+                        <DataTemplate x:Key="ExpandeDataTemplate" DataType="complexWriter:ErrorMessageItem">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="32"/>
+                                <ColumnDefinition Width="32"/>
+                                <ColumnDefinition Width="120" SharedSizeGroup="Datum"/>
+                                <ColumnDefinition Width="*" SharedSizeGroup="Message"/>
+                            </Grid.ColumnDefinitions>
+                            <Border Width="24" Height="24" RenderOptions.BitmapScalingMode="HighQuality" VerticalAlignment="Top" HorizontalAlignment="Center" Background="{StaticResource BackColorBrush}">
+                                <Border.OpacityMask>
+                                    <MultiBinding Converter="{StaticResource IsNewestElementMultiConverter}">
+                                        <Binding/>
+                                        <Binding Path="ForUpdateTrigger"/>
+                                        <Binding RelativeSource="{RelativeSource AncestorType=ItemsControl}" Path="Items"/>
+                                    </MultiBinding>
+                                </Border.OpacityMask>
+                            </Border>
+                            <Border Grid.Column="1" Width="24" Height="24" RenderOptions.BitmapScalingMode="HighQuality" VerticalAlignment="Top" HorizontalAlignment="Center" Background="{Binding Severity,Converter={StaticResource SeverityColorBrushConverter}}" OpacityMask="{Binding Severity,Converter={StaticResource SeverityImageBrushConverter}}"/>
+                            <TextBlock Grid.Column="2" VerticalAlignment="Top" Text="{Binding OccuranceTime, StringFormat={}{0:HH:mm:ss}}" FontFamily="{StaticResource defaultFont}"></TextBlock>
+                            <Grid Grid.Column="3">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <ToggleButton x:Name="ToggleButton" Style="{StaticResource ToggleBtnStyle}" Foreground="Black" BorderBrush="Transparent" Visibility="{Binding CanShowDetails,Converter={StaticResource falseCollapsedConverter}}" IsChecked="{Binding ShowsDetails,Mode=TwoWay}">
+
+                                </ToggleButton>
+                                <TextBlock Grid.Row="0" Grid.Column="1" VerticalAlignment="Top" FontFamily="{StaticResource defaultFont}" Text="{Binding Message, Mode=OneWay}"
+                                                   TextTrimming="WordEllipsis"/>
+                                <Border Padding="5" Background="#22000000" Grid.Row="1" Grid.Column="1"  Visibility="{Binding ShowsDetails, Converter={StaticResource falseCollapsedConverter}}" >
+                                    <TextBox Style="{StaticResource realtextBoxStyle}"
+                                                     Text="{Binding Stacktrace, Mode=OneWay}" FontFamily="{StaticResource defaultFont}"
+                                                     TextWrapping="WrapWithOverflow" IsReadOnly="True"
+                                                     IsReadOnlyCaretVisible="True"/>
+                                </Border>
+                            </Grid>
+                        </Grid>
+                    </DataTemplate>
+
+
+                    <messageBoxes:GroupContainerStyleSelector x:Key="GroupSelector"/>
+
+
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid Cursor="{StaticResource standardCursor}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+       
+        <Border Grid.Row="1" Grid.Column="1" Effect="{StaticResource WindowShadow}" Style="{StaticResource bord}" BorderThickness="1" BorderBrush="#FF054049"></Border>
+        <Border Grid.Row="1" Grid.Column="1" Style="{StaticResource bord}"  Background="{StaticResource BackgroundBrush}">
+
+            <Grid>
+                <Thumb Effect="{StaticResource WindowShadow}" Grid.Row="0" VerticalAlignment="Top" Height="10" Margin="0,-3,20,0"
+                                                   Cursor="{StaticResource moveCursor}" DragDelta="MoveWindow"
+                                                   Tag="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}}">
+                    <Thumb.Template>
+                        <ControlTemplate TargetType="Thumb">
+                            <Border Background="{StaticResource BackColorBrush}" CornerRadius="10,0,10,10" />
+                        </ControlTemplate>
+                    </Thumb.Template>
+                </Thumb>
+            </Grid>
+        </Border>
+        <Border Grid.Column="1" Grid.Row="1" Style="{StaticResource bord}" Background="{StaticResource background}" IsHitTestVisible="False"/>
+
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+           
+
+            <Grid Grid.Row="1" Margin="5,15,50,15" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+                <Border Width="48" Height="48" VerticalAlignment="Top" Background="Black" Margin="20" RenderOptions.BitmapScalingMode="HighQuality">
+                    <Border.OpacityMask>
+                        <ImageBrush ImageSource="../Images/question.png"></ImageBrush>
+                    </Border.OpacityMask>
+                </Border>
+               <RichTextBox Grid.Column="1" Width="600" Background="Transparent" BorderBrush="Transparent" FocusVisualStyle="{x:Null}" IsReadOnly="True">
+                    <FlowDocument FontFamily="{StaticResource defaultFont}" FontSize="{StaticResource fontSizeMedium}">
+                        <Paragraph FontSize="{StaticResource fontSizeLarge}">Die Datei
+                            <Run FontWeight="Bold" FontSize="{StaticResource fontSizeExtraLarge}" Text="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:SaveMessage},Path=Filename}"/> ist bereits geöffnet.
+                        </Paragraph>
+                        <Paragraph>Da dies zu Konsistenzproblemen führen kann, wird keine Datei mehr als einmal geöffnet.</Paragraph>
+                        <Paragraph>Um dieses Problem zu umgehen, stehen ihnen die folgenden Möglichkeiten zur Verfügung:</Paragraph>
+                        <List MarkerStyle="Decimal">
+                            <ListItem>
+                                <Paragraph>Trotzdem den Namen verwenden
+                                    <Run FontSize="{StaticResource fontSizeSmall}">(Es wird neu geladen)</Run>
+                                </Paragraph>
+                            </ListItem>
+                            <ListItem>
+                                <Paragraph>Einen anderen Namen verwenden</Paragraph>
+                            </ListItem>
+                            <ListItem>
+                                <Paragraph>Abbrechen und nicht speichern</Paragraph>
+                                <Paragraph />
+                            </ListItem>
+                        </List>
+                        <Paragraph>
+                            <Run FontWeight="Bold">Wie möchten Sie mit der Datei verfahren?</Run>
+                        </Paragraph>
+                    </FlowDocument>
+                </RichTextBox>
+
+            </Grid>   
+
+        </Grid>
+
+        <Border Grid.Column="0" Grid.Row="1"  Background="{StaticResource BackColorBrush}"  MinWidth="22" Padding="4,10" CornerRadius="10,0,0,10" Effect="{StaticResource WindowShadow}" Margin="0,-3,0,15">
+           
+        </Border>
+        <Border Name="buttonBorder" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" Margin="0,-2,20,0" Background="{StaticResource BackColorBrush}" Effect="{StaticResource WindowShadow}" CornerRadius="0,0,10,10">
+            <StackPanel Orientation="Horizontal">
+                <customControls:GlassButton3 Style="{StaticResource GlassButtonStyle}" x:Name="ForFocus" Click="CloseWithTag">
+                    <TextBlock>
+                        <Run FontWeight="Bold" FontSize="25">S</Run><Run>peichern und neues Laden</Run>
+                    </TextBlock>
+                    <customControls:GlassButton3.Tag>
+                        <x:Static Member="MessageBoxResult.Yes"/>
+                    </customControls:GlassButton3.Tag>
+                </customControls:GlassButton3>
+                <customControls:GlassButton3 Style="{StaticResource GlassButtonStyle}" Click="CloseWithTag">
+                    <TextBlock>
+                        <Run FontWeight="Bold" FontSize="25">U</Run><Run>nter anderem Namen Speichern</Run>
+                    </TextBlock>
+                    <customControls:GlassButton3.Tag>
+                        <x:Static Member="MessageBoxResult.No"/>
+                    </customControls:GlassButton3.Tag>
+                </customControls:GlassButton3>
+                <customControls:GlassButton3 Style="{StaticResource GlassButtonStyle}" Visibility="{Binding RelativeSource={RelativeSource AncestorType= messageBoxes:QuestionBox},Path=CanCanel,Converter={StaticResource falseCollapsedConverter}}" Margin="20,4,4,4" Click="CloseWithTag">
+                    <TextBlock>
+                        <Run FontWeight="Bold" FontSize="25">A</Run><Run>bbrechen</Run>
+                    </TextBlock>
+                    <customControls:GlassButton3.Tag>
+                        <x:Static Member="MessageBoxResult.Cancel"/>
+                    </customControls:GlassButton3.Tag>
+                </customControls:GlassButton3>
+            </StackPanel>
+        </Border>
+
+
+    </Grid>
+</messageBoxes:MessageResultWindow>

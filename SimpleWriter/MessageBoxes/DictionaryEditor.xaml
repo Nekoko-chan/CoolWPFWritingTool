@@ -1,0 +1,287 @@
+﻿<messageBoxes:MessageResultWindow x:Class="ComplexWriter.MessageBoxes.DictionaryEditor"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        WindowStartupLocation="CenterOwner"
+        Loaded="LoadWindow"
+        xmlns:messageBoxes="clr-namespace:ComplexWriter.MessageBoxes"
+        xmlns:commands1="clr-namespace:ComplexWriter.Commands"
+     
+        xmlns:customControls="clr-namespace:CustomControls;assembly=CustomControls"
+        xmlns:listViewLayout="clr-namespace:Itenso.Windows.Controls.ListViewLayout;assembly=Itenso.Windows.Controls.ListViewLayout"
+        xmlns:complexWriter="clr-namespace:ComplexWriter"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
+        xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
+        Title="Wörterbuch bearbeiten..." >
+    <Window.InputBindings>
+        <KeyBinding Key="A" Modifiers="Alt" Command="{x:Static commands1:CancelCommand.CancelOnA}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=messageBoxes:DictionaryEditor}}" />
+        <KeyBinding Key="Enter" Modifiers="Alt" Command="{x:Static commands1:OkCommand.OkOnEnterOrO}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=messageBoxes:DictionaryEditor}}" />
+    </Window.InputBindings>
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="DictionaryEditorDictionary.xaml"/>
+                <ResourceDictionary Source="../global/global.xaml"/>
+                <ResourceDictionary Source="../global/Scrollbars.xaml"/>
+                <ResourceDictionary Source="../global/checkbox.xaml"/>
+                <ResourceDictionary Source="../global/GridView.xaml"/>
+                <ResourceDictionary Source="../global/Expander.xaml"/>
+                <ResourceDictionary Source="../global/GroupBox.xaml"/>
+
+                <ResourceDictionary Source="../global/UpDowns.xaml"/>
+                <ResourceDictionary Source="../global/Combobox.xaml"/>
+                <ResourceDictionary>
+
+                    <CollectionViewSource x:Key="PersonsViewSource" IsLiveGroupingRequested="True" IsLiveSortingRequested="True" Source="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:DictionaryEditor},Path=Words}" >
+                        <CollectionViewSource.GroupDescriptions>
+                            <PropertyGroupDescription PropertyName="FirstLetter" />
+                        </CollectionViewSource.GroupDescriptions>
+                        <CollectionViewSource.SortDescriptions>
+                            <componentModel:SortDescription PropertyName="Value" Direction="Ascending"/>
+                        </CollectionViewSource.SortDescriptions>
+                    </CollectionViewSource>
+                    <Style x:Key="bord" TargetType="Border">
+                        <Setter Property="Margin" Value="-5,0,30,0"/>
+                    </Style>
+
+                    <Style x:Key="ListViewItemStyle" TargetType="{x:Type ListViewItem}" BasedOn="{StaticResource nonSelection}">
+                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                        <Setter Property="VerticalContentAlignment" Value="Top" />
+                        <Setter Property="MaxWidth" Value="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type ListView}}}"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                    <Border x:Name="Border" Margin="2,0,0,0" Background="{TemplateBinding Background}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Padding="3">
+                                        <Grid>
+                                            <GridViewRowPresenter TextBlock.Foreground="{StaticResource BackColorBrush}" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+                                        </Grid>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="ItemsControl.AlternationIndex" Value="0">
+                                <Setter Property="Background" Value="Transparent"></Setter>
+                            </Trigger>
+                            <Trigger Property="ItemsControl.AlternationIndex" Value="1">
+                                <Setter Property="Background" Value="#33000000"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+
+
+
+
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid Cursor="{StaticResource standardCursor}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Border Grid.Row="1" Grid.Column="1" Effect="{StaticResource WindowShadow}" Style="{StaticResource bord}" BorderThickness="1" BorderBrush="#FF054049"></Border>
+        <Border Grid.Row="1" Grid.Column="1" Style="{StaticResource bord}"  Background="{StaticResource BackgroundBrush}">
+
+            <Grid>
+                <Thumb Effect="{StaticResource WindowShadow}" Grid.Row="0" VerticalAlignment="Top" Height="10" Margin="0,-3,20,0"
+                                                   Cursor="{StaticResource moveCursor}" DragDelta="MoveWindow"
+                                                   Tag="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}}">
+                    <Thumb.Template>
+                        <ControlTemplate TargetType="Thumb">
+                            <Border Background="{StaticResource BackColorBrush}" CornerRadius="10,0,10,10" />
+                        </ControlTemplate>
+                    </Thumb.Template>
+                </Thumb>
+            </Grid>
+        </Border>
+        <Border Grid.Column="1" Grid.Row="1" Style="{StaticResource bord}" Background="{StaticResource background}" IsHitTestVisible="False"/>
+
+        <Border Grid.Row="1" Grid.Column="1" Background="Transparent" Margin="10,27,45,15" Cursor="{StaticResource standardCursor}">
+            <Grid Background="Transparent">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <GroupBox BorderBrush="Black" Style="{StaticResource BoldTitleGroupBox}">
+                    <GroupBox.Header>
+                        <TextBlock Text="Wörterliste" Foreground="{DynamicResource TitleBrush}"
+                                       FontFamily="{StaticResource defaultFont}"
+                                       FontSize="{StaticResource fontSizeLarge}">
+                        </TextBlock>
+                    </GroupBox.Header>
+                    <ScrollViewer VerticalContentAlignment="Top" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Hidden" Name="ScrollViewer">
+                        <ItemsControl  x:Name="messageList" VerticalAlignment="Top" ItemsSource="{Binding Source={StaticResource PersonsViewSource}}">
+                            <ItemsControl.Width>
+                                <MultiBinding Converter="{StaticResource ItemsControlWidthConverter}">
+                                    <Binding ElementName="ScrollViewer" Path="ComputedVerticalScrollBarVisibility"/>
+                                    <Binding ElementName="ScrollViewer" Path="ActualWidth"/>
+                                </MultiBinding>
+                            </ItemsControl.Width>
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel VerticalAlignment="Top" Name="Test" />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate DataType="messageBoxes:DictionaryItem">
+                                    <Border CornerRadius="5" BorderThickness="1" BorderBrush="Black" Margin="5">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*" />
+                                                <RowDefinition Height="Auto" />
+                                            </Grid.RowDefinitions>
+
+                                            <Border Grid.Row="0" Grid.RowSpan="2"
+                                                    Visibility="{Binding IsForDeletion,Converter={StaticResource falseCollapsedConverter}}"
+                                                    Background="{StaticResource deletion}" CornerRadius="5" />
+
+                                            <CheckBox Focusable="False" Grid.Row="0" Foreground="Black" Style="{StaticResource ASpecialCheckbox}"
+                                                      IsChecked="{Binding IsForDeletion}" Width="32" Height="32">
+                                                <CheckBox.ToolTip>
+                                                    <ToolTip Style="{StaticResource tipTest}">
+                                                        <ToolTip.Content>
+                                                            <MultiBinding
+                                                                Converter="{StaticResource DeletionToolTipConverter}">
+                                                                <Binding Path="IsForDeletion" />
+                                                                <Binding Path="Value" />
+                                                            </MultiBinding>
+                                                        </ToolTip.Content>
+                                                    </ToolTip>
+                                                </CheckBox.ToolTip>
+                                            </CheckBox>
+                                            <Border Grid.Row="1" CornerRadius="5" BorderThickness="1" BorderBrush="Black"
+                                                    Margin="5">
+                                                <Grid>
+                                                    <TextBox Text="{Binding Value, UpdateSourceTrigger=LostFocus}"
+                                                             Tag="{Binding}"
+                                                             GotFocus="Buffer"
+                                                             Style="{StaticResource realtextBoxStyle}" PreviewKeyDown="Update"
+                                                             FontSize="22" IsReadOnly="{Binding IsForDeletion}" />
+
+                                                </Grid>
+                                            </Border>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                            <ItemsControl.GroupStyle>
+                                <GroupStyle>
+                                    <GroupStyle.Panel>
+                                        <ItemsPanelTemplate>
+                                            <DockPanel/>
+                                        </ItemsPanelTemplate>
+                                    </GroupStyle.Panel>
+                                    <GroupStyle.ContainerStyle>
+                                        <Style TargetType="{x:Type GroupItem}">
+                                            <Setter Property="DockPanel.Dock" Value="Top"></Setter>
+                                            <Setter Property="Template">
+                                                <Setter.Value>
+                                                    <ControlTemplate TargetType="{x:Type GroupItem}">
+                                                        <Expander Style="{StaticResource TheExpander}" Margin="5" VerticalAlignment="Top"
+                                                                  BorderBrush="Black" >
+                                                            <Expander.Header>
+                                                                <TextBlock FontFamily="{StaticResource defaultFont}" FontSize="{StaticResource fontSizeMedium}"
+                                                                           Foreground="{DynamicResource TitleBrush}" >
+                                                                    <Run Text="{Binding Name,Mode=OneWay}"/> (<Run Text="{Binding ItemCount,Mode=OneWay}"></Run>)
+                                                                </TextBlock>
+                                                            </Expander.Header>
+                                                            <ItemsPresenter/>
+                                                        </Expander>
+                                                    </ControlTemplate>
+                                                </Setter.Value>
+                                            </Setter>
+                                        </Style>
+                                    </GroupStyle.ContainerStyle>
+                                </GroupStyle>
+                            </ItemsControl.GroupStyle>
+                        </ItemsControl>
+                    </ScrollViewer>
+                </GroupBox>
+                <!--<ListView  ItemContainerStyle="{StaticResource ListViewItemStyle}"  Cursor="{StaticResource standardCursor}"  x:Name="messageList" Style="{StaticResource testview}" View="{StaticResource ExpenseView}" AlternationCount="2" Background="Transparent" listViewLayout:ListViewLayoutManager.Enabled="true" ></ListView>-->
+                <StackPanel VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,0,0,0" Orientation="Horizontal">
+                   
+                    <customControls:MaskedImageButtonEnlarge ButtonMask="../Images/open.png"
+                                                             ButtonColor="{DynamicResource TitleBrush}"
+                                                             Width="26" Height="26"
+                                                             Click="MergeDictionary">
+                        <Button.ToolTip>
+                            <ToolTip Style="{StaticResource tipTest}" Content="Anderes Wörterbuch hineinmergen"/>
+                        </Button.ToolTip>
+                    </customControls:MaskedImageButtonEnlarge>
+                    <customControls:MaskedImageButtonEnlarge ButtonMask="../Images/Add.png"
+                                                             ButtonColor="{DynamicResource TitleBrush}"
+                                                             Width="26" Height="26"
+                                                             Click="AddElement">
+                        <Button.ToolTip>
+                            <ToolTip Style="{StaticResource tipTest}" Content="Neues Element erstellen"/>
+                        </Button.ToolTip>
+                    </customControls:MaskedImageButtonEnlarge>
+
+                   
+                </StackPanel>
+                <!-- hier kommt der Inhalt hin-->
+            </Grid>
+        </Border>
+
+
+        <Border Grid.Column="0" Grid.Row="1"  Background="{StaticResource BackColorBrush}"  MinWidth="22" Padding="4,10" CornerRadius="10,0,0,10" Effect="{StaticResource WindowShadow}" Margin="0,-3,0,15">
+            <StackPanel>
+                <customControls:MaskedImageButtonEnlarge Width="24" Height="24" Cursor="{StaticResource overCursor}"
+                                                         ButtonColor="{DynamicResource TitleBrush}" ButtonMask="../Images/DeleteDict.png" Click="ClearList">
+                    <Button.ToolTip>
+                        <ToolTip Style="{StaticResource tipTest}" Content="Leeren"/>
+                    </Button.ToolTip>
+                </customControls:MaskedImageButtonEnlarge>
+                <customControls:MaskedImageButtonEnlarge Width="24" Height="24" Cursor="{StaticResource overCursor}"
+                                                         ButtonColor="{DynamicResource TitleBrush}" ButtonMask="../Images/UndoDeleteDict.png" Click="UnclearList">
+                    <Button.ToolTip>
+                        <ToolTip Style="{StaticResource tipTest}" Content="Alle entfernten wieder reinnehmen"/>
+                    </Button.ToolTip>
+                </customControls:MaskedImageButtonEnlarge>
+                <customControls:MaskedImageButtonEnlarge Width="24" Height="24" Cursor="{StaticResource overCursor}" ButtonColor="{DynamicResource TitleBrush}" ButtonMask="../Images/expandAll.png" Click="ExpandAll">
+                    <Button.ToolTip>
+                        <ToolTip Style="{StaticResource tipTest}" Content="Alle Expandieren"/>
+                    </Button.ToolTip>
+                </customControls:MaskedImageButtonEnlarge>
+                <customControls:MaskedImageButtonEnlarge Width="24" Height="24" Cursor="{StaticResource overCursor}" ButtonColor="{DynamicResource TitleBrush}" ButtonMask="../Images/collapseAll.png" Click="CollapseAll">
+                    <Button.ToolTip>
+                        <ToolTip Style="{StaticResource tipTest}" Content="Alle Kollabieren"/>
+                    </Button.ToolTip>
+                </customControls:MaskedImageButtonEnlarge>
+            </StackPanel>
+        </Border>
+
+
+        <Border Name="buttonBorder" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right" Margin="0,-2,20,0" Background="{StaticResource BackColorBrush}" Effect="{StaticResource WindowShadow}" CornerRadius="0,0,10,10">
+            <StackPanel Orientation="Horizontal" >
+                <customControls:GlassButton3 Style="{StaticResource GlassButtonStyle}" Click="CloseWithTag">
+                    <TextBlock TextAlignment="Center">
+                        <Run FontWeight="Bold" FontSize="25">O</Run><Run>K</Run>
+                    </TextBlock>
+                    <customControls:GlassButton3.Tag>
+                        <x:Static Member="MessageBoxResult.OK"/>
+                    </customControls:GlassButton3.Tag>
+                </customControls:GlassButton3>
+                <customControls:GlassButton3 Style="{StaticResource GlassButtonStyle}" x:Name="ForFocus" Click="CloseWithTag"   Margin="20,4,4,4">
+                    <TextBlock Width="100" TextAlignment="Center">
+                        <Run FontWeight="Bold" FontSize="25">A</Run><Run>bbrechen</Run>
+                    </TextBlock>
+                    <customControls:GlassButton3.Tag>
+                        <x:Static Member="MessageBoxResult.Cancel"/>
+                    </customControls:GlassButton3.Tag>
+                </customControls:GlassButton3>
+                
+
+
+
+            </StackPanel>
+        </Border>
+
+
+    </Grid>
+</messageBoxes:MessageResultWindow>

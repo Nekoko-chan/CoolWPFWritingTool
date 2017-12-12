@@ -1,0 +1,201 @@
+﻿<UserControl x:Class="ComplexWriter.CharacterNames.CharacterNameControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             xmlns:char="clr-namespace:ComplexWriter.CharacterNames"
+             xmlns:ComplexWriter="clr-namespace:ComplexWriter"
+             xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
+             xmlns:customControls="clr-namespace:CustomControls;assembly=CustomControls"
+              xmlns:global="clr-namespace:ComplexWriter.global"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
+             
+             d:DesignHeight="300" d:DesignWidth="300">
+    
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../global/global.xaml"/>
+                <ResourceDictionary Source="../global/checkbox.xaml"/>
+                <ResourceDictionary Source="../global/Buttons.xaml"/>
+                <ResourceDictionary Source="../global/GroupBox.xaml"/>
+                <ResourceDictionary Source="../global/Tooltip.xaml"/>
+                <ResourceDictionary Source="../global/Scrollbars.xaml"/>
+                <ResourceDictionary Source="../global/Converter.xaml"/>
+                <ResourceDictionary Source="../global/MenuItem.xaml"/>
+                <ResourceDictionary>
+                    <global:TrueCollapsedConverter x:Key="trueConverter"/>
+                    <global:FalseCollapsedConverter x:Key="falseConverter"/>
+                    <CollectionViewSource x:Key="namelist" IsLiveGroupingRequested="True" IsLiveSortingRequested="True" Source="{Binding RelativeSource={RelativeSource AncestorType=char:CharacterNameControl},Path=Names}" >
+                        <CollectionViewSource.SortDescriptions>
+                            <componentModel:SortDescription PropertyName="Type" Direction="Descending"/>
+                            <componentModel:SortDescription PropertyName="Name" Direction="Ascending"/>
+                        </CollectionViewSource.SortDescriptions>
+                        <CollectionViewSource.GroupDescriptions>
+                            <PropertyGroupDescription PropertyName="Type" />
+                        </CollectionViewSource.GroupDescriptions>
+                    </CollectionViewSource>
+
+
+                    <SolidColorBrush x:Key="back" Color ="{StaticResource BackColor}"></SolidColorBrush>
+                    <SolidColorBrush x:Key="fore" Color ="{StaticResource TitleColor}"></SolidColorBrush>
+
+                    <SolidColorBrush x:Key="back2" Color ="{StaticResource BackColor}"></SolidColorBrush>
+                    <SolidColorBrush x:Key="fore2" Color ="{StaticResource TitleColor}"></SolidColorBrush>
+
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Border Background="{StaticResource BackColorBrush}">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <customControls:MaskedImageButtonEnlarge   ButtonColor="{StaticResource TitleBrush}" ButtonMask="../Images/Add.png" Width="24" Height="24" Click="AddSelected">
+                    <Button.ToolTip>
+                        <ToolTip Style="{StaticResource tipTest}" Content="Selektierten Text als Name hinzufügen"></ToolTip>
+                    </Button.ToolTip>
+                </customControls:MaskedImageButtonEnlarge>
+                <customControls:MaskedImageButtonEnlarge  ButtonColor="{StaticResource TitleBrush}" ButtonMask="../Images/AddEdit.png" Width="24" Height="24" Click="AddNew">
+                    <Button.ToolTip>
+                        <ToolTip Style="{StaticResource tipTest}" Content="Neuen Namen hinzufügen"></ToolTip>
+                    </Button.ToolTip>
+                </customControls:MaskedImageButtonEnlarge>
+                <customControls:MaskedToggleButtonEnlarge  IsChecked="{Binding RelativeSource={RelativeSource AncestorType=char:CharacterNameControl},Path=IsEditable}" Width="24" Height="24" ButtonMask="../Images/bookOpenEdit.png" ButtonColor="{DynamicResource TitleBrush}" Margin="5,-1">
+                    <ToggleButton.ToolTip>
+                        <ToolTip Style="{StaticResource tipTest}" Content="Bearbeitungsmodus ein/aus"></ToolTip>
+                    </ToggleButton.ToolTip>
+                    </customControls:MaskedToggleButtonEnlarge>
+            </StackPanel>
+            <Line Grid.Row="1" X2="1" Height="2" Stretch="Uniform" Stroke="{StaticResource TitleBrush}" Width="150"/>
+            <ScrollViewer Grid.Row="2"  VerticalScrollBarVisibility="Auto" Style="{StaticResource TopScroller}">
+                <ItemsControl ItemsSource="{Binding Source={StaticResource namelist}}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate DataType="ComplexWriter:Character">
+                    <Border BorderBrush="{StaticResource TitleBrush}" SnapsToDevicePixels="True" BorderThickness="0,0,0,1" Margin="0,1" Padding="2">
+                        <Grid>
+                                <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Border Visibility="{Binding Description, Converter={StaticResource collapseEmptyConverter}}" Width="20" Height="20" Background="{StaticResource TitleBrush}">
+                                        <Border.OpacityMask>
+                                            <ImageBrush RenderOptions.BitmapScalingMode="HighQuality" ImageSource="../Images/info.png"/>
+                                        </Border.OpacityMask>
+                                        <Border.ContextMenu>
+                                            <ContextMenu Style="{StaticResource context}">
+                                                <MenuItem Tag ="{Binding}"  Style="{StaticResource menuItem}" Header="Eintrag bearbeiten" Click="EditDescription" Background="{StaticResource back}" Foreground="{StaticResource fore}"></MenuItem>
+                                                <MenuItem Tag ="{Binding}"  Style="{StaticResource menuItem}" Header="Eintrag löschen" Click="DeleteChara" Background="{StaticResource back2}" Foreground="{StaticResource fore2}"></MenuItem>
+                                            </ContextMenu>
+                                        </Border.ContextMenu>
+                                        <Border.ToolTip>
+                                            <ToolTip Style="{StaticResource tipTest}">
+                                                <StackPanel>
+                                                    <Border Width="80" Height="80" HorizontalAlignment="Left" Visibility="{Binding Path=Image, Converter={StaticResource nullCollapseConverter}}" BorderThickness="1" BorderBrush="{StaticResource TitleBrush}">
+                                                        <Image RenderOptions.BitmapScalingMode="HighQuality" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                                               Source="{Binding Path=Image}"
+                                                               StretchDirection="DownOnly" /></Border>
+                                                    <TextBlock Text="{Binding Path=Description}" TextWrapping="WrapWithOverflow" />
+                                                </StackPanel>
+                                            </ToolTip>
+                                        </Border.ToolTip>
+                                    </Border>
+                                    <!--<Border Grid.Column="2" Visibility="{Binding IsMain, Converter={StaticResource falseCollapsedConverter}}" Width="10" Height="10" Background="{StaticResource TitleBrush}">
+                                        <Border.OpacityMask>
+                                            <ImageBrush ImageSource="../Images/pin1.png"/>
+                                        </Border.OpacityMask>
+                                        <Border.ToolTip>
+                                            <ToolTip Style="{StaticResource tipTest}" Content="Ist ein Haupteintrag"/>
+                                        </Border.ToolTip>
+                                    </Border>-->
+                                    <RadioButton ToolTipService.ShowOnDisabled="True" IsEnabled="{Binding RelativeSource={RelativeSource AncestorType=char:CharacterNameControl},Path=IsEditable}" Grid.Column="2" Style="{StaticResource MainCharacterRadio}" GroupName="{Binding Type}" IsChecked="{Binding IsMain, Mode=TwoWay}" Foreground="{StaticResource TitleBrush}" Margin="0,3,0,0">
+                                        <RadioButton.ToolTip>
+                                            <ToolTip Style="{StaticResource tipTest}" Content="Ist ein Haupteintrag"/>
+                                        </RadioButton.ToolTip>
+                                    </RadioButton>
+                                    <customControls:MaskedImageButtonEnlarge Visibility="{Binding RelativeSource={RelativeSource AncestorType=char:CharacterNameControl},Path=IsEditable, Converter={StaticResource falseCollapsedConverter}}"  Cursor="{StaticResource overCursor}" Grid.Column="3"  ButtonColor="{StaticResource TitleBrush}" ButtonMask="../Images/Textcolor.png" Width="16" Height="16" Tag="{Binding}"  Click="EditDescription">
+                                        <Button.ToolTip>
+                                            <ToolTip Style="{StaticResource tipTest}" Content="Eintrag bearbeiten"></ToolTip>
+                                        </Button.ToolTip>
+                                    </customControls:MaskedImageButtonEnlarge>
+                                    <customControls:MaskedImageButtonEnlarge Visibility="{Binding RelativeSource={RelativeSource AncestorType=char:CharacterNameControl},Path=IsEditable, Converter={StaticResource  falseCollapsedConverter}}"  Cursor="{StaticResource overCursor}" Grid.Column="4"  ButtonColor="{StaticResource TitleBrush}" ButtonMask="../Images/blackout.png" Width="16" Height="16" Tag="{Binding}"  Click="DeleteMe">
+                                        <Button.ToolTip>
+                                            <ToolTip Style="{StaticResource tipTest}" Content="Element entfernen"></ToolTip>
+                                        </Button.ToolTip>
+                                    </customControls:MaskedImageButtonEnlarge>
+                                    <Button Height="28" Visibility="{Binding RelativeSource={RelativeSource AncestorType=char:CharacterNameControl},Path=IsEditable, Converter={StaticResource falseCollapsedConverter}}"  Cursor="{StaticResource overCursor}" Style="{StaticResource MoveContentBtn}" Grid.Column="1" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch">
+                                            <TextBox Style="{DynamicResource realtextBoxStyle}" CaretBrush="{StaticResource TitleBrush}" FontFamily="{StaticResource defaultFont}" FontSize="{StaticResource fontSizeSmall}" Foreground="{StaticResource TitleBrush}" Text="{Binding Path=Name}" HorizontalAlignment="Stretch" IsHitTestVisible="{Binding RelativeSource={RelativeSource AncestorType=char:CharacterNameControl},Path=IsEditable}"/>
+                                    </Button>
+                                    <char:TextButton TextTop="4" Background="{StaticResource BorderColorBrush}" Height="24" 
+                                                     Padding="6,0,5,0"
+                                                     FontFamily="{StaticResource defaultFont}" FontSize="{StaticResource fontSizeSmall}"
+                                                     Foreground="{StaticResource TitleBrush}" 
+                                                     Visibility="{Binding RelativeSource={RelativeSource AncestorType=char:CharacterNameControl},Path=IsEditable, Converter={StaticResource trueCollapsedConverter}}"
+                                                     Caption="{Binding Path=Name}"  
+                                                     Cursor="{StaticResource overCursor}" Style="{StaticResource MoveContentBtn}" Grid.Column="1"
+                                                     Click="NameSelected" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch">
+                                        <char:TextButton.ContextMenu>
+                                            <ContextMenu Style="{StaticResource context}">
+                                                <MenuItem Tag ="{Binding}"  Style="{StaticResource menuItem}" Header="Eintrag bearbeiten" Click="EditDescription" Background="{StaticResource back}" Foreground="{StaticResource fore}"></MenuItem>
+                                                <MenuItem Tag ="{Binding}"  Style="{StaticResource menuItem}" Header="Eintrag löschen" Click="DeleteChara" Background="{StaticResource back2}" Foreground="{StaticResource fore2}"></MenuItem>
+                                            </ContextMenu>
+                                        </char:TextButton.ContextMenu>
+                                    </char:TextButton>
+                                </Grid>
+                    </Border>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+                    <ItemsControl.GroupStyle>
+                        <GroupStyle>
+                            <GroupStyle.Panel>
+                                <ItemsPanelTemplate>
+                                    <DockPanel/>
+                                </ItemsPanelTemplate>
+                            </GroupStyle.Panel>
+                            <GroupStyle.ContainerStyle>
+                                <Style TargetType="{x:Type GroupItem}">
+                                    <Setter Property="DockPanel.Dock" Value="Top"></Setter>
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="{x:Type GroupItem}">
+                                                <GroupBox Style="{StaticResource SmallTitleGroupBox}" VerticalAlignment="Top"
+                                                                  BorderBrush="{StaticResource TitleBrush}" Margin="0,0,2,0" >
+                                                    <GroupBox.Header>
+                                                        <TextBlock FontFamily="{StaticResource defaultFont}" FontSize="10" FontWeight="Bold"
+                                                                           Foreground="{DynamicResource TitleBrush}"
+                                                                   Text="{Binding Path=Name,Converter={StaticResource CharacterTypeConverter}}" />
+                                                    </GroupBox.Header>
+                                                    <ItemsPresenter/>
+                                                </GroupBox>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </GroupStyle.ContainerStyle>
+
+                            <!--<GroupStyle.HeaderTemplate>
+                            <DataTemplate>
+                                <TextBlock FontWeight="Bold" FontSize="{StaticResource fontSizeMedium}" Foreground="{StaticResource TitleBrush}" FontFamily="{StaticResource defaultFont}"
+                         Text="{Binding Path=Name,Converter={StaticResource CharacterTypeConverter}}"/>
+                            </DataTemplate>
+                        </GroupStyle.HeaderTemplate>-->
+                        </GroupStyle>
+                    </ItemsControl.GroupStyle>
+        </ItemsControl>
+            </ScrollViewer>
+        </Grid>
+    </Border>
+</UserControl>

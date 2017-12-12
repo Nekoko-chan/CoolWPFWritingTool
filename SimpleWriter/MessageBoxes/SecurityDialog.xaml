@@ -1,0 +1,125 @@
+﻿<messageBoxes:MessageResultWindow x:Class="ComplexWriter.MessageBoxes.SecurityDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        WindowStartupLocation="CenterOwner"
+        xmlns:messageBoxes="clr-namespace:ComplexWriter.MessageBoxes"
+        xmlns:commands1="clr-namespace:ComplexWriter.Commands"
+        xmlns:customControls="clr-namespace:CustomControls;assembly=CustomControls"
+        xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
+        xmlns:complexWriter="clr-namespace:ComplexWriter"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
+        Title="Sicherheitseinstellungen" >
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="SecurityDialogDictionary.xaml"/>
+                <ResourceDictionary Source="../global/global.xaml"/>
+                <ResourceDictionary Source="../global/Scrollbars.xaml"/>
+                <ResourceDictionary Source="../global/checkbox.xaml"/>
+                <ResourceDictionary Source="../global/GridView.xaml"/>
+                <ResourceDictionary Source="../global/Expander.xaml"/>
+                <ResourceDictionary Source="../global/GroupBox.xaml"/>
+                    
+                <ResourceDictionary Source="../global/UpDowns.xaml"/>
+                <ResourceDictionary Source="../global/Combobox.xaml"/>
+                <ResourceDictionary>
+                    <Thickness x:Key="ChangeableHint">10,5,45,0</Thickness>
+                    <Thickness x:Key="UnChangeableHint">50,-5,45,0</Thickness>
+                    <Style x:Key="border" TargetType="Border">
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Setter Property="BorderBrush" Value="Black"/>
+                        <Setter Property="CornerRadius" Value="4"/>
+                        <Setter Property="BorderThickness" Value="1"/>
+                        <Setter Property="Margin" Value="10,27,45,0"/>
+                        <Setter Property="Padding" Value="5"/>
+                        <Setter Property="Cursor" Value="{StaticResource standardCursor}"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsHitTestVisible" Value="False">
+                                <Setter Property="BorderBrush" Value="Transparent"></Setter>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+
+                   
+                    <Style x:Key="bord" TargetType="Border">
+                        <Setter Property="Margin" Value="-5,0,30,0"/>
+                    </Style>
+
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid Cursor="{StaticResource standardCursor}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Border Grid.Row="1" Grid.Column="1" Effect="{StaticResource WindowShadow}" Style="{StaticResource bord}" BorderThickness="1" BorderBrush="#FF054049"></Border>
+        <Border Grid.Row="1" Grid.Column="1" Style="{StaticResource bord}"  Background="{StaticResource BackgroundBrush}">
+
+            <Grid>
+                <Thumb Effect="{StaticResource WindowShadow}" Grid.Row="0" VerticalAlignment="Top" Height="10" Margin="0,-3,20,0"
+                                                   Cursor="{StaticResource moveCursor}" DragDelta="MoveWindow"
+                                                   Tag="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}}">
+                    <Thumb.Template>
+                        <ControlTemplate TargetType="Thumb">
+                            <Border Background="{StaticResource BackColorBrush}" CornerRadius="10,0,10,10" />
+                        </ControlTemplate>
+                    </Thumb.Template>
+                </Thumb>
+            </Grid>
+        </Border>
+        <Border Grid.Column="1" Grid.Row="1" Style="{StaticResource bord}" Background="{StaticResource background}" IsHitTestVisible="False"/>
+
+        <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Margin="10,10,0,10" >
+            <CheckBox Margin="5,2.5" IsChecked="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:SecurityDialog},Path=SaveAutomatical}" Style="{StaticResource globalCheckbox}"  Content="Automatisch Speichern"/>
+            <CheckBox Margin="5,2.5" IsChecked="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:SecurityDialog},Path=AskPasswords}" Style="{StaticResource globalCheckbox}"  Content="Passwort abfragen"/>
+            <CheckBox Margin="20,2.5"
+                      IsChecked="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:SecurityDialog},Path=AskPasswordsOnTabChange}" Style="{StaticResource globalCheckbox}" Content="Passwort beim Wechsel von Tabs anzeigen"
+                      IsEnabled="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:SecurityDialog},Path=AskPasswords}"/>
+            <CheckBox Margin="20,2.5"
+                      IsChecked="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:SecurityDialog},Path=HideQuestion}" Style="{StaticResource globalCheckbox}" Content="Keine Passworthinweise anzeigen"
+                      IsEnabled="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:SecurityDialog},Path=AskPasswords}"/>
+            <CheckBox Margin="20,2.5"  
+                      IsEnabled="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:SecurityDialog},Path=AskPasswords}"
+                      IsChecked="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:SecurityDialog},Path=AllowEmptyPasswordQuestions}" Style="{StaticResource globalCheckbox}" Content="Leere Passworthinweise erlauben"/>
+        </StackPanel>
+
+
+        <Border Grid.Column="0" Grid.Row="1"  Background="{StaticResource BackColorBrush}"  MinWidth="22" Padding="4,10" CornerRadius="10,0,0,20" Effect="{StaticResource WindowShadow}" Margin="0,-3,0,15">
+            
+        </Border>
+        
+        
+        <Border Name="buttonBorder" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right" Margin="0,-2,20,0" Background="{StaticResource BackColorBrush}" Effect="{StaticResource WindowShadow}" CornerRadius="0,0,10,10">
+            <StackPanel Orientation="Horizontal" >
+                <customControls:GlassButton3 Style="{StaticResource GlassButtonStyle}" Click="CloseWithTag">
+                    <TextBlock VerticalAlignment="Center" TextAlignment="Center">
+                        <Run>OK</Run>
+                    </TextBlock>
+                    <customControls:GlassButton3.Tag>
+                        <x:Static Member="MessageBoxResult.OK"/>
+                    </customControls:GlassButton3.Tag>
+                </customControls:GlassButton3>
+                <customControls:GlassButton3 Style="{StaticResource GlassButtonStyle}" x:Name="ForFocus" Click="CloseWithTag"   Margin="20,4,4,4">
+                    <TextBlock Width="100" VerticalAlignment="Center" TextAlignment="Center">
+                        <Run>Abbrechen</Run>
+                    </TextBlock>
+                    <customControls:GlassButton3.Tag>
+                        <x:Static Member="MessageBoxResult.Cancel"/>
+                    </customControls:GlassButton3.Tag>
+                </customControls:GlassButton3>
+
+              
+
+            </StackPanel>
+        </Border>
+
+
+    </Grid>
+</messageBoxes:MessageResultWindow>

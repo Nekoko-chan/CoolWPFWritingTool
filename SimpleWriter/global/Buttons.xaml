@@ -1,0 +1,156 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="../ColorSet/Colors.xaml"></ResourceDictionary>
+    </ResourceDictionary.MergedDictionaries>
+    <Style x:Key="tablikeButton" TargetType="Button">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border SnapsToDevicePixels="True" Background="{TemplateBinding Background}" Padding="10,0" BorderThickness="0,0,1,0" BorderBrush="{StaticResource DarkerTitleBrush}">
+                        <ContentPresenter/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="ContentOnlyButton" TargetType="Button">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border SnapsToDevicePixels="True" Background="Transparent" Padding="{TemplateBinding Padding}" Margin="{TemplateBinding Margin}">
+                        <Grid>
+                            <ContentPresenter />
+                            <Border x:Name="OverBorder" Opacity="0" IsHitTestVisible="False">
+                                <Border.Background>
+                                    <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                                        <GradientStop Color="Black" Offset="0"/>
+                                        <GradientStop Color="#00000000" Offset="0.661"/>
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                            </Border>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="OverBorder" Property="Opacity" Value="0.3"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="OverBorder" Property="Opacity" Value="0.6"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <Style x:Key="FittingButton" TargetType="Button">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border SnapsToDevicePixels="True" Name="border"  Background="Transparent" Padding="{TemplateBinding Padding}" Margin="{TemplateBinding Margin}" >
+                        <Grid>
+                            <ContentPresenter Name="Presenter" TextBlock.Foreground="{DynamicResource TitleBrush}" TextBlock.FontFamily="{DynamicResource defaultFont}"  TextBlock.FontSize="{DynamicResource fontSizeSmall}" />
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Presenter" Property="TextBlock.Foreground" Value="{StaticResource BackColorBrush}"/>
+                            <Setter TargetName="border" Property="Background" Value="{DynamicResource TitleBrush}"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="Presenter" Property="TextBlock.Foreground" Value="{StaticResource BackColorBrush}"/>
+                            <Setter TargetName="border" Property="Background" Value="{StaticResource DarkerTitleBrush}"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="FittingToggleButton" TargetType="ToggleButton">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    <Border SnapsToDevicePixels="True" Name="border"  Background="Transparent" Padding="{TemplateBinding Padding}" Margin="{TemplateBinding Margin}" >
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Image Width="16" Name="check" Height="16" Source="../Images/Checkmark.png" Visibility="Hidden"/>
+                            <ContentPresenter Grid.Column="1" Name="Presenter" TextBlock.Foreground="{DynamicResource TitleBrush}" TextBlock.FontFamily="{DynamicResource defaultFont}"  TextBlock.FontSize="{DynamicResource fontSizeSmall}" />
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="Presenter" Property="TextBlock.Foreground" Value="{StaticResource BackColorBrush}"/>
+                            <Setter TargetName="border" Property="Background" Value="{DynamicResource TitleBrush}"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="Presenter" Property="TextBlock.Foreground" Value="{StaticResource BackColorBrush}"/>
+                            <Setter TargetName="border" Property="Background" Value="{StaticResource DarkerTitleBrush}"/>
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="check" Property="Visibility" Value="Visible"></Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="FeatherBtn" TargetType="ToggleButton">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    <Image Name="feather"  Stretch="Uniform"  Source="../Images/feather.png"/>
+                    <ControlTemplate.Triggers>
+                      <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="feather" Property="Source" Value="../Images/featherBlack2.png"></Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+        <Style x:Key="MoveContentBtn" TargetType="Button">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border SnapsToDevicePixels="True" Background="Transparent" Padding="{TemplateBinding Padding}" Margin="{TemplateBinding Margin}">
+                        <Grid>
+                            <ContentPresenter x:Name="Presenter" >
+                                <ContentPresenter.RenderTransform>
+                                    <TranslateTransform x:Name="AnimatedTranslateTransform" X="0" Y="0" />
+                                </ContentPresenter.RenderTransform>
+                            </ContentPresenter>
+                            <Border x:Name="OverBorder" Opacity="0" IsHitTestVisible="False">
+                                <Border.Background>
+                                    <LinearGradientBrush EndPoint="1,0.5" StartPoint="0,0.5">
+                                        <GradientStop Color="Black" Offset="0"/>
+                                        <GradientStop Color="#00000000" Offset="0.661"/>
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                            </Border>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="OverBorder" Property="Opacity" Value="0.3"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="OverBorder" Property="Opacity" Value="0.6"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+
+</ResourceDictionary>

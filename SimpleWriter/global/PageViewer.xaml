@@ -1,0 +1,60 @@
+﻿<ResourceDictionary
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" >
+
+    <Style x:Key="line" TargetType="Line">
+        <Setter Property="Stroke" Value="Black"/>
+        <Setter Property="StrokeThickness" Value="1"/>
+        <Setter Property="Stretch" Value="Fill"/>
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+    </Style>
+    <Style x:Key="path" TargetType="Path">
+        <Setter Property="Stroke" Value="Black"/>
+        <Setter Property="StrokeThickness" Value="1"/>
+        <Setter Property="Stretch" Value="Fill"/>
+        <Setter Property="SnapsToDevicePixels" Value="True"/>
+    </Style>
+    <!-- Resource dictionary entries should be defined here. -->
+	<Style x:Key="PageViewer" TargetType="{x:Type FlowDocumentPageViewer}">
+		<Setter Property="ContextMenu" Value="{x:Null}"/>
+		<Setter Property="HorizontalContentAlignment" Value="Center"/>
+		<Setter Property="VerticalContentAlignment" Value="Center"/>
+		<Setter Property="KeyboardNavigation.TabNavigation" Value="Local"/>
+		<Setter Property="Template">
+			<Setter.Value>
+				<ControlTemplate TargetType="{x:Type FlowDocumentPageViewer}">
+					<Grid Language="en-us" Uid="DockPanel_2">
+                        <Path Width="{Binding ElementName=RealBorder, Path=ActualWidth}"
+                                Height="{Binding ElementName=RealBorder, Path=ActualHeight}"
+                                 HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+					                Margin="{TemplateBinding Padding}"
+					                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                               Style="{StaticResource path}" Fill="{TemplateBinding Background}"
+                              Data="M 0,0 L 690,0 L793,40 L793,1122 L0,1122 L0,0 M 690,0 Q 700,10 700,35 L 793,40"
+                              ></Path>
+                       <Border Name="RealBorder" BorderBrush="Transparent" 
+					                BorderThickness="0"
+					                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+					                Margin="{TemplateBinding Padding}" Uid="Border_47"
+					                VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
+					            <DocumentPageView DocumentPaginator="{x:Null}" KeyboardNavigation.IsTabStop="False"
+                                                  DocumentViewerBase.IsMasterPage="True" PageNumber="0"
+					                              KeyboardNavigation.TabIndex="1" KeyboardNavigation.TabNavigation="Local"
+					                              Uid="DocumentPageView_1" Stretch="None">
+					            </DocumentPageView>
+					        </Border>
+					</Grid>
+				</ControlTemplate>
+			</Setter.Value>
+		</Setter>
+		<Style.Triggers>
+			<MultiTrigger>
+				<MultiTrigger.Conditions>
+					<Condition Property="IsInactiveSelectionHighlightEnabled" Value="True"/>
+					<Condition Property="IsSelectionActive" Value="False"/>
+				</MultiTrigger.Conditions>
+				<Setter Property="SelectionBrush" Value="{DynamicResource {x:Static SystemColors.InactiveSelectionHighlightBrushKey}}"/>
+			</MultiTrigger>
+		</Style.Triggers>
+	</Style>
+</ResourceDictionary>

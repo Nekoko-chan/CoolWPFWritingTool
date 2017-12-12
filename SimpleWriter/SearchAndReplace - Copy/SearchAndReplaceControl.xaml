@@ -1,0 +1,153 @@
+﻿<UserControl x:Class="ComplexWriter.SearchAndReplace.SearchAndReplaceControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:customControls="clr-namespace:CustomControls;assembly=CustomControls"
+             xmlns:searchAndReplace="clr-namespace:ComplexWriter.SearchAndReplace"
+             mc:Ignorable="d" d:DesignWidth="400"
+            >
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="../global/global.xaml"/>
+                <ResourceDictionary Source="../global/checkbox.xaml"/>
+                <ResourceDictionary Source="../global/Tooltip.xaml"/>
+                <ResourceDictionary>
+                    <Style x:Key="TextblockStyle" TargetType="TextBlock">
+                        <Setter Property="Margin" Value="5"/>
+                        <Setter Property="SnapsToDevicePixels" Value="True"/>
+                        <Setter Property="FontFamily" Value="{StaticResource defaultFont}"/>
+                        <Setter Property="FontSize" Value="{StaticResource fontSizeSmall}"/>
+                        <Setter Property="Foreground" Value="{StaticResource TitleBrush}"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Opacity" Value="0.5"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                    
+                    <Style x:Key="ABorderStyle" TargetType="Border">
+                        <Setter Property="BorderBrush" Value="{StaticResource TitleBrush}"/>
+                        <Setter Property="SnapsToDevicePixels" Value="True"/>
+                        <Setter Property="BorderThickness" Value="1"/>
+                        <Setter Property="CornerRadius" Value="4"/>
+                        <Setter Property="Margin" Value="2.5"/>
+                        <Setter Property="Padding" Value="2"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Opacity" Value="0.5"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                    
+                    <Style x:Key="NukeBorderStyle" TargetType="Border">
+                        <Setter Property="Background" Value="red"/>
+                        <Setter Property="ToolTip">
+                            <Setter.Value>
+                                <ToolTip Style="{StaticResource tipTest}" Content="Der Text kommt nicht vor"/>
+
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="OpacityMask">
+                            <Setter.Value>
+                                <ImageBrush ImageSource="../Images/errorNuke.png" />
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="Visibility" Value="Visible">
+                                <Setter Property="Background" Value="Red"/>
+                                <Trigger.EnterActions>
+                                    <BeginStoryboard>
+                                        <Storyboard Duration="00:00:01">
+                                            <ColorAnimationUsingKeyFrames RepeatBehavior="Forever" Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)">
+                                                <ColorAnimationUsingKeyFrames.KeyFrames>
+                                                    <LinearColorKeyFrame Value="Red" KeyTime="00:00:00.200"/>
+                                                    <LinearColorKeyFrame Value="Black" KeyTime="00:00:00.400"/>
+                                                </ColorAnimationUsingKeyFrames.KeyFrames>
+                                            </ColorAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.EnterActions>
+                                <Trigger.ExitActions>
+                                    <BeginStoryboard>
+                                        <Storyboard >
+                                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)">
+                                                <ColorAnimationUsingKeyFrames.KeyFrames>
+                                                    <LinearColorKeyFrame Value="Black" KeyTime="00:00:00"/>
+                                                </ColorAnimationUsingKeyFrames.KeyFrames>
+                                            </ColorAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.ExitActions>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                        
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Border Background="Black" CornerRadius="0,5,0,0">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <TextBlock Text="Suchen" Grid.Row="1" Grid.Column="0" Style="{StaticResource TextblockStyle}"/>
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="Ersetzen" Style="{StaticResource TextblockStyle}"  IsEnabled="{Binding ElementName=SearcBox,Path=Text,Converter={StaticResource IsNotEmptyConverter}}" Name="Replaceblock"/>
+            <Border Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" BorderBrush="{StaticResource TitleBrush}" BorderThickness="0,1,0,0"/>
+            <CheckBox Grid.Row="3" IsChecked="{Binding RelativeSource={RelativeSource AncestorType=searchAndReplace:SearchAndReplaceControl},Path=Search.WholeWord,Mode=TwoWay}" Style="{StaticResource globalCheckbox}" Margin="5,5,5,10" Grid.Column="1" Content="Ganzes Wort" Foreground="{StaticResource TitleBrush}"/>
+            <CheckBox Grid.Row="3" IsChecked="{Binding RelativeSource={RelativeSource AncestorType=searchAndReplace:SearchAndReplaceControl},Path=Search.CaseSensitive,Mode=TwoWay}" Grid.ColumnSpan="3" Style="{StaticResource globalCheckbox}" Margin="5,5,5,10" Grid.Column="2" Content="Groß- &amp; Kleinschreibung" Foreground="{StaticResource TitleBrush}"/>
+            <customControls:MaskedImageButtonEnlarge Grid.Row="1" ButtonMask="../Images/Search.png" ButtonColor="{StaticResource TitleBrush}" Grid.Column="4" Width="24" Height="24" Click="SearchNext">
+                <Button.ToolTip>
+                    <ToolTip Style="{StaticResource tipTest}" Content="Suchen"/>
+                </Button.ToolTip>
+            </customControls:MaskedImageButtonEnlarge>
+            <customControls:MaskedImageButtonEnlarge  IsEnabled="{Binding ElementName=Replaceblock,Path=IsEnabled}" Grid.Row="2" ButtonMask="../Images/replace.png" ButtonColor="{StaticResource TitleBrush}" Grid.Column="3" Width="24" Height="24" Click="ReplaceMe">
+                <Button.ToolTip>
+                    <ToolTip Style="{StaticResource tipTest}" Content="Ersetzen"/>
+                </Button.ToolTip>
+            </customControls:MaskedImageButtonEnlarge>
+            <customControls:MaskedImageButtonEnlarge  IsEnabled="{Binding ElementName=Replaceblock,Path=IsEnabled}" Grid.Row="2" ButtonMask="../Images/replaceall.png" ButtonColor="{StaticResource TitleBrush}" Grid.Column="4" Width="24" Height="24" Click="ReplaceAllMe">
+                <Button.ToolTip>
+                    <ToolTip Style="{StaticResource tipTest}" Content="Alle Vorkommen ersetzen"/>
+                </Button.ToolTip>
+            </customControls:MaskedImageButtonEnlarge>
+
+            <Border Style="{StaticResource ABorderStyle}" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" >
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox Foreground="{StaticResource TitleBrush}" CaretBrush="{StaticResource TitleBrush}" Style="{StaticResource realtextBoxStyle}"
+                             Name="SearcBox"
+                             Text="{Binding RelativeSource={RelativeSource AncestorType=searchAndReplace:SearchAndReplaceControl},Path=Search.SearchString, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Width="249">
+                    </TextBox>
+                    <Border Style="{StaticResource NukeBorderStyle}" Visibility="Collapsed" Grid.Column="1" Width="16" Height="16" RenderOptions.BitmapScalingMode="HighQuality"
+                            Name="ErrorProvider"/>
+                    </Grid>
+            </Border>
+            <Border Style="{StaticResource ABorderStyle}"  Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="2" IsEnabled="{Binding ElementName=Replaceblock,Path=IsEnabled}">
+                <TextBox Foreground="{StaticResource TitleBrush}" x:Name="replaceBox" CaretBrush="{StaticResource TitleBrush}" Style="{StaticResource realtextBoxStyle}"  IsEnabled="{Binding ElementName=Replaceblock,Path=IsEnabled}"></TextBox>
+            </Border>
+
+            <customControls:MaskedImageButtonEnlarge Grid.Row="0" ButtonMask="../Images/blackout.png" ButtonColor="{StaticResource TitleBrush}" Grid.Column="5" Width="16" Height="16" Click="HideMe">
+                <Button.ToolTip>
+                    <ToolTip Style="{StaticResource tipTest}" Content="Fenster schließen"/>
+                </Button.ToolTip>
+            </customControls:MaskedImageButtonEnlarge>
+
+        </Grid></Border>
+</UserControl>

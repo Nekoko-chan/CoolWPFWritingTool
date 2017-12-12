@@ -1,0 +1,84 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="ColorSet/Colors.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="global/global.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <Style x:Key="CombinationValue" TargetType="TextBlock" >
+        <Setter Property="FontFamily" Value="{StaticResource defaultFont}"/>
+        <Setter Property="TextAlignment" Value="Right"/> 
+        <Setter Property="FontSize" Value="{StaticResource fontSizeSmall}"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Foreground" Value="{StaticResource BackColorBrush}"/>
+    </Style>
+
+    <Style x:Key="CombinationKey" TargetType="TextBlock" BasedOn="{StaticResource CombinationValue}">
+        <Setter Property="FontWeight" Value="Normal"/>
+        <Setter Property="TextAlignment" Value="Left"/>
+        <Setter Property="Margin" Value="10,0,0,0"/>
+    </Style>
+
+    <Border x:Key="Keys" Margin="10" Padding="5" Background="{StaticResource BackgroundBrush}">
+       
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <TextBlock Foreground="{StaticResource BackColorBrush}" Grid.Row="0" Text="Spezielle Tastenkombinationen" FontFamily="{StaticResource defaultFont}" TextDecorations="Underline"
+                       FontSize="{StaticResource fontSizeLarge}" Margin="0,0,0,5" />
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Text="Tastenkombination" Style="{StaticResource CombinationValue}" FontSize="{StaticResource fontSizeMedium}" Margin="0,0,0,5"/>
+                <TextBlock Grid.Row="0" Grid.Column="1" Text="Funktion" Style="{StaticResource CombinationKey}" FontSize="{StaticResource fontSizeMedium}" Margin="10,0,0,5"/>
+
+                <TextBlock Grid.Row="1" Grid.Column="0" Text="Control+&lt;Nummer&gt;" Style="{StaticResource CombinationValue}" />
+                <TextBlock Grid.Row="1" Grid.Column="1" Text="Sprachenstil &lt;Nummer&gt;mit Anführungszeichen" Style="{StaticResource CombinationKey}" />
+
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="Control + Shift &lt;Nummer&gt;" Style="{StaticResource CombinationValue}" />
+                <TextBlock Grid.Row="2" Grid.Column="1" Text="Sprachenstil &lt;Nummer&gt;" Style="{StaticResource CombinationKey}" />
+
+                <TextBlock Grid.Row="3" Grid.Column="0" Text="F8" Style="{StaticResource CombinationValue}" />
+                <TextBlock Grid.Row="3" Grid.Column="1" Text="Sprache mit Anführungszeichen" Style="{StaticResource CombinationKey}" />
+
+                <TextBlock Grid.Row="4" Grid.Column="0" Text="F7" Style="{StaticResource CombinationValue}" />
+                <TextBlock Grid.Row="4" Grid.Column="1" Text="Sprache ohne Anführungszeichen" Style="{StaticResource CombinationKey}" />
+
+                <TextBlock Grid.Row="5" Grid.Column="0" Text="F6" Style="{StaticResource CombinationValue}" />
+                <TextBlock Grid.Row="5" Grid.Column="1" Text="Anführungszeichen ohne Stil" Style="{StaticResource CombinationKey}" />
+
+                <TextBlock Grid.Row="7" Grid.Column="0" Text="F4" Style="{StaticResource CombinationValue}" />
+                <TextBlock Grid.Row="7" Grid.Column="1" Text="Sprache mit einfachen Anführungszeichen" Style="{StaticResource CombinationKey}" />
+
+                <TextBlock Grid.Row="8" Grid.Column="0" Text="Control + Shift + V" Style="{StaticResource CombinationValue}" />
+                <TextBlock Grid.Row="8" Grid.Column="1" Text="Einfügeoption: Nur Text " Style="{StaticResource CombinationKey}" />
+
+                <TextBlock Grid.Row="9" Grid.Column="0" Text="F2" Style="{StaticResource CombinationValue}" />
+                <TextBlock Grid.Row="9" Grid.Column="1" Text="Default-Stil anwenden" Style="{StaticResource CombinationKey}" />
+            </Grid>
+            <TextBlock Margin="2,5,2,2" Grid.Row="2" Text="(Klick auf den Button zeigt &quot;Über Mich&quot;)" FontFamily="{StaticResource defaultFont}" FontSize="8" FontWeight="DemiBold"></TextBlock>
+            
+        </Grid>
+        
+    </Border>
+</ResourceDictionary>

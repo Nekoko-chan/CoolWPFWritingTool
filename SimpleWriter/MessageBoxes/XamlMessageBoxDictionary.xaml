@@ -1,0 +1,92 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    x:Class="ComplexWriter.MessageBoxes.XamlMessageBoxDictionary"
+                    xmlns:custom="clr-namespace:CustomControls;assembly=CustomControls"
+                    xmlns:complexWriter="clr-namespace:ComplexWriter.MessageBoxes">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="../global/global.xaml"/>
+        <ResourceDictionary Source="../global/Tooltip.xaml"/>
+        <ResourceDictionary>
+         
+           
+
+            <Style x:Key="{x:Type complexWriter:XamlMessageBox}" TargetType="{x:Type complexWriter:XamlMessageBox}" BasedOn="{StaticResource defaultWindow}">
+             <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type complexWriter:XamlMessageBox}">
+                            <Grid Margin="20" Name="BorderGrid" >
+                                <Border Background="Transparent" CornerRadius="3">
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+                                        <!-- This is the ContentPresenter that displays the window content. -->
+                                        <Border Grid.Row="1" IsHitTestVisible="True" Name="Border">
+                                            <ContentPresenter IsHitTestVisible="True" Content="{Binding RelativeSource={RelativeSource AncestorType=complexWriter:XamlMessageBox},Path=Content}" HorizontalAlignment="Stretch"/>
+                                        </Border>
+                                        <!-- Window Border Content -->
+                                        <!-- System Button -->
+                                       <!-- Window Title -->
+                                        <Grid Grid.Row="0" HorizontalAlignment="Right">
+                                            <Thumb Effect="{StaticResource WindowShadow}" Grid.Row="0" Height="24"
+                                                   Cursor="{StaticResource moveCursor}" DragDelta="MoveWindow"
+                                                   Tag="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}}">
+                                                <Thumb.Template>
+                                                    <ControlTemplate TargetType="Thumb">
+                                                        <Border Background="{StaticResource BackColorBrush}" CornerRadius="10,10,10,0" />
+                                                    </ControlTemplate>
+                                                </Thumb.Template>
+                                            </Thumb>
+                                            <TextBlock Grid.Row="0" VerticalAlignment="Center" TextAlignment="Left"
+                                                       Foreground="{DynamicResource TitleBrush}"
+                                                       IsHitTestVisible="False"
+                                                       Margin="40,0,77,0" FontFamily="{StaticResource defaultFont}"
+                                                       FontSize="8"
+                                                       Padding="0,0,0,0"
+                                                       Text="{Binding RelativeSource=
+                                     {RelativeSource TemplatedParent}, Path=Title}" />
+                                            <custom:MaskedImageButtonEnlarge Grid.Row="0"
+                                                                             Style="{StaticResource topBtn}"
+                                                                             ButtonMask="../Images/exit.png"
+                                                                             Click="CloseMe" Margin="0,0,4,0">
+                                                <Button.ToolTip>
+                                                    <ToolTip Style="{StaticResource tipTest}" Content="Beenden"></ToolTip>
+                                                </Button.ToolTip>
+                                            </custom:MaskedImageButtonEnlarge>
+                                        </Grid>
+                                    </Grid>
+                                </Border>
+                                <Border Margin="0,0,30,48">
+                                    <Grid>
+
+                                        <Thumb Name="PART_SizeSE"
+                                               Style="{StaticResource TransparentWindowResizeThumbStyle}"
+                                               Cursor="{StaticResource SizeNWSE}"
+                                               Width="16"
+                                               Height="16"
+                                               VerticalAlignment="Bottom"
+                                               HorizontalAlignment="Right" DragDelta="DragAThumb" />
+                                        <Thumb Name="PART_SizeS"
+                                               Style="{StaticResource TransparentWindowResizeThumbStyle}"
+                                               Cursor="{StaticResource SizeNS}"
+                                               Height="10"
+                                               VerticalAlignment="Bottom"
+                                               Margin="16,0,16,0" DragDelta="DragAThumb" />
+                                        <Thumb Name="PART_SizeE"
+                                               Style="{StaticResource TransparentWindowResizeThumbStyle}"
+                                               Cursor="{StaticResource SizeWE}"
+                                               Width="10"
+                                               HorizontalAlignment="Right"
+                                               Margin="0,32,0,16" DragDelta="DragAThumb" />
+                                    </Grid>
+                                </Border>
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>
+
