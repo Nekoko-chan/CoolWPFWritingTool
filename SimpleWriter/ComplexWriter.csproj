@@ -139,6 +139,9 @@
     </Compile>
     <Compile Include="TreeViewDirectOverItem.cs" />
     <Compile Include="Watermark.cs" />
+    <Content Include="Fonts\readme.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Resource Include="Images\line.png" />
     <Resource Include="Images\rtf.png" />
     <Resource Include="Images\QuoteForMenu.png" />
@@ -919,6 +922,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
