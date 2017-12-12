@@ -44,13 +44,7 @@ The actual text editor and the main project for the Visual Studio solution
 * Open the Colors.xaml
 * Change the values, that you like to change
 
-There is a helper tool in the planing stage to edit the colors
-
-
-##Break Remover
-
-A small helper tool, that allows the user, to replace all occurrences of Environment.NewLine with ""
-
+**There is a helper tool in the planing stage to edit the colors**
 
 ## Font Organizer
 
