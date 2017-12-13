@@ -61,7 +61,7 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Über das Programm.
+        ///   Looks up a localized string similar to About the program.
         /// </summary>
         public static string AboutMe {
             get {
@@ -70,7 +70,7 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 100% im Acrobat Reader.
+        ///   Looks up a localized string similar to 100% in Acrobat Reader.
         /// </summary>
         public static string AcrobatSize {
             get {
@@ -79,7 +79,7 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Als Name hinzufügen.
+        ///   Looks up a localized string similar to Add as name.
         /// </summary>
         public static string AddAsName {
             get {
@@ -88,7 +88,7 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Charaktere an die Geschichte anfügen.
+        ///   Looks up a localized string similar to Insert characters after the text is prodessed.
         /// </summary>
         public static string AddCharactersToStory {
             get {
@@ -97,7 +97,7 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Neuen Namen hinzufügen.
+        ///   Looks up a localized string similar to Add new name.
         /// </summary>
         public static string AddNewName {
             get {
@@ -106,7 +106,7 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Auswahlstil hinzunehmen.
+        ///   Looks up a localized string similar to Add selected style.
         /// </summary>
         public static string AddSelectedStyle {
             get {
@@ -115,7 +115,7 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Selektierten Text als Name hinzufügen.
+        ///   Looks up a localized string similar to Add selected text as new name.
         /// </summary>
         public static string AddSelectedText {
             get {
@@ -124,7 +124,7 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Passwort beim Wechsel von Tabs anzeigen.
+        ///   Looks up a localized string similar to Show password if the tab is changed.
         /// </summary>
         public static string AksForPasswordTabs {
             get {
@@ -133,7 +133,7 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Leere Passworthinweise erlauben.
+        ///   Looks up a localized string similar to Allow empty password hints.
         /// </summary>
         public static string AllowEmptyPasswordHint {
             get {
@@ -142,7 +142,7 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Die Stile sind bereits aktuell.
+        ///   Looks up a localized string similar to All styles are up to date.
         /// </summary>
         public static string AllStylesUpToDate {
             get {
@@ -151,7 +151,7 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Immer im Vordergrund anzeigen.
+        ///   Looks up a localized string similar to Show always on top.
         /// </summary>
         public static string AlwaysOnTop {
             get {
@@ -169,7 +169,7 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Aussehen:.
+        ///   Looks up a localized string similar to Appearance:.
         /// </summary>
         public static string Appearance {
             get {
@@ -178,7 +178,7 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Passwort abfragen.
+        ///   Looks up a localized string similar to Ask for passwords.
         /// </summary>
         public static string AskForPassword {
             get {
@@ -187,7 +187,7 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Die Datei &quot;{0}&quot; wurde automatisch gespeichert.
+        ///   Looks up a localized string similar to The file &quot;{0}&quot; is saved automatically.
         /// </summary>
         public static string AutomaticSavedMessage {
             get {
@@ -196,8 +196,8 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hier können sie die Anführungszeichen (doppelt und einzelnd) angeben, die im Dokument verwendet werden sollen. 
-        ///Beachten sie aber, dass bisherige Anführungszeichen nicht verändert werden..
+        ///   Looks up a localized string similar to  On this dialog you are able to define the quuotation marks that are used by the document.
+        ///Please remember, that already inserted quotations are not updated..
         /// </summary>
         public static string BacketDescriptions {
             get {
@@ -206,7 +206,7 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Schwarz als Hintergrund.
+        ///   Looks up a localized string similar to Use a black background.
         /// </summary>
         public static string BlackBackground {
             get {
@@ -215,7 +215,7 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Schwarz-Weiß (Vorschau nicht betroffen).
+        ///   Looks up a localized string similar to Black and White (not seen in the preview).
         /// </summary>
         public static string BlackWhite {
             get {
@@ -224,7 +224,7 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Blocktext.
+        ///   Looks up a localized string similar to Block text.
         /// </summary>
         public static string BlockText {
             get {
@@ -233,7 +233,7 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Fettgedruckter Text.
+        ///   Looks up a localized string similar to Bold Text.
         /// </summary>
         public static string Bold {
             get {
@@ -242,7 +242,7 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Fett an / aus.
+        ///   Looks up a localized string similar to Bold.
         /// </summary>
         public static string BoldOnOf {
             get {
@@ -251,7 +251,7 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Abbrechen.
+        ///   Looks up a localized string similar to Cancel.
         /// </summary>
         public static string Cancel {
             get {
@@ -260,7 +260,7 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Groß- und Kleinschreibung.
+        ///   Looks up a localized string similar to Case sensitivity.
         /// </summary>
         public static string CaseSensitivity {
             get {
@@ -269,7 +269,7 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Zentrierter Text.
+        ///   Looks up a localized string similar to Centered Text.
         /// </summary>
         public static string CenteredText {
             get {
@@ -278,7 +278,7 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hintergrundfarbe ändern....
+        ///   Looks up a localized string similar to Change background color....
         /// </summary>
         public static string ChangeBackColor {
             get {
@@ -287,7 +287,7 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Vordergrundfarbe ändern....
+        ///   Looks up a localized string similar to Change foreground color....
         /// </summary>
         public static string ChangeForeColor {
             get {
@@ -296,7 +296,7 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Passwort vergeben / ändern.
+        ///   Looks up a localized string similar to Set / change password.
         /// </summary>
         public static string ChangePassword {
             get {
@@ -305,9 +305,9 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Es liegen ungespeicherte Änderungen der Datei &quot;{0}&quot; vor!
+        ///   Looks up a localized string similar to There are unsaved changes on the file &quot;{0}&quot;!
         ///
-        ///Sollen diese gespeichert werden?.
+        ///Would you like to save them?.
         /// </summary>
         public static string ChangesInFile {
             get {
@@ -316,7 +316,7 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Neue Datei erstellen.
+        ///   Looks up a localized string similar to Create new file.
         /// </summary>
         public static string ChrateNewFile {
             get {
@@ -325,7 +325,7 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Beenden.
+        ///   Looks up a localized string similar to Close.
         /// </summary>
         public static string Close {
             get {
@@ -334,7 +334,7 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Trotzdem beenden.
+        ///   Looks up a localized string similar to Close anyway.
         /// </summary>
         public static string CloseAnyway {
             get {
@@ -343,7 +343,7 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Alle bis auf dieses schließen.
+        ///   Looks up a localized string similar to Close all but this.
         /// </summary>
         public static string CloseOther {
             get {
@@ -352,7 +352,7 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Schließende Klammern.
+        ///   Looks up a localized string similar to Closing brackets.
         /// </summary>
         public static string ClosingBrackets {
             get {
@@ -361,7 +361,7 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Alle zusammenklappen.
+        ///   Looks up a localized string similar to Collapse all.
         /// </summary>
         public static string CollapsAll {
             get {
@@ -370,7 +370,7 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Farbe:.
+        ///   Looks up a localized string similar to Color:.
         /// </summary>
         public static string Color {
             get {
@@ -379,7 +379,7 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Konfigurationsordner.
+        ///   Looks up a localized string similar to Settings folder.
         /// </summary>
         public static string ConfigurationFolder {
             get {
@@ -388,7 +388,7 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Kopieren.
+        ///   Looks up a localized string similar to Copy.
         /// </summary>
         public static string Copy {
             get {
@@ -397,7 +397,7 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Textkorrektur.
+        ///   Looks up a localized string similar to Spellchecker.
         /// </summary>
         public static string CorrectText {
             get {
@@ -406,7 +406,7 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Neues Element erstellen.
+        ///   Looks up a localized string similar to Create new element.
         /// </summary>
         public static string CreateNewElement {
             get {
@@ -537,6 +537,15 @@ namespace ComplexWriter.Properties {
         public static string DeleteTitle {
             get {
                 return ResourceManager.GetString("DeleteTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Beschreibung.
+        /// </summary>
+        public static string Description {
+            get {
+                return ResourceManager.GetString("Description", resourceCulture);
             }
         }
         
@@ -837,11 +846,29 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bezeichner.
+        /// </summary>
+        public static string Identifier {
+            get {
+                return ResourceManager.GetString("Identifier", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Alle ignorieren.
         /// </summary>
         public static string IgnorenAll {
             get {
                 return ResourceManager.GetString("IgnorenAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bild.
+        /// </summary>
+        public static string Image {
+            get {
+                return ResourceManager.GetString("Image", resourceCulture);
             }
         }
         
@@ -1121,6 +1148,15 @@ namespace ComplexWriter.Properties {
         public static string NameAlreadyExists {
             get {
                 return ResourceManager.GetString("NameAlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Namenseingabe.
+        /// </summary>
+        public static string NameDialog {
+            get {
+                return ResourceManager.GetString("NameDialog", resourceCulture);
             }
         }
         
@@ -1487,6 +1523,15 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fordergrund zurücksetzen.
+        /// </summary>
+        public static string RervertForeground {
+            get {
+                return ResourceManager.GetString("RervertForeground", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Neu starten.
         /// </summary>
         public static string Restart {
@@ -1512,6 +1557,15 @@ namespace ComplexWriter.Properties {
         public static string RestartForNameChanges {
             get {
                 return ResourceManager.GetString("RestartForNameChanges", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hintergrund zurücksetzen.
+        /// </summary>
+        public static string RevertBackground {
+            get {
+                return ResourceManager.GetString("RevertBackground", resourceCulture);
             }
         }
         
@@ -1957,6 +2011,15 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Art.
+        /// </summary>
+        public static string Type {
+            get {
+                return ResourceManager.GetString("Type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unsterstrichener Text.
         /// </summary>
         public static string Underlined {
@@ -2070,6 +2133,15 @@ namespace ComplexWriter.Properties {
         public static string UseDefaultStyle {
             get {
                 return ResourceManager.GetString("UseDefaultStyle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Genutze Schrift:.
+        /// </summary>
+        public static string UsedFont {
+            get {
+                return ResourceManager.GetString("UsedFont", resourceCulture);
             }
         }
         

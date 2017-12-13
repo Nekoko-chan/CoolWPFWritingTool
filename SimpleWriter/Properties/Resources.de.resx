@@ -468,7 +468,7 @@ Kopieren sie die Schrift wenn gewünscht in den Ordner "Fonts".</value>
     <value>Elemente geladen</value>
   </data>
   <data name="LoadError" xml:space="preserve">
-    <value>Fehler beim Laden von{0}</value>
+    <value>Fehler beim Laden von "{0}"</value>
   </data>
   <data name="LoadFile" xml:space="preserve">
     <value>Datei laden...</value>
@@ -641,7 +641,7 @@ Soll jetzt neu gestartet werden?</value>
     <value>Automatisch speichern</value>
   </data>
   <data name="SaveChanged" xml:space="preserve">
-    <value>Geänderte Dateien speicher</value>
+    <value>Geänderte Dateien speichern</value>
   </data>
   <data name="SaveError" xml:space="preserve">
     <value>Es liegen Fehler beim Speichern von Dateien vor. Das hat zur Folge, das einige Dateien ungespeicherte Änderungen haben.
@@ -753,7 +753,8 @@ Dopplung der Stildaten ist nicht erlaubt.</value>
     <value>Stil &lt;Nummer&gt; mit Anführungszeichen</value>
   </data>
   <data name="StyleRemoveQuestion" xml:space="preserve">
-    <value>Sind sie sich sicher, dass sie alle Stile entfernen möchten?\nDieser Vorgang lässt sich nicht wieder rückgängig machen!</value>
+    <value>Sind sie sich sicher, dass sie alle Stile entfernen möchten?
+Dieser Vorgang lässt sich nicht wieder rückgängig machen!</value>
   </data>
   <data name="StyleRemoveQuestionTitle" xml:space="preserve">
     <value>Soll der Stil wirklich entfernt werden?</value>
@@ -780,7 +781,7 @@ Dopplung der Stildaten ist nicht erlaubt.</value>
     <value>bis Seite</value>
   </data>
   <data name="Underlined" xml:space="preserve">
-    <value>Unsterstrichener Text</value>
+    <value>Unterstrichener Text</value>
   </data>
   <data name="UnderlineOnOf" xml:space="preserve">
     <value>Unterstrichen an / aus</value>
@@ -835,5 +836,29 @@ Wollen sie es trotzdem in dem Format speichern?</value>
   <data name="Width" xml:space="preserve">
     <value>Breite</value>
     <comment>Image Dialog</comment>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Beschreibung</value>
+  </data>
+  <data name="Identifier" xml:space="preserve">
+    <value>Bezeichner</value>
+  </data>
+  <data name="Image" xml:space="preserve">
+    <value>Bild</value>
+  </data>
+  <data name="NameDialog" xml:space="preserve">
+    <value>Namenseingabe</value>
+  </data>
+  <data name="RervertForeground" xml:space="preserve">
+    <value>Vordergrundfarbe zurücksetzen</value>
+  </data>
+  <data name="RevertBackground" xml:space="preserve">
+    <value>Hintergrundfarbe zurücksetzen</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Art</value>
+  </data>
+  <data name="UsedFont" xml:space="preserve">
+    <value>Genutze Schrift:</value>
   </data>
 </root>
