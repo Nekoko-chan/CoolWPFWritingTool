@@ -2,6 +2,7 @@ using System;
 using System.ComponentModel;
 using System.Reflection;
 using System.Windows.Markup;
+using ComplexWriter.Properties;
 
 namespace ComplexWriter
 {
@@ -54,31 +55,31 @@ namespace ComplexWriter
     [TypeConverter(typeof(EnumDescriptionTypeConverter))]
     public enum NameType
     {
-        [Description("Nicht angegeben")]
+        [Description("Unset")]
         Unset =0,
 
-        [Description("Weiteres")]
+        [Description("Other")]
         Other=1,
 
-        [Description("Nachname(n)")]
+        [Description("LastName")]
         Nachnamen = 2,
 
-        [Description("Währungen")]
+        [Description("Currency")]
         Currency = 3,
 
-        [Description("Spezies")]
+        [Description("Species")]
         Species = 4,
 
-        [Description("Örtlichkeiten")]
+        [Description("Locality")]
         Locality = 5,
 
-        [Description("Erweiterter Personenkreis")]
+        [Description("Support")]
         Support = 6,
 
-        [Description("Antagonist(en)")]
+        [Description("Antagonists")]
         Antagonist = 7,
 
-        [Description("Protagonist(en)")]
+        [Description("Protagonists")]
         Protagonist = 8,
      
     }
@@ -99,7 +100,11 @@ namespace ComplexWriter
                     if (fi != null)
                     {
                         var attributes = (DescriptionAttribute[])fi.GetCustomAttributes(typeof(DescriptionAttribute), false);
-                        return ((attributes.Length > 0) && (!String.IsNullOrEmpty(attributes[0].Description))) ? attributes[0].Description : value.ToString();
+                         var test = ((attributes.Length > 0) && (!String.IsNullOrEmpty(attributes[0].Description))) ? attributes[0].Description : value.ToString();
+
+                        var rm = ComplexWriter.Properties.Resources.ResourceManager;
+
+                        return rm.GetString(test, culture)??test;
                     }
                 }
 

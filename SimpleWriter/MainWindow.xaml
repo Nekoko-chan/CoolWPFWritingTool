@@ -3,14 +3,15 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:customControls="clr-namespace:CustomControls;assembly=CustomControls"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
-        xmlns:ComplexWriter="clr-namespace:ComplexWriter"
+        xmlns:complexWriter="clr-namespace:ComplexWriter"
         xmlns:commands="clr-namespace:ComplexWriter.Commands"
         xmlns:searchAndReplace="clr-namespace:ComplexWriter.SearchAndReplace"
+        xmlns:p="clr-namespace:ComplexWriter.Properties"
         xmlns:messageBoxes="clr-namespace:ComplexWriter.MessageBoxes"
         xmlns:characterNames="clr-namespace:ComplexWriter.CharacterNames"
         xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
         xmlns:system="clr-namespace:System;assembly=mscorlib"
-        Title="Cool Editor" Height="444" Width="616">
+        Title="{x:Static p:Resources.Title}" Height="444" Width="616">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -52,7 +53,7 @@
                     <SolidColorBrush x:Key="fore2" Color ="{StaticResource TitleColor}"></SolidColorBrush>
                     <SolidColorBrush x:Key="fore3" Color ="{StaticResource TitleColor}"></SolidColorBrush>
 
-                    <DataTemplate x:Key="tipTemplate"  DataType="ComplexWriter:ComplexStyle" >
+                    <DataTemplate x:Key="tipTemplate"  DataType="complexWriter:ComplexStyle" >
 
                         <Grid>
                             <Grid.ColumnDefinitions>
@@ -114,10 +115,10 @@
                                                 <Binding Source="{StaticResource BackColorBrush}"/>
                                                 <Binding Source="{StaticResource SelectionBrush}"/>
                                                 <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Content" />
-                                                <Binding RelativeSource="{RelativeSource AncestorType=ComplexWriter:MainWindow}" Path="CurrentText.OpeningQuote" />
-                                                <Binding RelativeSource="{RelativeSource AncestorType=ComplexWriter:MainWindow}" Path="CurrentText.ClosingQuote" />
-                                                <Binding RelativeSource="{RelativeSource AncestorType=ComplexWriter:MainWindow}" Path="CurrentText.SingleOpeningQuote" />
-                                                <Binding RelativeSource="{RelativeSource AncestorType=ComplexWriter:MainWindow}" Path="CurrentText.SingleClosingQuote" />
+                                                <Binding RelativeSource="{RelativeSource AncestorType=complexWriter:MainWindow}" Path="CurrentText.OpeningQuote" />
+                                                <Binding RelativeSource="{RelativeSource AncestorType=complexWriter:MainWindow}" Path="CurrentText.ClosingQuote" />
+                                                <Binding RelativeSource="{RelativeSource AncestorType=complexWriter:MainWindow}" Path="CurrentText.SingleOpeningQuote" />
+                                                <Binding RelativeSource="{RelativeSource AncestorType=complexWriter:MainWindow}" Path="CurrentText.SingleClosingQuote" />
                                             </MultiBinding>
                                         </Border.Background>
                                         <Border.RenderTransform>
@@ -129,10 +130,10 @@
                                                     <Binding Source="{StaticResource TitleBrush}"/>
                                                     <Binding Source="{StaticResource BackColorBrush}"/>
                                                     <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Content" />
-                                                    <Binding RelativeSource="{RelativeSource AncestorType=ComplexWriter:MainWindow}" Path="CurrentText.OpeningQuote" />
-                                                    <Binding RelativeSource="{RelativeSource AncestorType=ComplexWriter:MainWindow}" Path="CurrentText.ClosingQuote" />
-                                                    <Binding RelativeSource="{RelativeSource AncestorType=ComplexWriter:MainWindow}" Path="CurrentText.SingleOpeningQuote" />
-                                                    <Binding RelativeSource="{RelativeSource AncestorType=ComplexWriter:MainWindow}" Path="CurrentText.SingleClosingQuote" />
+                                                    <Binding RelativeSource="{RelativeSource AncestorType=complexWriter:MainWindow}" Path="CurrentText.OpeningQuote" />
+                                                    <Binding RelativeSource="{RelativeSource AncestorType=complexWriter:MainWindow}" Path="CurrentText.ClosingQuote" />
+                                                    <Binding RelativeSource="{RelativeSource AncestorType=complexWriter:MainWindow}" Path="CurrentText.SingleOpeningQuote" />
+                                                    <Binding RelativeSource="{RelativeSource AncestorType=complexWriter:MainWindow}" Path="CurrentText.SingleClosingQuote" />
                                                 </MultiBinding>
                                             </TextBlock.Foreground>
                                         </ContentPresenter>
@@ -250,13 +251,13 @@
                         <Setter Property="Background" Value="{StaticResource BackgroundBrush}"></Setter>
                     </Style>
 
-                    <CollectionViewSource x:Key="Styles" IsLiveSortingRequested="True" Source="{Binding RelativeSource={RelativeSource AncestorType=ComplexWriter:MainWindow},Path=ApplyableStyles.Styles}" >
+                    <CollectionViewSource x:Key="Styles" IsLiveSortingRequested="True" Source="{Binding RelativeSource={RelativeSource AncestorType=complexWriter:MainWindow},Path=ApplyableStyles.Styles}" >
                         <CollectionViewSource.SortDescriptions>
                             <componentModel:SortDescription PropertyName="Caption" Direction="Ascending"/>
                         </CollectionViewSource.SortDescriptions>
                     </CollectionViewSource>
 
-                    <CollectionViewSource x:Key="Styles2" IsLiveSortingRequested="True" Source="{Binding RelativeSource={RelativeSource AncestorType=ComplexWriter:MainWindow},Path=CurrentText.Styles.Styles}" >
+                    <CollectionViewSource x:Key="Styles2" IsLiveSortingRequested="True" Source="{Binding RelativeSource={RelativeSource AncestorType=complexWriter:MainWindow},Path=CurrentText.Styles.Styles}" >
                         <CollectionViewSource.SortDescriptions>
                             <componentModel:SortDescription PropertyName="IsDefault" Direction="Descending"></componentModel:SortDescription>
                             <componentModel:SortDescription PropertyName="Caption" Direction="Ascending"/>
@@ -264,7 +265,7 @@
                     </CollectionViewSource>
 
 
-                    <CollectionViewSource x:Key="Fonts" Source="{Binding RelativeSource={RelativeSource AncestorType=ComplexWriter:MainWindow},Path=FontFamilies}" >
+                    <CollectionViewSource x:Key="Fonts" Source="{Binding RelativeSource={RelativeSource AncestorType=complexWriter:MainWindow},Path=FontFamilies}" >
                         <CollectionViewSource.GroupDescriptions>
                             <PropertyGroupDescription PropertyName="Group" />
                         </CollectionViewSource.GroupDescriptions>
@@ -298,7 +299,7 @@
         <Border Grid.Row="1" Grid.Column="1" Style="{StaticResource bord}" Background="Black" CornerRadius="0,0,3,0" Margin="0,0,90,10">
             <Border.Visibility>
                 <MultiBinding Converter="{StaticResource IfThenElseMultiConverter}">
-                    <Binding RelativeSource="{RelativeSource AncestorType=ComplexWriter:MainWindow}" Path="UseBlackBackground"/>
+                    <Binding RelativeSource="{RelativeSource AncestorType=complexWriter:MainWindow}" Path="UseBlackBackground"/>
                     <Binding>
                         <Binding.Source>
                             <Visibility>Visible</Visibility>
@@ -327,30 +328,30 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <Border Grid.Column="1" Padding="40,0" Visibility="{Binding RelativeSource={RelativeSource AncestorType=ComplexWriter:MainWindow},Path=CurrentText.ReadOnly,Converter={StaticResource falseCollapsedConverter}}" HorizontalAlignment="Center" BorderBrush="{StaticResource BackColorBrush}" BorderThickness="0,0,0,1">
+                <Border Grid.Column="1" Padding="40,0" Visibility="{Binding RelativeSource={RelativeSource AncestorType=complexWriter:MainWindow},Path=CurrentText.ReadOnly,Converter={StaticResource falseCollapsedConverter}}" HorizontalAlignment="Center" BorderBrush="{StaticResource BackColorBrush}" BorderThickness="0,0,0,1">
                     <TextBlock Text="Die Datei ist schreibgeschützt, Doppelklick auf Tab zum entsperren" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,2" FontFamily="{StaticResource defaultFont}"/>
                 </Border>
                 <Border Grid.Column="1" Grid.Row="1" Margin="5,0,5,10" IsHitTestVisible="False">
                     <Image VerticalAlignment="Bottom" HorizontalAlignment="Right" RenderOptions.BitmapScalingMode="HighQuality" 
-                           Source="{Binding RelativeSource={RelativeSource AncestorType=ComplexWriter:MainWindow},Path=CurrentText.Watermark.ImageSource}"
-                           Width="{Binding RelativeSource={RelativeSource AncestorType=ComplexWriter:MainWindow},Path=CurrentText.Watermark.Size.Width}"
-                           Height="{Binding RelativeSource={RelativeSource AncestorType=ComplexWriter:MainWindow},Path=CurrentText.Watermark.Size.Height}"
-                           Opacity="{Binding RelativeSource={RelativeSource AncestorType=ComplexWriter:MainWindow},Path=CurrentText.Watermark.Opacity}"
+                           Source="{Binding RelativeSource={RelativeSource AncestorType=complexWriter:MainWindow},Path=CurrentText.Watermark.ImageSource}"
+                           Width="{Binding RelativeSource={RelativeSource AncestorType=complexWriter:MainWindow},Path=CurrentText.Watermark.Size.Width}"
+                           Height="{Binding RelativeSource={RelativeSource AncestorType=complexWriter:MainWindow},Path=CurrentText.Watermark.Size.Height}"
+                           Opacity="{Binding RelativeSource={RelativeSource AncestorType=complexWriter:MainWindow},Path=CurrentText.Watermark.Opacity}"
                            />
                 </Border>
 
                 <RichTextBox Grid.Column="1" Margin="12,0,-12,5" Grid.Row="1" x:Name="Box" 
                                  ScrollViewer.ScrollChanged="ScrollChanged" SnapsToDevicePixels="False"
                               xml:lang="de-DE"
-                                 SpellCheck.IsEnabled="{Binding RelativeSource={RelativeSource AncestorType=ComplexWriter:MainWindow},Path=CurrentText.SpellCheckEnabled}"
+                                 SpellCheck.IsEnabled="{Binding RelativeSource={RelativeSource AncestorType=complexWriter:MainWindow},Path=CurrentText.SpellCheckEnabled}"
                                  IsInactiveSelectionHighlightEnabled="True" AutoWordSelection="False"
                                  Style="{StaticResource textBoxStyle3}" TextChanged="Textchanged"
                                  PreviewKeyDown="HandleKeysPreview" SelectionChanged="UpdateInfos"
-                             IsReadOnly="{Binding RelativeSource={RelativeSource AncestorType=ComplexWriter:MainWindow},Path=CurrentText.ReadOnly}"
+                             IsReadOnly="{Binding RelativeSource={RelativeSource AncestorType=complexWriter:MainWindow},Path=CurrentText.ReadOnly}"
                                 Foreground="Black">
                     <RichTextBox.CaretBrush>
                         <MultiBinding Converter="{StaticResource IfThenElseMultiConverter}">
-                            <Binding RelativeSource="{RelativeSource AncestorType=ComplexWriter:MainWindow}" Path="UseBlackBackground"/>
+                            <Binding RelativeSource="{RelativeSource AncestorType=complexWriter:MainWindow}" Path="UseBlackBackground"/>
                             <Binding Source="{StaticResource DarkerTitleBrush}"/>
                             <Binding Source="{StaticResource BackColorBrush}"/>
                         </MultiBinding>
@@ -358,7 +359,7 @@
 
                     <RichTextBox.Cursor>
                         <MultiBinding Converter="{StaticResource IfThenElseMultiConverter}">
-                            <Binding RelativeSource="{RelativeSource AncestorType=ComplexWriter:MainWindow}" Path="CurrentText.ReadOnly"/>
+                            <Binding RelativeSource="{RelativeSource AncestorType=complexWriter:MainWindow}" Path="CurrentText.ReadOnly"/>
                             <Binding Source="{StaticResource Beam}"/>
                             <Binding Source="{StaticResource Beam2}"/>
                         </MultiBinding>
@@ -395,7 +396,7 @@
                     </RichTextBox.Resources>
                 </RichTextBox>
                
-                <Border Grid.Row="0" Grid.RowSpan="3" Grid.Column="2" VerticalAlignment="Top" IsEnabled="{Binding RelativeSource={RelativeSource AncestorType=ComplexWriter:MainWindow},Path=CurrentText.ReadOnly,Converter={StaticResource InvertBoolConverter}}"
+                <Border Grid.Row="0" Grid.RowSpan="3" Grid.Column="2" VerticalAlignment="Top" IsEnabled="{Binding RelativeSource={RelativeSource AncestorType=complexWriter:MainWindow},Path=CurrentText.ReadOnly,Converter={StaticResource InvertBoolConverter}}"
                          Visibility="{Binding ElementName=options,Path=IsChecked, Converter={StaticResource falseHideConverter}}"
                         >
                     <Grid Margin="12,-15,-48,0">
@@ -729,10 +730,10 @@
                                     <Button Style="{StaticResource TextButton}"
                                             Width="24"
                                             Height="24"
-                                            FontFamily="{Binding RelativeSource={RelativeSource AncestorType=ComplexWriter:MainWindow},Path=CurrentSymbolFont}"
+                                            FontFamily="{Binding RelativeSource={RelativeSource AncestorType=complexWriter:MainWindow},Path=CurrentSymbolFont}"
                                             FontSize="{StaticResource fontSizeMedium}"
-                                            Visibility="{Binding RelativeSource={RelativeSource AncestorType=ComplexWriter:MainWindow},Path=CurrentSymbol,Converter={StaticResource hideEmptyConverter}}"
-                                            Content="{Binding RelativeSource={RelativeSource AncestorType=ComplexWriter:MainWindow},Path=CurrentSymbol}"
+                                            Visibility="{Binding RelativeSource={RelativeSource AncestorType=complexWriter:MainWindow},Path=CurrentSymbol,Converter={StaticResource hideEmptyConverter}}"
+                                            Content="{Binding RelativeSource={RelativeSource AncestorType=complexWriter:MainWindow},Path=CurrentSymbol}"
                                             x:Name="singleSpecialCharacterBtn"
                                             Foreground="{DynamicResource TitleBrush}"
                                             Click="InsertLastSpecialCharacter">
@@ -772,7 +773,7 @@
                                 <!---->
                                 <Border>
                                     <customControls:MaskedToggleButtonEnlarge
-                                        IsChecked="{Binding RelativeSource={RelativeSource AncestorType=ComplexWriter:MainWindow},Path=CurrentText.SpellCheckEnabled,Mode=TwoWay}"
+                                        IsChecked="{Binding RelativeSource={RelativeSource AncestorType=complexWriter:MainWindow},Path=CurrentText.SpellCheckEnabled,Mode=TwoWay}"
                                         Width="24"
                                         Height="24"
                                         ButtonMask="Images/spellcheck.png"
@@ -790,8 +791,8 @@
 
                         </Border></Grid>
                 </Border>
-                <Border Width="150" Visibility="{Binding RelativeSource={RelativeSource AncestorType=ComplexWriter:MainWindow},Path=ShowNameList,Converter={StaticResource falseCollapsedConverter}}" Grid.Row="0" Grid.RowSpan="3" Margin="0,-5,-12,0" Grid.Column="0" >
-                    <characterNames:CharacterNameControl Names="{Binding RelativeSource={RelativeSource AncestorType=ComplexWriter:MainWindow},Path=CurrentText.Characters}" TextClicked="TextClicked"/>
+                <Border Width="150" Visibility="{Binding RelativeSource={RelativeSource AncestorType=complexWriter:MainWindow},Path=ShowNameList,Converter={StaticResource falseCollapsedConverter}}" Grid.Row="0" Grid.RowSpan="3" Margin="0,-5,-12,0" Grid.Column="0" >
+                    <characterNames:CharacterNameControl Names="{Binding RelativeSource={RelativeSource AncestorType=complexWriter:MainWindow},Path=CurrentText.Characters}" TextClicked="TextClicked"/>
                 </Border>
                 <searchAndReplace:SearchAndReplaceControl Grid.Column="0" Grid.ColumnSpan="3" IsClosedFromWithin="FocusTextbox" MatchingChanged="UpdateView" Grid.Row="2" Visibility="Collapsed" x:Name="SearchAndReplaceControl" Margin="0,0,25,0"/>
             </Grid>
@@ -836,7 +837,7 @@
                             </DrawingBrush>
                         </Border.OpacityMask>
                         <ToggleButton Style="{StaticResource FeatherBtn}" Margin="3,-10,0,0" VerticalAlignment="Stretch"
-                                      IsChecked="{Binding UseBlackBackground, RelativeSource={RelativeSource AncestorType={x:Type ComplexWriter:MainWindow}}}"
+                                      IsChecked="{Binding UseBlackBackground, RelativeSource={RelativeSource AncestorType={x:Type complexWriter:MainWindow}}}"
                                                     HorizontalAlignment="Left" Width="{Binding RelativeSource={RelativeSource Self},Path=ActualHeight}"
                                                     RenderOptions.BitmapScalingMode="HighQuality">
                             <ToggleButton.ToolTip>
@@ -900,14 +901,14 @@
                     </Button.ToolTip>
                 </customControls:MaskedImageButtonEnlarge>-->
                                     <customControls:MaskedImageButtonEnlarge Style="{StaticResource rimageButton}" ButtonMask="Images/save.png" Click="SaveCurrentFile" 
-                                                                          Visibility="{Binding RelativeSource={RelativeSource AncestorType=ComplexWriter:MainWindow}, Path=ShowSaveFile, Converter={StaticResource falseCollapsedConverter}}"
+                                                                          Visibility="{Binding RelativeSource={RelativeSource AncestorType=complexWriter:MainWindow}, Path=ShowSaveFile, Converter={StaticResource falseCollapsedConverter}}"
                                                                              Margin="2,2,2,2">
                                         <Button.ToolTip>
                                             <ToolTip Style="{StaticResource tipTest}" Content="Datei speichern(Ctrl+S)"></ToolTip>
                                         </Button.ToolTip>
                                     </customControls:MaskedImageButtonEnlarge>
                                     <customControls:MaskedImageButtonEnlarge Style="{StaticResource rimageButton}" ButtonMask="Images/saveAll.png" Click="SaveAllFiles" 
-                                                                          Visibility="{Binding RelativeSource={RelativeSource AncestorType=ComplexWriter:MainWindow}, Path=ShowSaveFile, Converter={StaticResource falseCollapsedConverter}}"
+                                                                          Visibility="{Binding RelativeSource={RelativeSource AncestorType=complexWriter:MainWindow}, Path=ShowSaveFile, Converter={StaticResource falseCollapsedConverter}}"
                                                                              Margin="2,2,2,2">
                                         <Button.ToolTip>
                                             <ToolTip Style="{StaticResource tipTest}" Content="Alle Dateien speichern"></ToolTip>
@@ -920,12 +921,12 @@
                                     </customControls:MaskedImageButtonEnlarge>
 
                                     <Border Width="1.5" SnapsToDevicePixels="True" Background="{DynamicResource TitleBrush}" Margin="1" CornerRadius="2"></Border>
-                <customControls:MaskedImageButtonEnlarge IsEnabled="{Binding CurrentText.ReadOnly, Converter={StaticResource InvertBoolConverter}, RelativeSource={RelativeSource AncestorType={x:Type ComplexWriter:MainWindow}}}"  Style="{StaticResource rimageButton}" ButtonMask="Images/TopOnlyQuoteEven.png" Click="UpdateQuotations">
+                <customControls:MaskedImageButtonEnlarge IsEnabled="{Binding CurrentText.ReadOnly, Converter={StaticResource InvertBoolConverter}, RelativeSource={RelativeSource AncestorType={x:Type complexWriter:MainWindow}}}"  Style="{StaticResource rimageButton}" ButtonMask="Images/TopOnlyQuoteEven.png" Click="UpdateQuotations">
                     <customControls:MaskedImageButtonEnlarge.ToolTip>
                         <ToolTip Style="{StaticResource tipTest}" Content="Anführungszeichen anpassen..."/>
                     </customControls:MaskedImageButtonEnlarge.ToolTip>
                 </customControls:MaskedImageButtonEnlarge>
-                <customControls:MaskedImageButtonEnlarge IsEnabled="{Binding CurrentText.ReadOnly, Converter={StaticResource InvertBoolConverter}, RelativeSource={RelativeSource AncestorType={x:Type ComplexWriter:MainWindow}}}"  Style="{StaticResource rimageButton}" ButtonMask="Images/1291282236_image.png" Click="ChangeWatermark">
+                <customControls:MaskedImageButtonEnlarge IsEnabled="{Binding CurrentText.ReadOnly, Converter={StaticResource InvertBoolConverter}, RelativeSource={RelativeSource AncestorType={x:Type complexWriter:MainWindow}}}"  Style="{StaticResource rimageButton}" ButtonMask="Images/1291282236_image.png" Click="ChangeWatermark">
                     <customControls:MaskedImageButtonEnlarge.ToolTip>
                         <ToolTip Style="{StaticResource tipTest}" Content="Wasserzeichen anpassen..."/>
                     </customControls:MaskedImageButtonEnlarge.ToolTip>
@@ -953,8 +954,8 @@
                 	ButtonMask="Images/info.png" Click="ShowOrActivateWindow">
                     <customControls:MaskedImageButtonEnlarge.IsEnabled>
                         <MultiBinding Converter="{StaticResource HasItemsConverter}">
-                            <Binding RelativeSource="{RelativeSource AncestorType={x:Type ComplexWriter:MainWindow}}" Path="ErrorMessages.Count"/>
-                            <Binding RelativeSource="{RelativeSource AncestorType={x:Type ComplexWriter:MainWindow}}" Path="ErrorWindow"/>
+                            <Binding RelativeSource="{RelativeSource AncestorType={x:Type complexWriter:MainWindow}}" Path="ErrorMessages.Count"/>
+                            <Binding RelativeSource="{RelativeSource AncestorType={x:Type complexWriter:MainWindow}}" Path="ErrorWindow"/>
                         </MultiBinding>
                     </customControls:MaskedImageButtonEnlarge.IsEnabled>
                     <customControls:MaskedImageButtonEnlarge.ToolTip>
@@ -1014,14 +1015,14 @@
                
                 <StackPanel Grid.Row="0" Height="Auto">
                    
-                    <customControls:MaskedToggleButtonEnlarge x:Name="ApplyButton2" Cursor="{StaticResource overCursor}" ButtonColor="{DynamicResource TitleBrush}" Width="24" Height="24" ButtonMask="Images/paint_brush2.png" IsChecked="{Binding ShowStylePopup, RelativeSource={RelativeSource AncestorType={x:Type ComplexWriter:MainWindow}}}">
+                    <customControls:MaskedToggleButtonEnlarge x:Name="ApplyButton2" Cursor="{StaticResource overCursor}" ButtonColor="{DynamicResource TitleBrush}" Width="24" Height="24" ButtonMask="Images/paint_brush2.png" IsChecked="{Binding ShowStylePopup, RelativeSource={RelativeSource AncestorType={x:Type complexWriter:MainWindow}}}">
                         <customControls:MaskedToggleButtonEnlarge.ToolTip>
-                            <ToolTip Style="{StaticResource tipTest}" Content="Stilfenster anzeigen"/>
+                            <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.ShowStylesWindow}"/>
                         </customControls:MaskedToggleButtonEnlarge.ToolTip>
                     </customControls:MaskedToggleButtonEnlarge>
-                    <customControls:MaskedToggleButtonEnlarge  IsChecked="{Binding RelativeSource={RelativeSource AncestorType=ComplexWriter:MainWindow},Path=ShowNameList}" Width="24" Height="24" ButtonMask="Images/id.png" ButtonColor="{DynamicResource TitleBrush}">
+                    <customControls:MaskedToggleButtonEnlarge  IsChecked="{Binding RelativeSource={RelativeSource AncestorType=complexWriter:MainWindow},Path=ShowNameList}" Width="24" Height="24" ButtonMask="Images/id.png" ButtonColor="{DynamicResource TitleBrush}">
                         <ToggleButton.ToolTip>
-                            <ToolTip Style="{StaticResource tipTest}" Content="Elemente zum Einfügen anzeigen"></ToolTip>
+                                                    <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.ElementsForInsert}"></ToolTip>
                         </ToggleButton.ToolTip>
                     </customControls:MaskedToggleButtonEnlarge>
 
@@ -1030,9 +1031,9 @@
                                             <Popup.IsOpen>
                                                 <MultiBinding Converter="{StaticResource ShowStylesMultiConverter}">
                                                     <Binding RelativeSource="{RelativeSource AncestorType=Window}" Path="IsActive" Mode="OneWay"/>
-                                                    <Binding RelativeSource="{RelativeSource AncestorType=ComplexWriter:MainWindow}" Path="ShowStylePopup" Mode="OneWay"/>
-                                                    <Binding RelativeSource="{RelativeSource AncestorType=ComplexWriter:MainWindow}" Path="IsMinimized" Mode="OneWay"/>
-                                                    <Binding RelativeSource="{RelativeSource AncestorType=ComplexWriter:MainWindow}" Path="WindowState" Mode="OneWay"/>
+                                                    <Binding RelativeSource="{RelativeSource AncestorType=complexWriter:MainWindow}" Path="ShowStylePopup" Mode="OneWay"/>
+                                                    <Binding RelativeSource="{RelativeSource AncestorType=complexWriter:MainWindow}" Path="IsMinimized" Mode="OneWay"/>
+                                                    <Binding RelativeSource="{RelativeSource AncestorType=complexWriter:MainWindow}" Path="WindowState" Mode="OneWay"/>
                                                 </MultiBinding>
                                             </Popup.IsOpen>
 
@@ -1041,7 +1042,7 @@
                                 Width="320" CornerRadius="3" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center">
                             <Border.Background>
                                 <MultiBinding Converter="{StaticResource IfThenElseMultiConverter}">
-                                    <Binding RelativeSource="{RelativeSource AncestorType=ComplexWriter:MainWindow}" Path="PopupIsAttachedToMainWindow"></Binding>
+                                    <Binding RelativeSource="{RelativeSource AncestorType=complexWriter:MainWindow}" Path="PopupIsAttachedToMainWindow"></Binding>
                                     <Binding Source="{StaticResource BackColorBrush}"/>
                                     <Binding Source="{StaticResource BackColorBrushStripes}"/>
                                 </MultiBinding>
@@ -1058,22 +1059,22 @@
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
                                 <DockPanel Grid.Row="0" Grid.Column="1" >
-                                    <ToggleButton Style="{StaticResource ToggleBtnStyle2}" DockPanel.Dock="Right" IsChecked="{Binding RelativeSource={RelativeSource AncestorType=ComplexWriter:MainWindow},Path=PopupIsAttachedToMainWindow}">
+                                    <ToggleButton Style="{StaticResource ToggleBtnStyle2}" DockPanel.Dock="Right" IsChecked="{Binding RelativeSource={RelativeSource AncestorType=complexWriter:MainWindow},Path=PopupIsAttachedToMainWindow}">
                                         <ToggleButton.ToolTip>
                                             <ToolTip Style="{StaticResource tipTest}" Content="Position am Hauptfenster fixieren"></ToolTip>
                                         </ToggleButton.ToolTip>
                                     </ToggleButton>
-                                    <Thumb IsHitTestVisible="{Binding RelativeSource={RelativeSource AncestorType=ComplexWriter:MainWindow},Path=PopupIsAttachedToMainWindow,Converter={StaticResource InvertBoolConverter}}"
+                                    <Thumb IsHitTestVisible="{Binding RelativeSource={RelativeSource AncestorType=complexWriter:MainWindow},Path=PopupIsAttachedToMainWindow,Converter={StaticResource InvertBoolConverter}}"
                                            Cursor="{StaticResource moveCursor}"
                                            DockPanel.Dock="Right" Style="{StaticResource TransparentWindowResizeThumbStyle}" DragDelta="DragPopup"/>
                                 </DockPanel>
-                                <Thumb IsHitTestVisible="{Binding RelativeSource={RelativeSource AncestorType=ComplexWriter:MainWindow},Path=PopupIsAttachedToMainWindow,Converter={StaticResource InvertBoolConverter}}" 
+                                <Thumb IsHitTestVisible="{Binding RelativeSource={RelativeSource AncestorType=complexWriter:MainWindow},Path=PopupIsAttachedToMainWindow,Converter={StaticResource InvertBoolConverter}}" 
                                            Cursor="{StaticResource moveCursor}"
                                        Grid.Column="0" DragDelta="DragPopup" Grid.Row="2" Grid.ColumnSpan="3" Style="{StaticResource TransparentWindowResizeThumbStyle}" Height="10"/>
-                                <Thumb IsHitTestVisible="{Binding RelativeSource={RelativeSource AncestorType=ComplexWriter:MainWindow},Path=PopupIsAttachedToMainWindow,Converter={StaticResource InvertBoolConverter}}"
+                                <Thumb IsHitTestVisible="{Binding RelativeSource={RelativeSource AncestorType=complexWriter:MainWindow},Path=PopupIsAttachedToMainWindow,Converter={StaticResource InvertBoolConverter}}"
                                            Cursor="{StaticResource moveCursor}"
                                        Grid.Column="0" DragDelta="DragPopup" Grid.Row="0" Grid.RowSpan="3" Style="{StaticResource TransparentWindowResizeThumbStyle}" Width="10"/>
-                                <Thumb IsHitTestVisible="{Binding RelativeSource={RelativeSource AncestorType=ComplexWriter:MainWindow},Path=PopupIsAttachedToMainWindow,Converter={StaticResource InvertBoolConverter}}"
+                                <Thumb IsHitTestVisible="{Binding RelativeSource={RelativeSource AncestorType=complexWriter:MainWindow},Path=PopupIsAttachedToMainWindow,Converter={StaticResource InvertBoolConverter}}"
                                            Cursor="{StaticResource moveCursor}"
                                        Grid.Column="2" DragDelta="DragPopup" Grid.Row="0" Grid.RowSpan="3" Style="{StaticResource TransparentWindowResizeThumbStyle}" Width="10"/>
                                 <Border Background="{StaticResource BackColorBrush}" Grid.Row="1" Grid.Column="1">
@@ -1110,7 +1111,7 @@
                                                     </ItemsPanelTemplate>
                                                 </ItemsControl.ItemsPanel>
                                                 <ItemsControl.ItemTemplate>
-                                                    <DataTemplate DataType="ComplexWriter:ComplexStyle">
+                                                    <DataTemplate DataType="complexWriter:ComplexStyle">
                                                         <Grid>
                                                             <Grid.ColumnDefinitions>
                                                                 <ColumnDefinition Width="Auto" SharedSizeGroup="right" />
@@ -1237,7 +1238,7 @@
                                                                 <Border.Visibility>
                                                                     <MultiBinding Converter="{StaticResource VisibleOnsameStyleOnly}">
                                                                         <Binding/>
-                                                                        <Binding RelativeSource="{RelativeSource AncestorType=ComplexWriter:MainWindow}" Path="CurrentStyle"/>
+                                                                        <Binding RelativeSource="{RelativeSource AncestorType=complexWriter:MainWindow}" Path="CurrentStyle"/>
                                                                     </MultiBinding>
                                                                 </Border.Visibility>
                                                             </Border>
@@ -1266,13 +1267,13 @@
                                             <Popup.IsOpen>
                                                 <MultiBinding Converter="{StaticResource ShowStylesMultiConverter}">
                                                     <Binding RelativeSource="{RelativeSource AncestorType=Window}" Path="IsActive" Mode="OneWay"/>
-                                                    <Binding RelativeSource="{RelativeSource AncestorType=ComplexWriter:MainWindow}" Path="ShowImagePopup" Mode="OneWay"/>
-                                                    <Binding RelativeSource="{RelativeSource AncestorType=ComplexWriter:MainWindow}" Path="IsMinimized" Mode="OneWay"/>
-                                                    <Binding RelativeSource="{RelativeSource AncestorType=ComplexWriter:MainWindow}" Path="WindowState" Mode="OneWay"/>
+                                                    <Binding RelativeSource="{RelativeSource AncestorType=complexWriter:MainWindow}" Path="ShowImagePopup" Mode="OneWay"/>
+                                                    <Binding RelativeSource="{RelativeSource AncestorType=complexWriter:MainWindow}" Path="IsMinimized" Mode="OneWay"/>
+                                                    <Binding RelativeSource="{RelativeSource AncestorType=complexWriter:MainWindow}" Path="WindowState" Mode="OneWay"/>
                                                 </MultiBinding>
                                             </Popup.IsOpen>
                                             <Grid>
-                                                <Image x:Name="imageForPopup" RenderOptions.BitmapScalingMode="HighQuality" RenderTransformOrigin="0.5,0.5" RenderTransform="{Binding RelativeSource={RelativeSource AncestorType=ComplexWriter:MainWindow}, Path=FlipImage, Converter={StaticResource FlipConverter}}" />
+                                                <Image x:Name="imageForPopup" RenderOptions.BitmapScalingMode="HighQuality" RenderTransformOrigin="0.5,0.5" RenderTransform="{Binding RelativeSource={RelativeSource AncestorType=complexWriter:MainWindow}, Path=FlipImage, Converter={StaticResource FlipConverter}}" />
                                                 <Thumb
                                                     IsHitTestVisible="true"
                                                     Cursor="{StaticResource moveCursor}"
@@ -1311,7 +1312,7 @@
                                 </ItemsPanelTemplate>
                             </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
-                                <DataTemplate DataType="ComplexWriter:TextFile">
+                                <DataTemplate DataType="complexWriter:TextFile">
                                     <Button Cursor="{StaticResource overCursor}" Style="{StaticResource tablikeButton}" PreviewMouseUp="CloseOnMiddle" Tag="{Binding}" Click="UpdateFile" >
                                         <Button.ContextMenu>
                                             <ContextMenu Style="{StaticResource context}">
@@ -1369,7 +1370,7 @@
                                         <Button.Background>
                                             <MultiBinding Converter="{StaticResource ColorTabConverter}">
                                                 <Binding
-                                                    RelativeSource="{RelativeSource AncestorType=ComplexWriter:MainWindow}"
+                                                    RelativeSource="{RelativeSource AncestorType=complexWriter:MainWindow}"
                                                     Path="CurrentText" />
                                                 <Binding />
                                                 <Binding Path="IsExtended"/>
@@ -1397,7 +1398,7 @@
                                                 <Border.Background>
                                                     <MultiBinding Converter="{StaticResource ColorTabConverter}">
                                                         <Binding
-                                                            RelativeSource="{RelativeSource AncestorType=ComplexWriter:MainWindow}"
+                                                            RelativeSource="{RelativeSource AncestorType=complexWriter:MainWindow}"
                                                             Path="CurrentText" />
                                                         <Binding />
                                                         <Binding Path="IsExtended"/>
@@ -1418,7 +1419,7 @@
                                                 <Border.Background>
                                                     <MultiBinding Converter="{StaticResource ColorTabConverter}">
                                                         <Binding
-                                                            RelativeSource="{RelativeSource AncestorType=ComplexWriter:MainWindow}"
+                                                            RelativeSource="{RelativeSource AncestorType=complexWriter:MainWindow}"
                                                             Path="CurrentText" />
                                                         <Binding />
                                                         <Binding Path="IsExtended"/>
@@ -1445,7 +1446,7 @@
                                                 <TextBlock.Foreground>
                                                     <MultiBinding Converter="{StaticResource ColorTabConverter}">
                                                         <Binding
-                                                            RelativeSource="{RelativeSource AncestorType=ComplexWriter:MainWindow}"
+                                                            RelativeSource="{RelativeSource AncestorType=complexWriter:MainWindow}"
                                                             Path="CurrentText" />
                                                         <Binding />
                                                         <Binding Path="IsExtended"/>
@@ -1472,7 +1473,7 @@
                                                 <TextBlock.Foreground>
                                                     <MultiBinding Converter="{StaticResource ColorTabConverter}">
                                                         <Binding
-                                                            RelativeSource="{RelativeSource AncestorType=ComplexWriter:MainWindow}"
+                                                            RelativeSource="{RelativeSource AncestorType=complexWriter:MainWindow}"
                                                             Path="CurrentText" />
                                                         <Binding />
                                                         <Binding Path="IsExtended"/>
@@ -1487,7 +1488,7 @@
                                                 <customControls:MaskedImageButtonEnlarge.ButtonColor>
                                                     <MultiBinding Converter="{StaticResource ColorTabConverter}">
                                                         <Binding
-                                                            RelativeSource="{RelativeSource AncestorType=ComplexWriter:MainWindow}"
+                                                            RelativeSource="{RelativeSource AncestorType=complexWriter:MainWindow}"
                                                             Path="CurrentText" />
                                                         <Binding />
                                                         <Binding Path="IsExtended"/>
@@ -1541,7 +1542,7 @@
                                 Width="500" CornerRadius="3" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center">
                             <Border.Background>
                                 <MultiBinding Converter="{StaticResource IfThenElseMultiConverter}">
-                                    <Binding RelativeSource="{RelativeSource AncestorType=ComplexWriter:MainWindow}" Path="PopupIsAttachedToMainWindow"></Binding>
+                                    <Binding RelativeSource="{RelativeSource AncestorType=complexWriter:MainWindow}" Path="PopupIsAttachedToMainWindow"></Binding>
                                     <Binding Source="{StaticResource BackColorBrush}"/>
                                     <Binding Source="{StaticResource BackColorBrushStripes}"/>
                                 </MultiBinding>

@@ -1,12 +1,15 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Configuration;
+using System.Globalization;
 using System.Linq;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 using ComplexWriter.Properties;
+using CustomControls;
 
 namespace ComplexWriter.MessageBoxes
 {
@@ -50,9 +53,15 @@ namespace ComplexWriter.MessageBoxes
 
         private void LoadWindow(object sender, RoutedEventArgs e)
         {
-            theSymbols.ItemsSource =
-                SpecialUnicode.Unicodes.Select(
-                    elem => new UnicodeElement {Description = elem[1], UnicodeString = elem[0]}).OrderBy(elem=>elem.UnicodeString).ToList();
+            if (Thread.CurrentThread.CurrentCulture.NativeName.Equals("de-DE"))
+                theSymbols.ItemsSource =
+                 SpecialUnicode.Unicodes.Select(
+                     elem => new UnicodeElement { Description = elem[1], UnicodeString = elem[0] }).OrderBy(elem => elem.UnicodeString).ToList();
+
+            else
+                theSymbols.ItemsSource =
+                 SpecialUnicodeEnglish.Unicodes.Select(
+                     elem => new UnicodeElement { Description = elem[1], UnicodeString = elem[0] }).OrderBy(elem => elem.UnicodeString).ToList();
 
             var firstOrDefault = MainWindow.Global.FontFamilies.FirstOrDefault(
                elem => elem.Family.FamilyNames.Any(el => el.Value == "Arial Unicode MS"));

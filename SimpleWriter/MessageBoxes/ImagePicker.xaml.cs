@@ -5,6 +5,7 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 using ComplexWriter.Properties;
+using CustomControls.ImageSelectionTool;
 
 namespace ComplexWriter.MessageBoxes
 {
@@ -65,6 +66,18 @@ namespace ComplexWriter.MessageBoxes
             ForFocus.Focus();
         }
 
-       
+        public static DependencyProperty StringListProperty = DependencyProperty.Register("StringList", typeof(ImageScalerTranslations), typeof(ImagePicker),
+         new PropertyMetadata(new ImageScalerTranslations {DeleteImage = "Bild löschen",DoubleClick = "Doppelklick um ein Bild zu öffnen",Height = "Höhe",LinkButton = "Werte verlinken",Transparency = "Transparenz",Width = "Breite"}));
+
+
+
+        [System.ComponentModel.Category("ControlSpecific")]
+        public ImageScalerTranslations StringList
+        {
+            get { return (ImageScalerTranslations)GetValue(StringListProperty); }
+            set { SetValue(StringListProperty, value); }
+        }
+
+
     }
 }

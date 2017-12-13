@@ -1415,7 +1415,7 @@ namespace ComplexWriter
                 {
                     var allowSave = Settings.Default.SaveAutomatical ||
                                     QuestionBox.ShowMessage(this,
-                                        "Einige Dateien wurden geändert. Sollen diese gespeichert werden",
+                                        "Einige Dateien wurden geändert. Sollen diese gespeichert werden?",
                                         "Geänderte Dateien speichern",false) == MessageBoxResult.Yes;
                     if(allowSave)
                         if (!SaveAllFiles(observableCollection))
@@ -3579,16 +3579,18 @@ namespace ComplexWriter
             {
                 Owner = this,
                 CanEditScalingMode = false,
-                Image = CurrentText.Watermark.ImageSource,
-                ImageWidth = CurrentText.Watermark.Size.Width,
-                ImageHeight = CurrentText.Watermark.Size.Height,
-                ImageOpacity = CurrentText.Watermark.Opacity,
+                Image = CurrentText.Watermark?.ImageSource,
+                ImageWidth = CurrentText.Watermark?.Size.Width ?? 100,
+                ImageHeight = CurrentText.Watermark?.Size.Height ?? 100,
+                ImageOpacity = CurrentText.Watermark?.Opacity ?? 1d,
                 Title = "Wasserzeichen anpassen..."
             };
 
             // Process open file dialog box results
             if (dlg.ShowDialog() == true && dlg.Result != MessageBoxResult.Cancel)
             {
+                if(CurrentText.Watermark ==  null)
+                    CurrentText.Watermark = new Watermark();
                 CurrentText.Watermark.ImageSource = dlg.Image;
                 if (CurrentText.Watermark != null)
                 {
