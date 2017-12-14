@@ -338,7 +338,7 @@ Er wurde folglich nicht hinzugefügt.</value>
 Dieser Vorgang lässt sich nicht wieder rückgängig machen!</value>
   </data>
   <data name="FileIsLoadedLarge" xml:space="preserve">
-    <value>Datei {0} von {1} ("{2)}") wird geladen</value>
+    <value>Datei {0} von {1} ("{2}") wird geladen</value>
   </data>
   <data name="FileIsOpen" xml:space="preserve">
     <value>Die Datei "{0}" ist bereits offen.

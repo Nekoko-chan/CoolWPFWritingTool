@@ -338,7 +338,7 @@ The style is not added</value>
 The deletion is permanently.</value>
   </data>
   <data name="FileIsLoadedLarge" xml:space="preserve">
-    <value>File {0} of {1} ("{2)}") is loaded.</value>
+    <value>File {0} of {1} ("{2}") is loaded.</value>
   </data>
   <data name="FileIsOpen" xml:space="preserve">
     <value>The file "{0}" is alread open
@@ -458,7 +458,7 @@ If you like to use it, copy it to the "Fonts" folder</value>
     <value>From current File</value>
   </data>
   <data name="LinkValues" xml:space="preserve">
-    <value>Link values/value>
+    <value>Link values</value>
     <comment>Image Dialog</comment>
   </data>
   <data name="List" xml:space="preserve">
@@ -783,7 +783,7 @@ It is impossible to undone the operation.</value>
     <value>Underlined text</value>
   </data>
   <data name="UnderlineOnOf" xml:space="preserve">
-    <value>>Underlined  on / off</value>
+    <value>&gt;Underlined  on / off</value>
   </data>
   <data name="Unknown" xml:space="preserve">
     <value>Unknown.etf</value>
