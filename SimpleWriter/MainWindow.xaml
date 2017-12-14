@@ -342,7 +342,7 @@
 
                 <RichTextBox Grid.Column="1" Margin="12,0,-12,5" Grid.Row="1" x:Name="Box" 
                                  ScrollViewer.ScrollChanged="ScrollChanged" SnapsToDevicePixels="False"
-                              xml:lang="de-DE"
+                                 xml:lang="en"
                                  SpellCheck.IsEnabled="{Binding RelativeSource={RelativeSource AncestorType=complexWriter:MainWindow},Path=CurrentText.SpellCheckEnabled}"
                                  IsInactiveSelectionHighlightEnabled="True" AutoWordSelection="False"
                                  Style="{StaticResource textBoxStyle3}" TextChanged="Textchanged"
@@ -383,10 +383,8 @@
                                                  Color="{x:Static SystemColors.HighlightColor}" />-->
                             <Style TargetType="{x:Type Paragraph}">
                                 <Setter Property="Margin" Value="0"></Setter>
-                                <Setter Property="Language" Value="de-DE" />
                             </Style>
                             <Style TargetType="{x:Type List}">
-                                <Setter Property="Language" Value="de-DE" />
                                 <Setter Property="Margin" Value="0" />
                             </Style>
                             <Style TargetType="{x:Type FlowDocument}">
@@ -946,6 +944,19 @@
                                                 <DockPanel>
                                                     <Button DockPanel.Dock="Top" Content="Automatisch"  Style="{StaticResource FittingButton}" Click="SetAutomatical" Padding="10,5" />
                                                     <xctk:DoubleUpDown DockPanel.Dock="Top" Minimum="1" ValueChanged="UpdateIdent" x:Name="LineHightDouble" Style="{StaticResource doubleTest}" PreviewKeyUp="ClosePop"/>
+                                                </DockPanel>
+                                            </Border>
+                                        </Popup>
+                                        <customControls:MaskedImageButtonEnlarge IsEnabled="true" x:Name="languageBtn"  Style="{StaticResource rimageButton}" ButtonMask="Images/spellcheck.png" Click="ChangeLanguage">
+                                            <customControls:MaskedImageButtonEnlarge.ToolTip>
+                                                <ToolTip Style="{StaticResource tipTest}" Content="Sprache anpasssen..."/>
+                                            </customControls:MaskedImageButtonEnlarge.ToolTip>
+                                        </customControls:MaskedImageButtonEnlarge>
+                                        <Popup PlacementTarget="{Binding ElementName=lineHightBtn}" Placement="Right" VerticalOffset="30" Name="languagePopup" MaxHeight="600" MaxWidth="600" StaysOpen="False" Closed="UpdateBlocks" Opened="ShowLanguage">
+                                            <Border Background="{StaticResource BackColorBrush}" BorderBrush="{DynamicResource TitleBrush}" BorderThickness="1">
+                                                <DockPanel>
+                                                    <ToggleButton DockPanel.Dock="Top" x:Name="enBtn"  Content="English (en)"  Style="{StaticResource FittingToggleButton}" Tag="en-US"  Click="SetLanguage" Padding="10,5" />
+                                                    <ToggleButton DockPanel.Dock="Top" x:Name="deBtn" Content="Deutsch (de)"  Style="{StaticResource FittingToggleButton}" Tag="de-DE"  Click="SetLanguage" Padding="10,5" />
                                                 </DockPanel>
                                             </Border>
                                         </Popup>

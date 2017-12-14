@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using ComplexWriter.Properties;
 using ExtensionObjects;
 using Xceed.Wpf.Toolkit;
 using RichTextBox = System.Windows.Controls.RichTextBox;
@@ -66,7 +67,7 @@ namespace ComplexWriter.MessageBoxes
 
         private Table BuildCharacterTypeTable(double width, double width2, IEnumerable<Character> characters)
         {    
-            var title = new EnumDescriptionTypeConverter(typeof(NameType)).ConvertTo(null,CultureInfo.CurrentCulture,characters.First().Type,typeof(string));
+            var title = new EnumDescriptionTypeConverter(typeof(NameType)).ConvertTo(null,new CultureInfo(Settings.Default.Language),characters.First().Type,typeof(string));
 
             Document.Blocks.Add(
                 new Paragraph(new Run((string)title)
@@ -407,7 +408,7 @@ namespace ComplexWriter.MessageBoxes
         {
             var formattedText = new FormattedText(
                 candidate,
-                CultureInfo.CurrentUICulture,
+                new CultureInfo(Settings.Default.Language),
                 FlowDirection.LeftToRight,
                 new Typeface(family,FontStyles.Normal, FontWeights.Normal, FontStretches.SemiCondensed),
                 fontsize,

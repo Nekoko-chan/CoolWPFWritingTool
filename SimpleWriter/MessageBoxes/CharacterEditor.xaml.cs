@@ -283,7 +283,7 @@ namespace ComplexWriter.MessageBoxes
             };
 
 
-            addToDictionary.Click += (o, rea) => AddToDictionary(Box.CaretIndex, isName ? MainWindow.Global.NameDict : MainWindow.Global.CustomDict);
+            addToDictionary.Click += (o, rea) => AddToDictionary(Box.CaretIndex, isName ? MainWindow.Global.NameDict :MainWindow.Global.CurrentTextIsEnglish()? MainWindow.Global.CustomDictEnglish: MainWindow.Global.CustomDict);
             return addToDictionary;
         }
 

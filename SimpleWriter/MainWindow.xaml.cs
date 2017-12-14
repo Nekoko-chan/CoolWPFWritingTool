@@ -17,24 +17,36 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
+using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Effects;
 using System.Windows.Media.Imaging;
+using System.Xaml;
 using ComplexWriter.Commands;
 using ComplexWriter.MessageBoxes;
 using ComplexWriter.Properties;
 using CustomControls;
 using ExtensionObjects;
 using global::ComplexWriter.global;
-using Microsoft.Win32;
 using MessageBox = ComplexWriter.MessageBoxes.MessageBox;
 using ComplexWriter.CharacterNames;
 using SplashDemo;
 using Xceed.Wpf.Toolkit;
+using Application = System.Windows.Application;
+using Button = System.Windows.Controls.Button;
+using Clipboard = System.Windows.Clipboard;
+using Control = System.Windows.Controls.Control;
+using Cursor = System.Windows.Input.Cursor;
+using KeyEventArgs = System.Windows.Input.KeyEventArgs;
+using MenuItem = System.Windows.Controls.MenuItem;
+using OpenFileDialog = Microsoft.Win32.OpenFileDialog;
 using RichTextBox = System.Windows.Controls.RichTextBox;
+using SaveFileDialog = Microsoft.Win32.SaveFileDialog;
 using Timer = System.Timers.Timer;
+using ToolTip = System.Windows.Controls.ToolTip;
 using WindowStartupLocation = System.Windows.WindowStartupLocation;
 using WindowState = System.Windows.WindowState;
 
@@ -45,6 +57,7 @@ namespace ComplexWriter
     /// </summary>
     public partial class MainWindow
     {
+        
         public const string ComplexStyleCaption = "Global";
 
         private const string Filtername =
@@ -146,16 +159,25 @@ namespace ComplexWriter
 
         public MainWindow()
         {
+            var currentUiCulture = new CultureInfo(Settings.Default.Language);
+            Thread.CurrentThread.CurrentCulture = currentUiCulture;
+            Thread.CurrentThread.CurrentUICulture = currentUiCulture;
+
+
             InitializeComponent();
+            Box.Language = XmlLanguage.GetLanguage(currentUiCulture.IetfLanguageTag);
+
             InitTheDesigner();
+            
         }
 
         private void InitTheDesigner()
         {
             OpeningQuotes.ItemsSource = MessageBoxes.SpecialUnicode.Quotations;
-            AddToSplash("Komponenten initialisiert");
+            AddToSplash(Properties.Resources.InitializedComponents);
             var path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
             CustomDict = Path.Combine(path, "Microsoft\\Spelling\\de-DE\\CoolWriter.dic");
+            CustomDictEnglish = Path.Combine(path, "Microsoft\\Spelling\\en-US\\CoolWriter.dic");
             NameDict = System.IO.Path.Combine(path, "Microsoft\\Spelling\\de-DE\\CoolWriterNames.dic");
             CanAddMessage = true;
             CheckForUpdate();
@@ -172,7 +194,7 @@ namespace ComplexWriter
             ErrorMessages = new ObservableCollection<ErrorMessageItem>();
             CountDown.Elapsed += CountDown_Elapsed;
             ApplyableStyles = null;
-            AddToSplash("Variablen gesetzt");
+            AddToSplash(Properties.Resources.SetVariables);
             UiServices.InitCursor((Cursor) FindResource("waitCursor"));
 
             FontFamilies = Utilities.PossibleFonts;
@@ -181,12 +203,13 @@ namespace ComplexWriter
             var firstOrDefault = FontFamilies.FirstOrDefault(
                 f => f.Family.FamilyNames.Any(fo => fo.Value.Equals(Settings.Default.CurrentSymbolFont)));
             CurrentFontFamily = firstOrDefault;
-            AddToSplash("Elemente geladen");
+            AddToSplash(Properties.Resources.LoadElements);
 
             InitFromSettings();
-            AddToSplash("Einstellungen geladen");
+            AddToSplash(Properties.Resources.LoadSettings);
+            
             InitRichtextBox();
-            AddToSplash("Editor eingerichtet");
+            AddToSplash(Properties.Resources.InitEditor);
             LoadOpenFiles();
             SetAutoSaveTimer();
 
@@ -378,6 +401,7 @@ namespace ComplexWriter
             set { SetValue(CurrentFontFamilyProperty, value); }
         }
 
+        public string CustomDictEnglish { get; set; }
         public string CustomDict { get; set; }
 
         public ObservableCollection<FontElement> FontFamilies
@@ -490,44 +514,6 @@ namespace ComplexWriter
             set { SetValue(ShowSaveFileProperty, value); }
         }
 
-
-        private void MainWindow_Loaded(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                FontFamilies = Utilities.PossibleFonts;
-
-                CurrentSymbol = Settings.Default.Symbol;
-                var firstOrDefault = FontFamilies.FirstOrDefault(
-                    f => f.Family.FamilyNames.Any(fo => fo.Value.Equals(Settings.Default.CurrentSymbolFont)));
-                CurrentFontFamily = firstOrDefault;
-                AddToSplash("Elemente geladen");
-
-                InitFromSettings();
-                AddToSplash("Einstellungen geladen");
-                InitRichtextBox();
-                AddToSplash("Editor eingerichtet");
-                LoadOpenFiles();
-                SetAutoSaveTimer();
-
-                if (CurrentText != null)
-                    CurrentText.IsChanged = false;
-
-                FileList.ItemsSource = TextFiles;
-                TextFiles.CollectionChanged += TextFiles_CollectionChanged;
-
-                if (string.IsNullOrEmpty(_isOpendWithWindow))
-                    ShowTextfileInView(TextFiles.LastOrDefault());
-
-                InitDefaultFolder();
-                Splasher.CloseSplash();
-            }
-            catch (Exception exception)
-            {
-                AddException(exception);
-            }
-        }
-
         private void AddToSplash(string str)
         {
             MessageListener.Instance.ReceiveMessage(str);
@@ -549,7 +535,6 @@ namespace ComplexWriter
         private void InitRichtextBox()
         {
             Box.AddHandler(ContextMenuOpeningEvent, new ContextMenuEventHandler(RichTextBox_ContextMenuOpening), true);
-            AddCustomDictionary();
             if (Settings.Default.Styles == null)
                 Settings.Default.Styles = new ComplexStyles();
             ApplyableStyles = Settings.Default.Styles;
@@ -685,7 +670,7 @@ namespace ComplexWriter
             var counter = 1;
             foreach (var open in enumerable)
             {
-                AddToSplash($"Datei {counter} von {max} (\"{Path.GetFileName(open)}\") wird geladen");
+                AddToSplash(string.Format(Properties.Resources.FileIsLoadedLarge,counter,max,Path.GetFileName(open)));
                 counter++;
                 TextFile file;
                 var loaded = LoadFile(open, out file);
@@ -717,14 +702,6 @@ namespace ComplexWriter
             MakeTheFile();
         }
 
-        private void file_SaveAsAndReloadRequested(object sender, EventArgs e)
-        {
-            var textfile = sender as TextFile;
-            if (textfile == null) return;
-
-            SaveFileAs(textfile);
-            //ReloadFile(textfile);
-        }
 
 
         public void LoadAndShowFile(string filename)
@@ -803,6 +780,8 @@ namespace ComplexWriter
                 }
                 if (CurrentText.DefaultStyle != null)
                     Box.FontFamily = CurrentText.DefaultStyle.FontFamily;
+            //InputLanguageManager.SetInputLanguage(Box, CultureInfo.CreateSpecificCulture(CurrentText.Language));
+
             }
             catch
             {
@@ -813,16 +792,6 @@ namespace ComplexWriter
             }
         }
 
-        private void AddCustomDictionary()
-        {
-            //string path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            ////var path = Path.GetDirectoryName(ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.PerUserRoamingAndLocal).FilePath);
-            ////path = path.Substring(0, path.LastIndexOf("\\"));
-            //path = Path.Combine(path, "CustomDictionary.lex");
-            //CustomDict = path;
-            //if (File.Exists(CustomDict))
-            //    Box.SpellCheck.CustomDictionaries.Add(new Uri(CustomDict));
-        }
 
         private void RichTextBox_ContextMenuOpening(object sender, ContextMenuEventArgs e)
         {
@@ -831,7 +800,7 @@ namespace ComplexWriter
             var other = GetOtherCommands();
             ContextMenu.Items.Clear();
 
-            ContextMenu.Items.Add(BuildSeperator("Standard-Befehle"));
+            ContextMenu.Items.Add(BuildSeperator(Properties.Resources.StandardCommands));
 
             foreach (var menuItem in standard)
             {
@@ -839,7 +808,7 @@ namespace ComplexWriter
             }
             if (spell.Any())
             {
-                ContextMenu.Items.Add(BuildSeperator("Textkorrektur"));
+                ContextMenu.Items.Add(BuildSeperator(Properties.Resources.CorrectText));
                 foreach (var menuItem in spell)
                 {
                     ContextMenu.Items.Add(menuItem);
@@ -854,28 +823,28 @@ namespace ComplexWriter
                 var names4 = GetNameCommands(true, true);
                 if (names.Any())
                 {
-                    ContextMenu.Items.Add(BuildSeperator("Namen"));
-                    var menu = new MenuItem { Header = "Namen", Icon = BuildIcon("IDIcon"), Style = Global.FindResource("menuItem") as Style };
+                    ContextMenu.Items.Add(BuildSeperator(Properties.Resources.Names));
+                    var menu = new MenuItem { Header = Properties.Resources.Names, Icon = BuildIcon("IDIcon"), Style = Global.FindResource("menuItem") as Style };
                     foreach (var menuItem in names)
                     {
                         menu.Items.Add(menuItem);
                     }
                     ContextMenu.Items.Add(menu);
                
-                    var menu2 = new MenuItem { Header = "Namen mit Leerzeichen am Ende", Icon = BuildIcon("IDIcon"),Style = Global.FindResource("menuItem") as Style };
+                    var menu2 = new MenuItem { Header = Properties.Resources.NameWithSpaceEnd, Icon = BuildIcon("IDIcon"),Style = Global.FindResource("menuItem") as Style };
                     foreach (var menuItem in names2)
                     {
                         menu2.Items.Add(menuItem);
                     }
                     ContextMenu.Items.Add(menu2);
-                    var menu3 = new MenuItem { Header = "Namen mit Leerzeichen am Anfang", Icon = BuildIcon("IDIcon"), Style = MainWindow.Global.FindResource("menuItem") as Style };
+                    var menu3 = new MenuItem { Header = Properties.Resources.NameWithSpaceStart, Icon = BuildIcon("IDIcon"), Style = MainWindow.Global.FindResource("menuItem") as Style };
                     foreach (var menuItem in names3)
                     {
                         menu3.Items.Add(menuItem);
                     }
                     ContextMenu.Items.Add(menu3);
 
-                    var menu4 = new MenuItem { Header = "Namen mit Leerzeichen an beiden Enden", Icon = BuildIcon("IDIcon"), Style = MainWindow.Global.FindResource("menuItem") as Style };
+                    var menu4 = new MenuItem { Header = Properties.Resources.NameWithSpaces, Icon = BuildIcon("IDIcon"), Style = MainWindow.Global.FindResource("menuItem") as Style };
                     foreach (var menuItem in names4)
                     {
                         menu4.Items.Add(menuItem);
@@ -884,7 +853,7 @@ namespace ComplexWriter
                 }
             }
 
-            ContextMenu.Items.Add(BuildSeperator("Wichtige Funktionen"));
+            ContextMenu.Items.Add(BuildSeperator(Properties.Resources.ImportantFunctions));
             foreach (var menuItem in other)
             {
                 ContextMenu.Items.Add(menuItem);
@@ -931,53 +900,53 @@ namespace ComplexWriter
         {
             var standardCommands = new List<Control>();
 
-            var item = BuildItem(ChangeFontWithDialog, "Fonts.png", "Schriftart anpassen...","Ctrl + T");
+            var item = BuildItem(ChangeFontWithDialog, "Fonts.png", Properties.Resources.UpdateFont,"Ctrl + T");
             item.IsEnabled = !CurrentText.ReadOnly;
             standardCommands.Add(item);
-            item = item = BuildItem(EditingCommands.ToggleItalic, "Italic.png", "Schräg stellen an/aus" );
+            item = item = BuildItem(EditingCommands.ToggleItalic, "Italic.png", Properties.Resources.ItalicOnOf);
             item.IsEnabled = !CurrentText.ReadOnly;
             standardCommands.Add(item);
             item = BuildItem(EditingCommands.ToggleBold, "Bold.png", "Fett an/aus");
             item.IsEnabled = !CurrentText.ReadOnly;
             standardCommands.Add(item);
 
-            item = BuildItem(EditingCommands.ToggleUnderline, "Underline.png", "Unterstrichen an/aus");
+            item = BuildItem(EditingCommands.ToggleUnderline, "Underline.png", Properties.Resources.UnderlineOnOf);
             item.IsEnabled = !CurrentText.ReadOnly;
             standardCommands.Add(item);
 
-            item = BuildItem(ChangesTextColor, "Textcolor.png", "Vordergrundfarbe ändern");
+            item = BuildItem(ChangesTextColor, "Textcolor.png", Properties.Resources.ChangeForeColor);
             item.IsEnabled = !CurrentText.ReadOnly;
             standardCommands.Add(item);
 
-            item = BuildItem(ChangesTextBackgroundColor, "bucket.png", "Hintergrundfarbe ändern");
+            item = BuildItem(ChangesTextBackgroundColor, "bucket.png", Properties.Resources.ChangeBackColor);
             item.IsEnabled = !CurrentText.ReadOnly;
             standardCommands.Add(item);
 
-            item = BuildItem(InsertSpecialCharacter, "symbol.png", "Sonderzeichen einfügen");
+            item = BuildItem(InsertSpecialCharacter, "symbol.png", Properties.Resources.InsertUnicode);
             item.IsEnabled = !CurrentText.ReadOnly;
             standardCommands.Add(item);
 
-            item = BuildItem(InsertAnImage, "1291282236_image.png", "Bild einfügen");
+            item = BuildItem(InsertAnImage, "1291282236_image.png", Properties.Resources.InsertImage);
             item.IsEnabled = !CurrentText.ReadOnly;
             standardCommands.Add(item);
 
-            item = BuildItem(UpdateSpellCheck, "spellcheck.png", "Rechtschreibprüfung an/aus");
+            item = BuildItem(UpdateSpellCheck, "spellcheck.png", Properties.Resources.SpellCheckOnOf);
             item.IsCheckable = true;
             item.IsChecked = !CurrentText.SpellCheckEnabled;
             standardCommands.Add(item);
 
             if (CanInsertPageBreakOnCaretPosition())
             {
-                item = BuildItem(AddSectionWithPageBreak, "page.png", "Neuen Bereich mit Seitenumbruch erstellen");
+                item = BuildItem(AddSectionWithPageBreak, "page.png", Properties.Resources.PageBreak);
                 item.IsEnabled = !CurrentText.ReadOnly;
                 standardCommands.Add(item);
             }
 
-            item = BuildItem(delegate { AddStyleTo(CurrentText.Styles); }, null, "Auswahlstil hinzunehmen");
+            item = BuildItem(delegate { AddStyleTo(CurrentText.Styles); }, null, Properties.Resources.AddSelectedStyle);
 
             standardCommands.Add(item);
 
-            item = BuildItem(delegate { AddSelectedNameToDocument(); }, null, "Als Name hinzufügen", "Ctrl + N");
+            item = BuildItem(delegate { AddSelectedNameToDocument(); }, null, Properties.Resources.AddAsName, "Ctrl + N");
 
             standardCommands.Add(item);
 
@@ -989,7 +958,7 @@ namespace ComplexWriter
             var name = Box.Selection.Text;
             if (CurrentText.Characters.Any(eleme => eleme.Name.Equals(name)))
             {
-                MessageBoxes.MessageBox.ShowMessage(this, string.Format("Der Name \"{0}\" ist bereits vorhanden und wird daher nicht noch einmal hinzugenommen.", name), "Doppelter Eintrag");
+                MessageBoxes.MessageBox.ShowMessage(this, string.Format(Properties.Resources.NameAlreadyExists, name), Properties.Resources.DoubleEntry);
                 return;
             }
 
@@ -1158,7 +1127,7 @@ namespace ComplexWriter
             {
                 spellingSuggestions.AddRange(suggestions.Select(str => new MenuItem
                 {
-                    Header = str, Icon = BuildIcon("DictionaryEntry"), Command = EditingCommands.CorrectSpellingError, CommandParameter = str, ToolTip = BuildToolTip(string.Format("\u201C{0}\u201D durch \u201C{1}\u201D ersetzen.", text, str)), Style = FindResource("menuItem") as Style, CommandTarget = Box
+                    Header = str, Icon = BuildIcon("DictionaryEntry"), Command = EditingCommands.CorrectSpellingError, CommandParameter = str, ToolTip = BuildToolTip(string.Format(Properties.Resources.ReplaceText, text, str)), Style = FindResource("menuItem") as Style, CommandTarget = Box
                 }));
             }
             else
@@ -1170,7 +1139,7 @@ namespace ComplexWriter
 
                 possibles.Items.AddRange(suggestions.Select(str => new MenuItem
                 {
-                    Header = str, Icon = BuildIcon("DictionaryEntry"), ToolTip = BuildToolTip(string.Format("\u201C{0}\u201D durch \u201C{1}\u201D ersetzen.", text, str)), Command = EditingCommands.CorrectSpellingError, CommandParameter = str, Style = FindResource("menuItem") as Style, CommandTarget = Box
+                    Header = str, Icon = BuildIcon("DictionaryEntry"), ToolTip = BuildToolTip(string.Format(Properties.Resources.ReplaceText, text, str)), Command = EditingCommands.CorrectSpellingError, CommandParameter = str, Style = FindResource("menuItem") as Style, CommandTarget = Box
                 }));
                 spellingSuggestions.Add(possibles);
                 possibles.Items.Add(BuildSeperator(string.Empty));
@@ -1195,7 +1164,7 @@ namespace ComplexWriter
 
             var ignoreAll = new MenuItem
             {
-                Header = "Alle ignorieren", Icon = BuildIcon("IgnoreEntry"), Command = EditingCommands.IgnoreSpellingError, CommandTarget = Box, ToolTip = BuildToolTip("Wort bis zum Schließen des Programmes ignorieren.\nWenn das Wort auch darüber hinaus ignoriert werden soll, muss es zum Wörterbuch hinzugefügt werden!"), Style = FindResource("menuItem") as Style
+                Header = Properties.Resources.IgnorenAll, Icon = BuildIcon("IgnoreEntry"), Command = EditingCommands.IgnoreSpellingError, CommandTarget = Box, ToolTip = BuildToolTip(Properties.Resources.IgnoreAllHint), Style = FindResource("menuItem") as Style
             };
 
             spellingSuggestions.Add(ignoreAll);
@@ -1245,7 +1214,7 @@ namespace ComplexWriter
             };
             Grid.SetRow(bord, 1);
 
-            var title = new TextBlock {Text = "Folgende Daten würde eingefügt werden:"};
+            var title = new TextBlock {Text = Properties.Resources.FileWouldBeInserted};
 
             grid.Children.Add(rich);
             grid.Children.Add(bord);
@@ -1261,10 +1230,10 @@ namespace ComplexWriter
 
         private MenuItem BuildDictionaryViewer(bool isName)
         {
-            var test = isName ? "der Namensliste" : "des Wörterbuchs";
+            var test = isName ? Properties.Resources.OpenNameDictionaryWindow : Properties.Resources.OpenDictionary;
             var addToDictionary = new MenuItem
             {
-                Header = isName ? "Namesliste öffnen" : "Wörterbucheditor öffnen", Icon = BuildIcon("AddDictionary"), ToolTip = BuildToolTip($"Öffnet einen Dialog zum Bearbeiten {test}"), Style = FindResource("menuItem") as Style
+                Header = isName ? Properties.Resources.OpenNameDictionary : Properties.Resources.OpenDictionary, Icon = BuildIcon("AddDictionary"), ToolTip = BuildToolTip(test), Style = FindResource("menuItem") as Style
             };
             if (isName)
                 addToDictionary.Click += EditNameDicionary;
@@ -1276,24 +1245,30 @@ namespace ComplexWriter
 
         private MenuItem BuildAddToDictionary(bool isName)
         {
-            var text = isName ? "zur Namensliste" : "zum Wörterbuch";
+            var text = isName ? Properties.Resources.EntryIsAddedToNames : Properties.Resources.EntryIsAddedToDictionary;
             var addToDictionary = new MenuItem
             {
-                Header = GetHeader(Box.CaretPosition, isName), Icon = BuildIcon("bookOpenEdit.png"), Command = EditingCommands.IgnoreSpellingError, ToolTip = BuildToolTip($"Der Eintrag wird {text} hinzugefügt"), CommandTarget = Box, Style = FindResource("menuItem") as Style
+                Header = GetHeader(Box.CaretPosition, isName), Icon = BuildIcon("bookOpenEdit.png"), Command = EditingCommands.IgnoreSpellingError, ToolTip = BuildToolTip(text), CommandTarget = Box, Style = FindResource("menuItem") as Style
             };
 
-            addToDictionary.Click += (o, rea) => AddToDictionary(Box.CaretPosition, isName ? NameDict : CustomDict);
+            addToDictionary.Click += (o, rea) => AddToDictionary(Box.CaretPosition, isName ? NameDict : CurrentTextIsEnglish()? CustomDictEnglish: CustomDict);
             return addToDictionary;
         }
+
+        internal bool CurrentTextIsEnglish()
+        {
+            return CurrentText.Language.StartsWith("en");
+        }
+
 
         private object GetHeader(TextPointer pointer, bool name)
         {
             var entry = Box.GetSpellingErrorRange(pointer);
             if (entry == null)
-                return "Zum Wörterbuch hinzufügen";
+                return Properties.Resources.EntryIsAddedToDictionary;
 
-            var text = name ? "zur Namensliste" : "zum Wörterbuch";
-            return $"\"{entry.Text}\" {text} hinzufügen";
+            var text = name ? Properties.Resources.SpecialEntryAddedToNames : Properties.Resources.SpecialEntryAddedToDictionary;
+            return string.Format(text, entry.Text);
         }
 
         private Separator BuildSeperator(string text)
@@ -1382,7 +1357,7 @@ namespace ComplexWriter
 
                 item = new MenuItem
                 {
-                    Command = OwnPasteCommand.Paste, Icon = BuildIcon("PasteNonStyleIcon"), CommandParameter = Box, IsEnabled = !CurrentText.ReadOnly, Style = FindResource("menuItem") as Style, ToolTip = BuildToolTip(string.Format("Folgender Text würde eingefügt werden:\n{0}", Clipboard.GetText()))
+                    Command = OwnPasteCommand.Paste, Icon = BuildIcon("PasteNonStyleIcon"), CommandParameter = Box, IsEnabled = !CurrentText.ReadOnly, Style = FindResource("menuItem") as Style, ToolTip = BuildToolTip(string.Format(Properties.Resources.PastePreview, Clipboard.GetText()))
                 };
                 standardCommands.Add(item);
             }
@@ -1415,12 +1390,12 @@ namespace ComplexWriter
                 {
                     var allowSave = Settings.Default.SaveAutomatical ||
                                     QuestionBox.ShowMessage(this,
-                                        "Einige Dateien wurden geändert. Sollen diese gespeichert werden?",
-                                        "Geänderte Dateien speichern",false) == MessageBoxResult.Yes;
+                                        Properties.Resources.SomeFilesChanged,
+                                        Properties.Resources.SaveChanged, false) == MessageBoxResult.Yes;
                     if(allowSave)
                         if (!SaveAllFiles(observableCollection))
                         {
-                            if (QuestionBox.ShowMessage(this, "Es liegen Fehler beim Speichern von Dateien vor. Das hat zur Folge, das einige Dateien ungespeicherte Änderungen haben.\n Soll trotzdem beendet werden?", "Trotzdem schließen?",false) == MessageBoxResult.No)
+                            if (QuestionBox.ShowMessage(this, Properties.Resources.SaveError, Properties.Resources.CloseAnyway, false) == MessageBoxResult.No)
                                 return;
                         }
                 }
@@ -1539,13 +1514,7 @@ namespace ComplexWriter
         private void LoadFileWithDialog()
         {
             var fname =GetFileNameWithOwnDialog();
-            //var dlg = new OpenFileDialog
-            //{
-            //    FileName = "Unbekannt.etf", DefaultExt = "etf", InitialDirectory = Settings.Default.DefaultFolder, Filter = Filtername, CheckFileExists = true, Multiselect = true
-            //};
-            //if (dlg.ShowDialog() != true)
-            //    return;
-
+           
             if (!fname.Any()) return;
 
             SetBusy();
@@ -1610,7 +1579,7 @@ namespace ComplexWriter
 
             if (TextFiles.Any(elem => elem.Filepath != null && elem.Filepath.Equals(fileName)))
             {
-                MessageBox.ShowMessage(this, string.Format("Die Datei \"{0}\" ist bereits offen.\n\nDamit Sie die Daten nicht versehentlich überschreiben, wurde die Datei kein 2. Mal geöffnet.", fileName), "Dopplung", MessageBoxImage.Warning);
+                MessageBox.ShowMessage(this, string.Format(Properties.Resources.FileIsOpen, fileName), Properties.Resources.Doubleing, MessageBoxImage.Warning);
                 return false;
             }
 
@@ -1620,16 +1589,17 @@ namespace ComplexWriter
                 if (!CheckPassword(file))
                     return false;
 
-                AddInformation(string.Format("Die Datei \"{0}\" wurde geöffnet", Path.GetFileName(fileName)), ErrorMessageItem.DIVERSE);
+                AddInformation(string.Format(Properties.Resources.FileIsOpened, Path.GetFileName(fileName)), ErrorMessageItem.DIVERSE);
 
-                var updated = file.CheckAndChangeFonts(); //.Document.CheckAndChangeFonts(Utilities.PossibleFonts);
+                file.Document.UpdateLanguage(file.Language);
+                var updated = file.CheckAndChangeFonts();
 
                 if (updated)
-                    AddInformation(string.Format("Die Schriften der Datei \"{0}\" wurden angepasst.", Path.GetFileName(fileName)), ErrorMessageItem.DIVERSE);
+                    AddInformation(string.Format(Properties.Resources.FontIsUpdated, Path.GetFileName(fileName)), ErrorMessageItem.DIVERSE);
             }
             catch (Exception exception)
             {
-                AddException(exception, string.Format("Fehler beim Laden von{0}", Path.GetFileName(fileName)));
+                AddException(exception, string.Format(Properties.Resources.LoadError, Path.GetFileName(fileName)));
                 return false;
             }
 
@@ -1753,7 +1723,7 @@ namespace ComplexWriter
         {
             //AnimateSaveProvider();
             var fileName = CheckRightSaveFormat(currentText, automatic, filename);
-            AddMessage(automatic ? string.Format("Die Datei \"{0}\" wurde automatisch gespeichert", fileName) : string.Format("Die Datei \"{0}\" wurde gespeichert", fileName), ErrorMessageItem.SAVE);
+            AddMessage(automatic ? string.Format(Properties.Resources.AutomaticSavedMessage, fileName) : string.Format(Properties.Resources.FileISSaved, fileName), ErrorMessageItem.SAVE);
         }
 
         private bool CheckAndRestart(string filename, TextFile currentText, bool saveAs, out bool reload)
@@ -1790,7 +1760,7 @@ namespace ComplexWriter
 
             if (!automatic && filename.EndsWith(".rtxt") && currentText.Watermark != null)
             {
-                MessageBox.ShowMessage(this, "Die Datei enthält ein Wasserzeichen. Dieses wird im aktuellen Format nicht mitgespeichert.\nWenn sie das Wasserzeichen weiterhin haben wollen, speichern sie es als *.etf-Datei.", "Speichern", MessageBoxImage.Information);
+                MessageBox.ShowMessage(this, Properties.Resources.WatermarkOnlyWithEtf, Properties.Resources.Saving, MessageBoxImage.Information);
             }
             return fileName;
         }
@@ -1836,7 +1806,7 @@ namespace ComplexWriter
 
                 if (filename.EndsWith(".rtxt") && currentText.Watermark != null)
                 {
-                    var res = QuestionBox.ShowMessage(this, "Die zu speichernde Datei enthält ein Wasserzeichen. Dieses würde in dem Format nicht gespeichert werden.\n\nWollen sie es trotzdem in dem Format speichern?", "Speichern?");
+                    var res = QuestionBox.ShowMessage(this, Properties.Resources.WatermarkNotSupportedMessage, Properties.Resources.SaveQuestion);
                     switch (res)
                     {
                         case MessageBoxResult.No:
@@ -1867,7 +1837,7 @@ namespace ComplexWriter
 
                 AnimateSaveProvider();
                 var fileName = Path.GetFileName(filename);
-                AddMessage(string.Format("Die Datei \"{0}\" wurde gespeichert", fileName), ErrorMessageItem.SAVE);
+                AddMessage(string.Format(Properties.Resources.FileISSaved, fileName), ErrorMessageItem.SAVE);
 
                 if (reload)
                 {
@@ -1964,6 +1934,37 @@ namespace ComplexWriter
             {
                 SearchAndReplaceControl.FlowDocument = Box.Document;
             }
+            UpdateCurrentLanguage(e);
+        }
+
+        private void UpdateCurrentLanguage(TextChangedEventArgs e)
+        {
+            var changeList = e.Changes.ToList();
+            if (changeList.Count > 0)
+            {
+                foreach (var change in changeList)
+                {
+                    TextPointer start = null;
+                    TextPointer end = null;
+                    if (change.AddedLength > 0)
+                    {
+                        start = Box.Document.ContentStart.GetPositionAtOffset(change.Offset);
+                        end = Box.Document.ContentStart.GetPositionAtOffset(change.Offset + change.AddedLength);
+                    }
+                    else
+                    {
+                        int startOffset = Math.Max(change.Offset - change.RemovedLength, 0);
+                        start = Box.Document.ContentStart.GetPositionAtOffset(startOffset);
+                        end = Box.Document.ContentStart.GetPositionAtOffset(change.Offset);
+                    }
+
+                    if (start != null && end != null)
+                    {
+                        var range = new TextRange(start, end);
+                        range.ApplyPropertyValue(FrameworkElement.LanguageProperty, CurrentText.Document.Language);
+                    }
+                }
+            }
         }
 
         private bool AskForSave(TextFile file = null)
@@ -1976,7 +1977,7 @@ namespace ComplexWriter
             var textFiles = file == null ? TextFiles.Where(elem => elem.IsChanged) : new List<TextFile>(new[] {file});
             foreach (var textFile in textFiles)
             {
-                var result = QuestionBox.ShowMessage(this, string.Format("Es liegen ungespeicherte Änderungen der Datei \"{0}\" vor!\n\n Sollen diese gespeichert werden?", textFile.Display), "Speichern");
+                var result = QuestionBox.ShowMessage(this, string.Format(Properties.Resources.ChangesInFile, textFile.Display), Properties.Resources.SaveQuestion);
 
                 if (result == MessageBoxResult.Yes)
                 {
@@ -2065,8 +2066,8 @@ namespace ComplexWriter
                     else
                     {
                         MessageBox.ShowMessage(this,
-                            "Für den aktuellen Text wurde kein Default- Stil angegeben.\n Bitte wählen sie erst einen Stil als default aus",
-                            "Kein Default-Stil angegeben");
+                            Properties.Resources.NoDefaultStyle,
+                            Properties.Resources.NoDefaultStyleTitle);
                     }
                 }
                 if (inte >= 34 && inte <= 43 && Keyboard.Modifiers == ModifierKeys.Control)
@@ -2117,7 +2118,7 @@ namespace ComplexWriter
                 {
                     var selectionRange = new TextRange(Box.Selection.Start, Box.Selection.End);
 
-                    var firstOrDefault = CurrentText.Styles.Styles.FirstOrDefault(elem => elem.HasCaption && elem.Caption.Equals("Sprache", StringComparison.OrdinalIgnoreCase)) ?? ApplyableStyles.Styles.FirstOrDefault(elem => elem.HasCaption && elem.Caption.Equals("Sprache", StringComparison.OrdinalIgnoreCase));
+                    var firstOrDefault = CurrentText.Styles.Styles.FirstOrDefault(elem => elem.HasCaption && IsLanguageElement(elem)) ?? ApplyableStyles.Styles.FirstOrDefault(elem => elem.HasCaption && IsLanguageElement(elem));
 
                     ApplyStyle(firstOrDefault, selectionRange);
                     return;
@@ -2249,6 +2250,11 @@ namespace ComplexWriter
             {
                 AddException(exception);
             }
+        }
+
+        private static bool IsLanguageElement(ComplexStyle elem)
+        {
+            return elem.Caption.Equals("Sprache", StringComparison.OrdinalIgnoreCase) || elem.Caption.Equals("Speech", StringComparison.OrdinalIgnoreCase);
         }
 
         private void ShowSearchControl(bool switchIt, bool focusReplace = false)
@@ -2628,25 +2634,6 @@ namespace ComplexWriter
             }
         }
 
-        //private void SetFontFamily(FontFamily fontName, bool ignoreCancel = false)
-        //{
-        //    try
-        //    {
-        //        var holeText = new TextRange(Box.Document.ContentStart, Box.Document.ContentEnd);
-        //        if (string.IsNullOrEmpty(holeText.Text) || holeText.Text.Equals("\r\n"))
-        //        {
-        //            Box.FontFamily = fontName;
-        //        }
-        //        else
-        //            Box.Selection.ApplyPropertyValue(FontFamilyProperty, fontName);
-        //        FocusTextbox();
-        //    }
-        //    catch (Exception exception)
-        //    {
-        //        AddException(exception);
-
-        //    }
-        //}
 
         private void SetFontSize(double value, bool ignoreCancel = false)
         {
@@ -2679,9 +2666,7 @@ namespace ComplexWriter
 
             selectionRange = new TextRange(Box.Selection.Start, Box.Selection.End);
 
-            var firstOrDefault = CurrentText.Styles.Styles.FirstOrDefault(elem => elem.HasCaption && elem.Caption.Equals("Sprache", StringComparison.OrdinalIgnoreCase)) ?? ApplyableStyles.Styles.FirstOrDefault(elem => elem.HasCaption && elem.Caption.Equals("" +
-                                                                                                                                                                                                                                                                 "" +
-                                                                                                                                                                                                                                                                 "", StringComparison.OrdinalIgnoreCase));
+            var firstOrDefault = CurrentText.Styles.Styles.FirstOrDefault(elem => elem.HasCaption && IsLanguageElement(elem)) ?? ApplyableStyles.Styles.FirstOrDefault(elem => elem.HasCaption && IsLanguageElement(elem));
 
             ApplyStyle(firstOrDefault, selectionRange);
         }
@@ -3057,8 +3042,7 @@ namespace ComplexWriter
 
                     if (CheckValues(range))
                     {
-                        //AddInformation("Stil nicht setzbar","");
-                        return;
+                       return;
                     }
 
                     applyableStyle = FlowDocumentExtensions.GetCurrentStyle(range, CurrentFontSize);
@@ -3073,7 +3057,7 @@ namespace ComplexWriter
                     var first = complexStyles.Styles.FirstOrDefault(elem => elem.Equals(applyableStyle));
                     if (first == null)
                         return;
-                    var res = QuestionBox.ShowMessage(this, string.IsNullOrEmpty(first.Caption) ? "Ein zugehöriger Stil wurde bereits ohne Namensangabe hinzugefügt.\n\nSoll dieser Umbenannt werden?" : string.Format("Ein zugehöriger Stil wurde bereits unter dem Namen \n\"{0}\"\n hinzugefügt!\n\nSoll dieser Umbenannt werden?", first.Caption), "Umbenennen?", false);
+                    var res = QuestionBox.ShowMessage(this, string.IsNullOrEmpty(first.Caption) ? Properties.Resources.StyleAddedWithoutName : string.Format(Properties.Resources.StyleAddedWithName, first.Caption), Properties.Resources.Rename+"?", false);
                     if (res == MessageBoxResult.Yes)
                     {
                         RenameElement(complexStyles, first);
@@ -3082,7 +3066,7 @@ namespace ComplexWriter
             }
             catch
             {
-                MessageBox.ShowMessage(this, "Beim Kopieren des Stils ist ein Fehler aufgetreten.\n\nEr wurde folglich nicht hinzugefügt.", "Fehler", MessageBoxImage.Error);
+                MessageBox.ShowMessage(this, Properties.Resources.ErrorWhileStyleCopy, Properties.Resources.Error, MessageBoxImage.Error);
             }
             CurrentStyle = applyableStyle;
         }
@@ -3117,10 +3101,10 @@ namespace ComplexWriter
         {
             var input = new TextInput
             {
-                Owner = this, Watermark = "Geben Sie bitte einen Titel für den Stil ein", Title = "Stil hinzufügen: " + styles.Title
+                Owner = this, Watermark = Properties.Resources.StyleTitle, Title = Properties.Resources.ReplaceStyle+": " + styles.Title
             };
             input.ShowDialog();
-            captionText = input.UseAsSpeek ? "Sprache" : input.Text;
+            captionText = input.UseAsSpeek ? Properties.Resources.Language : input.Text;
             isSpeak = input.UseAsSpeek;
             return input.Result == MessageBoxResult.OK;
         }
@@ -3129,7 +3113,7 @@ namespace ComplexWriter
         {
             applyableStyle.Caption = text;
 
-            var res = style == null ? MessageBoxResult.None : ignoreMesage ? MessageBoxResult.Yes : QuestionBox.ShowMessage(this, "Es existiert bereits ein Stil mit diesem Namen.\n\n Soll der alte Stil ersetzt werden?", "Stil ersetzen");
+            var res = style == null ? MessageBoxResult.None : ignoreMesage ? MessageBoxResult.Yes : QuestionBox.ShowMessage(this, Properties.Resources.StyleAlreadyExists, Properties.Resources.ReplaceStyle+"?");
 
             switch (res)
             {
@@ -3316,7 +3300,7 @@ namespace ComplexWriter
         private void ExportXaml(object sender, RoutedEventArgs e)
         {
             var text = Box.GetXamlString();
-            XamlMessageBox.ShowMessage(this, text, "Xaml-Code des FlowDocuments anzeigen...", MessageBoxImage.Information);
+            XamlMessageBox.ShowMessage(this, text, Properties.Resources.ShowXAML, MessageBoxImage.Information);
         }
 
         private void InsertAnImage(object sender, RoutedEventArgs e)
@@ -3399,10 +3383,10 @@ namespace ComplexWriter
 
         private void EditDicionary(object sender, RoutedEventArgs e)
         {
-            var dlg = new DictionaryEditor {Owner = this, Dictionary = CustomDict, Title = "Wörterbuch bearbeiten"};
+            var dlg = new DictionaryEditor {Owner = this, Dictionary = CurrentTextIsEnglish()? CustomDictEnglish: CustomDict, Title = "Wörterbuch bearbeiten"};
 
             if (dlg.ShowDialog() != true || dlg.Result != MessageBoxResult.OK) return;
-            if (QuestionBox.ShowMessage(this, "Änderungen am Wörterbuch werden erst nach einem Neustart aktiv.\n\nSoll jetzt neu gestartet werden?", "Neu starten?") == MessageBoxResult.Yes)
+            if (QuestionBox.ShowMessage(this, Properties.Resources.RestartForChanges, Properties.Resources.Restart +"?") == MessageBoxResult.Yes)
                 RestartApplication();
         }
 
@@ -3411,7 +3395,7 @@ namespace ComplexWriter
             var dlg = new DictionaryEditor {Owner = this, Dictionary = NameDict, Title = "Namensliste bearbeiten"};
 
             if (dlg.ShowDialog() != true || dlg.Result != MessageBoxResult.OK) return;
-            if (QuestionBox.ShowMessage(this, "Änderungen an der Namensliste werden erst nach einem Neustart aktiv.\nSoll jetzt neu gestartet werden?", "Neu starten?") == MessageBoxResult.Yes)
+            if (QuestionBox.ShowMessage(this, Properties.Resources.RestartForNameChanges, Properties.Resources.Restart+"?") == MessageBoxResult.Yes)
                 RestartApplication();
         }
 
@@ -3519,7 +3503,7 @@ namespace ComplexWriter
 
         private bool RemoveStyleFromList(ComplexStyle style, ComplexStyles applyableStyle)
         {
-            if (style == null || QuestionBox.ShowMessage(this, "Soll der Stil wirklich entfernt werden?", "Löschen?", false) == MessageBoxResult.No)
+            if (style == null || QuestionBox.ShowMessage(this, Properties.Resources.StyleRemoveQuestionTitle, Properties.Resources.DeleteTitle, false) == MessageBoxResult.No)
                 return false;
             applyableStyle.Styles.Remove(style);
             return true;
@@ -3527,7 +3511,7 @@ namespace ComplexWriter
 
         private void ClearStyles2(object sender, RoutedEventArgs e)
         {
-            if (QuestionBox.ShowMessage(this, "Sind sie sich sicher, dass sie alle Stile entfernen möchten?\nDieser Vorgang lässt sich nicht wieder rückgängig machen!", "Löschen", false) != MessageBoxResult.Yes)
+            if (QuestionBox.ShowMessage(this, Properties.Resources.StyleRemoveQuestion, "Löschen", false) != MessageBoxResult.Yes)
                 return;
 
             CurrentText.Styles.Styles.Clear();
@@ -3542,7 +3526,7 @@ namespace ComplexWriter
 
         private void DeleteFromDisk(object sender, RoutedEventArgs e)
         {
-            if (QuestionBox.ShowMessage(this, "Sind Sie sicher, dass sie die Datei unwiederruflich löschen wollen?\n\nDieser Vorgang lässt sich nicht wieder rückgängig machen!", "Löschen", false) != MessageBoxResult.Yes)
+            if (QuestionBox.ShowMessage(this, Properties.Resources.FileDeleteQuestion, Properties.Resources.DeleteTitle, false) != MessageBoxResult.Yes)
                 return;
 
             var text = ((MenuItem) sender).Tag as TextFile;
@@ -3745,7 +3729,7 @@ namespace ComplexWriter
             styleList.Styles.Remove(oldStyle);
             styleList.Styles.Add(newStyle);
 
-            if (!ask || QuestionBox.ShowMessage(this, "Sollen alle Elemente, die den Stil verwenden ebenfalls angepasst werden?", "Ersetzen", false) == MessageBoxResult.Yes)
+            if (!ask || QuestionBox.ShowMessage(this, Properties.Resources.UpdateElements, Properties.Resources.Replace+"?", false) == MessageBoxResult.Yes)
             {
                 SetBusy();
                 Box.Document.CheckAndChangeFonts(help, newStyle);
@@ -3762,7 +3746,7 @@ namespace ComplexWriter
         {
             var style = ((Button) sender).Tag as ComplexStyle;
             var removed = RemoveStyleFromList(style, CurrentText.Styles);
-            if (!removed || QuestionBox.ShowMessage(this, "Möchten sie die Benutzung des Stils ebenfalls entfernen?", "Stil entfernen", false) != MessageBoxResult.Yes) return;
+            if (!removed || QuestionBox.ShowMessage(this, Properties.Resources.RomoveUsageAsWell, Properties.Resources.RemovedStyles+"?", false) != MessageBoxResult.Yes) return;
             CurrentText.Document.CheckAndChangeFonts(style, CurrentText.DefaultStyle);
             var selectionRange = new TextRange(Box.Selection.Start, Box.Selection.End);
 
@@ -3818,7 +3802,7 @@ namespace ComplexWriter
         {
             var dlg = new OpenFileDialog
             {
-                FileName = "Unbekannt.etf", DefaultExt = "etf", InitialDirectory = Settings.Default.DefaultFolder, Filter = Filtername3, CheckFileExists = true, Multiselect = false
+                FileName = Properties.Resources.Unknown, DefaultExt = "etf", InitialDirectory = Settings.Default.DefaultFolder, Filter = Filtername3, CheckFileExists = true, Multiselect = false
             };
             if (dlg.ShowDialog() != true)
                 return;
@@ -4022,7 +4006,7 @@ namespace ComplexWriter
                 }
             }
 
-            MessageBox.ShowMessage(this, counter == 0 && counteradd == 0 ? "Die Stile sind bereits aktuell" : string.Format("Es wurden {0} Stil(e) entfernt und {1} hinzugefügt.", counter, counteradd), "Entfernte Stile");
+            MessageBox.ShowMessage(this, counter == 0 && counteradd == 0 ? Properties.Resources.AllStylesUpToDate : string.Format(Properties.Resources.StyleUpdateInfo, counter, counteradd), "Entfernte Stile");
         }
 
         private bool FamilyExist(FontFamily fontFamily)
@@ -4065,7 +4049,7 @@ namespace ComplexWriter
             UiServices.SetBusyState();
 
             var count = CurrentText.Document.CountStyle(sty, 0d, ref p, false);
-            MessageBox.ShowMessage(this, string.Format("Der Stil \"{0}\" kommt {1} Mal im Dokument vor", sty.Caption, count), "Vorkommen");
+            MessageBox.ShowMessage(this, string.Format(Properties.Resources.StyleUsageCount, sty.Caption, count), Properties.Resources.Occurance);
         }
 
         private void GoToFirstCall(object sender, RoutedEventArgs e)
@@ -4193,6 +4177,26 @@ namespace ComplexWriter
         {
             if (e.Key == Key.Enter)
                 lineHightPopup.IsOpen = false;
+        }
+
+        private void SetLanguage(object sender, RoutedEventArgs e)
+        {
+            CurrentText.Language = (string) ((ToggleButton) sender).Tag;
+            CurrentText.Document.UpdateLanguage(CurrentText.Language);
+            languagePopup.IsOpen = false;
+            CurrentText.IsChanged = true;
+            // InputLanguageManager.SetInputLanguage(Box, CultureInfo.CreateSpecificCulture(CurrentText.Language));
+        }
+
+        private void ChangeLanguage(object sender, RoutedEventArgs e)
+        {
+            languagePopup.IsOpen = true;
+        }
+
+        private void ShowLanguage(object sender, EventArgs e)
+        {
+            enBtn.IsChecked = CurrentText.Language.IndexOf("en",StringComparison.InvariantCultureIgnoreCase)!= -1;
+            deBtn.IsChecked = CurrentText.Language.IndexOf("de", StringComparison.InvariantCultureIgnoreCase) != -1;
         }
     }
 }

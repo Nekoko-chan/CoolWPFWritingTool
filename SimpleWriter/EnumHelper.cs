@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel;
+using System.Globalization;
 using System.Reflection;
 using System.Windows.Markup;
 using ComplexWriter.Properties;
@@ -104,7 +105,7 @@ namespace ComplexWriter
 
                         var rm = ComplexWriter.Properties.Resources.ResourceManager;
 
-                        return rm.GetString(test, culture)??test;
+                        return rm.GetString(test, new CultureInfo(Settings.Default.Language))??test;
                     }
                 }
 

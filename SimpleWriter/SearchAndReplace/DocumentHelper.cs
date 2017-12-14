@@ -3,6 +3,7 @@ using System.Windows;
 using System.Reflection;
 using System.Globalization;
 using System.Windows.Documents;
+using ComplexWriter.Properties;
 
 namespace ComplexWriter.SearchAndReplace
 {
@@ -37,7 +38,7 @@ namespace ComplexWriter.SearchAndReplace
                     }
                     Object result = findMethod.Invoke(null, new Object[] { findContainerStartPosition, 
                     findContainerEndPosition, 
-                    input, flags, CultureInfo.CurrentCulture });
+                    input, flags, new CultureInfo(Settings.Default.Language) });
                     textRange = result as TextRange;
                 }
                 catch (ApplicationException)

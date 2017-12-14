@@ -12,7 +12,7 @@ namespace ComplexWriter.Commands
 
         public OwnPasteCommand()
         {
-            this.Text = "Einfügen (OHNE Formatierung)";
+            this.Text = Properties.Resources.PasteWithoutFormatting;
             this.InputGestures.Add(new KeyGesture(Key.V, ModifierKeys.Control | ModifierKeys.Shift));
         }
 

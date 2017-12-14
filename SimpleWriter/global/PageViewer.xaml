@@ -23,7 +23,7 @@
 		<Setter Property="Template">
 			<Setter.Value>
 				<ControlTemplate TargetType="{x:Type FlowDocumentPageViewer}">
-					<Grid Language="en-us" Uid="DockPanel_2">
+					<Grid Language="de" Uid="DockPanel_2">
                         <Path Width="{Binding ElementName=RealBorder, Path=ActualWidth}"
                                 Height="{Binding ElementName=RealBorder, Path=ActualHeight}"
                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"

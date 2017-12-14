@@ -518,6 +518,73 @@ namespace ComplexWriter
             }
         }
 
+
+        public static void UpdateLanguage(this FlowDocument document, string language)
+        {
+            foreach (var block in document.Blocks.ToList())
+            {
+                block.UpdateLanguage(language);
+            }
+        }
+
+        public static void UpdateLanguage(this Section section, string language)
+        {
+            foreach (var block in section.Blocks.ToList())
+            {
+                block.UpdateLanguage(language);
+            }
+        }
+
+        public static void UpdateLanguage(this Paragraph paragraph, string language)
+        {
+            foreach (var inline in paragraph.Inlines.ToList())
+            {
+                inline.UpdateLanguage(language);
+            }
+        }
+
+        public static void UpdateLanguage(this List list, string language)
+        {
+            foreach (var listItem in list.ListItems.ToList())
+            {
+                listItem.UpdateLanguage(language);
+            }
+        }
+
+        public static void UpdateLanguage(this ListItem item, string language)
+        {
+            foreach (var block in item.Blocks.ToList())
+            {
+                block.UpdateLanguage(language);
+            }
+        }
+
+        public static void UpdateLanguage(this TextElement text, string language)
+        {
+            text.Language = XmlLanguage.GetLanguage(language);
+        }
+
+        public static void UpdateLanguage(this Block block, string language)
+        {
+            var section = block as Section;
+            if (section != null)
+            {
+                section.UpdateLanguage(language);
+                return;
+            }
+
+            var paragraph = block as Paragraph;
+            if (paragraph != null)
+            {
+                paragraph.UpdateLanguage(language);
+                return;
+            }
+
+            var list = block as List;
+            if (list != null)
+                list.UpdateLanguage(language);
+        }
+
     }
 
 }

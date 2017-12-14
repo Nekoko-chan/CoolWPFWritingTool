@@ -752,7 +752,7 @@ Styles have to be unique to be registered.</value>
     <value>Style &lt;number&gt; with quotation marks</value>
   </data>
   <data name="StyleRemoveQuestion" xml:space="preserve">
-    <value>Are you sure, that you like to remove the file?
+    <value>Are you sure, that you like to remove the style?
 It is impossible to undone the operation.</value>
   </data>
   <data name="StyleRemoveQuestionTitle" xml:space="preserve">
@@ -783,7 +783,7 @@ It is impossible to undone the operation.</value>
     <value>Underlined text</value>
   </data>
   <data name="UnderlineOnOf" xml:space="preserve">
-    <value>&gt;Underlined  on / off</value>
+    <value>Underlined  on / off</value>
   </data>
   <data name="Unknown" xml:space="preserve">
     <value>Unknown.etf</value>
@@ -859,5 +859,51 @@ Would you like to save it anyway?</value>
   </data>
   <data name="UsedFont" xml:space="preserve">
     <value>Used font:</value>
+  </data>
+  <data name="AddStyle" xml:space="preserve">
+    <value>Add Style</value>
+  </data>
+  <data name="DoubleEntry" xml:space="preserve">
+    <value>Doubled entry</value>
+  </data>
+  <data name="Doubleing" xml:space="preserve">
+    <value>Doubling</value>
+  </data>
+  <data name="IgnoreAllHint" xml:space="preserve">
+    <value>Ignores the word till the program is closed
+If you like to ignore it bejond this, you have to add the word to the dictionary!</value>
+  </data>
+  <data name="PastePreview" xml:space="preserve">
+    <value>The following text will be inserted:
+{0}</value>
+  </data>
+  <data name="PasteWithoutFormatting" xml:space="preserve">
+    <value>Paste (WITHOUT formatting)</value>
+  </data>
+  <data name="Rename" xml:space="preserve">
+    <value>Rename</value>
+  </data>
+  <data name="ReplaceStyle" xml:space="preserve">
+    <value>Replace style</value>
+  </data>
+  <data name="ReplaceText" xml:space="preserve">
+    <value>Replace "{0}" with "{1}"</value>
+  </data>
+  <data name="StyleAddedWithName" xml:space="preserve">
+    <value>The style is alrady added as "{0}"!
+
+Would you like to rename it instead?</value>
+  </data>
+  <data name="StyleAddedWithoutName" xml:space="preserve">
+    <value>The style is already added without a given identifier!
+
+Would you like to rename it instead?</value>
+  </data>
+  <data name="WatermarkOnlyWithEtf" xml:space="preserve">
+    <value>The file contains a watermark, which is not supported by the used fily type.
+If you like to keep the watermark, you have to save it as an *.etf file</value>
+  </data>
+  <data name="DictionaryPath" xml:space="preserve">
+    <value>Microsoft\Spelling\en-US\CoolWriter.dic</value>
   </data>
 </root>

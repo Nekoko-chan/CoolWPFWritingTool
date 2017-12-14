@@ -861,4 +861,50 @@ Wollen sie es trotzdem in dem Format speichern?</value>
   <data name="UsedFont" xml:space="preserve">
     <value>Genutze Schrift:</value>
   </data>
+  <data name="AddStyle" xml:space="preserve">
+    <value>Stil hinzufügen</value>
+  </data>
+  <data name="DoubleEntry" xml:space="preserve">
+    <value>Doppelter Eintrag</value>
+  </data>
+  <data name="Doubleing" xml:space="preserve">
+    <value>Dopplung</value>
+  </data>
+  <data name="IgnoreAllHint" xml:space="preserve">
+    <value>Wort bis zum Schließen des Programmes ignorieren.
+Wenn das Wort auch darüber hinaus ignoriert werden soll, muss es zum Wörterbuch hinzugefügt werden!</value>
+  </data>
+  <data name="PastePreview" xml:space="preserve">
+    <value>Folgender Text würde eingefügt werden:
+{0}</value>
+  </data>
+  <data name="Rename" xml:space="preserve">
+    <value>Umbenennen</value>
+  </data>
+  <data name="ReplaceStyle" xml:space="preserve">
+    <value>Stil ersetzen</value>
+  </data>
+  <data name="ReplaceText" xml:space="preserve">
+    <value>"{0}" durch "{1}" ersetzen</value>
+  </data>
+  <data name="StyleAddedWithName" xml:space="preserve">
+    <value>Ein zugehöriger Stil wurde bereits unter dem Namen "{0}" hinzugefügt!
+
+Soll dieser Umbenannt werden?</value>
+  </data>
+  <data name="StyleAddedWithoutName" xml:space="preserve">
+    <value>Ein zugehöriger Stil wurde bereits ohne Namensangabe hinzugefügt.
+
+Soll dieser Umbenannt werden?</value>
+  </data>
+  <data name="WatermarkOnlyWithEtf" xml:space="preserve">
+    <value>Die Datei enthält ein Wasserzeichen. Dieses wird im aktuellen Format nicht mitgespeichert.
+Wenn sie das Wasserzeichen weiterhin haben wollen, speichern sie es als *.etf-Datei.</value>
+  </data>
+  <data name="DictionaryPath" xml:space="preserve">
+    <value>Microsoft\Spelling\de-DE\CoolWriter.dic</value>
+  </data>
+  <data name="PasteWithoutFormatting" xml:space="preserve">
+    <value>Einfügen (OHNE Formatierung)</value>
+  </data>
 </root>

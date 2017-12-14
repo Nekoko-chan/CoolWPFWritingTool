@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Globalization;
 using System.Linq;
 using System.Threading;
 using System.Windows;
 using System.Windows.Media.Imaging;
+using ComplexWriter.Properties;
 using SplashDemo;
 
 namespace ComplexWriter
@@ -90,6 +92,9 @@ namespace ComplexWriter
         {
             try
             {
+                Thread.CurrentThread.CurrentCulture = new CultureInfo(Settings.Default.Language);
+                Thread.CurrentThread.CurrentUICulture = new CultureInfo(Settings.Default.Language);
+
                 App app = new App();
                 var fname = !args.Any() ? string.Empty : args[0];
                 if (fname.Equals("-n"))
@@ -98,7 +103,7 @@ namespace ComplexWriter
                     fname = string.Empty;
                 }
 
-             
+
                 MainWindow window = new MainWindow(fname);
                 app.MainWindow = window;
                 app.Run(window);

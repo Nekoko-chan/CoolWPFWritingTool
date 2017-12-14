@@ -30,7 +30,7 @@ namespace ComplexWriter
             get { return Filepath == null || Filepath.EndsWith(".etf"); }
             set { OnPropertyChanged(); }
         }
-        private string _lang= "de-DE";
+        private string _lang= "de";
         public string Language { get { return _lang; } set { _lang = value; } }
 
         public bool ReadOnly
@@ -357,7 +357,7 @@ namespace ComplexWriter
             }
             catch
             {
-                Language = "en-US";
+                Language = "de";
             }
         }
 
