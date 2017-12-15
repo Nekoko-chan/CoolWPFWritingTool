@@ -60,15 +60,9 @@ namespace ComplexWriter
         
         public const string ComplexStyleCaption = "Global";
 
-        private const string Filtername =
-            "Erlaubte Formate |*.etf;*.rtxt|Erweiterte Text-Dateien|*.etf|Text-Dateien|*.rtxt";
+       
 
-        private const string Filtername2 =
-            "Erweiterte Text-Dateien|*.etf|Text-Dateien|*.rtxt|Erlaubte Formate |*.etf;*.rtxt";
-
-        private const string Filtername3 = "Erweiterte Text-Dateien|*.etf";
-        private const string UnbekanntTxt = "Unbekannt.txt";
-
+        
         public static readonly DependencyProperty CurrentStyleProperty =
             DependencyProperty.Register("CurrentStyle", typeof (ComplexStyle), typeof (MainWindow),
                 new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.AffectsRender));
@@ -1572,13 +1566,13 @@ namespace ComplexWriter
                 if (!CheckPassword(file))
                     return false;
 
-                AddInformation(string.Format(Properties.Resources.FileIsOpened, Path.GetFileName(fileName)), ErrorMessageItem.DIVERSE);
+                AddInformation(string.Format(Properties.Resources.FileIsOpened, Path.GetFileName(fileName)),Properties.Resources.Diverse);
 
                 file.Document.UpdateLanguage(file.Language);
                 var updated = file.CheckAndChangeFonts();
 
                 if (updated)
-                    AddInformation(string.Format(Properties.Resources.FontIsUpdated, Path.GetFileName(fileName)), ErrorMessageItem.DIVERSE);
+                    AddInformation(string.Format(Properties.Resources.FontIsUpdated, Path.GetFileName(fileName)), Properties.Resources.Diverse);
             }
             catch (Exception exception)
             {
@@ -1643,7 +1637,7 @@ namespace ComplexWriter
 
                     var dlg = new SaveFileDialog
                     {
-                        FileName = defaultName, DefaultExt = "etf", Filter = Filtername2, InitialDirectory = Settings.Default.DefaultFolder, CheckFileExists = false
+                        FileName = defaultName, DefaultExt = "etf", Filter =Properties.Resources.FileFilterLarge, InitialDirectory = Settings.Default.DefaultFolder, CheckFileExists = false
                     };
                     if (dlg.ShowDialog() == false) return true;
 
@@ -1706,7 +1700,7 @@ namespace ComplexWriter
         {
             //AnimateSaveProvider();
             var fileName = CheckRightSaveFormat(currentText, automatic, filename);
-            AddMessage(automatic ? string.Format(Properties.Resources.AutomaticSavedMessage, fileName) : string.Format(Properties.Resources.FileISSaved, fileName), ErrorMessageItem.SAVE);
+            AddMessage(automatic ? string.Format(Properties.Resources.AutomaticSavedMessage, fileName) : string.Format(Properties.Resources.FileISSaved, fileName), Properties.Resources.Saving);
         }
 
         private bool CheckAndRestart(string filename, TextFile currentText, bool saveAs, out bool reload)
@@ -1770,7 +1764,7 @@ namespace ComplexWriter
 
                     var dlg = new SaveFileDialog
                     {
-                        InitialDirectory = Settings.Default.DefaultFolder, FileName = defaultName, DefaultExt = "etf", Filter = Filtername2, CheckFileExists = false
+                        InitialDirectory = Settings.Default.DefaultFolder, FileName = defaultName, DefaultExt = "etf", Filter = Properties.Resources.FileFilterLarge, CheckFileExists = false
                     };
                     if (dlg.ShowDialog() != false)
                     {
@@ -1820,7 +1814,7 @@ namespace ComplexWriter
 
                 AnimateSaveProvider();
                 var fileName = Path.GetFileName(filename);
-                AddMessage(string.Format(Properties.Resources.FileISSaved, fileName), ErrorMessageItem.SAVE);
+                AddMessage(string.Format(Properties.Resources.FileISSaved, fileName), Properties.Resources.Saving);
 
                 if (reload)
                 {
@@ -1861,14 +1855,14 @@ namespace ComplexWriter
                         if (indexOf != -1 && indexOf >= index)
                             text = boxText.Substring(0, index);
                     }
-                    return string.IsNullOrEmpty(text) ? UnbekanntTxt : BringIntoRightForm(text);
+                    return string.IsNullOrEmpty(text) ? Properties.Resources.UnknowTxt : BringIntoRightForm(text);
                 }
             }
             catch (Exception)
             {
-                return UnbekanntTxt;
+                return Properties.Resources.UnknowTxt;
             }
-            return UnbekanntTxt;
+            return Properties.Resources.UnknowTxt;
         }
 
         private static string BringIntoRightForm(string text)
@@ -2592,7 +2586,7 @@ namespace ComplexWriter
                 }
                 //CurrentText.CreationDate = DateTime.Now;
                 CurrentText.IsChanged = false;
-                AddInformation("Es wurde eine neue Datei erstellt", ErrorMessageItem.DIVERSE);
+                AddInformation(Properties.Resources.NewFileCreated, Properties.Resources.Diverse);
                 newPopup.IsOpen = false;
             }
             catch (Exception exception)
@@ -2897,7 +2891,7 @@ namespace ComplexWriter
             {
                 var dlg = new ColorWindow
                 {
-                    Owner = this, Title = "Vordergrundfarbe ändern...", PredefinedColors = GetColors()
+                    Owner = this, Title = Properties.Resources.ChangeForeColor, PredefinedColors = GetColors()
                 };
                 try
                 {
@@ -2946,7 +2940,7 @@ namespace ComplexWriter
         {
             var dlg = new ColorWindow
             {
-                Owner = this, Title = "Hintergrundfarbe ändern...", PredefinedColors = GetColors()
+                Owner = this, Title = Properties.Resources.ChangeBackColor, PredefinedColors = GetColors()
             };
             try
             {
@@ -3366,7 +3360,7 @@ namespace ComplexWriter
 
         private void EditDicionary(object sender, RoutedEventArgs e)
         {
-            var dlg = new DictionaryEditor {Owner = this, Dictionary = CurrentTextIsEnglish()? CustomDictEnglish: CustomDict, Title = "Wörterbuch bearbeiten"};
+            var dlg = new DictionaryEditor {Owner = this, Dictionary = CurrentTextIsEnglish()? CustomDictEnglish: CustomDict, Title = Properties.Resources.EditDictionary};
 
             if (dlg.ShowDialog() != true || dlg.Result != MessageBoxResult.OK) return;
             if (QuestionBox.ShowMessage(this, Properties.Resources.RestartForChanges, Properties.Resources.Restart +"?") == MessageBoxResult.Yes)
@@ -3375,7 +3369,7 @@ namespace ComplexWriter
 
         private void EditNameDicionary(object sender, RoutedEventArgs e)
         {
-            var dlg = new DictionaryEditor {Owner = this, Dictionary = NameDict, Title = "Namensliste bearbeiten"};
+            var dlg = new DictionaryEditor {Owner = this, Dictionary = NameDict, Title = Properties.Resources.EditNameList};
 
             if (dlg.ShowDialog() != true || dlg.Result != MessageBoxResult.OK) return;
             if (QuestionBox.ShowMessage(this, Properties.Resources.RestartForNameChanges, Properties.Resources.Restart+"?") == MessageBoxResult.Yes)
@@ -3494,7 +3488,7 @@ namespace ComplexWriter
 
         private void ClearStyles2(object sender, RoutedEventArgs e)
         {
-            if (QuestionBox.ShowMessage(this, Properties.Resources.StyleRemoveQuestion, "Löschen", false) != MessageBoxResult.Yes)
+            if (QuestionBox.ShowMessage(this, Properties.Resources.StyleRemoveQuestion, Properties.Resources.DeleteTitle, false) != MessageBoxResult.Yes)
                 return;
 
             CurrentText.Styles.Styles.Clear();
@@ -3550,7 +3544,7 @@ namespace ComplexWriter
                 ImageWidth = CurrentText.Watermark?.Size.Width ?? 100,
                 ImageHeight = CurrentText.Watermark?.Size.Height ?? 100,
                 ImageOpacity = CurrentText.Watermark?.Opacity ?? 1d,
-                Title = "Wasserzeichen anpassen..."
+                Title = Properties.Resources.UpdateWatermark
             };
 
             // Process open file dialog box results
@@ -3578,7 +3572,7 @@ namespace ComplexWriter
                 ImageWidth = imageForPopup.Width,
                 ImageHeight = imageForPopup.Height,
                 ImageOpacity = imageForPopup.Opacity,
-                Title = "Seitenbild anpassen..."
+                Title = Properties.Resources.UpdateSideImage
             };
 
             // Process open file dialog box results
@@ -3704,7 +3698,7 @@ namespace ComplexWriter
             var existing = styleList.Styles.FirstOrDefault(elem => elem.Equals(newStyle));
             if (existing != null)
             {
-                MessageBox.ShowMessage(this, string.IsNullOrEmpty(existing.Caption) ? "Der Stil wurde bereits ohne Namensangabe hinzugefügt.\n\nDopplung der Stildaten ist nicht erlaubt." : string.Format("Ein Stil mit den gewüschten Einstellungen wurde bereits unter dem Namen \n\"{0}\"\n hinzugefügt!\n\nBitte verwenden sie genannten Stil.", existing.Caption), "", MessageBoxImage.Exclamation);
+                MessageBox.ShowMessage(this, string.IsNullOrEmpty(existing.Caption) ? Properties.Resources.StyleExistsWithoutName : string.Format(Properties.Resources.StyleExists, existing.Caption), "", MessageBoxImage.Exclamation);
                 return;
             }
 
@@ -3785,7 +3779,7 @@ namespace ComplexWriter
         {
             var dlg = new OpenFileDialog
             {
-                FileName = Properties.Resources.Unknown, DefaultExt = "etf", InitialDirectory = Settings.Default.DefaultFolder, Filter = Filtername3, CheckFileExists = true, Multiselect = false
+                FileName = Properties.Resources.Unknown, DefaultExt = "etf", InitialDirectory = Settings.Default.DefaultFolder, Filter = Properties.Resources.FileFilterSmall, CheckFileExists = true, Multiselect = false
             };
             if (dlg.ShowDialog() != true)
                 return;
@@ -3873,8 +3867,7 @@ namespace ComplexWriter
             };
 
             ReplaceStyleWith(styles, oldStyle, addstyle, ask);
-            //if (oldStyle.Equals(CurrentText.DefaultStyle))
-            //    CurrentText.DefaultStyle = addstyle;
+          
         }
 
         public void HideStylePopup()

@@ -77,7 +77,7 @@ namespace ComplexWriter.MessageBoxes
 
         public static void ShowErrorMessage(MainWindow mainWindow, Exception exception, string title=null)
         {
-            var dlg = new XamlMessageBox() { Title = title??"Fehler", Message = exception.Message, SubMessage = exception.StackTrace,Owner = mainWindow, MessageIcon = MessageBoxImage.Error};
+            var dlg = new XamlMessageBox() { Title = title?? Properties.Resources.Error, Message = exception.Message, SubMessage = exception.StackTrace,Owner = mainWindow, MessageIcon = MessageBoxImage.Error};
             dlg.ShowDialog();
         }
     }

@@ -907,4 +907,31 @@ Wenn sie das Wasserzeichen weiterhin haben wollen, speichern sie es als *.etf-Da
   <data name="PasteWithoutFormatting" xml:space="preserve">
     <value>Einfügen (OHNE Formatierung)</value>
   </data>
+  <data name="ApplyStlye" xml:space="preserve">
+    <value>Folgenden Stil anwenden</value>
+  </data>
+  <data name="DeleteSpezial" xml:space="preserve">
+    <value>"{0}" löschen</value>
+  </data>
+  <data name="EditDictionary" xml:space="preserve">
+    <value>Wörterbuch bearbeiten</value>
+  </data>
+  <data name="EditNameList" xml:space="preserve">
+    <value>Namensliste bearbeiten</value>
+  </data>
+  <data name="ExampleText" xml:space="preserve">
+    <value>Beispieltext</value>
+  </data>
+  <data name="FileFilterLarge" xml:space="preserve">
+    <value>Erweiterte Text-Dateien|*.etf|Text-Dateien|*.rtxt|Erlaubte Formate |*.etf;*.rtxt</value>
+  </data>
+  <data name="FileFilterSmall" xml:space="preserve">
+    <value>Erweiterte Text-Dateien|*.etf</value>
+  </data>
+  <data name="RevertDelete" xml:space="preserve">
+    <value>Löschung von "{0}" wieder rückgängig machen</value>
+  </data>
+  <data name="UnknowTxt" xml:space="preserve">
+    <value>Unbekannt.txt</value>
+  </data>
 </root>

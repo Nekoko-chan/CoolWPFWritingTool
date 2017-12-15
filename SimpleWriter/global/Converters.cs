@@ -900,8 +900,7 @@ namespace ComplexWriter.global
             return null;
         }
     }
-
-
+    
 
     public class FalseHideConverter : IValueConverter
     {
@@ -944,14 +943,8 @@ namespace ComplexWriter.global
             var main = parameter as MainWindow;
             if (main != null)
             {
-                //if ((bool) value)
                     main.IsMinimized = !(bool) value; //.ShowStylePopup = main.LastShowPopupValue;
-                //else
-                //{
-                //    main.IsMinimized = false;
-                //    //main.LastShowPopupValue = main.ShowStylePopup;
-                //    //main.ShowStylePopup = false;
-                //}
+                
             }
            
             return (bool)value ? Visibility.Visible : Visibility.Hidden;
@@ -1571,7 +1564,7 @@ namespace ComplexWriter.global
                FontSize = MainWindow.Global.Box.FontSize
             };
 
-            block.Inlines.Add(new Run("Folgenden Stil anwenden:\n     ") { FontFamily = MainWindow.Global.FindResource("defaultFont") as FontFamily, FontSize = (double)MainWindow.Global.FindResource("fontSizeMedium") });
+            block.Inlines.Add(new Run($"{Resources.ApplyStlye}\n     ") { FontFamily = MainWindow.Global.FindResource("defaultFont") as FontFamily, FontSize = (double)MainWindow.Global.FindResource("fontSizeMedium") });
 
 
             var run = new Run
@@ -1582,7 +1575,7 @@ namespace ComplexWriter.global
                 FontSize = style.FontSize,
                 FontStyle = style.IsItalic ? FontStyles.Italic : FontStyles.Normal,
                 FontWeight = style.IsBold ? FontWeights.Bold : FontWeights.Normal,
-                Text = "Beispieltext"
+                Text = Properties.Resources.ExampleText
             };
 
             block.Inlines.Add(run);
@@ -1741,7 +1734,7 @@ namespace ComplexWriter.global
                 var style1 = (ComplexStyle)values[0];
                 var style2 = (ComplexStyle)values[1];
 
-                bool isEqual = ComplexStyle.Equals(style1, style2);// =style1!= null && style2!= null && style1.Caption.Equals(style2.Caption);
+                bool isEqual = ComplexStyle.Equals(style1, style2);
                 return isEqual ? Visibility.Visible : Visibility.Collapsed;
             }
             catch (Exception)
@@ -1767,7 +1760,7 @@ namespace ComplexWriter.global
                 var style1 = (ComplexStyle)values[0];
                 var style2 = (ComplexStyle)values[1];
 
-                bool isEqual = ComplexStyle.Equals(style1, style2);// =style1!= null && style2!= null && style1.Caption.Equals(style2.Caption);
+                bool isEqual = ComplexStyle.Equals(style1, style2);
                 return isEqual ? Visibility.Hidden : Visibility.Visible;
             }
             catch (Exception)
@@ -1866,7 +1859,7 @@ namespace ComplexWriter.global
                 var val1 = (bool)values[0];
                 var val2 = (string)values[1];
 
-                return string.Format(val1 ? "Löschung von \"{0}\" wieder rückgängig machen" : "\"{0}\" löschen", val2);
+                return string.Format(val1 ? Resources.RevertDelete : Resources.DeleteSpezial, val2);
 
             }
             catch (Exception)

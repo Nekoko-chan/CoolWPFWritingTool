@@ -2,16 +2,13 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using ComplexWriter.global;
+using ComplexWriter.Properties;
 
 namespace ComplexWriter
 {
     public class ErrorMessageItem :INotifyPropertyChanged
     {
 
-        public const string DIVERSE = "Diverse";
-        public const string SAVE = "Speicherung";
-        public const string ERROR = "Fehler";
-        public const string DICTIONARY = "Wörterbuch";
         public const string ZZZ = "ZZZ";
 
         private Exception _exception;
@@ -34,7 +31,7 @@ namespace ComplexWriter
             ShowsDetails = false;
             CanShowDetails = true;
             Severity = ErrorSeverity.Error;
-            GroupName = ERROR;
+            GroupName = Resources.Error;
             DisplayGroupName = ZZZ;
         }
 
@@ -93,7 +90,7 @@ namespace ComplexWriter
                     return;
                  Message = value.Message;
                 Stacktrace = value.StackTrace;
-                GroupName = "Fehler";
+                GroupName = Resources.Error;
             }
         }
 

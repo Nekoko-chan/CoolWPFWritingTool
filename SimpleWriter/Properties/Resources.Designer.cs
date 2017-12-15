@@ -187,6 +187,15 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Apply the followign style:.
+        /// </summary>
+        public static string ApplyStlye {
+            get {
+                return ResourceManager.GetString("ApplyStlye", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ask for passwords.
         /// </summary>
         public static string AskForPassword {
@@ -541,6 +550,15 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delete &quot;{0}&quot;.
+        /// </summary>
+        public static string DeleteSpezial {
+            get {
+                return ResourceManager.GetString("DeleteSpezial", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete?.
         /// </summary>
         public static string DeleteTitle {
@@ -622,11 +640,29 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edit dictionary.
+        /// </summary>
+        public static string EditDictionary {
+            get {
+                return ResourceManager.GetString("EditDictionary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit entry.
         /// </summary>
         public static string EditEntry {
             get {
                 return ResourceManager.GetString("EditEntry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit name list.
+        /// </summary>
+        public static string EditNameList {
+            get {
+                return ResourceManager.GetString("EditNameList", resourceCulture);
             }
         }
         
@@ -705,6 +741,15 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Example text.
+        /// </summary>
+        public static string ExampleText {
+            get {
+                return ResourceManager.GetString("ExampleText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Expand all.
         /// </summary>
         public static string ExpandAll {
@@ -729,6 +774,24 @@ namespace ComplexWriter.Properties {
         public static string FileDeleteQuestion {
             get {
                 return ResourceManager.GetString("FileDeleteQuestion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Erweiterte Text-Dateien|*.etf|Text-Dateien|*.rtxt|Erlaubte Formate |*.etf;*.rtxt.
+        /// </summary>
+        public static string FileFilterLarge {
+            get {
+                return ResourceManager.GetString("FileFilterLarge", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Erweiterte Text-Dateien|*.etf.
+        /// </summary>
+        public static string FileFilterSmall {
+            get {
+                return ResourceManager.GetString("FileFilterSmall", resourceCulture);
             }
         }
         
@@ -1662,6 +1725,15 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Revert deleting  &quot;{0}&quot;.
+        /// </summary>
+        public static string RevertDelete {
+            get {
+                return ResourceManager.GetString("RevertDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to (Click right for more options).
         /// </summary>
         public static string RightClickOptions {
@@ -2157,6 +2229,15 @@ namespace ComplexWriter.Properties {
         public static string Unknown {
             get {
                 return ResourceManager.GetString("Unknown", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unbekannt.txt.
+        /// </summary>
+        public static string UnknowTxt {
+            get {
+                return ResourceManager.GetString("UnknowTxt", resourceCulture);
             }
         }
         

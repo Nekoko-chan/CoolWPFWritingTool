@@ -122,7 +122,7 @@ namespace ComplexWriter.MessageBoxes
             }
 
             return MainWindow.Global.FindResource(group.Name.Equals("") ? "NonExpandableGroup" :
-                group.Name.Equals(ErrorMessageItem.ERROR) ? "ExpandableGroupError" :
+                group.Name.Equals(Properties.Resources.Error) ? "ExpandableGroupError" :
                 "ExpandableGroup") as Style;
         }
     }

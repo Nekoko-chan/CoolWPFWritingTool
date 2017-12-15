@@ -94,7 +94,7 @@ namespace ComplexWriter.MessageBoxes
 
         public static void ShowErrorMessage(MainWindow mainWindow, Exception exception)
         {
-            var dlg = new ColorWindow() { Title = "Fehler", Message = exception.Message, SubMessage = exception.StackTrace,Owner = mainWindow, MessageIcon = MessageBoxImage.Error};
+            var dlg = new ColorWindow() { Title = Properties.Resources.Error, Message = exception.Message, SubMessage = exception.StackTrace,Owner = mainWindow, MessageIcon = MessageBoxImage.Error};
             dlg.ShowDialog();
         }
 

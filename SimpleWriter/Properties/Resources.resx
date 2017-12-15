@@ -906,4 +906,31 @@ If you like to keep the watermark, you have to save it as an *.etf file</value>
   <data name="DictionaryPath" xml:space="preserve">
     <value>Microsoft\Spelling\en-US\CoolWriter.dic</value>
   </data>
+  <data name="ApplyStlye" xml:space="preserve">
+    <value>Apply the followign style:</value>
+  </data>
+  <data name="DeleteSpezial" xml:space="preserve">
+    <value>Delete "{0}"</value>
+  </data>
+  <data name="EditDictionary" xml:space="preserve">
+    <value>Edit dictionary</value>
+  </data>
+  <data name="EditNameList" xml:space="preserve">
+    <value>Edit name list</value>
+  </data>
+  <data name="ExampleText" xml:space="preserve">
+    <value>Example text</value>
+  </data>
+  <data name="FileFilterLarge" xml:space="preserve">
+    <value>Erweiterte Text-Dateien|*.etf|Text-Dateien|*.rtxt|Erlaubte Formate |*.etf;*.rtxt</value>
+  </data>
+  <data name="FileFilterSmall" xml:space="preserve">
+    <value>Erweiterte Text-Dateien|*.etf</value>
+  </data>
+  <data name="RevertDelete" xml:space="preserve">
+    <value>Revert deleting  "{0}"</value>
+  </data>
+  <data name="UnknowTxt" xml:space="preserve">
+    <value>Unbekannt.txt</value>
+  </data>
 </root>
