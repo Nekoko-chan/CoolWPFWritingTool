@@ -176,7 +176,7 @@ Beachten sie aber, dass bisherige Anführungszeichen nicht verändert werden.</v
     <value>Blocktext</value>
   </data>
   <data name="Bold" xml:space="preserve">
-    <value>Fettgedruckter Text</value>
+    <value>Fettgedruckt</value>
   </data>
   <data name="BoldOnOf" xml:space="preserve">
     <value>Fett an / aus</value>
@@ -373,7 +373,7 @@ Kopieren sie die Schrift wenn gewünscht in den Ordner "Fonts".</value>
     <value>Fehlende Schrift</value>
   </data>
   <data name="Fontstyle" xml:space="preserve">
-    <value>Schriftart:</value>
+    <value>Schriftart</value>
   </data>
   <data name="FromPage" xml:space="preserve">
     <value>von Seite</value>
@@ -434,7 +434,7 @@ Kopieren sie die Schrift wenn gewünscht in den Ordner "Fonts".</value>
     <value>Sonderzeichen einfügen...</value>
   </data>
   <data name="Italic" xml:space="preserve">
-    <value>Schräggestellter Text</value>
+    <value>Schräggestellt</value>
   </data>
   <data name="ItalicOnOf" xml:space="preserve">
     <value>Schräg stellen an / aus</value>
@@ -647,7 +647,7 @@ Soll jetzt neu gestartet werden?</value>
     <value>Es liegen Fehler beim Speichern von Dateien vor. Das hat zur Folge, das einige Dateien ungespeicherte Änderungen haben.
 Soll trotzdem beendet werden?</value>
   </data>
-  <data name="SaveFile" xml:space="preserve">
+  <data name="SaveFileAs" xml:space="preserve">
     <value>Datei speichern unter...</value>
   </data>
   <data name="SaveOnly" xml:space="preserve">
@@ -781,7 +781,7 @@ Dieser Vorgang lässt sich nicht wieder rückgängig machen!</value>
     <value>bis Seite</value>
   </data>
   <data name="Underlined" xml:space="preserve">
-    <value>Unterstrichener Text</value>
+    <value>Unterstrichen</value>
   </data>
   <data name="UnderlineOnOf" xml:space="preserve">
     <value>Unterstrichen an / aus</value>
@@ -910,6 +910,15 @@ Wenn sie das Wasserzeichen weiterhin haben wollen, speichern sie es als *.etf-Da
   <data name="ApplyStlye" xml:space="preserve">
     <value>Folgenden Stil anwenden</value>
   </data>
+  <data name="Condensed" xml:space="preserve">
+    <value>Zusammengepresst</value>
+  </data>
+  <data name="CountOccurances" xml:space="preserve">
+    <value>Vorkommen zählen</value>
+  </data>
+  <data name="DeleteAllStyles" xml:space="preserve">
+    <value>Alle Stile löschen</value>
+  </data>
   <data name="DeleteSpezial" xml:space="preserve">
     <value>"{0}" löschen</value>
   </data>
@@ -919,8 +928,14 @@ Wenn sie das Wasserzeichen weiterhin haben wollen, speichern sie es als *.etf-Da
   <data name="EditNameList" xml:space="preserve">
     <value>Namensliste bearbeiten</value>
   </data>
+  <data name="EditSelectedStyle" xml:space="preserve">
+    <value>Selektierten Stil bearbeiten</value>
+  </data>
   <data name="ExampleText" xml:space="preserve">
     <value>Beispieltext</value>
+  </data>
+  <data name="ExportStyle" xml:space="preserve">
+    <value>Stil exportieren</value>
   </data>
   <data name="FileFilterLarge" xml:space="preserve">
     <value>Erweiterte Text-Dateien|*.etf|Text-Dateien|*.rtxt|Erlaubte Formate |*.etf;*.rtxt</value>
@@ -928,10 +943,85 @@ Wenn sie das Wasserzeichen weiterhin haben wollen, speichern sie es als *.etf-Da
   <data name="FileFilterSmall" xml:space="preserve">
     <value>Erweiterte Text-Dateien|*.etf</value>
   </data>
+  <data name="FontSize" xml:space="preserve">
+    <value>Schriftgröße</value>
+  </data>
+  <data name="GoToFirstUsage" xml:space="preserve">
+    <value>Zum ersten Vorkommen springen</value>
+  </data>
+  <data name="ImportStyles" xml:space="preserve">
+    <value>Stile importieren</value>
+  </data>
+  <data name="IsMainEntry" xml:space="preserve">
+    <value>Ist ein Haupteintrag</value>
+  </data>
+  <data name="MergeStyles" xml:space="preserve">
+    <value>Stilliste an Dokument angleichen</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>Nein</value>
+  </data>
+  <data name="RemoveEntry" xml:space="preserve">
+    <value>Eintrag löschen</value>
+  </data>
+  <data name="RemoveStyle" xml:space="preserve">
+    <value>Stil entfernen</value>
+  </data>
+  <data name="RemoveStyleFromDocument" xml:space="preserve">
+    <value>Stil aus dem Dokument entfernen</value>
+  </data>
+  <data name="ReplaceStyleInDocument" xml:space="preserve">
+    <value>Stil im Dokument ersetzen</value>
+  </data>
   <data name="RevertDelete" xml:space="preserve">
     <value>Löschung von "{0}" wieder rückgängig machen</value>
   </data>
+  <data name="StrikedThrough" xml:space="preserve">
+    <value>Durchgestrichen</value>
+  </data>
+  <data name="StylesUpdated" xml:space="preserve">
+    <value>Stilliste aktualisiert</value>
+  </data>
   <data name="UnknowTxt" xml:space="preserve">
     <value>Unbekannt.txt</value>
+  </data>
+  <data name="UpdateStyle" xml:space="preserve">
+    <value>Stil aktualisieren</value>
+  </data>
+  <data name="UseStyleAsDefault" xml:space="preserve">
+    <value>Stil als default verwenden</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Ja</value>
+  </data>
+  <data name="Automatic" xml:space="preserve">
+    <value>Automatisch</value>
+  </data>
+  <data name="ExportRTF" xml:space="preserve">
+    <value>Als RichTextFile exportieren</value>
+  </data>
+  <data name="SaveAll" xml:space="preserve">
+    <value>Alle Dateien speichern</value>
+  </data>
+  <data name="SaveFile" xml:space="preserve">
+    <value>Datei speichern...</value>
+  </data>
+  <data name="UpdateLanguage" xml:space="preserve">
+    <value>Spräche ändern</value>
+  </data>
+  <data name="FileIsReadOnly" xml:space="preserve">
+    <value>Diese Datei kann nicht verändert werden</value>
+  </data>
+  <data name="IsPasswordProtected" xml:space="preserve">
+    <value>Diese Datei ist mit einem Passwort versehen</value>
+  </data>
+  <data name="QuotesWithoutAStyle" xml:space="preserve">
+    <value>Anführungszeichen ohne Stil</value>
+  </data>
+  <data name="ReadOnlyDescription" xml:space="preserve">
+    <value>Die Datei ist schreibgeschützt, Doppelklick auf Tab zum entsperren</value>
+  </data>
+  <data name="StrikedThroughOnOf" xml:space="preserve">
+    <value>Durchgestrichen an/ aus</value>
   </data>
 </root>

@@ -148,6 +148,7 @@
     <Content Include="Fonts\readme.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Images\language.png" />
     <Resource Include="Images\line.png" />
     <Resource Include="Images\rtf.png" />
     <Resource Include="Images\QuoteForMenu.png" />

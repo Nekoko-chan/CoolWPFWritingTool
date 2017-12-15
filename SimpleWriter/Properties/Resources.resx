@@ -176,10 +176,10 @@ Please remember, that already inserted quotations are not updated.</value>
     <value>Block text</value>
   </data>
   <data name="Bold" xml:space="preserve">
-    <value>Bold Text</value>
+    <value>Bold</value>
   </data>
   <data name="BoldOnOf" xml:space="preserve">
-    <value>Bold</value>
+    <value>Bold on / off</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>Cancel</value>
@@ -373,7 +373,7 @@ If you like to use it, copy it to the "Fonts" folder</value>
     <value>Missing font</value>
   </data>
   <data name="Fontstyle" xml:space="preserve">
-    <value>Font style:</value>
+    <value>Font familiy</value>
   </data>
   <data name="FromPage" xml:space="preserve">
     <value>from Page</value>
@@ -434,7 +434,7 @@ If you like to use it, copy it to the "Fonts" folder</value>
     <value>Insert unicode...</value>
   </data>
   <data name="Italic" xml:space="preserve">
-    <value>Italic text</value>
+    <value>Italic</value>
   </data>
   <data name="ItalicOnOf" xml:space="preserve">
     <value>Italic on / off</value>
@@ -647,7 +647,7 @@ Would you like to restart ist?</value>
     <value>Some files could not be saved, because of errors happening during this operation.
 Would you like to close the program anyway?</value>
   </data>
-  <data name="SaveFile" xml:space="preserve">
+  <data name="SaveFileAs" xml:space="preserve">
     <value>Save file as...</value>
   </data>
   <data name="SaveOnly" xml:space="preserve">
@@ -780,7 +780,7 @@ It is impossible to undone the operation.</value>
     <value>to page</value>
   </data>
   <data name="Underlined" xml:space="preserve">
-    <value>Underlined text</value>
+    <value>Underlined</value>
   </data>
   <data name="UnderlineOnOf" xml:space="preserve">
     <value>Underlined  on / off</value>
@@ -909,6 +909,12 @@ If you like to keep the watermark, you have to save it as an *.etf file</value>
   <data name="ApplyStlye" xml:space="preserve">
     <value>Apply the followign style:</value>
   </data>
+  <data name="CountOccurances" xml:space="preserve">
+    <value>Count usages</value>
+  </data>
+  <data name="DeleteAllStyles" xml:space="preserve">
+    <value>Delete all styles</value>
+  </data>
   <data name="DeleteSpezial" xml:space="preserve">
     <value>Delete "{0}"</value>
   </data>
@@ -918,8 +924,14 @@ If you like to keep the watermark, you have to save it as an *.etf file</value>
   <data name="EditNameList" xml:space="preserve">
     <value>Edit name list</value>
   </data>
+  <data name="EditSelectedStyle" xml:space="preserve">
+    <value>Edit selected style</value>
+  </data>
   <data name="ExampleText" xml:space="preserve">
     <value>Example text</value>
+  </data>
+  <data name="ExportStyle" xml:space="preserve">
+    <value>Export style</value>
   </data>
   <data name="FileFilterLarge" xml:space="preserve">
     <value>Erweiterte Text-Dateien|*.etf|Text-Dateien|*.rtxt|Erlaubte Formate |*.etf;*.rtxt</value>
@@ -927,10 +939,88 @@ If you like to keep the watermark, you have to save it as an *.etf file</value>
   <data name="FileFilterSmall" xml:space="preserve">
     <value>Erweiterte Text-Dateien|*.etf</value>
   </data>
+  <data name="GoToFirstUsage" xml:space="preserve">
+    <value>Go to fisrt usage</value>
+  </data>
+  <data name="ImportStyles" xml:space="preserve">
+    <value>Import styles</value>
+  </data>
+  <data name="IsMainEntry" xml:space="preserve">
+    <value>Is main entry</value>
+  </data>
+  <data name="MergeStyles" xml:space="preserve">
+    <value>Match style list with usages</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="RemoveEntry" xml:space="preserve">
+    <value>Remove entry</value>
+  </data>
+  <data name="RemoveStyle" xml:space="preserve">
+    <value>Remove style</value>
+  </data>
+  <data name="RemoveStyleFromDocument" xml:space="preserve">
+    <value>Remove style from document</value>
+  </data>
+  <data name="ReplaceStyleInDocument" xml:space="preserve">
+    <value>Replace style in document</value>
+  </data>
   <data name="RevertDelete" xml:space="preserve">
     <value>Revert deleting  "{0}"</value>
   </data>
+  <data name="StylesUpdated" xml:space="preserve">
+    <value>Style list updated</value>
+  </data>
   <data name="UnknowTxt" xml:space="preserve">
     <value>Unbekannt.txt</value>
+  </data>
+  <data name="UpdateStyle" xml:space="preserve">
+    <value>Update Style</value>
+  </data>
+  <data name="UseStyleAsDefault" xml:space="preserve">
+    <value>Use style as default</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="Condensed" xml:space="preserve">
+    <value>Codensed</value>
+  </data>
+  <data name="FontSize" xml:space="preserve">
+    <value>Font size</value>
+  </data>
+  <data name="StrikedThrough" xml:space="preserve">
+    <value>Strikethrough</value>
+  </data>
+  <data name="Automatic" xml:space="preserve">
+    <value>Automatic</value>
+  </data>
+  <data name="ExportRTF" xml:space="preserve">
+    <value>Update as Richt text file</value>
+  </data>
+  <data name="FileIsReadOnly" xml:space="preserve">
+    <value>This file is read only</value>
+  </data>
+  <data name="IsPasswordProtected" xml:space="preserve">
+    <value>This file is protected by a passwort</value>
+  </data>
+  <data name="QuotesWithoutAStyle" xml:space="preserve">
+    <value>Quotations without a style</value>
+  </data>
+  <data name="ReadOnlyDescription" xml:space="preserve">
+    <value>This file is reaf only. Please double click on its tab, to make it writable</value>
+  </data>
+  <data name="SaveAll" xml:space="preserve">
+    <value>Save all files</value>
+  </data>
+  <data name="SaveFile" xml:space="preserve">
+    <value>Save file...</value>
+  </data>
+  <data name="StrikedThroughOnOf" xml:space="preserve">
+    <value>Strikethrouh on /off</value>
+  </data>
+  <data name="UpdateLanguage" xml:space="preserve">
+    <value>Set language</value>
   </data>
 </root>

@@ -4,7 +4,8 @@
         xmlns:customControls="clr-namespace:CustomControls;assembly=CustomControls"
         WindowStartupLocation="CenterOwner"
         xmlns:messageBoxes="clr-namespace:ComplexWriter.MessageBoxes"
-        xmlns:commands1="clr-namespace:ComplexWriter.Commands" 
+        xmlns:commands1="clr-namespace:ComplexWriter.Commands"
+        xmlns:p="clr-namespace:ComplexWriter.Properties"
         Loaded="FocusFirst"
         Title="MessageBox"  SizeToContent="WidthAndHeight">
     <Window.InputBindings>
@@ -88,25 +89,19 @@
         <Border Name="buttonBorder" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right" Margin="0,-2,20,0" Background="{StaticResource BackColorBrush}" Effect="{StaticResource WindowShadow}" CornerRadius="0,0,10,10">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                 <customControls:GlassButton3 Style="{StaticResource GlassButtonStyle}" x:Name="ForFocus" Click="CloseWithTag">
-                    <TextBlock>
-                        <Run FontWeight="Bold" FontSize="25">J</Run><Run>a</Run>
-                    </TextBlock>
+                    <TextBlock Text="{x:Static p:Resources.Yes}"/>
                     <customControls:GlassButton3.Tag>
                         <x:Static Member="MessageBoxResult.Yes"/>
                     </customControls:GlassButton3.Tag>
                 </customControls:GlassButton3>
                 <customControls:GlassButton3 Style="{StaticResource GlassButtonStyle}" Click="CloseWithTag">
-                    <TextBlock>
-                        <Run FontWeight="Bold" FontSize="25">N</Run><Run>ein</Run>
-                    </TextBlock>
+                    <TextBlock Text="{x:Static p:Resources.No}"/>
                     <customControls:GlassButton3.Tag>
                         <x:Static Member="MessageBoxResult.No"/>
                     </customControls:GlassButton3.Tag>
                 </customControls:GlassButton3>
                 <customControls:GlassButton3 Style="{StaticResource GlassButtonStyle}" Visibility="{Binding RelativeSource={RelativeSource AncestorType= messageBoxes:QuestionBox},Path=CanCanel,Converter={StaticResource falseCollapsedConverter}}" Margin="20,4,4,4" Click="CloseWithTag">
-                    <TextBlock>
-                        <Run FontWeight="Bold" FontSize="25">A</Run><Run>bbrechen</Run>
-                    </TextBlock>
+                    <TextBlock Text="{x:Static p:Resources.Cancel}"/>
                     <customControls:GlassButton3.Tag>
                         <x:Static Member="MessageBoxResult.Cancel"/>
                     </customControls:GlassButton3.Tag>

@@ -3,6 +3,7 @@
                     x:Class="ComplexWriter.MainWindowDictionary"
                     xmlns:custom="clr-namespace:CustomControls;assembly=CustomControls"
                     xmlns:system="clr-namespace:System;assembly=mscorlib"
+        xmlns:p="clr-namespace:ComplexWriter.Properties"
                     xmlns:global="clr-namespace:ComplexWriter.global"
                     xmlns:complexWriter="clr-namespace:ComplexWriter">
     <ResourceDictionary.MergedDictionaries>
@@ -129,7 +130,7 @@
                                                                                  ButtonMask="Images/Restart.png"
                                                                                  Click="Restart" Margin="10,0,0,0">
                                                     <Button.ToolTip>
-                                                        <ToolTip Style="{StaticResource tipTest}" Content="Neustarten"></ToolTip>
+                                                        <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.Restart}"></ToolTip>
                                                     </Button.ToolTip>
                                                 </custom:MaskedImageButtonEnlarge>
                                                 <ToggleButton x:Name="TopMost"
@@ -137,7 +138,7 @@
                                                               IsChecked="{Binding RelativeSource={RelativeSource AncestorType= complexWriter:MainWindow},Path=IsTopMost,Mode=TwoWay}"
                                                     Margin="0,0,4,0">
                                                     <ToggleButton.ToolTip>
-                                                        <ToolTip Style="{StaticResource tipTest}" Content="Immer im Vordergrund anzeigen"></ToolTip>
+                                                        <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.AlwaysOnTop}"></ToolTip>
                                                     </ToggleButton.ToolTip>
                                                 </ToggleButton>
                                                 <ToggleButton IsChecked="True" x:Name="ToggleButtons"
@@ -145,7 +146,7 @@
                                                                                  Click="FocusBox"
                                                     Margin="0,0,4,0">
                                                     <ToggleButton.ToolTip>
-                                                        <ToolTip Style="{StaticResource tipTest}" Content="Minimieren"></ToolTip>
+                                                        <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.Minimize}"></ToolTip>
                                                     </ToggleButton.ToolTip>
                                                 </ToggleButton>
                                                 <custom:MaskedImageButtonEnlarge
@@ -153,7 +154,7 @@
                                                                                  ButtonMask="Images/power.png"
                                                                                  Click="CloseMe" Margin="0,0,4,0">
                                                     <Button.ToolTip>
-                                                        <ToolTip Style="{StaticResource tipTest}" Content="Beenden"></ToolTip>
+                                                        <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.Close}"></ToolTip>
                                                     </Button.ToolTip>
                                                 </custom:MaskedImageButtonEnlarge>
                                                </StackPanel>

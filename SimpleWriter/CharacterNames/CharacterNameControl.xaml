@@ -10,8 +10,9 @@
              xmlns:customControls="clr-namespace:CustomControls;assembly=CustomControls"
               xmlns:global="clr-namespace:ComplexWriter.global"
         xmlns:system="clr-namespace:System;assembly=mscorlib"
-             
-             d:DesignHeight="300" d:DesignWidth="300">
+        xmlns:p="clr-namespace:ComplexWriter.Properties"
+
+        d:DesignHeight="300" d:DesignWidth="300">
     
     <UserControl.Resources>
         <ResourceDictionary>
@@ -58,17 +59,17 @@
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                 <customControls:MaskedImageButtonEnlarge   ButtonColor="{StaticResource TitleBrush}" ButtonMask="../Images/Add.png" Width="24" Height="24" Click="AddSelected">
                     <Button.ToolTip>
-                        <ToolTip Style="{StaticResource tipTest}" Content="Selektierten Text als Name hinzufügen"></ToolTip>
+                        <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.AddSelectedText}"></ToolTip>
                     </Button.ToolTip>
                 </customControls:MaskedImageButtonEnlarge>
                 <customControls:MaskedImageButtonEnlarge  ButtonColor="{StaticResource TitleBrush}" ButtonMask="../Images/AddEdit.png" Width="24" Height="24" Click="AddNew">
                     <Button.ToolTip>
-                        <ToolTip Style="{StaticResource tipTest}" Content="Neuen Namen hinzufügen"></ToolTip>
+                        <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.AddNewName}"></ToolTip>
                     </Button.ToolTip>
                 </customControls:MaskedImageButtonEnlarge>
                 <customControls:MaskedToggleButtonEnlarge  IsChecked="{Binding RelativeSource={RelativeSource AncestorType=char:CharacterNameControl},Path=IsEditable}" Width="24" Height="24" ButtonMask="../Images/bookOpenEdit.png" ButtonColor="{DynamicResource TitleBrush}" Margin="5,-1">
                     <ToggleButton.ToolTip>
-                        <ToolTip Style="{StaticResource tipTest}" Content="Bearbeitungsmodus ein/aus"></ToolTip>
+                        <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.EditOnOf}"></ToolTip>
                     </ToggleButton.ToolTip>
                     </customControls:MaskedToggleButtonEnlarge>
             </StackPanel>
@@ -97,8 +98,8 @@
                                         </Border.OpacityMask>
                                         <Border.ContextMenu>
                                             <ContextMenu Style="{StaticResource context}">
-                                                <MenuItem Tag ="{Binding}"  Style="{StaticResource menuItem}" Header="Eintrag bearbeiten" Click="EditDescription" Background="{StaticResource back}" Foreground="{StaticResource fore}"></MenuItem>
-                                                <MenuItem Tag ="{Binding}"  Style="{StaticResource menuItem}" Header="Eintrag löschen" Click="DeleteChara" Background="{StaticResource back2}" Foreground="{StaticResource fore2}"></MenuItem>
+                                                <MenuItem Tag ="{Binding}"  Style="{StaticResource menuItem}" Header="{x:Static p:Resources.EditEntry}"  Click="EditDescription" Background="{StaticResource back}" Foreground="{StaticResource fore}"></MenuItem>
+                                                <MenuItem Tag ="{Binding}"  Style="{StaticResource menuItem}" Header="{x:Static p:Resources.DeleteEntry}" Click="DeleteChara" Background="{StaticResource back2}" Foreground="{StaticResource fore2}"></MenuItem>
                                             </ContextMenu>
                                         </Border.ContextMenu>
                                         <Border.ToolTip>
@@ -123,17 +124,17 @@
                                     </Border>-->
                                     <RadioButton ToolTipService.ShowOnDisabled="True" IsEnabled="{Binding RelativeSource={RelativeSource AncestorType=char:CharacterNameControl},Path=IsEditable}" Grid.Column="2" Style="{StaticResource MainCharacterRadio}" GroupName="{Binding Type}" IsChecked="{Binding IsMain, Mode=TwoWay}" Foreground="{StaticResource TitleBrush}" Margin="0,3,0,0">
                                         <RadioButton.ToolTip>
-                                            <ToolTip Style="{StaticResource tipTest}" Content="Ist ein Haupteintrag"/>
+                                            <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.IsMainEntry}"/>
                                         </RadioButton.ToolTip>
                                     </RadioButton>
                                     <customControls:MaskedImageButtonEnlarge Visibility="{Binding RelativeSource={RelativeSource AncestorType=char:CharacterNameControl},Path=IsEditable, Converter={StaticResource falseCollapsedConverter}}"  Cursor="{StaticResource overCursor}" Grid.Column="3"  ButtonColor="{StaticResource TitleBrush}" ButtonMask="../Images/Textcolor.png" Width="16" Height="16" Tag="{Binding}"  Click="EditDescription">
                                         <Button.ToolTip>
-                                            <ToolTip Style="{StaticResource tipTest}" Content="Eintrag bearbeiten"></ToolTip>
+                                            <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.EditEntry}"></ToolTip>
                                         </Button.ToolTip>
                                     </customControls:MaskedImageButtonEnlarge>
                                     <customControls:MaskedImageButtonEnlarge Visibility="{Binding RelativeSource={RelativeSource AncestorType=char:CharacterNameControl},Path=IsEditable, Converter={StaticResource  falseCollapsedConverter}}"  Cursor="{StaticResource overCursor}" Grid.Column="4"  ButtonColor="{StaticResource TitleBrush}" ButtonMask="../Images/blackout.png" Width="16" Height="16" Tag="{Binding}"  Click="DeleteMe">
                                         <Button.ToolTip>
-                                            <ToolTip Style="{StaticResource tipTest}" Content="Element entfernen"></ToolTip>
+                                            <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.DeleteEntry}"></ToolTip>
                                         </Button.ToolTip>
                                     </customControls:MaskedImageButtonEnlarge>
                                     <Button Height="28" Visibility="{Binding RelativeSource={RelativeSource AncestorType=char:CharacterNameControl},Path=IsEditable, Converter={StaticResource falseCollapsedConverter}}"  Cursor="{StaticResource overCursor}" Style="{StaticResource MoveContentBtn}" Grid.Column="1" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch">
@@ -149,8 +150,8 @@
                                                      Click="NameSelected" HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch">
                                         <char:TextButton.ContextMenu>
                                             <ContextMenu Style="{StaticResource context}">
-                                                <MenuItem Tag ="{Binding}"  Style="{StaticResource menuItem}" Header="Eintrag bearbeiten" Click="EditDescription" Background="{StaticResource back}" Foreground="{StaticResource fore}"></MenuItem>
-                                                <MenuItem Tag ="{Binding}"  Style="{StaticResource menuItem}" Header="Eintrag löschen" Click="DeleteChara" Background="{StaticResource back2}" Foreground="{StaticResource fore2}"></MenuItem>
+                                                <MenuItem Tag ="{Binding}"  Style="{StaticResource menuItem}" Header="{x:Static p:Resources.EditEntry}" Click="EditDescription" Background="{StaticResource back}" Foreground="{StaticResource fore}"></MenuItem>
+                                                <MenuItem Tag ="{Binding}"  Style="{StaticResource menuItem}" Header="{x:Static p:Resources.DeleteEntry}" Click="DeleteChara" Background="{StaticResource back2}" Foreground="{StaticResource fore2}"></MenuItem>
                                             </ContextMenu>
                                         </char:TextButton.ContextMenu>
                                     </char:TextButton>

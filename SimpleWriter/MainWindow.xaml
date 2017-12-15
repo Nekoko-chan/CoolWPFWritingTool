@@ -69,17 +69,17 @@
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
-                            <TextBlock Style="{StaticResource tipblock}" Text="Schriftart"/>
+                            <TextBlock Style="{StaticResource tipblock}" Text="{x:Static p:Resources.Fontstyle}"/>
                             <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource tipblock2}">
                                 <Run Text="{Binding FontFamily, Mode=OneWay, Converter={StaticResource OwnFontFamilyTextConverter}}"/><Run Text=" ("/><Run Text="{Binding FontGroupString, Mode=OneWay}"/><Run Text=")"/>
                             </TextBlock>
-                            <TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource tipblock}" Text="Schriftgröße"/>
+                            <TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource tipblock}" Text="{x:Static p:Resources.FontSize}"/>
                             <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource tipblock2}" Text="{Binding FontSize, Mode=OneWay}"/>
-                            <TextBlock Grid.Row="2" Grid.Column="0" Style="{StaticResource tipblock2}" Text="Kursiv" FontStyle="Italic" Visibility="{Binding IsItalic, Mode=OneWay, Converter={StaticResource falseCollapsedConverter}}"></TextBlock>
-                            <TextBlock Grid.Row="3" Grid.Column="0" Style="{StaticResource tipblock2}" Text="Fett" FontWeight="Bold" Visibility="{Binding IsBold, Mode=OneWay, Converter={StaticResource falseCollapsedConverter}}"></TextBlock>
-                            <TextBlock Grid.Row="4" Grid.Column="0" Style="{StaticResource tipblock2}" Text="Unterstrichen" TextDecorations="Underline" Visibility="{Binding IsUnderlined, Mode=OneWay, Converter={StaticResource falseCollapsedConverter}}"/>
-                            <TextBlock Grid.Row="5" Grid.Column="0" Style="{StaticResource tipblock2}" Text="Durchgestrichen" TextDecorations="Strikethrough"  Visibility="{Binding IsStrikedOut, Mode=OneWay, Converter={StaticResource falseCollapsedConverter}}"></TextBlock>
-                            <TextBlock Grid.Row="6" Grid.Column="0" Style="{StaticResource tipblock2}" Text="Zusammengepressen" FontStretch="Condensed" Visibility="{Binding IsCondenced, Mode=OneWay, Converter={StaticResource falseCollapsedConverter}}"></TextBlock>
+                            <TextBlock Grid.Row="2" Grid.Column="0" Style="{StaticResource tipblock2}" Text="{x:Static p:Resources.Italic}" FontStyle="Italic" Visibility="{Binding IsItalic, Mode=OneWay, Converter={StaticResource falseCollapsedConverter}}"></TextBlock>
+                            <TextBlock Grid.Row="3" Grid.Column="0" Style="{StaticResource tipblock2}" Text="{x:Static p:Resources.Bold}" FontWeight="Bold" Visibility="{Binding IsBold, Mode=OneWay, Converter={StaticResource falseCollapsedConverter}}"></TextBlock>
+                            <TextBlock Grid.Row="4" Grid.Column="0" Style="{StaticResource tipblock2}" Text="{x:Static p:Resources.Underlined}" TextDecorations="Underline" Visibility="{Binding IsUnderlined, Mode=OneWay, Converter={StaticResource falseCollapsedConverter}}"/>
+                            <TextBlock Grid.Row="5" Grid.Column="0" Style="{StaticResource tipblock2}" Text="{x:Static p:Resources.StrikedThrough}" TextDecorations="Strikethrough"  Visibility="{Binding IsStrikedOut, Mode=OneWay, Converter={StaticResource falseCollapsedConverter}}"></TextBlock>
+                            <TextBlock Grid.Row="6" Grid.Column="0" Style="{StaticResource tipblock2}" Text="{x:Static p:Resources.Condensed}" FontStretch="Condensed" Visibility="{Binding IsCondenced, Mode=OneWay, Converter={StaticResource falseCollapsedConverter}}"></TextBlock>
                         </Grid>
                     </DataTemplate>
 
@@ -329,7 +329,7 @@
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
                 <Border Grid.Column="1" Padding="40,0" Visibility="{Binding RelativeSource={RelativeSource AncestorType=complexWriter:MainWindow},Path=CurrentText.ReadOnly,Converter={StaticResource falseCollapsedConverter}}" HorizontalAlignment="Center" BorderBrush="{StaticResource BackColorBrush}" BorderThickness="0,0,0,1">
-                    <TextBlock Text="Die Datei ist schreibgeschützt, Doppelklick auf Tab zum entsperren" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,2" FontFamily="{StaticResource defaultFont}"/>
+                    <TextBlock Text="{x:Static p:Resources.ReadOnlyDescription}" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,2" FontFamily="{StaticResource defaultFont}"/>
                 </Border>
                 <Border Grid.Column="1" Grid.Row="1" Margin="5,0,5,10" IsHitTestVisible="False">
                     <Image VerticalAlignment="Bottom" HorizontalAlignment="Right" RenderOptions.BitmapScalingMode="HighQuality" 
@@ -435,7 +435,7 @@
                                         x:Name="buttetBtn"
                                         ButtonColor="{DynamicResource TitleBrush}">
                                         <ToggleButton.ToolTip>
-                                            <ToolTip Style="{StaticResource tipTest}" Content="Liste"></ToolTip>
+                                            <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.List}"></ToolTip>
                                         </ToggleButton.ToolTip>
                                     </customControls:MaskedToggleButtonEnlarge>
                                 </Border>
@@ -449,7 +449,7 @@
                                                                               x:Name="numberingBtn"
                                                                               ButtonColor="{DynamicResource TitleBrush}">
                                         <ToggleButton.ToolTip>
-                                            <ToolTip Style="{StaticResource tipTest}" Content="Nummerierte Liste"></ToolTip>
+                                            <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.NumericList}"></ToolTip>
                                         </ToggleButton.ToolTip>
                                     </customControls:MaskedToggleButtonEnlarge>
                                 </Border>
@@ -465,7 +465,7 @@
                                             <system:Int32>1</system:Int32>
                                         </Button.Tag>
                                         <Button.ToolTip>
-                                            <ToolTip Style="{StaticResource tipTest}" Content="Abstand vergrößern"></ToolTip>
+                                            <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.IncreaseSpace}"></ToolTip>
                                         </Button.ToolTip>
                                     </customControls:MaskedImageButtonEnlarge>
                                 </Border>
@@ -482,7 +482,7 @@
                                             <system:Int32>-1</system:Int32>
                                         </Button.Tag>
                                         <Button.ToolTip>
-                                            <ToolTip Style="{StaticResource tipTest}" Content="Abstand verringern"></ToolTip>
+                                            <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.DecreaseSpace}"></ToolTip>
                                         </Button.ToolTip>
                                     </customControls:MaskedImageButtonEnlarge>
                                 </Border>
@@ -499,7 +499,7 @@
                                         </Button.Tag>
                                         <Button.ToolTip>
                                             <ToolTip Style="{StaticResource tipTest}"
-                                                     Content="Abstand rechts vergrößern">
+                                                     Content="{x:Static p:Resources.IncreaseRighSpace}">
                                             </ToolTip>
                                         </Button.ToolTip>
                                     </customControls:MaskedImageButtonEnlarge>
@@ -517,7 +517,7 @@
                                         </Button.Tag>
                                         <Button.ToolTip>
                                             <ToolTip Style="{StaticResource tipTest}"
-                                                     Content="Abstand rechts verringern">
+                                                     Content="{x:Static p:Resources.DecreaseRighSpace}">
                                             </ToolTip>
                                         </Button.ToolTip>
                                     </customControls:MaskedImageButtonEnlarge>
@@ -532,7 +532,7 @@
                                                                               ButtonColor="{DynamicResource TitleBrush}"
                                                                               Click="UpdateOtherElements">
                                         <ToggleButton.ToolTip>
-                                            <ToolTip Style="{StaticResource tipTest}" Content="Linksbündiger Text"></ToolTip>
+                                            <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.LeftText}"></ToolTip>
                                         </ToggleButton.ToolTip>
                                     </customControls:MaskedToggleButtonEnlarge>
                                 </Border>
@@ -546,7 +546,7 @@
                                                                               ButtonColor="{DynamicResource TitleBrush}"
                                                                               Click="UpdateOtherElements">
                                         <ToggleButton.ToolTip>
-                                            <ToolTip Style="{StaticResource tipTest}" Content="Zentrierter Text"></ToolTip>
+                                            <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.CenteredText}"></ToolTip>
                                         </ToggleButton.ToolTip>
                                     </customControls:MaskedToggleButtonEnlarge>
                                 </Border>
@@ -560,7 +560,7 @@
                                                                               ButtonColor="{DynamicResource TitleBrush}"
                                                                               Click="UpdateOtherElements">
                                         <ToggleButton.ToolTip>
-                                            <ToolTip Style="{StaticResource tipTest}" Content="Rechtsbündiger Text"></ToolTip>
+                                            <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.RightText}"></ToolTip>
                                         </ToggleButton.ToolTip>
                                     </customControls:MaskedToggleButtonEnlarge>
                                 </Border>
@@ -574,7 +574,7 @@
                                                                               ButtonColor="{DynamicResource TitleBrush}"
                                                                               Click="UpdateOtherElements">
                                         <ToggleButton.ToolTip>
-                                            <ToolTip Style="{StaticResource tipTest}" Content="Blocktext"></ToolTip>
+                                            <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.BlockText}"></ToolTip>
                                         </ToggleButton.ToolTip>
                                     </customControls:MaskedToggleButtonEnlarge>
                                 </Border>
@@ -587,7 +587,7 @@
                                         ButtonColor="{DynamicResource TitleBrush}" Click="ChangeFontWithDialog">
                                         <customControls:MaskedImageButtonEnlarge.ToolTip>
                                             <ToolTip Style="{StaticResource tipTest}"
-                                                     Content="Schriftart anpassen... (Strg+T)" />
+                                                     Content="{x:Static p:Resources.UpdateFont}" />
                                         </customControls:MaskedImageButtonEnlarge.ToolTip>
                                     </customControls:MaskedImageButtonEnlarge>
                                 </Border>
@@ -601,7 +601,7 @@
                                                                               ButtonColor="{DynamicResource TitleBrush}"
                                                                               Click="UpdateOtherElements">
                                         <ToggleButton.ToolTip>
-                                            <ToolTip Style="{StaticResource tipTest}" Content="Schräggestellter Text"></ToolTip>
+                                            <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.ItalicOnOf}"></ToolTip>
                                         </ToggleButton.ToolTip>
                                     </customControls:MaskedToggleButtonEnlarge>
                                 </Border>
@@ -616,7 +616,7 @@
                                                                               ButtonColor="{DynamicResource TitleBrush}"
                                                                               Click="UpdateOtherElements">
                                         <ToggleButton.ToolTip>
-                                            <ToolTip Style="{StaticResource tipTest}" Content="Fettgedruckter Text"></ToolTip>
+                                            <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.BoldOnOf}"></ToolTip>
                                         </ToggleButton.ToolTip>
                                     </customControls:MaskedToggleButtonEnlarge>
                                 </Border>
@@ -631,7 +631,7 @@
                                                                               ButtonColor="{DynamicResource TitleBrush}"
                                                                               Click="UpdateOtherElements">
                                         <ToggleButton.ToolTip>
-                                            <ToolTip Style="{StaticResource tipTest}" Content="Unterstrichener Text"></ToolTip>
+                                            <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.UnderlineOnOf}"></ToolTip>
                                         </ToggleButton.ToolTip>
                                     </customControls:MaskedToggleButtonEnlarge>
                                 </Border>
@@ -644,7 +644,7 @@
                                         ButtonColor="{DynamicResource TitleBrush}"
                                         Click="StrikeTextOut">
                                         <ToggleButton.ToolTip>
-                                            <ToolTip Style="{StaticResource tipTest}" Content="Durchgestrichener Text"></ToolTip>
+                                            <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.StrikedThroughOnOf}"></ToolTip>
                                         </ToggleButton.ToolTip>
                                     </customControls:MaskedToggleButtonEnlarge>
                                 </Border>
@@ -660,7 +660,7 @@
                                         x:Name="plusFontsizeBtn"
                                         ButtonColor="{DynamicResource TitleBrush}" Click="Changes">
                                         <Button.ToolTip>
-                                            <ToolTip Style="{StaticResource tipTest}" Content="Schriftgröße vergrößern"></ToolTip>
+                                            <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.IncreaseFont}"></ToolTip>
                                         </Button.ToolTip>
                                     </customControls:MaskedImageButtonEnlarge>
                                 </Border>
@@ -674,7 +674,7 @@
                                         x:Name="minusFontSizeBtn"
                                         ButtonColor="{DynamicResource TitleBrush}" Click="Changes">
                                         <Button.ToolTip>
-                                            <ToolTip Style="{StaticResource tipTest}" Content="Schriftgröße verringern"></ToolTip>
+                                            <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.DecreaseFOnt}"></ToolTip>
                                         </Button.ToolTip>
                                     </customControls:MaskedImageButtonEnlarge>
                                 </Border>
@@ -689,7 +689,7 @@
                                         ButtonColor="MediumVioletRed" Click="ChangesTextColor">
                                         <Button.ToolTip>
                                             <ToolTip Style="{StaticResource tipTest}"
-                                                     Content="Vordergrundfarbe ändern...">
+                                                     Content="{x:Static p:Resources.ChangeForeColor}">
                                             </ToolTip>
                                         </Button.ToolTip>
                                     </customControls:MaskedImageButtonEnlarge>
@@ -704,7 +704,7 @@
                                         ButtonColor="{DynamicResource TitleBrush}" Click="ChangesTextBackgroundColor">
                                         <Button.ToolTip>
                                             <ToolTip Style="{StaticResource tipTest}"
-                                                     Content="Hintergrundfarbe ändern...">
+                                                     Content="{x:Static p:Resources.ChangeBackColor}">
                                             </ToolTip>
                                         </Button.ToolTip>
                                     </customControls:MaskedImageButtonEnlarge>
@@ -719,7 +719,7 @@
                                         ButtonColor="{DynamicResource TitleBrush}" Click="InsertSpecialCharacter">
                                         <Button.ToolTip>
                                             <ToolTip Style="{StaticResource tipTest}"
-                                                     Content="Sonderzeichen einfügen...">
+                                                     Content="{x:Static p:Resources.InsertUnicode}">
                                             </ToolTip>
                                         </Button.ToolTip>
                                     </customControls:MaskedImageButtonEnlarge>
@@ -737,7 +737,7 @@
                                             Click="InsertLastSpecialCharacter">
                                         <Button.ToolTip>
                                             <ToolTip Style="{StaticResource tipTest}"
-                                                     Content="Letztes Sonderzeichen einfügen...">
+                                                     Content="{x:Static p:Resources.InsertLastUnicode}">
                                             </ToolTip>
                                         </Button.ToolTip>
                                     </Button>
@@ -750,7 +750,7 @@
                                         ButtonMask="Images/1291282236_image.png"
                                         ButtonColor="{DynamicResource TitleBrush}" Click="InsertAnImage">
                                         <Button.ToolTip>
-                                            <ToolTip Style="{StaticResource tipTest}" Content="Bild einfügen..."></ToolTip>
+                                            <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.InsertImage}"></ToolTip>
                                         </Button.ToolTip>
                                     </customControls:MaskedImageButtonEnlarge>
                                 </Border>
@@ -763,7 +763,7 @@
                                         ButtonColor="{DynamicResource TitleBrush}" Click="AddSectionWithPageBreak">
                                         <Button.ToolTip>
                                             <ToolTip Style="{StaticResource tipTest}"
-                                                     Content="Neuen Bereich mit Seitenumbruch erstellen">
+                                                     Content="{x:Static p:Resources.PageBreak}">
                                             </ToolTip>
                                         </Button.ToolTip>
                                     </customControls:MaskedImageButtonEnlarge>
@@ -779,7 +779,7 @@
                                         ButtonColor="{DynamicResource TitleBrush}">
                                         <ToggleButton.ToolTip>
                                             <ToolTip Style="{StaticResource tipTest}"
-                                                     Content="Rechtschreibprüfung an/aus">
+                                                     Content="{x:Static p:Resources.SpellCheckOnOf}">
                                             </ToolTip>
                                         </ToggleButton.ToolTip>
                                     </customControls:MaskedToggleButtonEnlarge>
@@ -839,7 +839,7 @@
                                                     HorizontalAlignment="Left" Width="{Binding RelativeSource={RelativeSource Self},Path=ActualHeight}"
                                                     RenderOptions.BitmapScalingMode="HighQuality">
                             <ToggleButton.ToolTip>
-                                <ToolTip Style="{StaticResource tipTest}" Content="Schwarz als Hintergrund"/>
+                                                        <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.BlackBackground}"/>
                             </ToggleButton.ToolTip>
                         </ToggleButton>
                     </Border>
@@ -870,22 +870,22 @@
             <StackPanel Orientation="Horizontal">
                 <customControls:MaskedImageButtonEnlarge x:Name="NewFileBtn"  Style="{StaticResource rimageButton}" ButtonMask="Images/new.png" Click="MakeNewFile">
                     <Button.ToolTip>
-                        <ToolTip Style="{StaticResource tipTest}" Content="Neue Datei erstellen (Strg+N)"></ToolTip>
+                                                <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.ChrateNewFile}"></ToolTip>
                     </Button.ToolTip>
                 </customControls:MaskedImageButtonEnlarge>
                 <Popup PlacementTarget="{Binding ElementName=NewFileBtn}" Placement="Right" VerticalOffset="30" Name="newPopup" MaxHeight="600" MaxWidth="600" StaysOpen="False">
                     <Border Background="{StaticResource BackColorBrush}" BorderBrush="{DynamicResource TitleBrush}" BorderThickness="1">
                         <DockPanel>
-                            <Button DockPanel.Dock="Top" Content="Komplett leer"  Style="{StaticResource FittingButton}" Click="MakeEmpty" Padding="10,5" />
-                            <Button DockPanel.Dock="Top" Content="Anhand einer Stildatei"  Style="{StaticResource FittingButton}" Click="MakeEmptyStyle" Padding="10,5" />
-                            <Button DockPanel.Dock="Top" Content="Nach aktuellem Vorbild"  Style="{StaticResource FittingButton}" Click="MakeEmptyCurrent" Padding="10,5" />
-                            <Button DockPanel.Dock="Top" Content="Nach Referenzdatei"  Style="{StaticResource FittingButton}" Click="MakeEmptyReference" Padding="10,5" />
+                                                    <Button DockPanel.Dock="Top" Content="{x:Static p:Resources.EmptyFile}"  Style="{StaticResource FittingButton}" Click="MakeEmpty" Padding="10,5" />
+                                                    <Button DockPanel.Dock="Top" Content="{x:Static p:Resources.FromStyleFile}"  Style="{StaticResource FittingButton}" Click="MakeEmptyStyle" Padding="10,5" />
+                                                    <Button DockPanel.Dock="Top" Content="{x:Static p:Resources.LikeThisOne}"  Style="{StaticResource FittingButton}" Click="MakeEmptyCurrent" Padding="10,5" />
+                                                    <Button DockPanel.Dock="Top" Content="{x:Static p:Resources.FromReferenceFile}"  Style="{StaticResource FittingButton}" Click="MakeEmptyReference" Padding="10,5" />
                         </DockPanel>
                     </Border>
                 </Popup>
                 <customControls:MaskedImageButtonEnlarge Style="{StaticResource rimageButton}" Margin="2,2,15,2" ButtonMask="Images/open.png" Click="OpenFile">
                     <Button.ToolTip>
-                        <ToolTip Style="{StaticResource tipTest}" Content="Datei laden...  (Ctrl+O)"></ToolTip>
+                                                <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.LoadFile}"></ToolTip>
                     </Button.ToolTip>
                 </customControls:MaskedImageButtonEnlarge>
                 <!--<customControls:MaskedImageButtonEnlarge Style="{StaticResource rimageButton}" ButtonMask="Images/save.png" Click="SaveCurrentFile" IsEnabled="{Binding RelativeSource={RelativeSource AncestorType=ComplexWriter:MainWindow},Path=CurrentText.IsChanged}">
@@ -902,54 +902,54 @@
                                                                           Visibility="{Binding RelativeSource={RelativeSource AncestorType=complexWriter:MainWindow}, Path=ShowSaveFile, Converter={StaticResource falseCollapsedConverter}}"
                                                                              Margin="2,2,2,2">
                                         <Button.ToolTip>
-                                            <ToolTip Style="{StaticResource tipTest}" Content="Datei speichern(Ctrl+S)"></ToolTip>
+                                                <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.SaveFile}"></ToolTip>
                                         </Button.ToolTip>
                                     </customControls:MaskedImageButtonEnlarge>
                                     <customControls:MaskedImageButtonEnlarge Style="{StaticResource rimageButton}" ButtonMask="Images/saveAll.png" Click="SaveAllFiles" 
                                                                           Visibility="{Binding RelativeSource={RelativeSource AncestorType=complexWriter:MainWindow}, Path=ShowSaveFile, Converter={StaticResource falseCollapsedConverter}}"
                                                                              Margin="2,2,2,2">
                                         <Button.ToolTip>
-                                            <ToolTip Style="{StaticResource tipTest}" Content="Alle Dateien speichern"></ToolTip>
+                                                <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.SaveAll}"></ToolTip>
                                         </Button.ToolTip>
                                     </customControls:MaskedImageButtonEnlarge>
                                     <customControls:MaskedImageButtonEnlarge Style="{StaticResource rimageButton}" ButtonMask="Images/saveAs.png" Click="SaveCurrentFileAs"  Margin="2,2,15,2">
                                         <Button.ToolTip>
-                                            <ToolTip Style="{StaticResource tipTest}" Content="Datei speichern unter...  (Ctrl+Shift+S)"></ToolTip>
+                                                <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.SaveFileAs}"></ToolTip>
                                         </Button.ToolTip>
                                     </customControls:MaskedImageButtonEnlarge>
 
                                     <Border Width="1.5" SnapsToDevicePixels="True" Background="{DynamicResource TitleBrush}" Margin="1" CornerRadius="2"></Border>
                 <customControls:MaskedImageButtonEnlarge IsEnabled="{Binding CurrentText.ReadOnly, Converter={StaticResource InvertBoolConverter}, RelativeSource={RelativeSource AncestorType={x:Type complexWriter:MainWindow}}}"  Style="{StaticResource rimageButton}" ButtonMask="Images/TopOnlyQuoteEven.png" Click="UpdateQuotations">
                     <customControls:MaskedImageButtonEnlarge.ToolTip>
-                        <ToolTip Style="{StaticResource tipTest}" Content="Anführungszeichen anpassen..."/>
+                                                <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.UpdateQuotes}"/>
                     </customControls:MaskedImageButtonEnlarge.ToolTip>
                 </customControls:MaskedImageButtonEnlarge>
                 <customControls:MaskedImageButtonEnlarge IsEnabled="{Binding CurrentText.ReadOnly, Converter={StaticResource InvertBoolConverter}, RelativeSource={RelativeSource AncestorType={x:Type complexWriter:MainWindow}}}"  Style="{StaticResource rimageButton}" ButtonMask="Images/1291282236_image.png" Click="ChangeWatermark">
                     <customControls:MaskedImageButtonEnlarge.ToolTip>
-                        <ToolTip Style="{StaticResource tipTest}" Content="Wasserzeichen anpassen..."/>
+                                                <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.UpdateWatermark}"/>
                     </customControls:MaskedImageButtonEnlarge.ToolTip>
                 </customControls:MaskedImageButtonEnlarge>
                                         <customControls:MaskedImageButtonEnlarge IsEnabled="true"  Style="{StaticResource rimageButton}" ButtonMask="Images/sideImage.png" Click="ChangeSideImage">
                                             <customControls:MaskedImageButtonEnlarge.ToolTip>
-                                                <ToolTip Style="{StaticResource tipTest}" Content="Seitebild anpassen..."/>
+                                                <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.UpdateSideImage}"/>
                                             </customControls:MaskedImageButtonEnlarge.ToolTip>
                                         </customControls:MaskedImageButtonEnlarge>
                                         <customControls:MaskedImageButtonEnlarge IsEnabled="true" x:Name="lineHightBtn"  Style="{StaticResource rimageButton}" ButtonMask="Images/line.png" Click="ChangeLineHeight">
                                             <customControls:MaskedImageButtonEnlarge.ToolTip>
-                                                <ToolTip Style="{StaticResource tipTest}" Content="Zeilenabstand bestimmen..."/>
+                                                <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.UpdateLineSpacing}"/>
                                             </customControls:MaskedImageButtonEnlarge.ToolTip>
                                         </customControls:MaskedImageButtonEnlarge>
                                         <Popup PlacementTarget="{Binding ElementName=lineHightBtn}" Placement="Right" VerticalOffset="30" Name="lineHightPopup" MaxHeight="600" MaxWidth="600" StaysOpen="False" Closed="UpdateBlocks">
                                             <Border Background="{StaticResource BackColorBrush}" BorderBrush="{DynamicResource TitleBrush}" BorderThickness="1">
                                                 <DockPanel>
-                                                    <Button DockPanel.Dock="Top" Content="Automatisch"  Style="{StaticResource FittingButton}" Click="SetAutomatical" Padding="10,5" />
+                                                    <Button DockPanel.Dock="Top" Content="{x:Static p:Resources.Automatic}"  Style="{StaticResource FittingButton}" Click="SetAutomatical" Padding="10,5" />
                                                     <xctk:DoubleUpDown DockPanel.Dock="Top" Minimum="1" ValueChanged="UpdateIdent" x:Name="LineHightDouble" Style="{StaticResource doubleTest}" PreviewKeyUp="ClosePop"/>
                                                 </DockPanel>
                                             </Border>
                                         </Popup>
-                                        <customControls:MaskedImageButtonEnlarge IsEnabled="true" x:Name="languageBtn"  Style="{StaticResource rimageButton}" ButtonMask="Images/spellcheck.png" Click="ChangeLanguage">
+                                        <customControls:MaskedImageButtonEnlarge IsEnabled="true" x:Name="languageBtn"  Style="{StaticResource rimageButton}" ButtonMask="Images/language.png" Click="ChangeLanguage">
                                             <customControls:MaskedImageButtonEnlarge.ToolTip>
-                                                <ToolTip Style="{StaticResource tipTest}" Content="Sprache anpasssen..."/>
+                                                <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.UpdateLanguage}"/>
                                             </customControls:MaskedImageButtonEnlarge.ToolTip>
                                         </customControls:MaskedImageButtonEnlarge>
                                         <Popup PlacementTarget="{Binding ElementName=lineHightBtn}" Placement="Right" VerticalOffset="30" Name="languagePopup" MaxHeight="600" MaxWidth="600" StaysOpen="False" Closed="UpdateBlocks" Opened="ShowLanguage">
@@ -970,22 +970,22 @@
                         </MultiBinding>
                     </customControls:MaskedImageButtonEnlarge.IsEnabled>
                     <customControls:MaskedImageButtonEnlarge.ToolTip>
-                        <ToolTip Style="{StaticResource tipTest}" Content="Meldungen ansehen..."/>
+                                                <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.ShowMessages}"/>
                     </customControls:MaskedImageButtonEnlarge.ToolTip>
                 </customControls:MaskedImageButtonEnlarge>
                                         <customControls:MaskedImageButtonEnlarge Name="richExport" Style="{StaticResource rimageButton}" ButtonMask="Images/rtf.png" Click="ExportRtf">
                                             <Button.ToolTip>
-                                                <ToolTip Style="{StaticResource tipTest}" Content="Als RichTextFile exportieren"></ToolTip>
+                                                <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.ExportRTF}"></ToolTip>
                                             </Button.ToolTip>
                                         </customControls:MaskedImageButtonEnlarge>
                                         <customControls:MaskedImageButtonEnlarge Name="xamlExport" Style="{StaticResource rimageButton}" ButtonMask="Images/Xaml.png" Click="ExportXaml">
                     <Button.ToolTip>
-                        <ToolTip Style="{StaticResource tipTest}" Content="Xaml-Code des FlowDocuments anzeigen... (Ctrl+P)"></ToolTip>
+                                                <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.ShowXAML}"></ToolTip>
                     </Button.ToolTip>
                 </customControls:MaskedImageButtonEnlarge>
                 <customControls:MaskedImageButtonEnlarge  Name="Export" Style="{StaticResource rimageButton}" ButtonMask="Images/Export.png" Click="ExportToPdf"  Margin="2,2,10,2">
                     <Button.ToolTip>
-                        <ToolTip Style="{StaticResource tipTest}" Content="Exportieren  (Ctrl+E)"></ToolTip>
+                                                <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.Export}"></ToolTip>
                     </Button.ToolTip>
                 </customControls:MaskedImageButtonEnlarge>
                 <Border Width="1.5" SnapsToDevicePixels="True" Background="{DynamicResource TitleBrush}" Margin="1" CornerRadius="2"></Border>
@@ -997,12 +997,12 @@
                 </customControls:MaskedToggleButtonEnlarge>-->
                                     <customControls:MaskedToggleButtonEnlarge  IsChecked="true" Width="25" Height="25"   Name="options" ButtonMask="Images/EditStyle.png" ButtonColor="{DynamicResource TitleBrush}" Margin="5,-1">
                                         <ToggleButton.ToolTip>
-                                            <ToolTip Style="{StaticResource tipTest}" Content="Optionen Anzeigen"></ToolTip>
+                                                <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.ShowOptions}"></ToolTip>
                                         </ToggleButton.ToolTip>
                                     </customControls:MaskedToggleButtonEnlarge>
                                         <customControls:MaskedToggleButtonEnlarge Visibility="{Binding ElementName=options,Path=IsChecked,Converter={StaticResource falseHideConverter}}" Width="25" Height="25"  Name="quotes" ButtonMask="Images/QuoteForMenu.png" ButtonColor="{DynamicResource TitleBrush}" Margin="5,-1">
                                         <ToggleButton.ToolTip>
-                                            <ToolTip Style="{StaticResource tipTest}" Content="Anführungszeichen anzeigen"></ToolTip>
+                                                <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.ShowQuotes}"></ToolTip>
                                         </ToggleButton.ToolTip>
                                     </customControls:MaskedToggleButtonEnlarge>
                                 </StackPanel>
@@ -1090,25 +1090,25 @@
                                        Grid.Column="2" DragDelta="DragPopup" Grid.Row="0" Grid.RowSpan="3" Style="{StaticResource TransparentWindowResizeThumbStyle}" Width="10"/>
                                 <Border Background="{StaticResource BackColorBrush}" Grid.Row="1" Grid.Column="1">
                                     <DockPanel LastChildFill="True">
-                                        <Button DockPanel.Dock="Bottom" Content="Alle Stile löschen"
+                                                                <Button DockPanel.Dock="Bottom" Content="{x:Static p:Resources.DeleteAllStyles}"
                                                 Style="{StaticResource FittingButton}" Click="ClearStyles2"
                                                 Padding="10,5" />
-                                        <Button DockPanel.Dock="Bottom" Content="Stilliste an Dokument angleichen"
+                                                                <Button DockPanel.Dock="Bottom" Content="{x:Static p:Resources.MergeStyles}"
                                                 Style="{StaticResource FittingButton}" Click="ClearStyles3"
                                                 Padding="10,5" />
 
                                         <Border DockPanel.Dock="Bottom" BorderBrush="{DynamicResource TitleBrush}"
                                                 BorderThickness="0,0,0,1">
-                                            <Button Content="Stile importieren"
+                                                                    <Button Content="{x:Static p:Resources.ImportStyles}"
                                                     Style="{StaticResource FittingButton}" Click="ImportCurrentStyle"
                                                     Padding="10,5" />
                                         </Border>
-                                        <Button DockPanel.Dock="Bottom" Content="Stile exportieren"
+                                                                <Button DockPanel.Dock="Bottom" Content="{x:Static p:Resources.ExportStyle}"
                                                 Style="{StaticResource FittingButton}" Click="ExportCurrentStyle"
                                                 Padding="10,5" />
                                         <Border DockPanel.Dock="Bottom" BorderBrush="{DynamicResource TitleBrush}"
                                                 BorderThickness="0,0,0,1">
-                                            <Button Content="Auswahlstil hinzunehmen"
+                                                                    <Button Content="{x:Static p:Resources.AddSelectedStyle}"
                                                     Style="{StaticResource FittingButton}"
                                                     Click="CopyStyle2" Padding="10,5" />
                                         </Border>
@@ -1156,7 +1156,7 @@
                                                                     <ContextMenu Style="{StaticResource context}">
                                                                         <MenuItem Style="{StaticResource menuItem}"
                                                                                   Tag="{Binding}"
-                                                                                  Header="Ausgewählten Stil bearbeiten"
+                                                                                  Header="{x:Static p:Resources.EditSelectedStyle}"
                                                                                   Click="EditCurrentLocal">
                                                                             <MenuItem.Icon>
                                                                                 <ImageBrush
@@ -1165,7 +1165,7 @@
                                                                         </MenuItem>
                                                                         <MenuItem Style="{StaticResource menuItem}"
                                                                                   Tag="{Binding}"
-                                                                                  Header="Stil aktualisieren"
+                                                                                  Header="{x:Static p:Resources.UpdateStyle}"
                                                                                   Click="ChangeThisToSelected">
                                                                             <MenuItem.Icon>
                                                                                 <ImageBrush
@@ -1175,7 +1175,7 @@
                                                                         <Separator Style="{StaticResource shortsep}"/>
                                                                         <MenuItem Style="{StaticResource menuItem}"
                                                                                   Tag="{Binding}"
-                                                                                  Header="Stil im Dokument ersetzen"
+                                                                                  Header="{x:Static p:Resources.ReplaceStyleInDocument}"
                                                                                   Click="ChangeCurrentToThis">
                                                                             <MenuItem.Icon>
                                                                                 <ImageBrush
@@ -1187,7 +1187,7 @@
 
                                                                         <MenuItem Style="{StaticResource menuItem}"
                                                                                   Tag="{Binding}"
-                                                                                  Header="Stil aus dem Dokument entfernen"
+                                                                                  Header="{x:Static p:Resources.RemoveStyleFromDocument}"
                                                                                   Click="EmptyStyle" >
                                                                             <MenuItem.Icon>
                                                                                 <ImageBrush
@@ -1197,18 +1197,18 @@
 
                                                                         <MenuItem Style="{StaticResource menuItem}"
                                                                                   Tag="{Binding}"
-                                                                                  Header="Stil als default verwenden"
+                                                                                  Header="{x:Static p:Resources.UseStyleAsDefault}"
                                                                                   Click="SetDefaultStyle" >
                                                                         </MenuItem>
                                                                         <Separator Style="{StaticResource shortsep}"/>
                                                                         <MenuItem Style="{StaticResource menuItem}"
                                                                                   Tag="{Binding}"
-                                                                                  Header="Vorkommen zählen"
+                                                                                  Header="{x:Static p:Resources.CountOccurances}"
                                                                                   Click="CountStylePositions" >
                                                                         </MenuItem>
                                                                         <MenuItem Style="{StaticResource menuItem}"
                                                                                   Tag="{Binding}"
-                                                                                  Header="Zum ersten Vorkommen springen"
+                                                                                  Header="{x:Static p:Resources.GoToFirstUsage}"
                                                                                   Click="GoToFirstCall" >
                                                                         </MenuItem>
 
@@ -1217,7 +1217,7 @@
                                                                 <StackPanel>
                                                                     <Border Style="{StaticResource borderForTooltip}">
                                                                         <TextBlock>
-                                                                            <Run Text="Beispieltext"
+                                                                            <Run Text="{x:Static p:Resources.ExampleText}"
                                                                                  FontFamily="{Binding FontFamily}"
                                                                                  FontSize="{Binding FontSize}"
                                                                                  Foreground="{Binding ForegroundBrush}"
@@ -1241,7 +1241,7 @@
                                                               
                                                                 <Button.ToolTip>
                                                                     <ToolTip Style="{StaticResource tipTest}"
-                                                                             Content="Stil entfernen">
+                                                                             Content="{x:Static p:Resources.RemoveStyle}">
                                                                     </ToolTip>
                                                                 </Button.ToolTip>
                                                             </customControls:MaskedImageButtonEnlarge>
@@ -1327,50 +1327,50 @@
                                     <Button Cursor="{StaticResource overCursor}" Style="{StaticResource tablikeButton}" PreviewMouseUp="CloseOnMiddle" Tag="{Binding}" Click="UpdateFile" >
                                         <Button.ContextMenu>
                                             <ContextMenu Style="{StaticResource context}">
-                                                <MenuItem Style="{StaticResource menuItem}" Header="Alle bis auf dieses schließen" Tag="{Binding}" Click="CloseAllButThis">
+                                                                        <MenuItem Style="{StaticResource menuItem}" Header="{x:Static p:Resources.CloseOther}" Tag="{Binding}" Click="CloseAllButThis">
                                                     <MenuItem.Icon>
                                                         <ImageBrush ImageSource="Images/blackoutSmall.png" />
                                                     </MenuItem.Icon>
                                                 </MenuItem>
                                                 <Separator Style="{StaticResource shortsep}"/>
-                                                <MenuItem Style="{StaticResource menuItem}" Header="Passwort vergeben / ändern" Tag="{Binding}" Click="SetChangePassword">
+                                                                        <MenuItem Style="{StaticResource menuItem}" Header="{x:Static p:Resources.ChangePassword}" Tag="{Binding}" Click="SetChangePassword">
                                                     <MenuItem.Icon>
                                                         <ImageBrush ImageSource="Images/lock.png"/>
                                                     </MenuItem.Icon>
                                                 </MenuItem>
-                                                <MenuItem Style="{StaticResource menuItem}" Header="Von der Festplatte löschen" Tag="{Binding}" Click="DeleteFromDisk" IsEnabled="{Binding Filepath,Converter={StaticResource IsNotEmptyConverter}}">
+                                                                        <MenuItem Style="{StaticResource menuItem}" Header="{x:Static p:Resources.DeleteFromDrive}" Tag="{Binding}" Click="DeleteFromDisk" IsEnabled="{Binding Filepath,Converter={StaticResource IsNotEmptyConverter}}">
                                                     <MenuItem.Icon>
                                                         <ImageBrush ImageSource="Images/DeleteAll.png"/>
                                                     </MenuItem.Icon>
                                                 </MenuItem>
-                                                <MenuItem Style="{StaticResource menuItem}" Header="Datei umbenennen" Tag="{Binding}" Click="RenameFile" IsEnabled="{Binding Filepath,Converter={StaticResource IsNotEmptyConverter}}">
+                                                                        <MenuItem Style="{StaticResource menuItem}" Header="{x:Static p:Resources.RenameFile}" Tag="{Binding}" Click="RenameFile" IsEnabled="{Binding Filepath,Converter={StaticResource IsNotEmptyConverter}}">
                                                     <MenuItem.Icon>
                                                         <ImageBrush ImageSource="Images/rename.png"/>
                                                     </MenuItem.Icon>
                                                 </MenuItem>
-                                                <MenuItem Style="{StaticResource menuItem}" IsCheckable="True" IsChecked="{Binding ReadOnly}" Header="Nur lesen" Tag="{Binding}" IsEnabled="{Binding Filepath,Converter={StaticResource IsNotEmptyConverter}}">
+                                                                        <MenuItem Style="{StaticResource menuItem}" IsCheckable="True" IsChecked="{Binding ReadOnly}" Header="{x:Static p:Resources.ReadOnly}" Tag="{Binding}" IsEnabled="{Binding Filepath,Converter={StaticResource IsNotEmptyConverter}}">
                                                     <MenuItem.Icon>
                                                         <ImageBrush ImageSource="Images/glasses.png"/>
                                                     </MenuItem.Icon>
                                                 </MenuItem>
-                                                <Separator Style="{StaticResource titlesep}" Tag="Datei erstellen"/>
+                                                                        <Separator Style="{StaticResource titlesep}" Tag="{x:Static p:Resources.ChrateNewFile}"/>
 
-                                                <MenuItem Style="{StaticResource menuItem}" Header="Leere Datei" Click="MakeEmpty">
+                                                                        <MenuItem Style="{StaticResource menuItem}" Header="{x:Static p:Resources.EmptyFile}" Click="MakeEmpty">
                                                     <MenuItem.Icon>
                                                         <ImageBrush ImageSource="Images/new.png"/>
                                                     </MenuItem.Icon>
                                                 </MenuItem>
-                                                <MenuItem Style="{StaticResource menuItem}" Header="Anhand einer Stildatei" Click="MakeEmptyStyle">
+                                                                        <MenuItem Style="{StaticResource menuItem}" Header="{x:Static p:Resources.FromStyleFile}" Click="MakeEmptyStyle">
                                                     <MenuItem.Icon>
                                                         <ImageBrush ImageSource="Images/new.png"/>
                                                     </MenuItem.Icon>
                                                 </MenuItem>
-                                                <MenuItem Style="{StaticResource menuItem}" Header="nach aktuellem Vorbild" Click="MakeEmptyCurrent">
+                                                                        <MenuItem Style="{StaticResource menuItem}" Header="{x:Static p:Resources.LikeThisOne}" Click="MakeEmptyCurrent">
                                                     <MenuItem.Icon>
                                                         <ImageBrush ImageSource="Images/new.png"/>
                                                     </MenuItem.Icon>
                                                 </MenuItem>
-                                                <MenuItem Style="{StaticResource menuItem}" Header="Anhand einer Referenzdatei" Click="MakeEmptyReference">
+                                                                        <MenuItem Style="{StaticResource menuItem}" Header="{x:Static p:Resources.FromReferenceFile}" Click="MakeEmptyReference">
                                                     <MenuItem.Icon>
                                                         <ImageBrush ImageSource="Images/new.png"/>
                                                     </MenuItem.Icon>
@@ -1401,7 +1401,7 @@
                                             </Grid.ColumnDefinitions>
                                             <Border Width="16" Height="16" RenderOptions.BitmapScalingMode="HighQuality"  Visibility="{Binding Password,Converter={StaticResource collapseEmptyConverter}}">
                                                 <Border.ToolTip>
-                                                    <ToolTip Style="{StaticResource tipTest}" Content="Diese Datei ist mit einem Passwort versehen"></ToolTip>
+                                                                            <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.IsPasswordProtected}"></ToolTip>
                                                 </Border.ToolTip>
                                                 <Border.OpacityMask>
                                                     <ImageBrush ImageSource="Images/lock.png"></ImageBrush>
@@ -1422,7 +1422,7 @@
                                             </Border>
                                             <Border Grid.Column="1" Width="16" Height="16" RenderOptions.BitmapScalingMode="HighQuality"  Visibility="{Binding ReadOnly,Converter={StaticResource falseCollapsedConverter}}">
                                                 <Border.ToolTip>
-                                                    <ToolTip Style="{StaticResource tipTest}" Content="Die Datei kann nicht editiert werden"></ToolTip>
+                                                                            <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.FileIsReadOnly}"></ToolTip>
                                                 </Border.ToolTip>
                                                 <Border.OpacityMask>
                                                     <ImageBrush ImageSource="Images/glasses.png"></ImageBrush>
@@ -1450,7 +1450,7 @@
                                                         <TextBlock TextWrapping="WrapWithOverflow">
                                                             <Run FontSize="{StaticResource fontSizeMedium}" Text="{Binding Filepath}"/>
                                                             <LineBreak/>
-                                                            <Run FontSize="{StaticResource fontSizeSmall}" Text="(Rechtsklick für weitere Optionen)"/>
+                                                            <Run FontSize="{StaticResource fontSizeSmall}" Text="{x:Static p:Resources.RightClickOptions}"/>
                                                         </TextBlock>
                                                     </ToolTip>
                                                 </TextBlock.ToolTip>
@@ -1477,7 +1477,7 @@
                                                         <TextBlock>
                                                             <Run FontSize="{StaticResource fontSizeMedium}" Text="{Binding Filepath}"/>
                                                             <LineBreak/>
-                                                            <Run FontSize="{StaticResource fontSizeSmall}" Text="(Rechtsklick für weitere Optionen)"/>
+                                                            <Run FontSize="{StaticResource fontSizeSmall}" Text="{x:Static p:Resources.RightClickOptions}"/>
                                                         </TextBlock>
                                                     </ToolTip>
                                                 </TextBlock.ToolTip>
@@ -1542,7 +1542,7 @@
                     <customControls:MaskedImageButtonEnlarge  Cursor="{StaticResource overCursor}" ButtonColor="{DynamicResource TitleBrush}" Width="24" Height="24" ButtonMask="Images/Search.png" RenderOptions.BitmapScalingMode="HighQuality"
                             Name="SearchBar" Visibility="{Binding ElementName=SearchAndReplaceControl,Path=Visibility,Converter={StaticResource InvertVisibilityConverter}}" Click="SwitchSearchBar">
                         <Button.ToolTip>
-                            <ToolTip Style="{StaticResource tipTest}" Content="Suche anzeigen"></ToolTip>
+                                                    <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.ShowSearch}"></ToolTip>
                         </Button.ToolTip>
                     </customControls:MaskedImageButtonEnlarge>
                     <customControls:MaskedImageButtonEnlarge  Cursor="{StaticResource overCursor}" ButtonColor="{DynamicResource TitleBrush}" Width="24" Height="24" ButtonMask="Images/questionMark.png" RenderOptions.BitmapScalingMode="HighQuality" Click="OpenAbout"

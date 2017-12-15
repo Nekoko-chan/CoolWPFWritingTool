@@ -205,6 +205,15 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Automatic.
+        /// </summary>
+        public static string Automatic {
+            get {
+                return ResourceManager.GetString("Automatic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The file &quot;{0}&quot; is saved automatically.
         /// </summary>
         public static string AutomaticSavedMessage {
@@ -251,7 +260,7 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bold Text.
+        ///   Looks up a localized string similar to Bold.
         /// </summary>
         public static string Bold {
             get {
@@ -260,7 +269,7 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bold.
+        ///   Looks up a localized string similar to Bold on / off.
         /// </summary>
         public static string BoldOnOf {
             get {
@@ -397,6 +406,15 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Codensed.
+        /// </summary>
+        public static string Condensed {
+            get {
+                return ResourceManager.GetString("Condensed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Settings folder.
         /// </summary>
         public static string ConfigurationFolder {
@@ -420,6 +438,15 @@ namespace ComplexWriter.Properties {
         public static string CorrectText {
             get {
                 return ResourceManager.GetString("CorrectText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Count usages.
+        /// </summary>
+        public static string CountOccurances {
+            get {
+                return ResourceManager.GetString("CountOccurances", resourceCulture);
             }
         }
         
@@ -519,6 +546,15 @@ namespace ComplexWriter.Properties {
         public static string DecZoom {
             get {
                 return ResourceManager.GetString("DecZoom", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete all styles.
+        /// </summary>
+        public static string DeleteAllStyles {
+            get {
+                return ResourceManager.GetString("DeleteAllStyles", resourceCulture);
             }
         }
         
@@ -676,6 +712,15 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edit selected style.
+        /// </summary>
+        public static string EditSelectedStyle {
+            get {
+                return ResourceManager.GetString("EditSelectedStyle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Show insertable elements.
         /// </summary>
         public static string ElementsForInsert {
@@ -768,6 +813,24 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Update as Richt text file.
+        /// </summary>
+        public static string ExportRTF {
+            get {
+                return ResourceManager.GetString("ExportRTF", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Export style.
+        /// </summary>
+        public static string ExportStyle {
+            get {
+                return ResourceManager.GetString("ExportStyle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Are you sure, that you like to delete the file? 
         ///The deletion is permanently..
         /// </summary>
@@ -834,6 +897,15 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This file is read only.
+        /// </summary>
+        public static string FileIsReadOnly {
+            get {
+                return ResourceManager.GetString("FileIsReadOnly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The file &quot;{0}&quot; is saved.
         /// </summary>
         public static string FileISSaved {
@@ -882,7 +954,16 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Font style:.
+        ///   Looks up a localized string similar to Font size.
+        /// </summary>
+        public static string FontSize {
+            get {
+                return ResourceManager.GetString("FontSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Font familiy.
         /// </summary>
         public static string Fontstyle {
             get {
@@ -923,6 +1004,15 @@ namespace ComplexWriter.Properties {
         public static string Function {
             get {
                 return ResourceManager.GetString("Function", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Go to fisrt usage.
+        /// </summary>
+        public static string GoToFirstUsage {
+            get {
+                return ResourceManager.GetString("GoToFirstUsage", resourceCulture);
             }
         }
         
@@ -987,6 +1077,15 @@ namespace ComplexWriter.Properties {
         public static string ImportantFunctions {
             get {
                 return ResourceManager.GetString("ImportantFunctions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Import styles.
+        /// </summary>
+        public static string ImportStyles {
+            get {
+                return ResourceManager.GetString("ImportStyles", resourceCulture);
             }
         }
         
@@ -1090,7 +1189,25 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Italic text.
+        ///   Looks up a localized string similar to Is main entry.
+        /// </summary>
+        public static string IsMainEntry {
+            get {
+                return ResourceManager.GetString("IsMainEntry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This file is protected by a passwort.
+        /// </summary>
+        public static string IsPasswordProtected {
+            get {
+                return ResourceManager.GetString("IsPasswordProtected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Italic.
         /// </summary>
         public static string Italic {
             get {
@@ -1234,6 +1351,15 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Match style list with usages.
+        /// </summary>
+        public static string MergeStyles {
+            get {
+                return ResourceManager.GetString("MergeStyles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Messages.
         /// </summary>
         public static string Messages {
@@ -1329,6 +1455,15 @@ namespace ComplexWriter.Properties {
         public static string NextPage {
             get {
                 return ResourceManager.GetString("NextPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No.
+        /// </summary>
+        public static string No {
+            get {
+                return ResourceManager.GetString("No", resourceCulture);
             }
         }
         
@@ -1579,11 +1714,29 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Quotations without a style.
+        /// </summary>
+        public static string QuotesWithoutAStyle {
+            get {
+                return ResourceManager.GetString("QuotesWithoutAStyle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Read only.
         /// </summary>
         public static string ReadOnly {
             get {
                 return ResourceManager.GetString("ReadOnly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This file is reaf only. Please double click on its tab, to make it writable.
+        /// </summary>
+        public static string ReadOnlyDescription {
+            get {
+                return ResourceManager.GetString("ReadOnlyDescription", resourceCulture);
             }
         }
         
@@ -1597,11 +1750,38 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Remove entry.
+        /// </summary>
+        public static string RemoveEntry {
+            get {
+                return ResourceManager.GetString("RemoveEntry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete &quot;{0}&quot;.
         /// </summary>
         public static string RemoveSpecial {
             get {
                 return ResourceManager.GetString("RemoveSpecial", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove style.
+        /// </summary>
+        public static string RemoveStyle {
+            get {
+                return ResourceManager.GetString("RemoveStyle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remove style from document.
+        /// </summary>
+        public static string RemoveStyleFromDocument {
+            get {
+                return ResourceManager.GetString("RemoveStyleFromDocument", resourceCulture);
             }
         }
         
@@ -1665,6 +1845,15 @@ namespace ComplexWriter.Properties {
         public static string ReplaceStyle {
             get {
                 return ResourceManager.GetString("ReplaceStyle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Replace style in document.
+        /// </summary>
+        public static string ReplaceStyleInDocument {
+            get {
+                return ResourceManager.GetString("ReplaceStyleInDocument", resourceCulture);
             }
         }
         
@@ -1761,6 +1950,15 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Save all files.
+        /// </summary>
+        public static string SaveAll {
+            get {
+                return ResourceManager.GetString("SaveAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Export as *.rtf.
         /// </summary>
         public static string SaveAsRTF {
@@ -1798,11 +1996,20 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Save file as....
+        ///   Looks up a localized string similar to Save file....
         /// </summary>
         public static string SaveFile {
             get {
                 return ResourceManager.GetString("SaveFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save file as....
+        /// </summary>
+        public static string SaveFileAs {
+            get {
+                return ResourceManager.GetString("SaveFileAs", resourceCulture);
             }
         }
         
@@ -2041,6 +2248,24 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Strikethrough.
+        /// </summary>
+        public static string StrikedThrough {
+            get {
+                return ResourceManager.GetString("StrikedThrough", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Strikethrouh on /off.
+        /// </summary>
+        public static string StrikedThroughOnOf {
+            get {
+                return ResourceManager.GetString("StrikedThroughOnOf", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The style is alrady added as &quot;{0}&quot;!
         ///
         ///Would you like to rename it instead?.
@@ -2134,6 +2359,15 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Style list updated.
+        /// </summary>
+        public static string StylesUpdated {
+            get {
+                return ResourceManager.GetString("StylesUpdated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please enter a title for your style.
         /// </summary>
         public static string StyleTitle {
@@ -2206,7 +2440,7 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Underlined text.
+        ///   Looks up a localized string similar to Underlined.
         /// </summary>
         public static string Underlined {
             get {
@@ -2278,6 +2512,15 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Set language.
+        /// </summary>
+        public static string UpdateLanguage {
+            get {
+                return ResourceManager.GetString("UpdateLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Update line spacing....
         /// </summary>
         public static string UpdateLineSpacing {
@@ -2301,6 +2544,15 @@ namespace ComplexWriter.Properties {
         public static string UpdateSideImage {
             get {
                 return ResourceManager.GetString("UpdateSideImage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update Style.
+        /// </summary>
+        public static string UpdateStyle {
+            get {
+                return ResourceManager.GetString("UpdateStyle", resourceCulture);
             }
         }
         
@@ -2350,6 +2602,15 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Use style as default.
+        /// </summary>
+        public static string UseStyleAsDefault {
+            get {
+                return ResourceManager.GetString("UseStyleAsDefault", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This file contains a watermark, which is not supported by the used file format and would not be saved.
         ///
         ///Would you like to save it anyway?.
@@ -2394,6 +2655,15 @@ namespace ComplexWriter.Properties {
         public static string Width {
             get {
                 return ResourceManager.GetString("Width", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Yes.
+        /// </summary>
+        public static string Yes {
+            get {
+                return ResourceManager.GetString("Yes", resourceCulture);
             }
         }
     }

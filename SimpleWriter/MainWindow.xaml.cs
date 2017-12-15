@@ -883,7 +883,7 @@ namespace ComplexWriter
             item = item = BuildItem(EditingCommands.ToggleItalic, "Italic.png", Properties.Resources.ItalicOnOf);
             item.IsEnabled = !CurrentText.ReadOnly;
             standardCommands.Add(item);
-            item = BuildItem(EditingCommands.ToggleBold, "Bold.png", "Fett an/aus");
+            item = BuildItem(EditingCommands.ToggleBold, "Bold.png", Properties.Resources.BoldOnOf);
             item.IsEnabled = !CurrentText.ReadOnly;
             standardCommands.Add(item);
 
@@ -3982,7 +3982,7 @@ namespace ComplexWriter
                 }
             }
 
-            MessageBox.ShowMessage(this, counter == 0 && counteradd == 0 ? Properties.Resources.AllStylesUpToDate : string.Format(Properties.Resources.StyleUpdateInfo, counter, counteradd), "Entfernte Stile");
+            MessageBox.ShowMessage(this, counter == 0 && counteradd == 0 ? Properties.Resources.AllStylesUpToDate : string.Format(Properties.Resources.StyleUpdateInfo, counter, counteradd), Properties.Resources.StylesUpdated);
         }
 
         private bool FamilyExist(FontFamily fontFamily)
