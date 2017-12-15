@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using ComplexWriter.MessageBoxes;
+using ComplexWriter.Properties;
 using CustomControls;
 
 namespace ComplexWriter.global
@@ -1102,7 +1103,7 @@ namespace ComplexWriter.global
             var block = textBlock;
 
             var sFt = new FormattedText(block.Text,
-                CultureInfo.GetCultureInfo("en-us"),FlowDirection.LeftToRight,
+                CultureInfo.GetCultureInfo(Settings.Default.Language),FlowDirection.LeftToRight,
                 new Typeface(block.FontFamily.ToString()),
                 block.FontSize,
                 Brushes.Black);
@@ -1264,11 +1265,11 @@ namespace ComplexWriter.global
         object IValueConverter.Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if (value == null)
-                return "<Nicht angegeben>";
+                return $"<{Resources.Unset}>";
             var s = value as string;
             if (s != null)
             {
-                return string.IsNullOrEmpty(s) ? "<Nicht angegeben>" : s;
+                return string.IsNullOrEmpty(s) ? $"<{Resources.Unset}>" : s;
             }
 
             return value;
@@ -1453,7 +1454,7 @@ namespace ComplexWriter.global
             if (elem == null)
                 return string.Empty;
 
-            return string.Format("Genutzte Schrift: {1} - {0}", elem.Family.FamilyNames.First().Value, elem.Group);
+            return string.Format("{2} {1} - {0}", elem.Family.FamilyNames.First().Value, elem.Group,Resources.UsedFont);
         }
 
         object IValueConverter.ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

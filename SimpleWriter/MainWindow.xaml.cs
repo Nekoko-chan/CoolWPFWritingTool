@@ -378,23 +378,6 @@ namespace ComplexWriter
             set { SetValue(ShowToolbarProperty, value); }
         }
 
-        //public static readonly DependencyProperty SpellCheckEnabledProperty =
-        //  DependencyProperty.Register("SpellCheckEnabled", typeof(bool), typeof(MainWindow), new PropertyMetadata(false, UpdateSpell));
-
-        //private static void UpdateSpell(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        //{
-        //    var main = (MainWindow) d;
-        //    SpellCheck.SetIsEnabled(main.Box,(bool)e.NewValue);
-        //    main.CheckSpelling.IsChecked = e.NewValue as bool?;
-        //}
-
-        //public bool SpellCheckEnabled
-        //{
-        //    get { return (bool)GetValue(SpellCheckEnabledProperty); }
-        //    set { SetValue(SpellCheckEnabledProperty, value); }
-        //}
-
-
         public FontElement CurrentFontFamily
         {
             get { return (FontElement) GetValue(CurrentFontFamilyProperty); }
