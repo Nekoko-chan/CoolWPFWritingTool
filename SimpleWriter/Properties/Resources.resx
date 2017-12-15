@@ -712,7 +712,7 @@ Would you like to close the program anyway?</value>
     <value>Speach with single quotes</value>
   </data>
   <data name="SpecialEntryAddedToDictionary" xml:space="preserve">
-    <value>Add "{0}" to the dictionary</value>
+    <value>Add "{0}" to the dictionary ({1})</value>
   </data>
   <data name="SpecialEntryAddedToNames" xml:space="preserve">
     <value>Add "{0}" to the name list</value>
@@ -996,14 +996,26 @@ If you like to keep the watermark, you have to save it as an *.etf file</value>
   <data name="Automatic" xml:space="preserve">
     <value>Automatic</value>
   </data>
+  <data name="CharacterEditorDescription" xml:space="preserve">
+    <value>In  this dialog you are able to descripe the character</value>
+  </data>
+  <data name="CurrentLanguage" xml:space="preserve">
+    <value>English</value>
+  </data>
   <data name="ExportRTF" xml:space="preserve">
     <value>Update as Richt text file</value>
   </data>
   <data name="FileIsReadOnly" xml:space="preserve">
     <value>This file is read only</value>
   </data>
+  <data name="ImageFilter" xml:space="preserve">
+    <value>Image files|*.png;*.jpg</value>
+  </data>
   <data name="IsPasswordProtected" xml:space="preserve">
     <value>This file is protected by a passwort</value>
+  </data>
+  <data name="LoadImage" xml:space="preserve">
+    <value>Load image</value>
   </data>
   <data name="QuotesWithoutAStyle" xml:space="preserve">
     <value>Quotations without a style</value>

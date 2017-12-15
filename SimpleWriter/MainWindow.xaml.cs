@@ -1245,7 +1245,7 @@ namespace ComplexWriter
                 return Properties.Resources.EntryIsAddedToDictionary;
 
             var text = name ? Properties.Resources.SpecialEntryAddedToNames : Properties.Resources.SpecialEntryAddedToDictionary;
-            return string.Format(text, entry.Text);
+            return string.Format(text, entry.Text,CurrentText.Language);
         }
 
         private Separator BuildSeperator(string text)

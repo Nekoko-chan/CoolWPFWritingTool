@@ -8,7 +8,8 @@
         xmlns:customControls="clr-namespace:CustomControls;assembly=CustomControls"
         xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
         xmlns:complexWriter="clr-namespace:ComplexWriter"
-        Title="Namenseingabe" >
+        xmlns:p="clr-namespace:ComplexWriter.Properties"
+        Title="{x:Static p:Resources.NameDialog}" >
     <Window.InputBindings>
         <KeyBinding Key="Escape" Command="{x:Static commands1:CancelCommand.CancelOnA}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=messageBoxes:TextInput}}" />
     </Window.InputBindings>
@@ -24,11 +25,11 @@
                 <ResourceDictionary Source="../global/Expander.xaml"/>
                 <ResourceDictionary Source="../global/GroupBox.xaml"/>
                 <ResourceDictionary Source="../global/MenuItem.xaml"/>
-                    
+
                 <ResourceDictionary Source="../global/UpDowns.xaml"/>
                 <ResourceDictionary Source="../global/Combobox.xaml"/>
                 <ResourceDictionary>
-                    
+
                     <Style x:Key="border" TargetType="Border">
                         <Setter Property="Background" Value="Transparent"/>
                         <Setter Property="BorderBrush" Value="Black"/>
@@ -82,7 +83,7 @@
                 </Thumb>
             </Grid>
         </Border>
-        <Border Grid.Column="1" Grid.Row="1" Style="{StaticResource bord}" Background="{StaticResource background}" IsHitTestVisible="False"/>
+        <Border Grid.Row="1" Style="{StaticResource bord}" Background="{StaticResource background}" IsHitTestVisible="False" Grid.ColumnSpan="2" Margin="17,10,30,39" Grid.RowSpan="2"/>
         <Grid Grid.Row="1" Grid.Column="1" Margin="10,27,45,15">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -96,12 +97,12 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.ColumnSpan="2" Margin="0,20" Text="Hier können die Eigenschaften des gewählten Characters bearbeitet werden" FontFamily="{StaticResource defaultFont}" FontSize="{StaticResource fontSizeLarge}"></TextBlock>
+            <TextBlock Grid.ColumnSpan="2" Margin="0,20" Text="{x:Static p:Resources.CharacterEditorDescription}" FontFamily="{StaticResource defaultFont}" FontSize="{StaticResource fontSizeLarge}"></TextBlock>
 
-            <TextBlock Margin="0,5,0,0" Grid.Row="1" Grid.Column="0" Text="Bezeichner" VerticalAlignment="Top" FontFamily="{StaticResource defaultFont}" FontSize="{StaticResource fontSizeMedium}"></TextBlock>
-            <TextBlock Margin="0,5,0,0" Grid.Row="2" Grid.Column="0" Text="Art" VerticalAlignment="Top" FontFamily="{StaticResource defaultFont}" FontSize="{StaticResource fontSizeMedium}"></TextBlock>
-            <TextBlock Margin="0,5,0,0" Grid.Row="5" Grid.Column="0" Text="Beschreibung" VerticalAlignment="Top" FontFamily="{StaticResource defaultFont}" FontSize="{StaticResource fontSizeMedium}"></TextBlock>
-            <TextBlock Margin="0,5,0,0" Grid.Row="4" Grid.Column="0" Text="Bild" VerticalAlignment="Top" FontFamily="{StaticResource defaultFont}" FontSize="{StaticResource fontSizeMedium}"></TextBlock>
+            <TextBlock Margin="0,5,0,0" Grid.Row="1" Grid.Column="0" Text="{x:Static p:Resources.Identifier}" VerticalAlignment="Top" FontFamily="{StaticResource defaultFont}" FontSize="{StaticResource fontSizeMedium}"></TextBlock>
+            <TextBlock Margin="0,5,0,0" Grid.Row="2" Grid.Column="0" Text="{x:Static p:Resources.Type}" VerticalAlignment="Top" FontFamily="{StaticResource defaultFont}" FontSize="{StaticResource fontSizeMedium}"></TextBlock>
+            <TextBlock Margin="0,5,0,0" Grid.Row="5" Grid.Column="0" Text="{x:Static p:Resources.Description}" VerticalAlignment="Top" FontFamily="{StaticResource defaultFont}" FontSize="{StaticResource fontSizeMedium}"></TextBlock>
+            <TextBlock Margin="0,5,0,0" Grid.Row="4" Grid.Column="0" Text="{x:Static p:Resources.Image}" VerticalAlignment="Top" FontFamily="{StaticResource defaultFont}" FontSize="{StaticResource fontSizeMedium}"></TextBlock>
             <Border Style="{StaticResource border}" Grid.Row="4" Grid.Column="1" Margin="10,0,0,10">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -110,13 +111,21 @@
                     </Grid.ColumnDefinitions>
                     <Image StretchDirection="DownOnly" Source="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:CharacterEditor},Path=Character.Image, Mode=OneWay}" Width="80" Height="80" HorizontalAlignment="Left"/>
                     <StackPanel Grid.Column="1">
-                        <customControls:MaskedImageButtonEnlarge VerticalAlignment="Top" ButtonMask="../Images/open.png" ButtonColor="Black" Width="32" Height="32" Click="LoadNewPicture"/>
-                        <customControls:MaskedImageButtonEnlarge VerticalAlignment="Top" ButtonMask="../Images/DeleteAll.png" ButtonColor="Black" Width="32" Height="32" Click="ClearPicture"/>
+                        <customControls:MaskedImageButtonEnlarge VerticalAlignment="Top" ButtonMask="../Images/open.png" ButtonColor="Black" Width="32" Height="32" Click="LoadNewPicture">
+                            <Button.ToolTip>
+                                <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.LoadImage}"></ToolTip>
+                            </Button.ToolTip>
+                        </customControls:MaskedImageButtonEnlarge>
+                        <customControls:MaskedImageButtonEnlarge VerticalAlignment="Top" ButtonMask="../Images/DeleteAll.png" ButtonColor="Black" Width="32" Height="32" Click="ClearPicture">
+                            <Button.ToolTip>
+                                <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.DeleteImage}"></ToolTip>
+                            </Button.ToolTip>
+                        </customControls:MaskedImageButtonEnlarge>
 
                     </StackPanel>
                 </Grid>
             </Border>
-            <CheckBox IsChecked="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:CharacterEditor},Path=Character.IsMain}"  Foreground="Black" FontFamily="{StaticResource defaultFont}" FontSize="{StaticResource fontSizeMedium}" Grid.Row="3" Height="24" Grid.Column="1" Style="{StaticResource globalCheckbox}" Content="Ist Hauptpunkt"></CheckBox>
+            <CheckBox IsChecked="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:CharacterEditor},Path=Character.IsMain}"  Foreground="Black" FontFamily="{StaticResource defaultFont}" FontSize="{StaticResource fontSizeMedium}" Grid.Row="3" Height="24" Grid.Column="1" Style="{StaticResource globalCheckbox}" Content="{x:Static p:Resources.IsMainEntry}"></CheckBox>
             <Border Style="{StaticResource border}" Grid.Row="5" Grid.Column="1" Margin="10,0,0,10">
                 <TextBox SpellCheck.IsEnabled="True" Language="de-DE" Text="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:CharacterEditor},Path=Character.Description}" AcceptsReturn="True" VerticalScrollBarVisibility="Auto" HorizontalContentAlignment="Stretch" HorizontalAlignment="Stretch"           
                     Style="{StaticResource MultiLineReadOnlyTextbox}" TextWrapping="WrapWithOverflow"
@@ -151,32 +160,32 @@
             </Border>
 
         </Grid>
-        
+
         <Border Grid.Column="0" Grid.Row="1"  Background="{StaticResource BackColorBrush}"  MinWidth="22" Padding="4,10" CornerRadius="10,0,0,20" Effect="{StaticResource WindowShadow}" Margin="0,-3,0,15">
-            
+
         </Border>
-        
-        
+
+
         <Border Name="buttonBorder" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right" Margin="0,-2,20,0" Background="{StaticResource BackColorBrush}" Effect="{StaticResource WindowShadow}" CornerRadius="0,0,10,10">
             <StackPanel Orientation="Horizontal" >
                 <customControls:GlassButton3 Style="{StaticResource GlassButtonStyle}" Click="CloseWithTag">
                     <TextBlock TextAlignment="Center">
-                        <Run FontWeight="Bold" FontSize="25">O</Run><Run>K</Run>
+                       Ok
                     </TextBlock>
                     <customControls:GlassButton3.Tag>
                         <x:Static Member="MessageBoxResult.OK"/>
                     </customControls:GlassButton3.Tag>
                 </customControls:GlassButton3>
                 <customControls:GlassButton3 Style="{StaticResource GlassButtonStyle}" x:Name="ForFocus" Click="CloseWithTag"   Margin="20,4,4,4">
-                    <TextBlock Width="100" TextAlignment="Center">
-                        <Run FontWeight="Bold" FontSize="25">A</Run><Run>bbrechen</Run>
+                    <TextBlock Width="100" TextAlignment="Center" Text="{x:Static p:Resources.Cancel}">
+                       
                     </TextBlock>
                     <customControls:GlassButton3.Tag>
                         <x:Static Member="MessageBoxResult.Cancel"/>
                     </customControls:GlassButton3.Tag>
                 </customControls:GlassButton3>
 
-              
+
 
             </StackPanel>
         </Border>

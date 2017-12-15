@@ -343,6 +343,15 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to In  this dialog you are able to descripe the character.
+        /// </summary>
+        public static string CharacterEditorDescription {
+            get {
+                return ResourceManager.GetString("CharacterEditorDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create new file.
         /// </summary>
         public static string ChrateNewFile {
@@ -492,6 +501,15 @@ namespace ComplexWriter.Properties {
         public static string Currency {
             get {
                 return ResourceManager.GetString("Currency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to English.
+        /// </summary>
+        public static string CurrentLanguage {
+            get {
+                return ResourceManager.GetString("CurrentLanguage", resourceCulture);
             }
         }
         
@@ -1072,6 +1090,15 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Image files|*.png;*.jpg.
+        /// </summary>
+        public static string ImageFilter {
+            get {
+                return ResourceManager.GetString("ImageFilter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Important Functions.
         /// </summary>
         public static string ImportantFunctions {
@@ -1320,6 +1347,15 @@ namespace ComplexWriter.Properties {
         public static string LoadFile {
             get {
                 return ResourceManager.GetString("LoadFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Load image.
+        /// </summary>
+        public static string LoadImage {
+            get {
+                return ResourceManager.GetString("LoadImage", resourceCulture);
             }
         }
         
@@ -2194,7 +2230,7 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add &quot;{0}&quot; to the dictionary.
+        ///   Looks up a localized string similar to Add &quot;{0}&quot; to the dictionary ({1}).
         /// </summary>
         public static string SpecialEntryAddedToDictionary {
             get {

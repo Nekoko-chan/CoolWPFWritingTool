@@ -712,7 +712,7 @@ Soll trotzdem beendet werden?</value>
     <value>Sprache mit einfachen Anführungszeichen</value>
   </data>
   <data name="SpecialEntryAddedToDictionary" xml:space="preserve">
-    <value>"{0}" zum Wörterbuch hinzufügen</value>
+    <value>"{0}" zum Wörterbuch ({1}) hinzufügen</value>
   </data>
   <data name="SpecialEntryAddedToNames" xml:space="preserve">
     <value>"{0}" zur Namensliste hinzufügen</value>
@@ -1009,11 +1009,20 @@ Wenn sie das Wasserzeichen weiterhin haben wollen, speichern sie es als *.etf-Da
   <data name="UpdateLanguage" xml:space="preserve">
     <value>Spräche ändern</value>
   </data>
+  <data name="CharacterEditorDescription" xml:space="preserve">
+    <value>Hier können die Eigenschaften des gewählten Characters bearbeitet werden</value>
+  </data>
   <data name="FileIsReadOnly" xml:space="preserve">
     <value>Diese Datei kann nicht verändert werden</value>
   </data>
+  <data name="ImageFilter" xml:space="preserve">
+    <value>Bilddateien|*.png;*.jpg</value>
+  </data>
   <data name="IsPasswordProtected" xml:space="preserve">
     <value>Diese Datei ist mit einem Passwort versehen</value>
+  </data>
+  <data name="LoadImage" xml:space="preserve">
+    <value>Bild laden</value>
   </data>
   <data name="QuotesWithoutAStyle" xml:space="preserve">
     <value>Anführungszeichen ohne Stil</value>

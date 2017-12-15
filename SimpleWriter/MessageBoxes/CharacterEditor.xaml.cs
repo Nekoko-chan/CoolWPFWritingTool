@@ -108,7 +108,7 @@ namespace ComplexWriter.MessageBoxes
             IList<Control> spell = GetSpellingSuggestions();
             ContextMenu.Items.Clear();
 
-            ContextMenu.Items.Add(BuildSeperator("Standard-Befehle"));
+            ContextMenu.Items.Add(BuildSeperator(Properties.Resources.Function));
 
             foreach (Control menuItem in standard)
             {
@@ -116,7 +116,7 @@ namespace ComplexWriter.MessageBoxes
             }
             if (spell.Any())
             {
-                ContextMenu.Items.Add(BuildSeperator("Textkorrektur"));
+                ContextMenu.Items.Add(BuildSeperator(Properties.Resources.CorrectText));
                 foreach (Control menuItem in spell)
                 {
                     ContextMenu.Items.Add(menuItem);
@@ -124,28 +124,28 @@ namespace ComplexWriter.MessageBoxes
             }
             if (names.Any())
             {
-                ContextMenu.Items.Add(BuildSeperator("Namen"));
-                var menu = new MenuItem { Header = "Namen", Icon = BuildIcon("IDIcon"), Style = MainWindow.Global.FindResource("menuItem") as Style };
+                ContextMenu.Items.Add(BuildSeperator(Properties.Resources.Names));
+                var menu = new MenuItem { Header = Properties.Resources.Names, Icon = BuildIcon("IDIcon"), Style = MainWindow.Global.FindResource("menuItem") as Style };
                 foreach (Control menuItem in names)
                 {
                     menu.Items.Add(menuItem);
                 }
                 ContextMenu.Items.Add(menu);
-                var menu2 = new MenuItem { Header = "Namen mit Leerzeichen am Ende", Icon = BuildIcon("IDIcon"), Style = MainWindow.Global.FindResource("menuItem") as Style };
+                var menu2 = new MenuItem { Header = Properties.Resources.NameWithSpaceEnd, Icon = BuildIcon("IDIcon"), Style = MainWindow.Global.FindResource("menuItem") as Style };
                 foreach (Control menuItem in names2)
                 {
                     menu2.Items.Add(menuItem);
                 }
                 ContextMenu.Items.Add(menu2);
 
-                var menu3 = new MenuItem { Header = "Namen mit Leerzeichen am Anfang", Icon = BuildIcon("IDIcon"), Style = MainWindow.Global.FindResource("menuItem") as Style };
+                var menu3 = new MenuItem { Header = Properties.Resources.NameWithSpaceStart, Icon = BuildIcon("IDIcon"), Style = MainWindow.Global.FindResource("menuItem") as Style };
                 foreach (Control menuItem in names3)
                 {
                     menu3.Items.Add(menuItem);
                 }
                 ContextMenu.Items.Add(menu3);
 
-                var menu4 = new MenuItem { Header = "Namen mit Leerzeichen an beiden Enden", Icon = BuildIcon("IDIcon"), Style = MainWindow.Global.FindResource("menuItem") as Style };
+                var menu4 = new MenuItem { Header = Properties.Resources.NameWithSpaces, Icon = BuildIcon("IDIcon"), Style = MainWindow.Global.FindResource("menuItem") as Style };
                 foreach (Control menuItem in names4)
                 {
                     menu4.Items.Add(menuItem);
@@ -201,7 +201,7 @@ namespace ComplexWriter.MessageBoxes
                     Icon = BuildIcon("DictionaryEntry"),
                     Command = EditingCommands.CorrectSpellingError,
                     CommandParameter = str,
-                    ToolTip = BuildToolTip(string.Format("\u201C{0}\u201D durch \u201C{1}\u201D ersetzen.", text, str)),
+                    ToolTip = BuildToolTip(string.Format(Properties.Resources.ReplaceText, text, str)),
                     Style = MainWindow.Global.FindResource("menuItem") as Style,
                     CommandTarget = Box
                 }));
@@ -210,7 +210,7 @@ namespace ComplexWriter.MessageBoxes
             {
                 var possibles = new MenuItem
                 {
-                    Header = "Mögliche Ersetzungen",
+                    Header = Properties.Resources.PossibleReplacements,
                     Icon = BuildIcon("DictionaryEntry"),
                     Command = EditingCommands.IgnoreSpellingError,
                     CommandTarget = Box,
@@ -221,7 +221,7 @@ namespace ComplexWriter.MessageBoxes
                 {
                     Header = str,
                     Icon = BuildIcon("DictionaryEntry"),
-                    ToolTip = BuildToolTip(string.Format("\u201C{0}\u201D durch \u201C{1}\u201D ersetzen.", text, str)),
+                    ToolTip = BuildToolTip(string.Format(Properties.Resources.ReplaceText, text, str)),
                     Command = EditingCommands.CorrectSpellingError,
                     CommandParameter = str,
                     Style = MainWindow.Global.FindResource("menuItem") as Style,
@@ -245,13 +245,13 @@ namespace ComplexWriter.MessageBoxes
 
             var ignoreAll = new MenuItem
             {
-                Header = "Alle ignorieren",
+                Header = Properties.Resources.IgnorenAll,
                 Icon = BuildIcon("IgnoreEntry"),
                 Command = EditingCommands.IgnoreSpellingError,
                 CommandTarget = Box,
                 ToolTip =
                     BuildToolTip(
-                        "Wort bis zum Schließen des Programmes ignorieren.\nWenn das Wort auch darüber hinaus ignoriert werden soll, muss es zum Wörterbuch hinzugefügt werden!"),
+                        Properties.Resources.IgnoreAllHint),
                 Style = MainWindow.Global.FindResource("menuItem") as Style
             };
 
@@ -271,13 +271,13 @@ namespace ComplexWriter.MessageBoxes
 
         private MenuItem BuildAddToDictionary(bool isName)
         {
-            var text = isName ? "zur Namensliste" : "zum Wörterbuch";
+            var text = isName ? Properties.Resources.EntryIsAddedToNames : Properties.Resources.EntryIsAddedToDictionary;
             var addToDictionary = new MenuItem
             {
                 Header =GetHeader(Box.CaretIndex, isName),
                 Icon = BuildIcon("bookOpenEdit.png"),
                 Command = EditingCommands.IgnoreSpellingError,
-                ToolTip = BuildToolTip($"Der Eintrag wird {text} hinzugefügt"),
+                ToolTip = BuildToolTip(text),
                 CommandTarget = Box,
                 Style = MainWindow.Global.FindResource("menuItem") as Style
             };
@@ -294,10 +294,10 @@ namespace ComplexWriter.MessageBoxes
             string text = start < 0 || start + length > Box.Text.Length ? "" : Box.Text.Substring(start, length);
 
             if (string.IsNullOrEmpty(text))
-                return "Zum Wörterbuch hinzufügen";
+                return Properties.Resources.EntryIsAddedToDictionary;
 
-            var ext = name ? "zur Namensliste" : "zum Wörterbuch";
-            return $"\"{ text}\" {ext} hinzufügen";
+            var ext = name ? Properties.Resources.SpecialEntryAddedToNames: Properties.Resources.SpecialEntryAddedToDictionary;
+            return string.Format(ext, text, MainWindow.Global.CurrentText.Language);
         }
 
         private Separator BuildSeperator(string text)
@@ -434,7 +434,7 @@ namespace ComplexWriter.MessageBoxes
         {
             var open = new OpenFileDialog
             {
-                Filter = "Bilddateien|*.png;*.jpg",
+                Filter = Properties.Resources.ImageFilter,
                 DefaultExt = "png"
             };
 
