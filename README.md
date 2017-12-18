@@ -1,8 +1,6 @@
 # CoolWPFWritingTool
 A customized text editor using WPF
 
-**Attention**: For now there is only a german version of the tool available
-
 
 
 ## Simple Writer
@@ -26,6 +24,7 @@ The actual text editor and the main project for the Visual Studio solution
 	* xaml display of the FlowDocument
 	* pdf 
 	* rtf
+* Change language between English and German
 * etc.
 
 ### How to's:
