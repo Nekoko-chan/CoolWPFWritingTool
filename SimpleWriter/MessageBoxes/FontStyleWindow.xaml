@@ -11,7 +11,8 @@
         xmlns:complexWriter="clr-namespace:ComplexWriter"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:system="clr-namespace:System;assembly=mscorlib"
-        Title="Schriftart anpassen..." >
+        xmlns:p="clr-namespace:ComplexWriter.Properties"
+        Title="{x:Static p:Resources.UpdateFont}" >
     <Window.InputBindings>
         <KeyBinding Key="A" Modifiers="Alt" Command="{x:Static commands1:CancelCommand.CancelOnA}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=messageBoxes:FontStyleWindow}}" />
         <KeyBinding Key="Enter" Modifiers="Alt" Command="{x:Static commands1:OkCommand.OkOnEnterOrO}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=messageBoxes:FontStyleWindow}}" />
@@ -19,7 +20,7 @@
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="FontStyleWindowDictionary.xaml"/>
+                <ResourceDictionary Source="./Dictionaries/FontStyleWindowDictionary.xaml"/>
                 <ResourceDictionary Source="../global/global.xaml"/>
                 <ResourceDictionary Source="../global/Scrollbars.xaml"/>
                 <ResourceDictionary Source="../global/checkbox.xaml"/>
@@ -110,7 +111,7 @@
                                 </MultiBinding>
                             </Button.BorderBrush>
                             <Button.ToolTip>
-                                <ToolTip Style="{StaticResource tipTest}" Content="Strg + Klick zum löschen"></ToolTip>
+                                <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.CtrlClick}"></ToolTip>
                             </Button.ToolTip>
                             <Button.Background>
                                 <SolidColorBrush Color="{Binding}" />
@@ -249,7 +250,7 @@
                                                                               ButtonMask="../Images/Bold.png"
                                                                               ButtonColor="Black">
                         <ToggleButton.ToolTip>
-                            <ToolTip Style="{StaticResource tipTest}" Content="Fett"/>
+                            <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.Bold}"/>
                         </ToggleButton.ToolTip>
                     </customControls:MaskedToggleButtonEnlarge>
                     <customControls:MaskedToggleButtonEnlarge 
@@ -261,7 +262,7 @@
                                                                               ButtonMask="../Images/Italic.png"
                                                                               ButtonColor="Black">
                         <ToggleButton.ToolTip>
-                            <ToolTip Style="{StaticResource tipTest}" Content="Kursiv"/>
+                            <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.Italic}"/>
                         </ToggleButton.ToolTip>
                     </customControls:MaskedToggleButtonEnlarge>
                     <customControls:MaskedToggleButtonEnlarge 
@@ -273,7 +274,7 @@
                                                                               ButtonMask="../Images/Condensed.png"
                                                                               ButtonColor="Black">
                         <ToggleButton.ToolTip>
-                            <ToolTip Style="{StaticResource tipTest}" Content="Zusammengepressen"/>
+                            <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.Condensed}"/>
                         </ToggleButton.ToolTip>
                     </customControls:MaskedToggleButtonEnlarge>
                     <customControls:MaskedToggleButtonEnlarge  Margin="15,0,0,0"
@@ -284,7 +285,7 @@
                                                                               ButtonMask="../Images/Underline.png"
                                                                               ButtonColor="Black">
                         <ToggleButton.ToolTip>
-                            <ToolTip Style="{StaticResource tipTest}" Content="Unterstrichen"/>
+                            <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.Underlined}"/>
                         </ToggleButton.ToolTip>
                     </customControls:MaskedToggleButtonEnlarge>
                     <customControls:MaskedToggleButtonEnlarge 
@@ -295,7 +296,7 @@
                                                                               ButtonMask="../Images/Strikeout.png"
                                                                               ButtonColor="Black">
                         <ToggleButton.ToolTip>
-                            <ToolTip Style="{StaticResource tipTest}" Content="Durchgestrichen"/>
+                            <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.StrikedThrough}"/>
                         </ToggleButton.ToolTip>
                     </customControls:MaskedToggleButtonEnlarge>
                     
@@ -312,14 +313,14 @@
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Text="Eigene Farben"
+                                <TextBlock Text="{x:Static p:Resources.OwnColors}"
                                                            FontSize="{StaticResource fontSizeMedium}"
                                                            FontFamily="{StaticResource defaultFont}"
                                                            Foreground="{StaticResource BackColorBrush}">
                                 </TextBlock>
                                 <customControls:MaskedImageButtonEnlarge Grid.Column="1"  ButtonColor="{StaticResource BackColorBrush}" ButtonMask="../Images/Add.png" Width="20" Height="20" Click="AddPredefined">
                                     <Button.ToolTip>
-                                        <ToolTip Style="{StaticResource tipTest}" Content="Farbe hinzufügen (Doppelte werden ignoriert!)"></ToolTip>
+                                        <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.AddColor}"></ToolTip>
                                     </Button.ToolTip>
                                 </customControls:MaskedImageButtonEnlarge>
                             </Grid>
@@ -341,7 +342,7 @@
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Text="Systemfarben"
+                                <TextBlock Text="{x:Static p:Resources.SystemColors}"
                                                            FontSize="{StaticResource fontSizeMedium}"
                                                            FontFamily="{StaticResource defaultFont}"
                                                            Foreground="{StaticResource BackColorBrush}">
@@ -364,13 +365,17 @@
             </Grid>
             <StackPanel Grid.ColumnSpan="2" Grid.Row="1" Grid.Column="0" Orientation="Horizontal">
                 <Border Width="16" Height="16" BorderBrush="DarkOrchid" BorderThickness="1"  Margin="0,0,10,0"/>
-                <TextBlock Text=": Vordergrundfarbe" FontFamily="{StaticResource defaultFont}" FontSize="10"></TextBlock>
+                <TextBlock FontFamily="{StaticResource defaultFont}" FontSize="10">
+                    <Run Text=": "></Run> <Run Text="{x:Static p:Resources.ForegroundColor}"></Run>
+                </TextBlock>
                 <Border Width="16" Height="16" BorderBrush="OrangeRed" BorderThickness="1" Margin="20,0,10,0"/>
-                <TextBlock Text=": Hintergrundfarbe" FontFamily="{StaticResource defaultFont}" FontSize="10"></TextBlock>
+                <TextBlock FontFamily="{StaticResource defaultFont}" FontSize="10">
+                    <Run Text=": "></Run><Run Text="{x:Static p:Resources.BackgroundColor}"></Run>
+                </TextBlock>
             </StackPanel>
                 <StackPanel Grid.ColumnSpan="2" Grid.Row="2" Grid.Column="0" Orientation="Horizontal">
-                    <customControls:GlassButton3 Style="{StaticResource GlassButtonStyle}" Click="resetFore" Content="Vordergrund zurücksetzen"></customControls:GlassButton3>
-                <customControls:GlassButton3 Style="{StaticResource GlassButtonStyle}" Click="resetBack"  Content="Hintergrund zurücksetzen"></customControls:GlassButton3>
+                <customControls:GlassButton3 Style="{StaticResource GlassButtonStyle}" Click="resetFore" Content="{x:Static p:Resources.RevertForegroundColor}"></customControls:GlassButton3>
+                <customControls:GlassButton3 Style="{StaticResource GlassButtonStyle}" Click="resetBack"  Content="{x:Static p:Resources.RevertBackgroundColor}"></customControls:GlassButton3>
                 <Border Width="3" BorderBrush="Black"></Border>
             </StackPanel>
             <GroupBox Grid.Column="0" Grid.Row="3" Grid.ColumnSpan="2" Background="Transparent" 
@@ -387,7 +392,7 @@
                     </Grid.RowDefinitions>
                     <CheckBox Grid.Row="1"
                         IsChecked="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:FontStyleWindow},Path=ShowExample,Mode=TwoWay}"
-                        Visibility="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:FontStyleWindow},Path=PreviewVisibility}" Style="{StaticResource globalCheckbox}" Content="Beispiel Text verwenden" FontFamily="{StaticResource defaultFont}" FontSize="{StaticResource fontSizeMedium}"></CheckBox>
+                        Visibility="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:FontStyleWindow},Path=PreviewVisibility}" Style="{StaticResource globalCheckbox}" Content="{x:Static p:Resources.UseExampleText}" FontFamily="{StaticResource defaultFont}" FontSize="{StaticResource fontSizeMedium}"></CheckBox>
                     <ScrollViewer Style="{StaticResource TransparentScrollviewer}" Grid.Row="2" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
                         <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" 
                                    Foreground="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:FontStyleWindow},Path=TextForground}"
@@ -414,17 +419,13 @@
         <Border Name="buttonBorder" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right" Margin="0,-2,20,0" Background="{StaticResource BackColorBrush}" Effect="{StaticResource WindowShadow}" CornerRadius="0,0,10,10">
             <StackPanel Orientation="Horizontal" >
                 <customControls:GlassButton3 Style="{StaticResource GlassButtonStyle}" Click="CloseWithTag">
-                    <TextBlock TextAlignment="Center">
-                        <Run FontWeight="Bold" FontSize="25">O</Run><Run>K</Run>
-                    </TextBlock>
+                    <TextBlock TextAlignment="Center" Text="OK"/>
                     <customControls:GlassButton3.Tag>
                         <x:Static Member="MessageBoxResult.OK"/>
                     </customControls:GlassButton3.Tag>
                 </customControls:GlassButton3>
                 <customControls:GlassButton3 Style="{StaticResource GlassButtonStyle}" x:Name="ForFocus" Click="CloseWithTag"   Margin="20,4,4,4">
-                    <TextBlock Width="100" TextAlignment="Center">
-                        <Run FontWeight="Bold" FontSize="25">A</Run><Run>bbrechen</Run>
-                    </TextBlock>
+                    <TextBlock Width="100" TextAlignment="Center" Text="{x:Static p:Resources.Cancel}"/>
                     <customControls:GlassButton3.Tag>
                         <x:Static Member="MessageBoxResult.Cancel"/>
                     </customControls:GlassButton3.Tag>

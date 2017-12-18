@@ -7,7 +7,8 @@
         xmlns:commands1="clr-namespace:ComplexWriter.Commands"
         xmlns:customControls="clr-namespace:CustomControls;assembly=CustomControls"
         xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
-        Title="Namenseingabe" >
+        xmlns:p="clr-namespace:ComplexWriter.Properties"
+        Title="{x:Static p:Resources.AddStyle}" >
     <Window.InputBindings>
         <KeyBinding Key="A" Modifiers="Alt" Command="{x:Static commands1:CancelCommand.CancelOnA}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=messageBoxes:TextInput}}" />
         <KeyBinding Key="Enter" Modifiers="Alt" Command="{x:Static commands1:OkCommand.OkOnEnterOrO}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=messageBoxes:TextInput}}" />
@@ -15,7 +16,7 @@
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="TextInputDictionary.xaml"/>
+                <ResourceDictionary Source="./Dictionaries/TextInputDictionary.xaml"/>
                 <ResourceDictionary Source="../global/global.xaml"/>
                 <ResourceDictionary Source="../global/Scrollbars.xaml"/>
                 <ResourceDictionary Source="../global/checkbox.xaml"/>
@@ -95,7 +96,7 @@
                     FontSize="{StaticResource fontSizeMedium}" FontFamily="{StaticResource defaultFont}">
                 </TextBox>
             </Border>
-            <CheckBox Style="{StaticResource globalCheckbox}" IsChecked="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:TextInput},Path=UseAsSpeek}" Margin="20,0,40,10" FontFamily="{StaticResource defaultFont}" FontSize="{StaticResource fontSizeMedium}" Content="Style für &quot;Sprache&quot; verwenden"/>
+            <CheckBox Style="{StaticResource globalCheckbox}" IsChecked="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:TextInput},Path=UseAsSpeek}" Margin="20,0,40,10" FontFamily="{StaticResource defaultFont}" FontSize="{StaticResource fontSizeMedium}" Content="{x:Static p:Resources.UseAsSpeach}"/>
         </StackPanel>
 
 
@@ -107,16 +108,16 @@
         <Border Name="buttonBorder" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right" Margin="0,-2,20,0" Background="{StaticResource BackColorBrush}" Effect="{StaticResource WindowShadow}" CornerRadius="0,0,10,10">
             <StackPanel Orientation="Horizontal" >
                 <customControls:GlassButton3 Style="{StaticResource GlassButtonStyle}" Click="CloseWithTag">
-                    <TextBlock TextAlignment="Center">
-                        <Run FontWeight="Bold" FontSize="25">O</Run><Run>K</Run>
+                    <TextBlock TextAlignment="Center" Text="OK">
+                     
                     </TextBlock>
                     <customControls:GlassButton3.Tag>
                         <x:Static Member="MessageBoxResult.OK"/>
                     </customControls:GlassButton3.Tag>
                 </customControls:GlassButton3>
                 <customControls:GlassButton3 Style="{StaticResource GlassButtonStyle}" x:Name="ForFocus" Click="CloseWithTag"   Margin="20,4,4,4">
-                    <TextBlock Width="100" TextAlignment="Center">
-                        <Run FontWeight="Bold" FontSize="25">A</Run><Run>bbrechen</Run>
+                    <TextBlock Width="100" TextAlignment="Center" Text="{x:Static p:Resources.Cancel}">
+                        
                     </TextBlock>
                     <customControls:GlassButton3.Tag>
                         <x:Static Member="MessageBoxResult.Cancel"/>

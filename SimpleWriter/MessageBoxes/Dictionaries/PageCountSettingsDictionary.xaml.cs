@@ -5,14 +5,15 @@ using System.Windows.Controls.Primitives;
 
 namespace ComplexWriter.MessageBoxes
 {
-    public partial class TextInputMultilineDictionary
+    public partial class PageCountSettingsDictionary
     {
         private void CloseMe(object sender, RoutedEventArgs e)
         {
-            var window = ((Button)sender).Tag as MessageResultWindow;
+            var window = ((Button)sender).Tag as PageCountSettings;
             if (window != null)
             {
-                window.Cancel();
+                window.Close();
+                MainWindow.Global.ErrorWindow = null;
             }
         }
 

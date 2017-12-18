@@ -9,7 +9,8 @@
         xmlns:customControls="clr-namespace:CustomControls;assembly=CustomControls"
         xmlns:complexWriter="clr-namespace:ComplexWriter"
         xmlns:system="clr-namespace:System;assembly=mscorlib"
-        Title="Anführungszeichen verwalten..." >
+        xmlns:p="clr-namespace:ComplexWriter.Properties"
+        Title="{x:Static p:Resources.UpdateQuotes}" >
     <Window.InputBindings>
         <KeyBinding Key="A" Command="{x:Static commands1:CancelCommand.CancelOnA}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=messageBoxes:QuoteWindow}}" />
         <KeyBinding Key="O" Command="{x:Static commands1:OkCommand.OkOnEnterOrO}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=messageBoxes:QuoteWindow}}" />
@@ -19,7 +20,7 @@
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="QuoteWindowDictionary.xaml"/>
+                <ResourceDictionary Source="./Dictionaries/QuoteWindowDictionary.xaml"/>
                 <ResourceDictionary Source="../global/global.xaml"/>
                 <ResourceDictionary Source="../global/Scrollbars.xaml"/>
                 <ResourceDictionary Source="../global/GridView.xaml"/>
@@ -133,12 +134,9 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <TextBlock Margin="3" Grid.ColumnSpan="2" TextWrapping="WrapWithOverflow" FontFamily="{StaticResource defaultFont}" FontSize="{StaticResource fontSizeMedium}" Foreground="{DynamicResource TitleBrush}">
-                    Hier können sie die Anführungszeichen (doppelt und einzelnd) angeben, die im Dokument verwendet werden sollen. <LineBreak/>
-                    Beachten sie aber, dass bisherige Anführungszeichen nicht verändert werden.
-                </TextBlock>
-                
-                <GroupBox Grid.Row="1" Grid.Column="0" Style="{StaticResource MyGroups}"  Header="Öffnende Klammern">
+                <TextBlock Margin="3" Grid.ColumnSpan="2" TextWrapping="WrapWithOverflow" FontFamily="{StaticResource defaultFont}" FontSize="{StaticResource fontSizeMedium}" Foreground="{DynamicResource TitleBrush}" Text="{x:Static p:Resources.BacketDescriptions}"/>
+
+                <GroupBox Grid.Row="1" Grid.Column="0" Style="{StaticResource MyGroups}"  Header="{x:Static p:Resources.OpenBackets}">
                     <ItemsControl Name="OpeningQuotes" Margin="5">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
@@ -161,7 +159,7 @@
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
                 </GroupBox>
-                <GroupBox Grid.Row="2" Grid.Column="0" Style="{StaticResource MyGroups}" BorderBrush="{DynamicResource TitleBrush}" Margin="3" Header="Öffnende Klammern (einzeln)">
+                <GroupBox Grid.Row="2" Grid.Column="0" Style="{StaticResource MyGroups}" BorderBrush="{DynamicResource TitleBrush}" Margin="3" Header="{x:Static p:Resources.SingleOpenBracket}">
                     <ItemsControl Name="SingleOpeningQuotes" Margin="5">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
@@ -184,7 +182,7 @@
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
                 </GroupBox>
-                <GroupBox Grid.Row="1" Grid.Column="1" Style="{StaticResource MyGroups}" BorderBrush="{DynamicResource TitleBrush}" Margin="3" Header="Schließende Klammern">
+                <GroupBox Grid.Row="1" Grid.Column="1" Style="{StaticResource MyGroups}" BorderBrush="{DynamicResource TitleBrush}" Margin="3" Header="{x:Static p:Resources.ClosingBrackets}">
                     <ItemsControl Name="ClosingQuotes" Margin="5">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
@@ -207,7 +205,7 @@
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
                 </GroupBox>
-                <GroupBox Grid.Row="2" Grid.Column="1" Style="{StaticResource MyGroups}"  Header="Schließende Klammern (einzeln)">
+                <GroupBox Grid.Row="2" Grid.Column="1" Style="{StaticResource MyGroups}"  Header="{x:Static p:Resources.SingleClosingBracket}">
                     <ItemsControl Name="ClosingSingleQuotes" Margin="5">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
@@ -240,16 +238,14 @@
         <Border Name="buttonBorder" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right" Margin="0,-2,20,0" Background="{StaticResource BackColorBrush}" Effect="{StaticResource WindowShadow}" CornerRadius="0,0,10,10">
             <StackPanel Orientation="Horizontal" >
                 <customControls:GlassButton3 Style="{StaticResource GlassButtonStyle}" x:Name="ForFocus" Click="CloseWithTag">
-                    <TextBlock  TextAlignment="Center">
-                        <Run FontWeight="Bold" FontSize="25">O</Run><Run>k</Run>
+                    <TextBlock  TextAlignment="Center" Text="Ok">
                     </TextBlock>
                     <customControls:GlassButton3.Tag>
                         <x:Static Member="MessageBoxResult.OK"/>
                     </customControls:GlassButton3.Tag>
                 </customControls:GlassButton3>
                 <customControls:GlassButton3 Style="{StaticResource GlassButtonStyle}" Click="CloseWithTag">
-                    <TextBlock Width="100" TextAlignment="Center">
-                        <Run FontWeight="Bold" FontSize="25">A</Run><Run>bbrechen</Run>
+                    <TextBlock Width="100" TextAlignment="Center" Text="{x:Static p:Resources.Cancel}">
                     </TextBlock>
                     <customControls:GlassButton3.Tag>
                         <x:Static Member="MessageBoxResult.Cancel"/>

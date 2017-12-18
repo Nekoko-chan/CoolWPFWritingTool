@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:customControls="clr-namespace:CustomControls;assembly=CustomControls"
              xmlns:searchAndReplace="clr-namespace:ComplexWriter.SearchAndReplace"
+             xmlns:p="clr-namespace:ComplexWriter.Properties"
              mc:Ignorable="d" d:DesignWidth="400"
             >
     <UserControl.Resources>
@@ -104,24 +105,24 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <TextBlock Text="Suchen" Grid.Row="1" Grid.Column="0" Style="{StaticResource TextblockStyle}"/>
-            <TextBlock Grid.Row="2" Grid.Column="0" Text="Ersetzen" Style="{StaticResource TextblockStyle}"  IsEnabled="{Binding RelativeSource={RelativeSource AncestorType=searchAndReplace:SearchAndReplaceControl},Path=ReplaceHelper.CanReplace}" Name="Replaceblock"/>
+            <TextBlock Text="{x:Static p:Resources.Search}" Grid.Row="1" Grid.Column="0" Style="{StaticResource TextblockStyle}"/>
+            <TextBlock Grid.Row="2" Grid.Column="0" Text="{x:Static p:Resources.Replace}" Style="{StaticResource TextblockStyle}"  IsEnabled="{Binding RelativeSource={RelativeSource AncestorType=searchAndReplace:SearchAndReplaceControl},Path=ReplaceHelper.CanReplace}" Name="Replaceblock"/>
             <Border Grid.Column="0" Grid.Row="2" Grid.ColumnSpan="3" BorderBrush="{DynamicResource TitleBrush}" BorderThickness="0,1,0,0"/>
-            <CheckBox Grid.Row="3" IsChecked="{Binding RelativeSource={RelativeSource AncestorType=searchAndReplace:SearchAndReplaceControl},Path=ReplaceHelper.WholeWord,Mode=TwoWay}" Style="{StaticResource globalCheckbox}" Margin="5,5,5,10" Grid.Column="1" Content="Ganzes Wort" Foreground="{DynamicResource TitleBrush}"/>
-            <CheckBox Grid.Row="3" IsChecked="{Binding RelativeSource={RelativeSource AncestorType=searchAndReplace:SearchAndReplaceControl},Path=ReplaceHelper.CaseSensitive,Mode=TwoWay}" Grid.ColumnSpan="3" Style="{StaticResource globalCheckbox}" Margin="5,5,5,10" Grid.Column="2" Content="Groß- &amp; Kleinschreibung" Foreground="{DynamicResource TitleBrush}"/>
+            <CheckBox Grid.Row="3" IsChecked="{Binding RelativeSource={RelativeSource AncestorType=searchAndReplace:SearchAndReplaceControl},Path=ReplaceHelper.WholeWord,Mode=TwoWay}" Style="{StaticResource globalCheckbox}" Margin="5,5,5,10" Grid.Column="1" Content="{x:Static p:Resources.WholeWord}" Foreground="{DynamicResource TitleBrush}"/>
+            <CheckBox Grid.Row="3" IsChecked="{Binding RelativeSource={RelativeSource AncestorType=searchAndReplace:SearchAndReplaceControl},Path=ReplaceHelper.CaseSensitive,Mode=TwoWay}" Grid.ColumnSpan="3" Style="{StaticResource globalCheckbox}" Margin="5,5,5,10" Grid.Column="2" Content="{x:Static p:Resources.CaseSensitivity}" Foreground="{DynamicResource TitleBrush}"/>
             <customControls:MaskedImageButtonEnlarge Grid.Row="1" ButtonMask="../Images/Search.png" Cursor="{StaticResource overCursor}" ButtonColor="{DynamicResource TitleBrush}" Grid.Column="4" Width="24" Height="24" Click="SearchNext">
                 <Button.ToolTip>
-                    <ToolTip Style="{StaticResource tipTest}" Content="Suchen"/>
+                    <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.Search}"/>
                 </Button.ToolTip>
             </customControls:MaskedImageButtonEnlarge>
             <customControls:MaskedImageButtonEnlarge  IsEnabled="{Binding ElementName=Replaceblock,Path=IsEnabled}" Cursor="{StaticResource overCursor}"  Grid.Row="2" ButtonMask="../Images/replace.png" ButtonColor="{DynamicResource TitleBrush}" Grid.Column="3" Width="24" Height="24" Click="ReplaceMe">
                 <Button.ToolTip>
-                    <ToolTip Style="{StaticResource tipTest}" Content="Ersetzen"/>
+                    <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.Replace}"/>
                 </Button.ToolTip>
             </customControls:MaskedImageButtonEnlarge>
             <customControls:MaskedImageButtonEnlarge Cursor="{StaticResource overCursor}" IsEnabled="{Binding ElementName=Replaceblock,Path=IsEnabled}" Grid.Row="2" ButtonMask="../Images/replaceall.png" ButtonColor="{DynamicResource TitleBrush}" Grid.Column="4" Width="24" Height="24" Click="ReplaceAllMe">
                 <Button.ToolTip>
-                    <ToolTip Style="{StaticResource tipTest}" Content="Alle Vorkommen ersetzen"/>
+                    <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.ReplaceAll}"/>
                 </Button.ToolTip>
             </customControls:MaskedImageButtonEnlarge>
 

@@ -9,7 +9,8 @@
         xmlns:customControls="clr-namespace:CustomControls;assembly=CustomControls"
         xmlns:complexWriter="clr-namespace:ComplexWriter"
         xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
-        Title="Symbol einfügen..." >
+        xmlns:p="clr-namespace:ComplexWriter.Properties"
+        Title="{x:Static p:Resources.InsertUnicode}" >
     <Window.InputBindings>
         <KeyBinding Key="A" Command="{x:Static commands1:CancelCommand.CancelOnA}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=messageBoxes:SymbolWindow}}" />
         <KeyBinding Key="Enter" Command="{x:Static commands1:OkCommand.OkOnEnterOrO}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=messageBoxes:SymbolWindow}}" />
@@ -18,7 +19,7 @@
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="SymbolWindowDictionary.xaml"/>
+                <ResourceDictionary Source="./Dictionaries/SymbolWindowDictionary.xaml"/>
                 <ResourceDictionary Source="../global/global.xaml"/>
                 <ResourceDictionary Source="../global/Scrollbars.xaml"/>
                 <ResourceDictionary Source="../global/GridView.xaml"/>
@@ -186,7 +187,7 @@
                                                                  ButtonMask="../Images/symbol.png"
                                                                  ButtonColor="{DynamicResource TitleBrush}">
                             <Button.ToolTip>
-                                <ToolTip Style="{StaticResource tipTest}" Content="Standard-Schrift verwenden"></ToolTip>
+                                <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.UseDefaultFOnt}"></ToolTip>
                             </Button.ToolTip>
                         </customControls:MaskedImageButtonEnlarge>
                         <customControls:MaskedImageButtonEnlarge Grid.Column="2" Width="24" Height="24" Cursor="{StaticResource overCursor}"
@@ -194,7 +195,7 @@
                                                                  ButtonMask="../Images/Font.png"
                                                                  ButtonColor="{DynamicResource TitleBrush}">
                             <Button.ToolTip>
-                                <ToolTip Style="{StaticResource tipTest}" Content="Ausgangschrift verwenden"></ToolTip>
+                                <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.UseStartFont}"></ToolTip>
                             </Button.ToolTip>
                         </customControls:MaskedImageButtonEnlarge>
                     </Grid>
@@ -227,8 +228,8 @@
         <Border Name="buttonBorder" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right" Margin="0,-2,20,0" Background="{StaticResource BackColorBrush}" Effect="{StaticResource WindowShadow}" CornerRadius="0,0,10,10">
             <StackPanel Orientation="Horizontal" >
                 <customControls:GlassButton3 Style="{StaticResource GlassButtonStyle}" x:Name="ForFocus" Click="CloseWithTag">
-                    <TextBlock Width="100" TextAlignment="Center">
-                        <Run FontWeight="Bold" FontSize="25">A</Run><Run>bbrechen</Run>
+                    <TextBlock Width="100" TextAlignment="Center" Text="{x:Static p:Resources.Cancel}">
+                        
                     </TextBlock>
                     <customControls:GlassButton3.Tag>
                         <x:Static Member="MessageBoxResult.Cancel"/>

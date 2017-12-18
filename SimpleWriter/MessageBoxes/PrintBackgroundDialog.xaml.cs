@@ -7,6 +7,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using ComplexWriter.Properties;
+using CustomControls.ImageSelectionTool;
 using ExtensionObjects;
 
 namespace ComplexWriter.MessageBoxes
@@ -22,6 +23,18 @@ namespace ComplexWriter.MessageBoxes
             Loaded += ErrorWindow_Loaded;
         }
 
+
+        public static DependencyProperty StringListProperty = DependencyProperty.Register("StringList", typeof(ImageScalerTranslations), typeof(PrintBackgroundDialog),
+        new PropertyMetadata(new ImageScalerTranslations { DeleteImage = Properties.Resources.DeleteImage, DoubleClick = Properties.Resources.DoubleClickTooltip, Height = Properties.Resources.Height, LinkButton = Properties.Resources.LinkValues, Transparency = Properties.Resources.Opacity, Width = Properties.Resources.Width }));
+
+
+
+        [System.ComponentModel.Category("ControlSpecific")]
+        public ImageScalerTranslations StringList
+        {
+            get { return (ImageScalerTranslations)GetValue(StringListProperty); }
+            set { SetValue(StringListProperty, value); }
+        }
 
         public PrintBackgroundDialog(Brush brush):this()
         {

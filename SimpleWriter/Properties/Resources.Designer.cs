@@ -97,6 +97,24 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add color (doubled colors are ignored).
+        /// </summary>
+        public static string AddColor {
+            get {
+                return ResourceManager.GetString("AddColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please enter a filename.
+        /// </summary>
+        public static string AddFileName {
+            get {
+                return ResourceManager.GetString("AddFileName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add new name.
         /// </summary>
         public static string AddNewName {
@@ -187,6 +205,15 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Apply changes.
+        /// </summary>
+        public static string ApplyChanges {
+            get {
+                return ResourceManager.GetString("ApplyChanges", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Apply the followign style:.
         /// </summary>
         public static string ApplyStlye {
@@ -229,6 +256,15 @@ namespace ComplexWriter.Properties {
         public static string BacketDescriptions {
             get {
                 return ResourceManager.GetString("BacketDescriptions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to background color.
+        /// </summary>
+        public static string BackgroundColor {
+            get {
+                return ResourceManager.GetString("BackgroundColor", resourceCulture);
             }
         }
         
@@ -352,11 +388,29 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please enter a password for the file &quot;{0}&quot;..
+        /// </summary>
+        public static string ChoosePassword {
+            get {
+                return ResourceManager.GetString("ChoosePassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Create new file.
         /// </summary>
         public static string ChrateNewFile {
             get {
                 return ResourceManager.GetString("ChrateNewFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clear.
+        /// </summary>
+        public static string Clear {
+            get {
+                return ResourceManager.GetString("Clear", resourceCulture);
             }
         }
         
@@ -388,6 +442,15 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Close window.
+        /// </summary>
+        public static string CloseWindow {
+            get {
+                return ResourceManager.GetString("CloseWindow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Closing brackets.
         /// </summary>
         public static string ClosingBrackets {
@@ -406,7 +469,7 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Color:.
+        ///   Looks up a localized string similar to Color.
         /// </summary>
         public static string Color {
             get {
@@ -442,6 +505,15 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Copy to clipboard.
+        /// </summary>
+        public static string CopyToClipboard {
+            get {
+                return ResourceManager.GetString("CopyToClipboard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Spellchecker.
         /// </summary>
         public static string CorrectText {
@@ -465,6 +537,15 @@ namespace ComplexWriter.Properties {
         public static string CreateNewElement {
             get {
                 return ResourceManager.GetString("CreateNewElement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ctrl + Click to delete the color.
+        /// </summary>
+        public static string CtrlClick {
+            get {
+                return ResourceManager.GetString("CtrlClick", resourceCulture);
             }
         }
         
@@ -631,6 +712,15 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Deviation from original font size: {0}.
+        /// </summary>
+        public static string DeviationInFontSize {
+            get {
+                return ResourceManager.GetString("DeviationInFontSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dictionary.
         /// </summary>
         public static string Dictionary {
@@ -748,15 +838,6 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Empty.
-        /// </summary>
-        public static string Empty {
-            get {
-                return ResourceManager.GetString("Empty", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Empty file.
         /// </summary>
         public static string EmptyFile {
@@ -849,6 +930,15 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The file is already open.
+        /// </summary>
+        public static string FileAlreadyOpen {
+            get {
+                return ResourceManager.GetString("FileAlreadyOpen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Are you sure, that you like to delete the file? 
         ///The deletion is permanently..
         /// </summary>
@@ -911,6 +1001,17 @@ namespace ComplexWriter.Properties {
         public static string FileIsOpenTitle {
             get {
                 return ResourceManager.GetString("FileIsOpenTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The file &quot;{0}&quot; is password protected.
+        ///
+        ///Please enter the password..
+        /// </summary>
+        public static string FileIsProtected {
+            get {
+                return ResourceManager.GetString("FileIsProtected", resourceCulture);
             }
         }
         
@@ -990,6 +1091,15 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to foreground color.
+        /// </summary>
+        public static string ForegroundColor {
+            get {
+                return ResourceManager.GetString("ForegroundColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to from Page.
         /// </summary>
         public static string FromPage {
@@ -1040,6 +1150,24 @@ namespace ComplexWriter.Properties {
         public static string Height {
             get {
                 return ResourceManager.GetString("Height", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hide password.
+        /// </summary>
+        public static string HidePassword {
+            get {
+                return ResourceManager.GetString("HidePassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hint.
+        /// </summary>
+        public static string Hint {
+            get {
+                return ResourceManager.GetString("Hint", resourceCulture);
             }
         }
         
@@ -1189,6 +1317,15 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Insert from clipboard.
+        /// </summary>
+        public static string InsertFromClipboard {
+            get {
+                return ResourceManager.GetString("InsertFromClipboard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Insert image....
         /// </summary>
         public static string InsertImage {
@@ -1212,6 +1349,24 @@ namespace ComplexWriter.Properties {
         public static string InsertUnicode {
             get {
                 return ResourceManager.GetString("InsertUnicode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The password you entered is invalid! Please try again..
+        /// </summary>
+        public static string InvalidPassword {
+            get {
+                return ResourceManager.GetString("InvalidPassword", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The filename is anvalid.
+        /// </summary>
+        public static string InvalidRenaming {
+            get {
+                return ResourceManager.GetString("InvalidRenaming", resourceCulture);
             }
         }
         
@@ -1523,6 +1678,15 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The hint can not be empty.
+        /// </summary>
+        public static string NoEmptyHint {
+            get {
+                return ResourceManager.GetString("NoEmptyHint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hide password hints.
         /// </summary>
         public static string NoPasswordHint {
@@ -1667,6 +1831,26 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please enter the password.
+        /// </summary>
+        public static string PasswordInput {
+            get {
+                return ResourceManager.GetString("PasswordInput", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The password is currently hidden.
+        ///
+        ///Are you sure, that you like to change it, without checking the spelling?.
+        /// </summary>
+        public static string PasswordIsHidden {
+            get {
+                return ResourceManager.GetString("PasswordIsHidden", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Paste.
         /// </summary>
         public static string Paste {
@@ -1691,6 +1875,15 @@ namespace ComplexWriter.Properties {
         public static string PasteWithoutFormatting {
             get {
                 return ResourceManager.GetString("PasteWithoutFormatting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please choose a color.
+        /// </summary>
+        public static string PleaseChooseColor {
+            get {
+                return ResourceManager.GetString("PleaseChooseColor", resourceCulture);
             }
         }
         
@@ -1773,6 +1966,15 @@ namespace ComplexWriter.Properties {
         public static string ReadOnlyDescription {
             get {
                 return ResourceManager.GetString("ReadOnlyDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close without printing?.
+        /// </summary>
+        public static string ReallyClosing {
+            get {
+                return ResourceManager.GetString("ReallyClosing", resourceCulture);
             }
         }
         
@@ -1912,6 +2114,15 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Revert all deletations.
+        /// </summary>
+        public static string ResetDelete {
+            get {
+                return ResourceManager.GetString("ResetDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Restart.
         /// </summary>
         public static string Restart {
@@ -1950,11 +2161,29 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Revert background color.
+        /// </summary>
+        public static string RevertBackgroundColor {
+            get {
+                return ResourceManager.GetString("RevertBackgroundColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Revert deleting  &quot;{0}&quot;.
         /// </summary>
         public static string RevertDelete {
             get {
                 return ResourceManager.GetString("RevertDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Revert foreground color.
+        /// </summary>
+        public static string RevertForegroundColor {
+            get {
+                return ResourceManager.GetString("RevertForegroundColor", resourceCulture);
             }
         }
         
@@ -1991,6 +2220,15 @@ namespace ComplexWriter.Properties {
         public static string SaveAll {
             get {
                 return ResourceManager.GetString("SaveAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save and Reload.
+        /// </summary>
+        public static string SaveAndReload {
+            get {
+                return ResourceManager.GetString("SaveAndReload", resourceCulture);
             }
         }
         
@@ -2055,6 +2293,17 @@ namespace ComplexWriter.Properties {
         public static string SaveOnly {
             get {
                 return ResourceManager.GetString("SaveOnly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure, that you only want to save the options?
+        ///
+        ///(For printing &quot;OK&quot; should be pressed.).
+        /// </summary>
+        public static string SaveOnlyQuestion {
+            get {
+                return ResourceManager.GetString("SaveOnlyQuestion", resourceCulture);
             }
         }
         
@@ -2136,6 +2385,15 @@ namespace ComplexWriter.Properties {
         public static string ShowPageNumbering {
             get {
                 return ResourceManager.GetString("ShowPageNumbering", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show password.
+        /// </summary>
+        public static string ShowPassword {
+            get {
+                return ResourceManager.GetString("ShowPassword", resourceCulture);
             }
         }
         
@@ -2298,6 +2556,87 @@ namespace ComplexWriter.Properties {
         public static string StrikedThroughOnOf {
             get {
                 return ResourceManager.GetString("StrikedThroughOnOf", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The file.
+        /// </summary>
+        public static string String1 {
+            get {
+                return ResourceManager.GetString("String1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to is already open..
+        /// </summary>
+        public static string String2 {
+            get {
+                return ResourceManager.GetString("String2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To prevent consistency problems, no file is opened twice..
+        /// </summary>
+        public static string String3 {
+            get {
+                return ResourceManager.GetString("String3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You have the following options to avoid the problem:.
+        /// </summary>
+        public static string String4 {
+            get {
+                return ResourceManager.GetString("String4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use the name anyway.
+        /// </summary>
+        public static string String5 {
+            get {
+                return ResourceManager.GetString("String5", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (The file is reloaded).
+        /// </summary>
+        public static string String6 {
+            get {
+                return ResourceManager.GetString("String6", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use an other name.
+        /// </summary>
+        public static string String7 {
+            get {
+                return ResourceManager.GetString("String7", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel the process.
+        /// </summary>
+        public static string String8 {
+            get {
+                return ResourceManager.GetString("String8", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to What qould you like to do?.
+        /// </summary>
+        public static string String9 {
+            get {
+                return ResourceManager.GetString("String9", resourceCulture);
             }
         }
         
@@ -2602,6 +2941,15 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Use style as &quot;Speach&quot;.
+        /// </summary>
+        public static string UseAsSpeach {
+            get {
+                return ResourceManager.GetString("UseAsSpeach", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Use default font.
         /// </summary>
         public static string UseDefaultFOnt {
@@ -2629,6 +2977,24 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Use example text.
+        /// </summary>
+        public static string UseExampleText {
+            get {
+                return ResourceManager.GetString("UseExampleText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose an other name.
+        /// </summary>
+        public static string UseOtherName {
+            get {
+                return ResourceManager.GetString("UseOtherName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Use initial font.
         /// </summary>
         public static string UseStartFont {
@@ -2643,6 +3009,15 @@ namespace ComplexWriter.Properties {
         public static string UseStyleAsDefault {
             get {
                 return ResourceManager.GetString("UseStyleAsDefault", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use watermark (not shown in preview).
+        /// </summary>
+        public static string UseWatermark {
+            get {
+                return ResourceManager.GetString("UseWatermark", resourceCulture);
             }
         }
         
@@ -2691,6 +3066,15 @@ namespace ComplexWriter.Properties {
         public static string Width {
             get {
                 return ResourceManager.GetString("Width", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Word list.
+        /// </summary>
+        public static string WordList {
+            get {
+                return ResourceManager.GetString("WordList", resourceCulture);
             }
         }
         

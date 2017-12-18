@@ -8,7 +8,8 @@
         xmlns:customControls="clr-namespace:CustomControls;assembly=CustomControls"
         xmlns:complexWriter="clr-namespace:ComplexWriter"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
-        Title="Druckvorschau" >
+        xmlns:p="clr-namespace:ComplexWriter.Properties"
+        Title="{x:Static p:Resources.PrintPreview}" >
     <Window.InputBindings>
         <KeyBinding Key="A" Command="{x:Static commands1:CancelCommand.CancelOnA}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=messageBoxes:PrintDialogHelper}}" />
         <KeyBinding Key="S" Command="{x:Static commands1:YesCommand.YesOnJ}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=messageBoxes:PrintDialogHelper}}" />
@@ -18,7 +19,7 @@
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="PrintDialogHelperDictionary.xaml"/>
+                <ResourceDictionary Source="./Dictionaries/PrintDialogHelperDictionary.xaml"/>
                 <ResourceDictionary Source="../global/global.xaml"/>
                 <ResourceDictionary Source="../global/Scrollbars.xaml"/>
                 <ResourceDictionary Source="../global/GridView.xaml"/>
@@ -95,7 +96,7 @@
                     <StackPanel Orientation="Horizontal">
                         <CheckBox Name="fromBox" Style="{StaticResource globalCheckbox}"
                                   FontFamily="{StaticResource defaultFont}" FontSize="{StaticResource fontSizeMedium}"
-                                  Content="von Seite" />
+                                  Content="{x:Static p:Resources.FromPage}" />
                         <Border Style="{StaticResource Border}"
                                 IsHitTestVisible="{Binding ElementName=fromBox,Path=IsChecked}">
                             <xctk:IntegerUpDown Width="80" Style="{StaticResource intTest}" Foreground="Black"
@@ -107,7 +108,7 @@
                                                 FontFamily="{StaticResource numberFont}" Name="fromUpDown" />
                         </Border>
                         <CheckBox Style="{StaticResource globalCheckbox}" FontFamily="{StaticResource defaultFont}"
-                                  FontSize="{StaticResource fontSizeMedium}" Content="bis Seite" Margin="15,0,0,0"
+                                  FontSize="{StaticResource fontSizeMedium}" Content="{x:Static p:Resources.ToPage}" Margin="15,0,0,0"
                                   Name="TillBox" />
                         <Border Style="{StaticResource Border}"
                                 IsHitTestVisible="{Binding ElementName=TillBox,Path=IsChecked}">
@@ -121,7 +122,7 @@
                         </Border>
                         <CheckBox Style="{StaticResource globalCheckbox}" Name="OldNumbering"
                                   FontFamily="{StaticResource defaultFont}" FontSize="{StaticResource fontSizeMedium}"
-                                  Content="Alte Seitenzahlen beibehalten" Margin="15,0,0,0" />
+                                  Content="{x:Static p:Resources.OldNumbering}" Margin="15,0,0,0" />
                     </StackPanel></Border>
                 
             </Grid>
@@ -132,51 +133,51 @@
              <StackPanel VerticalAlignment="Bottom">
                 <customControls:MaskedImageButtonEnlarge Width="24" Height="24" Click="ResetFontInc" ButtonMask="../Images/Font.png" ButtonColor="{DynamicResource TitleBrush}">
                     <Button.ToolTip>
-                        <ToolTip Style="{StaticResource tipTest}" Content="Originale Schriftgröße"/>
+                        <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.OriginalFontSize}"/>
                     </Button.ToolTip>
                 </customControls:MaskedImageButtonEnlarge>
                 <customControls:MaskedImageButtonEnlarge Width="24" Height="24" Click="DecFont" ButtonMask="../Images/DecreaseFont.png" ButtonColor="{DynamicResource TitleBrush}">
                         <Button.ToolTip>
-                            <ToolTip Style="{StaticResource tipTest}" Content="Schrift verkleinern"/>
+                        <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.DecreaseFOnt}"/>
                         </Button.ToolTip>
                     </customControls:MaskedImageButtonEnlarge>
                 <customControls:MaskedImageButtonEnlarge Width="24" Height="24" Click="IncFont" ButtonMask="../Images/IncreaseFont.png" ButtonColor="{DynamicResource TitleBrush}">
                     <Button.ToolTip>
-                        <ToolTip Style="{StaticResource tipTest}" Content="Schrift vergrößern"/>
+                        <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.IncreaseFont}"/>
                     </Button.ToolTip>
                 </customControls:MaskedImageButtonEnlarge>
                  <Border Height="2" BorderBrush="{DynamicResource TitleBrush}" BorderThickness="0,1,0,0" SnapsToDevicePixels="True"/>
                 <customControls:MaskedToggleButtonEnlarge IsChecked="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:PrintDialogHelper},Path=IsBlackAndWhite}" Width="24" Height="24" ButtonMask="../Images/Textcolor.png" ButtonColor="{DynamicResource TitleBrush}">
                     <ToggleButton.ToolTip>
-                        <ToolTip Style="{StaticResource tipTest}" Content="Schwarz-weiß (Vorschau nicht betroffen)"/>
+                        <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.BlackWhite}"/>
                     </ToggleButton.ToolTip>
                 </customControls:MaskedToggleButtonEnlarge>
                 <customControls:MaskedToggleButtonEnlarge IsChecked="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:PrintDialogHelper},Path=UseWaterMark}" Visibility="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:PrintDialogHelper},Path=CanUseWaterMark,Converter={StaticResource falseCollapsedConverter}}" Width="24" Height="24" ButtonMask="../Images/1291282236_image.png" ButtonColor="{DynamicResource TitleBrush}">
                     <ToggleButton.ToolTip>
-                        <ToolTip Style="{StaticResource tipTest}" Content="Wasserzeichen verwenden (Vorschau nicht betroffen)"/>
+                        <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.UseWatermark}"/>
                     </ToggleButton.ToolTip>
                 </customControls:MaskedToggleButtonEnlarge>
                 <customControls:MaskedToggleButtonEnlarge IsChecked="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:PrintDialogHelper},Path=UseCharacters}" Visibility="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:PrintDialogHelper},Path=CanUseCharacters,Converter={StaticResource falseCollapsedConverter}}" Width="24" Height="24" ButtonMask="../Images/id.png" ButtonColor="{DynamicResource TitleBrush}">
                     <ToggleButton.ToolTip>
-                        <ToolTip Style="{StaticResource tipTest}" Content="Charaktere an die Geschichte anfügen"/>
+                        <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.AddCharactersToStory}"/>
                     </ToggleButton.ToolTip>
                 </customControls:MaskedToggleButtonEnlarge>
 
                 <customControls:MaskedImageButtonEnlarge Width="24" Height="24" Click="ChangeBackground" ButtonMask="../Images/bucket.png" ButtonColor="{DynamicResource TitleBrush}">
                     <Button.ToolTip>
-                        <ToolTip Style="{StaticResource tipTest}" Content="Hintergrund anpassen"/>
+                        <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.UpdateBackground}"/>
                     </Button.ToolTip>
                 </customControls:MaskedImageButtonEnlarge>
 
                 <Border Height="2" BorderBrush="{DynamicResource TitleBrush}" BorderThickness="0,1,0,0" SnapsToDevicePixels="True"/>
                 <customControls:MaskedToggleButtonEnlarge IsChecked="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:PrintDialogHelper},Path=ShowPageCount}" Width="24" Height="24" ButtonMask="../Images/pageCount.png" ButtonColor="{DynamicResource TitleBrush}">
                     <ToggleButton.ToolTip>
-                        <ToolTip Style="{StaticResource tipTest}" Content="Seitenzahl anzeigen (Vorschau nicht betroffen)"/>
+                        <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.ShowPageNumbering}"/>
                     </ToggleButton.ToolTip>
                 </customControls:MaskedToggleButtonEnlarge>
                 <customControls:MaskedImageButtonEnlarge Width="24" Height="24" Click="SetOption" ButtonMask="../Images/pageCountSettings.png" ButtonColor="{DynamicResource TitleBrush}">
                     <Button.ToolTip>
-                        <ToolTip Style="{StaticResource tipTest}" Content="Seitenzahloptionen"/>
+                        <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.PageNumberinOptions}"/>
                     </Button.ToolTip>
                 </customControls:MaskedImageButtonEnlarge>
             </StackPanel>
@@ -186,25 +187,19 @@
         <Border Name="buttonBorder" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right" Margin="0,-2,20,0" Background="{StaticResource BackColorBrush}" Effect="{StaticResource WindowShadow}" CornerRadius="0,0,10,10">
             <StackPanel Orientation="Horizontal" >
                 <customControls:GlassButton3 Style="{StaticResource GlassButtonStyle}" Click="CloseWithTag">
-                    <TextBlock TextAlignment="Center">
-                        <Run FontWeight="Bold" FontSize="25">O</Run><Run>K</Run>
-                    </TextBlock>
+                    <TextBlock TextAlignment="Center" Text="OK"/>
                     <customControls:GlassButton3.Tag>
                         <x:Static Member="MessageBoxResult.OK"/>
                     </customControls:GlassButton3.Tag>
                 </customControls:GlassButton3>
                 <customControls:GlassButton3 Style="{StaticResource GlassButtonStyle}" Click="CloseWithTagSave">
-                    <TextBlock TextAlignment="Center">
-                        <Run FontWeight="Bold" FontSize="25">S</Run><Run>ave Only</Run>
-                    </TextBlock>
+                    <TextBlock TextAlignment="Center" Text="{x:Static p:Resources.SaveOnly}"/>
                     <customControls:GlassButton3.Tag>
                         <x:Static Member="MessageBoxResult.Yes"/>
                     </customControls:GlassButton3.Tag>
                 </customControls:GlassButton3>
                 <customControls:GlassButton3 Style="{StaticResource GlassButtonStyle}" x:Name="ForFocus" Click="CloseWithTag"   Margin="20,4,4,4">
-                    <TextBlock Width="100" TextAlignment="Center">
-                        <Run FontWeight="Bold" FontSize="25">A</Run><Run>bbrechen</Run>
-                    </TextBlock>
+                    <TextBlock Width="100" TextAlignment="Center" Text="{x:Static p:Resources.Cancel}"/>
                     <customControls:GlassButton3.Tag>
                         <x:Static Member="MessageBoxResult.Cancel"/>
                     </customControls:GlassButton3.Tag>

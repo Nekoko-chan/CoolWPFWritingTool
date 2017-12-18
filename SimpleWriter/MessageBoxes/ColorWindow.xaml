@@ -4,9 +4,10 @@
         xmlns:customControls="clr-namespace:CustomControls;assembly=CustomControls"
         WindowStartupLocation="CenterOwner"
         xmlns:messageBoxes="clr-namespace:ComplexWriter.MessageBoxes"
-        xmlns:commands1="clr-namespace:ComplexWriter.Commands" 
+        xmlns:commands1="clr-namespace:ComplexWriter.Commands"
+        xmlns:p="clr-namespace:ComplexWriter.Properties"
         Loaded="FocusFirst" MinWidth="600" MinHeight="450"
-        Title="Wählen sie die gewünschte Farbe" >
+        Title="{x:Static p:Resources.PleaseChooseColor}" >
     <Window.InputBindings>
         <KeyBinding Key="O" Command="{x:Static commands1:OkCommand.OkOnEnterOrO}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=messageBoxes:ColorWindow}}" />
         <KeyBinding Key="Enter" Command="{x:Static commands1:OkCommand.OkOnEnterOrO}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=messageBoxes:ColorWindow}}" />
@@ -89,16 +90,14 @@
         <Border Name="buttonBorder" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right" Margin="0,-2,20,0" Background="{StaticResource BackColorBrush}" Effect="{StaticResource WindowShadow}" CornerRadius="0,0,10,10">
             <StackPanel Orientation="Horizontal" >
                 <customControls:GlassButton3 Style="{StaticResource GlassButtonStyle}" x:Name="ForFocus" Click="CloseWithTag">
-                    <TextBlock TextAlignment="Center">
-                        <Run FontWeight="Bold" FontSize="25">O</Run><Run>K</Run>
-                    </TextBlock>
+                    <TextBlock TextAlignment="Center" Text ="Ok"/>
                     <customControls:GlassButton3.Tag>
                         <x:Static Member="MessageBoxResult.OK"/>
                     </customControls:GlassButton3.Tag>
                 </customControls:GlassButton3>
                 <customControls:GlassButton3 Style="{StaticResource GlassButtonStyle}" Click="CloseWithTag"  Margin="20,4,4,4" >
-                    <TextBlock Width="100" TextAlignment="Center">
-                        <Run FontWeight="Bold" FontSize="25">A</Run><Run>bbrechen</Run>
+                    <TextBlock Width="100" TextAlignment="Center" Text="{x:Static p:Resources.Cancel}">
+                        
                     </TextBlock>
                     <customControls:GlassButton3.Tag>
                         <x:Static Member="MessageBoxResult.Cancel"/>

@@ -12,7 +12,8 @@
         xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:imageSelectionTool="clr-namespace:CustomControls.ImageSelectionTool;assembly=CustomControls"
-        Title="Meldungen ansehen..." >
+        xmlns:p="clr-namespace:ComplexWriter.Properties"
+        Title="{x:Static p:Resources.UpdateBackground}" >
     <Window.InputBindings>
         <KeyBinding Key="O" Command="{x:Static commands1:OkCommand.OkOnEnterOrO}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=messageBoxes:PrintBackgroundDialog}}" />
         <KeyBinding Key="Enter" Command="{x:Static commands1:OkCommand.OkOnEnterOrO}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=messageBoxes:PrintBackgroundDialog}}" />
@@ -22,7 +23,7 @@
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="PrintBackgroundDialogDictionary.xaml"/>
+                <ResourceDictionary Source="./Dictionaries/PrintBackgroundDialogDictionary.xaml"/>
                 <ResourceDictionary Source="../global/global.xaml"/>
                 <ResourceDictionary Source="../global/Scrollbars.xaml"/>
                 <ResourceDictionary Source="../global/GroupBox.xaml"/>
@@ -147,7 +148,7 @@
             <GroupBox DockPanel.Dock="Left" Style="{StaticResource groups}" Width="250" >
                 <GroupBox.Header>
                     <Grid>
-                        <RadioButton IsChecked="True" GroupName="global" Content="Farbe:" Style="{StaticResource ARadioButton}" Name="ColorRadio"/>
+                        <RadioButton IsChecked="True" GroupName="global" Content="{x:Static p:Resources.Color}" Style="{StaticResource ARadioButton}" Name="ColorRadio"/>
                         <Button Width="100" HorizontalAlignment="Right" Background="{Binding RelativeSource={RelativeSource AncestorType= messageBoxes:PrintBackgroundDialog},Path=ColorBrush}" >
                             <Button.Template>
                                 <ControlTemplate TargetType="Button">
@@ -180,7 +181,7 @@
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Text="Eigene Farben"
+                                <TextBlock Text="{x:Static p:Resources.OwnColors}"
                                                            FontSize="{StaticResource fontSizeMedium}"
                                                            FontFamily="{StaticResource defaultFont}"
                                                            Foreground="{DynamicResource TitleBrush}">
@@ -205,7 +206,7 @@
                                     <ColumnDefinition Width="178*"/>
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Text="Systemfarben"
+                                <TextBlock Text="{x:Static p:Resources.SystemColors}"
                                                            FontSize="{StaticResource fontSizeMedium}"
                                                            FontFamily="{StaticResource defaultFont}"
                                                            Foreground="{DynamicResource TitleBrush}" Grid.ColumnSpan="2">
@@ -228,7 +229,7 @@
             </GroupBox>
             <GroupBox DockPanel.Dock="left" Style="{StaticResource groups}">
                 <GroupBox.Header>
-                    <RadioButton GroupName="global" Style="{StaticResource ARadioButton}" Content="Bild" Name="ImageButton"></RadioButton>
+                    <RadioButton GroupName="global" Style="{StaticResource ARadioButton}" Content="{x:Static p:Resources.Image}" Name="ImageButton"></RadioButton>
                 </GroupBox.Header>
 
                 <DockPanel IsHitTestVisible="{Binding ElementName=ImageButton,Path=IsChecked}">
@@ -252,8 +253,8 @@
                         </Border>
                     </GroupBox>
                     <Border DockPanel.Dock="Bottom" Background="Black" Margin="5">
-                        <imageSelectionTool:ImageScaler  CanEditOpacity="True"
-                                                             Watermark="Doppelklick für Bild"
+                        <imageSelectionTool:ImageScaler  CanEditOpacity="True" StringList="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:PrintBackgroundDialog},Path=StringList}"
+                                                             
                                                             CanDeleteFile="True" Margin="30,36,20,21"
                                                             ButtonForeground="{StaticResource TitleColor}"
                                                             Name="ImageScaler"
@@ -302,17 +303,14 @@
         <Border Name="buttonBorder" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right" Margin="0,-2,20,0" Background="{StaticResource BackColorBrush}" Effect="{StaticResource WindowShadow}" CornerRadius="0,0,10,10">
             <StackPanel Orientation="Horizontal">
                 <customControls:GlassButton3 Style="{StaticResource GlassButtonStyle}" Click="CloseWithTag">
-                    <TextBlock>
-                        <Run FontWeight="Bold" FontSize="25">O</Run><Run>k</Run>
-                    </TextBlock>
+                    <TextBlock Text="OK"/>
                     <customControls:GlassButton3.Tag>
                         <x:Static Member="MessageBoxResult.OK"/>
                     </customControls:GlassButton3.Tag>
                 </customControls:GlassButton3>
                 <customControls:GlassButton3 Style="{StaticResource GlassButtonStyle}" Visibility="{Binding RelativeSource={RelativeSource AncestorType= messageBoxes:QuestionBox},Path=CanCanel,Converter={StaticResource falseCollapsedConverter}}" Margin="20,4,4,4" Click="CloseWithTag">
-                    <TextBlock>
-                        <Run FontWeight="Bold" FontSize="25">A</Run><Run>bbrechen</Run>
-                    </TextBlock>
+                    <TextBlock Text="{x:Static p:Resources.Cancel}"/>
+                    
                     <customControls:GlassButton3.Tag>
                         <x:Static Member="MessageBoxResult.Cancel"/>
                     </customControls:GlassButton3.Tag>

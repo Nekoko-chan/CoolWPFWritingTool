@@ -3,7 +3,8 @@
   xmlns:presentationOptions="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options" 
                     
                     xmlns:customControls="clr-namespace:CustomControls;assembly=CustomControls"
-                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+                    xmlns:system="clr-namespace:System;assembly=mscorlib"
+                    xmlns:p="clr-namespace:ComplexWriter.Properties">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="../global/global.xaml"/>
@@ -332,7 +333,7 @@
                                         </StackPanel>
                                     </Border>
                                     <TextBlock FontFamily="{TemplateBinding FontFamily}" Margin="0,5">
-                    <Bold>Transparenz</Bold>
+                    <Run FontWeight="Bold" Text="{x:Static p:Resources.Opacity}"></Run>
                                     </TextBlock>
                                     <Border BorderBrush="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}"
                     BorderThickness="2,2,2,2"
@@ -391,13 +392,13 @@
                                             </Border>
                                         <customControls:MaskedImageButtonEnlarge Cursor="{Binding MouseOverCursor, RelativeSource={RelativeSource TemplatedParent}}" Margin="5,0,0,0" x:Name="PART_ToClipButton" ButtonMask="../Images/Copy.png" ButtonColor="{DynamicResource TitleBrush}" Width="32" Height="32">
                                             <Button.ToolTip>
-                                                <ToolTip Content="In die Zwischenablage kopieren" Style="{StaticResource tipTest}"></ToolTip>
+                                                <ToolTip Content="{x:Static p:Resources.CopyToClipboard}" Style="{StaticResource tipTest}"></ToolTip>
                                             </Button.ToolTip>
                                         </customControls:MaskedImageButtonEnlarge>
                                         <customControls:MaskedImageButtonEnlarge Cursor="{Binding MouseOverCursor, RelativeSource={RelativeSource TemplatedParent}}" Margin="5,0,0,0" x:Name="PART_FromClipButton" ButtonMask="../../Images/clipboard.png" ButtonColor="{DynamicResource TitleBrush}"  
                                                                                  Width="32" Height="32">
                                             <Button.ToolTip>
-                                                <ToolTip Content="Aus der Zwischenablage einf&#252;gen"
+                                                <ToolTip Content="{x:Static p:Resources.InsertFromClipboard}"
                                                          Style="{StaticResource tipTest}">
                                                 </ToolTip>
                                             </Button.ToolTip>
@@ -410,14 +411,14 @@
                                                     <ColumnDefinition Width="*"/>
                                                     <ColumnDefinition Width="Auto"/>
                                                 </Grid.ColumnDefinitions>
-                                                <TextBlock Text="Eigene Farben"
+                                                <TextBlock Text="{x:Static p:Resources.OwnColors}"
                                                            FontSize="{StaticResource fontSizeMedium}"
                                                            FontFamily="{StaticResource defaultFont}"
                                                            Foreground="{StaticResource BackColorBrush}">
                                                 </TextBlock>
                                                 <customControls:MaskedImageButtonEnlarge x:Name="PART_Predefined" Grid.Column="1"  ButtonColor="{StaticResource BackColorBrush}" ButtonMask="../Images/Add.png" Width="20" Height="20">
                                                     <Button.ToolTip>
-                                                        <ToolTip Style="{StaticResource tipTest}" Content="Farbe hinzufügen (Doppelte werden ignoriert!)"></ToolTip>
+                                                        <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.AddColor}"></ToolTip>
                                                     </Button.ToolTip>
                                                 </customControls:MaskedImageButtonEnlarge>
                                             </Grid>
@@ -434,7 +435,7 @@
                                                     <DataTemplate DataType="Color">
                                                         <Border Style="{StaticResource PredefBorder}">
                                                             <Border.ToolTip>
-                                                                <ToolTip Style="{StaticResource tipTest}" Content="Strg + Klick zum löschen"></ToolTip>
+                                                                <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.CtrlClick}"></ToolTip>
                                                             </Border.ToolTip>
                                                             <Border.Background>
                                                                 <SolidColorBrush Color="{Binding}" />
@@ -452,7 +453,7 @@
                                                     <ColumnDefinition Width="*"/>
                                                     <ColumnDefinition Width="Auto"/>
                                                 </Grid.ColumnDefinitions>
-                                                <TextBlock Text="Systemfarben"
+                                                <TextBlock Text="{x:Static p:Resources.SystemColors}"
                                                            FontSize="{StaticResource fontSizeMedium}"
                                                            FontFamily="{StaticResource defaultFont}"
                                                            Foreground="{StaticResource BackColorBrush}">

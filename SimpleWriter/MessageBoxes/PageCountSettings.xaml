@@ -11,7 +11,8 @@
         xmlns:customControls="clr-namespace:CustomControls;assembly=CustomControls"
         xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
-        Title="Meldungen ansehen..." >
+        xmlns:p="clr-namespace:ComplexWriter.Properties"
+        Title="{x:Static p:Resources.PageNumberinOptions}" >
     <Window.InputBindings>
         <KeyBinding Key="O" Command="{x:Static commands1:OkCommand.OkOnEnterOrO}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=messageBoxes:PageCountSettings}}" />
         <KeyBinding Key="Enter" Command="{x:Static commands1:OkCommand.OkOnEnterOrO}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=messageBoxes:PageCountSettings}}" />
@@ -21,7 +22,7 @@
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="PageCountSettingsDictionary.xaml"/>
+                <ResourceDictionary Source="./Dictionaries/PageCountSettingsDictionary.xaml"/>
                 <ResourceDictionary Source="../global/global.xaml"/>
                 <ResourceDictionary Source="../global/Scrollbars.xaml"/>
                 <ResourceDictionary Source="../global/GroupBox.xaml"/>
@@ -149,7 +150,10 @@
             <GroupBox Style="{StaticResource groups}">
                 <GroupBox.Header>
                     <Grid>
-                        <TextBlock Text="Schriftart:" />
+                        <TextBlock>
+                            <Run Text="{x:Static p:Resources.Fontstyle}"></Run>
+                            <Run Text=": "></Run>
+                        </TextBlock>
                         <TextBlock HorizontalAlignment="Right" Text="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:PageCountSettings},Path=PageCountElement.FontFamily,Converter={StaticResource FamilyDisplayConverter}}"></TextBlock>
                     </Grid>
                 </GroupBox.Header>
@@ -185,7 +189,10 @@
             <GroupBox Grid.Row ="1" Style="{StaticResource groups}" >
                 <GroupBox.Header>
                     <Grid>
-                        <TextBlock Text="Farbe:" />
+                        <TextBlock>
+                            <Run Text="{x:Static p:Resources.Color}"/>
+                            <Run Text=": "/>
+                        </TextBlock>
                         <Border Width="100" HorizontalAlignment="Right" Background="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:PageCountSettings},Path=PageCountElement.ForgroundBrush}"/>
                     </Grid>
                 </GroupBox.Header>
@@ -202,7 +209,7 @@
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Text="Eigene Farben"
+                                <TextBlock Text="{x:Static p:Resources.OwnColors}"
                                                            FontSize="{StaticResource fontSizeMedium}"
                                                            FontFamily="{StaticResource defaultFont}"
                                                            Foreground="{DynamicResource TitleBrush}">
@@ -226,7 +233,7 @@
                                     <ColumnDefinition Width="*"/>
                                     <ColumnDefinition Width="Auto"/>
                                 </Grid.ColumnDefinitions>
-                                <TextBlock Text="Systemfarben"
+                                <TextBlock Text="{x:Static p:Resources.SystemColors}"
                                                            FontSize="{StaticResource fontSizeMedium}"
                                                            FontFamily="{StaticResource defaultFont}"
                                                            Foreground="{DynamicResource TitleBrush}">
@@ -247,7 +254,7 @@
                     </GroupBox>
                 </Grid>
             </GroupBox>
-            <GroupBox Grid.Row="2" Style="{StaticResource groups}" Header="Aussehen">
+            <GroupBox Grid.Row="2" Style="{StaticResource groups}" Header="{x:Static p:Resources.Appearance}">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto"/>
@@ -256,7 +263,7 @@
                     <CheckBox Style="{StaticResource globalCheckbox}" Foreground="Black"
                               IsChecked="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:PageCountSettings},Path=PageCountElement.UseLeadingZero}"
                               FontSize="{StaticResource fontSizeMedium}" FontFamily="{StaticResource defaultFont}"
-                              Content="Null voranstellen">
+                              Content="{x:Static p:Resources.LeadingZero}">
                     </CheckBox>
                     <Border Grid.Row="1" Background="White">
                         <Grid>
@@ -339,17 +346,13 @@
         <Border Name="buttonBorder" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right" Margin="0,-2,20,0" Background="{StaticResource BackColorBrush}" Effect="{StaticResource WindowShadow}" CornerRadius="0,0,10,10">
             <StackPanel Orientation="Horizontal">
                 <customControls:GlassButton3 Style="{StaticResource GlassButtonStyle}" Click="CloseWithTag">
-                    <TextBlock>
-                        <Run FontWeight="Bold" FontSize="25">O</Run><Run>k</Run>
-                    </TextBlock>
+                    <TextBlock Text="OK"/>
                     <customControls:GlassButton3.Tag>
                         <x:Static Member="MessageBoxResult.OK"/>
                     </customControls:GlassButton3.Tag>
                 </customControls:GlassButton3>
                 <customControls:GlassButton3 Style="{StaticResource GlassButtonStyle}" Visibility="{Binding RelativeSource={RelativeSource AncestorType= messageBoxes:QuestionBox},Path=CanCanel,Converter={StaticResource falseCollapsedConverter}}" Margin="20,4,4,4" Click="CloseWithTag">
-                    <TextBlock>
-                        <Run FontWeight="Bold" FontSize="25">A</Run><Run>bbrechen</Run>
-                    </TextBlock>
+                    <TextBlock Text="{x:Static p:Resources.Cancel}"/>
                     <customControls:GlassButton3.Tag>
                         <x:Static Member="MessageBoxResult.Cancel"/>
                     </customControls:GlassButton3.Tag>

@@ -10,7 +10,8 @@
         xmlns:system="clr-namespace:System;assembly=mscorlib"
         xmlns:customControls="clr-namespace:CustomControls;assembly=CustomControls"
         xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
-        Title="Meldungen ansehen..." >
+        xmlns:p="clr-namespace:ComplexWriter.Properties"
+        Title="{x:Static p:Resources.FileAlreadyOpen}" >
     <Window.InputBindings>
         <KeyBinding Key="O" Command="{x:Static commands1:OkCommand.OkOnEnterOrO}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=messageBoxes:SaveMessage}}" />
         <KeyBinding Key="Enter" Command="{x:Static commands1:OkCommand.OkOnEnterOrO}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=messageBoxes:SaveMessage}}" />
@@ -19,7 +20,7 @@
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="SaveMessageDictionary.xaml"/>
+                <ResourceDictionary Source="./Dictionaries/SaveMessageDictionary.xaml"/>
                 <ResourceDictionary Source="../global/global.xaml"/>
                 <ResourceDictionary Source="../global/Scrollbars.xaml"/>
                 <ResourceDictionary Source="../global/Expander.xaml"/>
@@ -148,27 +149,34 @@
                 </Border>
                <RichTextBox Grid.Column="1" Width="600" Background="Transparent" BorderBrush="Transparent" FocusVisualStyle="{x:Null}" IsReadOnly="True">
                     <FlowDocument FontFamily="{StaticResource defaultFont}" FontSize="{StaticResource fontSizeMedium}">
-                        <Paragraph FontSize="{StaticResource fontSizeLarge}">Die Datei
-                            <Run FontWeight="Bold" FontSize="{StaticResource fontSizeExtraLarge}" Text="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:SaveMessage},Path=Filename}"/> ist bereits geöffnet.
+                        <Paragraph FontSize="{StaticResource fontSizeLarge}">
+                            <Run Text="{x:Static p:Resources.String1}"></Run>
+                            <Run FontWeight="Bold" FontSize="{StaticResource fontSizeExtraLarge}" Text="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:SaveMessage},Path=Filename}"/>
+                            <Run Text="{x:Static p:Resources.String2}"></Run>
                         </Paragraph>
-                        <Paragraph>Da dies zu Konsistenzproblemen führen kann, wird keine Datei mehr als einmal geöffnet.</Paragraph>
-                        <Paragraph>Um dieses Problem zu umgehen, stehen ihnen die folgenden Möglichkeiten zur Verfügung:</Paragraph>
+                        <Paragraph>
+                            <Run Text="{x:Static p:Resources.String3}"></Run></Paragraph>
+                        <Paragraph>
+                            <Run Text="{x:Static p:Resources.String4}"/></Paragraph>
                         <List MarkerStyle="Decimal">
                             <ListItem>
-                                <Paragraph>Trotzdem den Namen verwenden
-                                    <Run FontSize="{StaticResource fontSizeSmall}">(Es wird neu geladen)</Run>
+                                <Paragraph>
+                                    <Run Text="{x:Static p:Resources.String5}"/>
+                                    <Run FontSize="{StaticResource fontSizeSmall}" Text="{x:Static p:Resources.String6}"/>
                                 </Paragraph>
                             </ListItem>
                             <ListItem>
-                                <Paragraph>Einen anderen Namen verwenden</Paragraph>
+                                <Paragraph>
+                                    <Run Text="{x:Static p:Resources.String7}"/></Paragraph>
                             </ListItem>
                             <ListItem>
-                                <Paragraph>Abbrechen und nicht speichern</Paragraph>
+                                <Paragraph>
+                                    <Run Text="{x:Static p:Resources.String8}"/></Paragraph>
                                 <Paragraph />
                             </ListItem>
                         </List>
                         <Paragraph>
-                            <Run FontWeight="Bold">Wie möchten Sie mit der Datei verfahren?</Run>
+                            <Run FontWeight="Bold" Text="{x:Static p:Resources.String9}"></Run>
                         </Paragraph>
                     </FlowDocument>
                 </RichTextBox>
@@ -183,25 +191,19 @@
         <Border Name="buttonBorder" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Left" Margin="0,-2,20,0" Background="{StaticResource BackColorBrush}" Effect="{StaticResource WindowShadow}" CornerRadius="0,0,10,10">
             <StackPanel Orientation="Horizontal">
                 <customControls:GlassButton3 Style="{StaticResource GlassButtonStyle}" x:Name="ForFocus" Click="CloseWithTag">
-                    <TextBlock>
-                        <Run FontWeight="Bold" FontSize="25">S</Run><Run>peichern und neues Laden</Run>
-                    </TextBlock>
+                    <TextBlock Text="{x:Static p:Resources.SaveAndReload}"/>
                     <customControls:GlassButton3.Tag>
                         <x:Static Member="MessageBoxResult.Yes"/>
                     </customControls:GlassButton3.Tag>
                 </customControls:GlassButton3>
                 <customControls:GlassButton3 Style="{StaticResource GlassButtonStyle}" Click="CloseWithTag">
-                    <TextBlock>
-                        <Run FontWeight="Bold" FontSize="25">U</Run><Run>nter anderem Namen Speichern</Run>
-                    </TextBlock>
+                    <TextBlock Text="{x:Static p:Resources.UseOtherName}"/>
                     <customControls:GlassButton3.Tag>
                         <x:Static Member="MessageBoxResult.No"/>
                     </customControls:GlassButton3.Tag>
                 </customControls:GlassButton3>
                 <customControls:GlassButton3 Style="{StaticResource GlassButtonStyle}" Visibility="{Binding RelativeSource={RelativeSource AncestorType= messageBoxes:QuestionBox},Path=CanCanel,Converter={StaticResource falseCollapsedConverter}}" Margin="20,4,4,4" Click="CloseWithTag">
-                    <TextBlock>
-                        <Run FontWeight="Bold" FontSize="25">A</Run><Run>bbrechen</Run>
-                    </TextBlock>
+                    <TextBlock Text="{x:Static p:Resources.Cancel}"/>
                     <customControls:GlassButton3.Tag>
                         <x:Static Member="MessageBoxResult.Cancel"/>
                     </customControls:GlassButton3.Tag>

@@ -47,6 +47,8 @@ namespace ComplexWriter.MessageBoxes
                 return true;
             }
 
+            if (!CheckPassword && messageBoxResult == MessageBoxResult.OK && string.IsNullOrEmpty(Password)) return false;
+
             if (!CheckPassword && (!Settings.Default.AllowEmptyQuestions && Settings.Default.AskForPassword)&& string.IsNullOrEmpty(PasswordQuestion))
             {
                 IsValidQuestion = false;
@@ -55,8 +57,10 @@ namespace ComplexWriter.MessageBoxes
 
             if (!CheckPassword && !ShowPlainText && Password != GetPlainPassword())
             {
-                return QuestionBox.ShowMessage(this, "Sie zeigen Ihr Passwort gerade nicht an.\nWollen sie es wirklich ändern, ohne sicher zu stellen, dass es auch so aussieht, wie er soll?", "Anwenden?", false)== MessageBoxResult.No;
+                return QuestionBox.ShowMessage(this, Properties.Resources.PasswordIsHidden, Properties.Resources.ApplyChanges, false)== MessageBoxResult.No;
             }
+
+
             return false;
         }
 
@@ -71,9 +75,9 @@ namespace ComplexWriter.MessageBoxes
             if (win == null) return;
 
             win.Message = win.CheckPassword ? 
-                string.Format("Die Datei \"{0}\" ist mit einem Passwort geschützt.\n\nBitte geben sie das Passwort ein.",win.Filename) 
+                string.Format(Properties.Resources.FileIsProtected,win.Filename) 
                 :
-                String.Format("Bitte geben sie ein Passwort für die Datei \"{0}\" ein.",win.Filename);
+                String.Format(Properties.Resources.ChoosePassword,win.Filename);
         }
 
         public string Filename

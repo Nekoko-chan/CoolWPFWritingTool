@@ -224,7 +224,7 @@ Would you like to save them?</value>
     <comment>Message-Window</comment>
   </data>
   <data name="Color" xml:space="preserve">
-    <value>Color:</value>
+    <value>Color</value>
   </data>
   <data name="ConfigurationFolder" xml:space="preserve">
     <value>Settings folder</value>
@@ -305,8 +305,8 @@ Would you like to save them?</value>
   <data name="ElementsForInsert" xml:space="preserve">
     <value>Show insertable elements</value>
   </data>
-  <data name="Empty" xml:space="preserve">
-    <value>Empty</value>
+  <data name="Clear" xml:space="preserve">
+    <value>Clear</value>
     <comment>Message-Window</comment>
   </data>
   <data name="EmptyFile" xml:space="preserve">
@@ -999,6 +999,9 @@ If you like to keep the watermark, you have to save it as an *.etf file</value>
   <data name="CharacterEditorDescription" xml:space="preserve">
     <value>In  this dialog you are able to descripe the character</value>
   </data>
+  <data name="CloseWindow" xml:space="preserve">
+    <value>Close window</value>
+  </data>
   <data name="CurrentLanguage" xml:space="preserve">
     <value>English</value>
   </data>
@@ -1034,5 +1037,134 @@ If you like to keep the watermark, you have to save it as an *.etf file</value>
   </data>
   <data name="UpdateLanguage" xml:space="preserve">
     <value>Set language</value>
+  </data>
+  <data name="AddColor" xml:space="preserve">
+    <value>Add color (doubled colors are ignored)</value>
+  </data>
+  <data name="ApplyChanges" xml:space="preserve">
+    <value>Apply changes</value>
+  </data>
+  <data name="BackgroundColor" xml:space="preserve">
+    <value>background color</value>
+  </data>
+  <data name="ChoosePassword" xml:space="preserve">
+    <value>Please enter a password for the file "{0}".</value>
+  </data>
+  <data name="CtrlClick" xml:space="preserve">
+    <value>Ctrl + Click to delete the color</value>
+  </data>
+  <data name="DeviationInFontSize" xml:space="preserve">
+    <value>Deviation from original font size: {0}</value>
+  </data>
+  <data name="FileIsProtected" xml:space="preserve">
+    <value>The file "{0}" is password protected.
+
+Please enter the password.</value>
+  </data>
+  <data name="ForegroundColor" xml:space="preserve">
+    <value>foreground color</value>
+  </data>
+  <data name="HidePassword" xml:space="preserve">
+    <value>Hide password</value>
+  </data>
+  <data name="Hint" xml:space="preserve">
+    <value>Hint</value>
+  </data>
+  <data name="InvalidPassword" xml:space="preserve">
+    <value>The password you entered is invalid! Please try again.</value>
+  </data>
+  <data name="NoEmptyHint" xml:space="preserve">
+    <value>The hint can not be empty</value>
+  </data>
+  <data name="PasswordInput" xml:space="preserve">
+    <value>Please enter the password</value>
+  </data>
+  <data name="PasswordIsHidden" xml:space="preserve">
+    <value>The password is currently hidden.
+
+Are you sure, that you like to change it, without checking the spelling?</value>
+  </data>
+  <data name="PleaseChooseColor" xml:space="preserve">
+    <value>Please choose a color</value>
+  </data>
+  <data name="ReallyClosing" xml:space="preserve">
+    <value>Close without printing?</value>
+  </data>
+  <data name="ResetDelete" xml:space="preserve">
+    <value>Revert all deletations</value>
+  </data>
+  <data name="RevertBackgroundColor" xml:space="preserve">
+    <value>Revert background color</value>
+  </data>
+  <data name="RevertForegroundColor" xml:space="preserve">
+    <value>Revert foreground color</value>
+  </data>
+  <data name="SaveOnlyQuestion" xml:space="preserve">
+    <value>Are you sure, that you only want to save the options?
+
+(For printing "OK" should be pressed.)</value>
+  </data>
+  <data name="ShowPassword" xml:space="preserve">
+    <value>Show password</value>
+  </data>
+  <data name="UseExampleText" xml:space="preserve">
+    <value>Use example text</value>
+  </data>
+  <data name="UseWatermark" xml:space="preserve">
+    <value>Use watermark (not shown in preview)</value>
+  </data>
+  <data name="WordList" xml:space="preserve">
+    <value>Word list</value>
+  </data>
+  <data name="AddFileName" xml:space="preserve">
+    <value>Please enter a filename</value>
+  </data>
+  <data name="CopyToClipboard" xml:space="preserve">
+    <value>Copy to clipboard</value>
+  </data>
+  <data name="FileAlreadyOpen" xml:space="preserve">
+    <value>The file is already open</value>
+  </data>
+  <data name="InsertFromClipboard" xml:space="preserve">
+    <value>Insert from clipboard</value>
+  </data>
+  <data name="InvalidRenaming" xml:space="preserve">
+    <value>The filename is anvalid</value>
+  </data>
+  <data name="SaveAndReload" xml:space="preserve">
+    <value>Save and Reload</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value>The file</value>
+  </data>
+  <data name="String2" xml:space="preserve">
+    <value>is already open.</value>
+  </data>
+  <data name="String3" xml:space="preserve">
+    <value>To prevent consistency problems, no file is opened twice.</value>
+  </data>
+  <data name="String4" xml:space="preserve">
+    <value>You have the following options to avoid the problem:</value>
+  </data>
+  <data name="String5" xml:space="preserve">
+    <value>Use the name anyway</value>
+  </data>
+  <data name="String6" xml:space="preserve">
+    <value>(The file is reloaded)</value>
+  </data>
+  <data name="String7" xml:space="preserve">
+    <value>Use an other name</value>
+  </data>
+  <data name="String8" xml:space="preserve">
+    <value>Cancel the process</value>
+  </data>
+  <data name="String9" xml:space="preserve">
+    <value>What qould you like to do?</value>
+  </data>
+  <data name="UseAsSpeach" xml:space="preserve">
+    <value>Use style as "Speach"</value>
+  </data>
+  <data name="UseOtherName" xml:space="preserve">
+    <value>Choose an other name</value>
   </data>
 </root>

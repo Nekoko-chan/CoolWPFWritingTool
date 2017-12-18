@@ -8,11 +8,12 @@
         xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
         xmlns:complexWriter="clr-namespace:ComplexWriter"
         xmlns:system="clr-namespace:System;assembly=mscorlib"
-        Title="Sicherheitseinstellungen" >
+        xmlns:p="clr-namespace:ComplexWriter.Properties"
+        Title="{x:Static p:Resources.SavetySettings}" >
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="SecurityDialogDictionary.xaml"/>
+                <ResourceDictionary Source="./Dictionaries/SecurityDialogDictionary.xaml"/>
                 <ResourceDictionary Source="../global/global.xaml"/>
                 <ResourceDictionary Source="../global/Scrollbars.xaml"/>
                 <ResourceDictionary Source="../global/checkbox.xaml"/>
@@ -77,17 +78,17 @@
         <Border Grid.Column="1" Grid.Row="1" Style="{StaticResource bord}" Background="{StaticResource background}" IsHitTestVisible="False"/>
 
         <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" Margin="10,10,0,10" >
-            <CheckBox Margin="5,2.5" IsChecked="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:SecurityDialog},Path=SaveAutomatical}" Style="{StaticResource globalCheckbox}"  Content="Automatisch Speichern"/>
+            <CheckBox Margin="5,2.5" IsChecked="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:SecurityDialog},Path=SaveAutomatical}" Style="{StaticResource globalCheckbox}"  Content="{x:Static p:Resources.SaveAutomatical}"/>
             <CheckBox Margin="5,2.5" IsChecked="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:SecurityDialog},Path=AskPasswords}" Style="{StaticResource globalCheckbox}"  Content="Passwort abfragen"/>
             <CheckBox Margin="20,2.5"
-                      IsChecked="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:SecurityDialog},Path=AskPasswordsOnTabChange}" Style="{StaticResource globalCheckbox}" Content="Passwort beim Wechsel von Tabs anzeigen"
+                      IsChecked="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:SecurityDialog},Path=AskPasswordsOnTabChange}" Style="{StaticResource globalCheckbox}" Content="{x:Static p:Resources.AksForPasswordTabs}"
                       IsEnabled="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:SecurityDialog},Path=AskPasswords}"/>
             <CheckBox Margin="20,2.5"
-                      IsChecked="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:SecurityDialog},Path=HideQuestion}" Style="{StaticResource globalCheckbox}" Content="Keine Passworthinweise anzeigen"
+                      IsChecked="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:SecurityDialog},Path=HideQuestion}" Style="{StaticResource globalCheckbox}" Content="{x:Static p:Resources.NoPasswordHint}"
                       IsEnabled="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:SecurityDialog},Path=AskPasswords}"/>
             <CheckBox Margin="20,2.5"  
                       IsEnabled="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:SecurityDialog},Path=AskPasswords}"
-                      IsChecked="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:SecurityDialog},Path=AllowEmptyPasswordQuestions}" Style="{StaticResource globalCheckbox}" Content="Leere Passworthinweise erlauben"/>
+                      IsChecked="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:SecurityDialog},Path=AllowEmptyPasswordQuestions}" Style="{StaticResource globalCheckbox}" Content="{x:Static p:Resources.AllowEmptyPasswordHint}"/>
         </StackPanel>
 
 
@@ -107,9 +108,7 @@
                     </customControls:GlassButton3.Tag>
                 </customControls:GlassButton3>
                 <customControls:GlassButton3 Style="{StaticResource GlassButtonStyle}" x:Name="ForFocus" Click="CloseWithTag"   Margin="20,4,4,4">
-                    <TextBlock Width="100" VerticalAlignment="Center" TextAlignment="Center">
-                        <Run>Abbrechen</Run>
-                    </TextBlock>
+                    <TextBlock Width="100" VerticalAlignment="Center" TextAlignment="Center" Text="{x:Static p:Resources.Cancel}"/>
                     <customControls:GlassButton3.Tag>
                         <x:Static Member="MessageBoxResult.Cancel"/>
                     </customControls:GlassButton3.Tag>

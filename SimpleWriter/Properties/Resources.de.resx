@@ -224,7 +224,7 @@ Sollen diese gespeichert werden?</value>
     <comment>Message-Window</comment>
   </data>
   <data name="Color" xml:space="preserve">
-    <value>Farbe:</value>
+    <value>Farbe</value>
   </data>
   <data name="ConfigurationFolder" xml:space="preserve">
     <value>Konfigurationsordner</value>
@@ -305,7 +305,7 @@ Sollen diese gespeichert werden?</value>
   <data name="ElementsForInsert" xml:space="preserve">
     <value>Elemente zum Einfügen anzeigen</value>
   </data>
-  <data name="Empty" xml:space="preserve">
+  <data name="Clear" xml:space="preserve">
     <value>Leeren</value>
     <comment>Message-Window</comment>
   </data>
@@ -1032,5 +1032,137 @@ Wenn sie das Wasserzeichen weiterhin haben wollen, speichern sie es als *.etf-Da
   </data>
   <data name="StrikedThroughOnOf" xml:space="preserve">
     <value>Durchgestrichen an/ aus</value>
+  </data>
+  <data name="CloseWindow" xml:space="preserve">
+    <value>Fenster schließen</value>
+  </data>
+  <data name="AddColor" xml:space="preserve">
+    <value>Farbe hinzufügen (Doppelte werden ignoriert!)</value>
+  </data>
+  <data name="BackgroundColor" xml:space="preserve">
+    <value>Hintergrundfarbe</value>
+  </data>
+  <data name="CtrlClick" xml:space="preserve">
+    <value>Strg + Klick zum Löschen der Farbe</value>
+  </data>
+  <data name="ForegroundColor" xml:space="preserve">
+    <value>Vordergrundfarbe</value>
+  </data>
+  <data name="PleaseChooseColor" xml:space="preserve">
+    <value>Wählen sie die gewünschte Farbe</value>
+  </data>
+  <data name="ResetDelete" xml:space="preserve">
+    <value>Alle entfernten wieder reinnehmen</value>
+  </data>
+  <data name="RevertBackgroundColor" xml:space="preserve">
+    <value>Hintergrundfarbe zurücksetzen</value>
+  </data>
+  <data name="RevertForegroundColor" xml:space="preserve">
+    <value>Vordergrundfarbe zurücksetzen</value>
+  </data>
+  <data name="UseExampleText" xml:space="preserve">
+    <value>Beispiel Text verwenden</value>
+  </data>
+  <data name="WordList" xml:space="preserve">
+    <value>Wörterliste</value>
+  </data>
+  <data name="ApplyChanges" xml:space="preserve">
+    <value>Änderung anwenden</value>
+  </data>
+  <data name="ChoosePassword" xml:space="preserve">
+    <value>Bitte geben sie ein Passwort für die Datei "{0}" an.</value>
+  </data>
+  <data name="DeviationInFontSize" xml:space="preserve">
+    <value>Abweichung in der Schriftgröße: {0}</value>
+  </data>
+  <data name="FileIsProtected" xml:space="preserve">
+    <value>Die Datei "{0}" ist mit einem Passwort geschützt.
+
+Bitte geben sie das Passwort ein.</value>
+  </data>
+  <data name="HidePassword" xml:space="preserve">
+    <value>Passwort wieder verstecken</value>
+  </data>
+  <data name="Hint" xml:space="preserve">
+    <value>Hinweis</value>
+  </data>
+  <data name="InvalidPassword" xml:space="preserve">
+    <value>Das eingegebene Passwort ist leider falsch, versuchen sie es erneut.</value>
+  </data>
+  <data name="NoEmptyHint" xml:space="preserve">
+    <value>Der Hinweis darf nicht leer sein</value>
+  </data>
+  <data name="PasswordInput" xml:space="preserve">
+    <value>Geben sie bitte das Passwort für die Datei an.</value>
+  </data>
+  <data name="PasswordIsHidden" xml:space="preserve">
+    <value>Sie zeigen Ihr Passwort gerade nicht an.
+
+Wollen sie es wirklich ändern, ohne sicher zu stellen, dass es auch so aussieht, wie er soll?</value>
+  </data>
+  <data name="ReallyClosing" xml:space="preserve">
+    <value>Wirklich schließen?</value>
+  </data>
+  <data name="SaveOnlyQuestion" xml:space="preserve">
+    <value>Sollen die Einstellungen wirklich nur gespeichert werden?
+
+(Zum Drucken müsste "Ok" gedrückt werden.)</value>
+  </data>
+  <data name="ShowPassword" xml:space="preserve">
+    <value>Passwort anzeigen</value>
+  </data>
+  <data name="UseWatermark" xml:space="preserve">
+    <value>Wasserzeichen verwenden (Vorschau nicht betroffen)</value>
+  </data>
+  <data name="AddFileName" xml:space="preserve">
+    <value>Geben sie einen Dateinamen an</value>
+  </data>
+  <data name="CopyToClipboard" xml:space="preserve">
+    <value>In die Zwischenablage kopieren</value>
+  </data>
+  <data name="FileAlreadyOpen" xml:space="preserve">
+    <value>Die Datei ist bereits geöffnet</value>
+  </data>
+  <data name="InsertFromClipboard" xml:space="preserve">
+    <value>Aus der Zwischenablage einfügen</value>
+  </data>
+  <data name="InvalidRenaming" xml:space="preserve">
+    <value>Die Umbenennung ist ungültig</value>
+  </data>
+  <data name="SaveAndReload" xml:space="preserve">
+    <value>Speichern und neues Laden</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value>Die Datei</value>
+  </data>
+  <data name="String2" xml:space="preserve">
+    <value>ist bereits geöffnet.</value>
+  </data>
+  <data name="String3" xml:space="preserve">
+    <value>Da dies zu Konsistenzproblemen führen kann, wird keine Datei mehr als einmal geöffnet.</value>
+  </data>
+  <data name="String4" xml:space="preserve">
+    <value>Um dieses Problem zu umgehen, stehen ihnen die folgenden Möglichkeiten zur Verfügung:</value>
+  </data>
+  <data name="String5" xml:space="preserve">
+    <value>Trotzdem den Namen verwenden</value>
+  </data>
+  <data name="String6" xml:space="preserve">
+    <value>(Es wird neu geladen)</value>
+  </data>
+  <data name="String7" xml:space="preserve">
+    <value>Einen anderen Namen verwenden</value>
+  </data>
+  <data name="String8" xml:space="preserve">
+    <value>Abbrechen und nicht speichern</value>
+  </data>
+  <data name="String9" xml:space="preserve">
+    <value>Wie möchten Sie mit der Datei verfahren?</value>
+  </data>
+  <data name="UseAsSpeach" xml:space="preserve">
+    <value>Stil als "Sprache" verwenden</value>
+  </data>
+  <data name="UseOtherName" xml:space="preserve">
+    <value>Unter anderem Namen Speichern</value>
   </data>
 </root>

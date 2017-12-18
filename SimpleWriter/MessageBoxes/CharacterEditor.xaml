@@ -16,7 +16,7 @@
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="CharacterEditorDictionary.xaml"/>
+                <ResourceDictionary Source="./Dictionaries/CharacterEditorDictionary.xaml"/>
                 <ResourceDictionary Source="../global/Combobox.xaml"/>
                 <ResourceDictionary Source="../global/global.xaml"/>
                 <ResourceDictionary Source="../global/Scrollbars.xaml"/>

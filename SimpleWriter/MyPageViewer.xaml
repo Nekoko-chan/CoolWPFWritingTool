@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:complexWriter="clr-namespace:ComplexWriter"
              xmlns:customControls="clr-namespace:CustomControls;assembly=CustomControls"
+             xmlns:p="clr-namespace:ComplexWriter.Properties"
              mc:Ignorable="d" 
              FontFamily="{DynamicResource defaultFont}"
              FontSize="{DynamicResource fontSizeSmall}"
@@ -47,7 +48,7 @@
                               IsEnabled="{Binding ElementName=PageViewer,Path=CanGoToPreviousPage}"
                               Uid="RepeatButton_3">
                     <RepeatButton.ToolTip>
-                        <ToolTip Style="{StaticResource tipTest}" Content="Vorherige Seite" />
+                        <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.PreviousPage}" />
                     </RepeatButton.ToolTip>
                 </RepeatButton>
                 <TextBlock HorizontalAlignment="Center" Uid="TextBlock_5" VerticalAlignment="Center">
@@ -79,7 +80,7 @@
                               IsEnabled="{Binding ElementName=PageViewer,Path=CanGoToNextPage}"
                               Uid="RepeatButton_4">
                     <RepeatButton.ToolTip>
-                        <ToolTip Style="{StaticResource tipTest}" Content="Nächste Seite" />
+                        <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.NextPage}" />
                     </RepeatButton.ToolTip>
                 </RepeatButton></StackPanel>
             <Slider Style="{StaticResource SmallbaseSlider}"
@@ -104,7 +105,7 @@
             </Grid.ColumnDefinitions>
             <RepeatButton Style="{StaticResource repeaterDec}" Grid.Column="0" CommandTarget="{Binding ElementName=PageViewer}" Command="NavigationCommands.DecreaseZoom"  Focusable="False" IsEnabled="{Binding ElementName=PageViewer,Path= CanDecreaseZoom}" Uid="RepeatButton_5" >
                 <RepeatButton.ToolTip>
-                    <ToolTip Style="{StaticResource tipTest}" Content="Zoom verringern"/>
+                    <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.DecZoom}"/>
                 </RepeatButton.ToolTip>
             </RepeatButton>
             <Grid Grid.Column="1" Margin="0,10,0,0">
@@ -125,25 +126,25 @@
             </Grid>
             <RepeatButton Style="{StaticResource repeaterInc}" Grid.Column="2" CommandTarget="{Binding ElementName=PageViewer}" Command="NavigationCommands.IncreaseZoom" Focusable="False"  IsEnabled="{Binding ElementName=PageViewer,Path= CanIncreaseZoom}" Uid="RepeatButton_6" >
                 <RepeatButton.ToolTip>
-                    <ToolTip Style="{StaticResource tipTest}" Content="Zoom erhöhen"/>
+                    <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.IncZoom}"/>
                 </RepeatButton.ToolTip>
             </RepeatButton>
             <Border Grid.Column="3" BorderBrush="Black" VerticalAlignment="Center" BorderThickness="1.5,0,0,0" SnapsToDevicePixels="True" Margin="10,0,5,0">
                 <Button Style="{StaticResource AdobeButton}" 
                         Click="SetZoomAdobe" >
                     <Button.ToolTip>
-                        <ToolTip Style="{StaticResource tipTest}" Content="100% im Acrobar Reader"/>
+                        <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.AcrobatSize}"/>
                     </Button.ToolTip>
                 </Button>
             </Border>
             <Button Grid.Column="5" Style="{StaticResource Button100}" Click="SetZoom100">
                 <Button.ToolTip>
-                    <ToolTip Style="{StaticResource tipTest}" Content="Originalgröße"/>
+                    <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.OriginalSize}"/>
                 </Button.ToolTip>
             </Button>
             <Button Grid.Column="4" Style="{StaticResource PageButton}"  Click="SetPage">
                 <Button.ToolTip>
-                    <ToolTip Style="{StaticResource tipTest}" Content="Ganze Seite anzeigen"/>
+                    <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.WholePage}"/>
                 </Button.ToolTip>
             </Button>
         </Grid>

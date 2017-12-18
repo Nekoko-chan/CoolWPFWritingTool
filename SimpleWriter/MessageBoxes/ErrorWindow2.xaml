@@ -12,7 +12,8 @@
         xmlns:system="clr-namespace:System;assembly=mscorlib"
         xmlns:customControls="clr-namespace:CustomControls;assembly=CustomControls"
         xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
-        Title="Meldungen ansehen..." >
+        xmlns:p="clr-namespace:ComplexWriter.Properties"
+        Title="{x:Static p:Resources.ShowMessages}" >
     <Window.InputBindings>
         <KeyBinding Key="O" Command="{x:Static commands1:OkCommand.OkOnEnterOrO}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=messageBoxes:ErrorWindow2}}" />
         <KeyBinding Key="Enter" Command="{x:Static commands1:OkCommand.OkOnEnterOrO}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=messageBoxes:ErrorWindow2}}" />
@@ -21,7 +22,7 @@
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="ErrorWindow2Dictionary.xaml"/>
+                <ResourceDictionary Source="./Dictionaries/ErrorWindow2Dictionary.xaml"/>
                 <ResourceDictionary Source="../global/global.xaml"/>
                 <ResourceDictionary Source="../global/Scrollbars.xaml"/>
                 <ResourceDictionary Source="../global/Expander.xaml"/>
@@ -194,9 +195,9 @@
                 <Border BorderBrush="{DynamicResource TitleBrush}" Grid.Column="0" Grid.Row="0" BorderThickness="0,0,1,0"/>
                 <Border BorderBrush="{DynamicResource TitleBrush}" Grid.Column="1" Grid.Row="0" BorderThickness="0,0,1,0"/>
                 <Border BorderBrush="{DynamicResource TitleBrush}" Grid.Column="2" Grid.Row="0" BorderThickness="0,0,1,0">
-                    <TextBlock Text="Datum"  Style="{StaticResource TitleBlock}" VerticalAlignment="Center" Margin="5"/>
+                    <TextBlock Text="{x:Static p:Resources.Date}"  Style="{StaticResource TitleBlock}" VerticalAlignment="Center" Margin="5"/>
                 </Border>
-                <TextBlock Text="Meldung"  Style="{StaticResource TitleBlock}" Grid.Column="3" Grid.Row="0"  Margin="5" VerticalAlignment="Center"/>
+                <TextBlock Text="{x:Static p:Resources.Messages}"  Style="{StaticResource TitleBlock}" Grid.Column="3" Grid.Row="0"  Margin="5" VerticalAlignment="Center"/>
                 <ScrollViewer VerticalContentAlignment="Top" VerticalScrollBarVisibility="Auto" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4"
                               HorizontalScrollBarVisibility="Hidden" Name="ScrollViewer">
                     <ItemsControl x:Name="messageList" VerticalAlignment="Top" ItemTemplate="{StaticResource ExpandeDataTemplate}"
@@ -233,18 +234,18 @@
                 <customControls:MaskedImageButtonEnlarge Width="24" Height="24" Cursor="{StaticResource overCursor}"
                                                          ButtonColor="{DynamicResource TitleBrush}" ButtonMask="../Images/DeleteAll.png" Click="ClearList">
                     <Button.ToolTip>
-                        <ToolTip Style="{StaticResource tipTest}" Content="Leeren"/>
+                        <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.Clear}"/>
                     </Button.ToolTip>
                 </customControls:MaskedImageButtonEnlarge>
               
                 <customControls:MaskedImageButtonEnlarge Width="24" Height="24" Cursor="{StaticResource overCursor}" ButtonColor="{DynamicResource TitleBrush}" ButtonMask="../Images/expandAll.png" Click="ExpandAll">
                     <Button.ToolTip>
-                        <ToolTip Style="{StaticResource tipTest}" Content="Alle Expandieren"/>
+                        <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.ExpandAll}"/>
                     </Button.ToolTip>
                 </customControls:MaskedImageButtonEnlarge>
                 <customControls:MaskedImageButtonEnlarge Width="24" Height="24" Cursor="{StaticResource overCursor}" ButtonColor="{DynamicResource TitleBrush}" ButtonMask="../Images/collapseAll.png" Click="CollapseAll">
                     <Button.ToolTip>
-                        <ToolTip Style="{StaticResource tipTest}" Content="Alle Kollabieren"/>
+                        <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.CollapsAll}"/>
                     </Button.ToolTip>
                 </customControls:MaskedImageButtonEnlarge>
             </StackPanel>

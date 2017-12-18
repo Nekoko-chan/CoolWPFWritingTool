@@ -67,7 +67,7 @@ namespace ComplexWriter.MessageBoxes
         }
 
         public static DependencyProperty StringListProperty = DependencyProperty.Register("StringList", typeof(ImageScalerTranslations), typeof(ImagePicker),
-         new PropertyMetadata(new ImageScalerTranslations {DeleteImage = "Bild löschen",DoubleClick = "Doppelklick um ein Bild zu öffnen",Height = "Höhe",LinkButton = "Werte verlinken",Transparency = "Transparenz",Width = "Breite"}));
+         new PropertyMetadata(new ImageScalerTranslations {DeleteImage = Properties.Resources.DeleteImage,DoubleClick = Properties.Resources.DoubleClickTooltip,Height = Properties.Resources.Height,LinkButton = Properties.Resources.LinkValues,Transparency = Properties.Resources.Opacity,Width = Properties.Resources.Width}));
 
 
 

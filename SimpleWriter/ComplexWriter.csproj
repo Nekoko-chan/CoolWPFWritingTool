@@ -134,7 +134,7 @@
     <Compile Include="MessageBoxes\FileOpener.xaml.cs">
       <DependentUpon>FileOpener.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MessageBoxes\FileOpenerDictionary.xaml.cs">
+    <Compile Include="MessageBoxes\Dictionaries\FileOpenerDictionary.xaml.cs">
       <DependentUpon>FileOpenerDictionary.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\Resources.de.Designer.cs">
@@ -210,19 +210,13 @@
     <Compile Include="MessageBoxes\CharacterEditor.xaml.cs">
       <DependentUpon>CharacterEditor.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MessageBoxes\CharacterEditorDictionary.xaml.cs">
+    <Compile Include="MessageBoxes\Dictionaries\CharacterEditorDictionary.xaml.cs">
       <DependentUpon>CharacterEditorDictionary.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="MessageBoxes\TextInputMultilineDictionary.xaml.cs">
-      <DependentUpon>TextInputMultilineDictionary.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="MessageBoxes\TextInputMultiline.xaml.cs">
-      <DependentUpon>TextInputMultiline.xaml</DependentUpon>
     </Compile>
     <Compile Include="MessageBoxes\SecurityDialog.xaml.cs">
       <DependentUpon>SecurityDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MessageBoxes\SecurityDialogDictionary.xaml.cs">
+    <Compile Include="MessageBoxes\Dictionaries\SecurityDialogDictionary.xaml.cs">
       <DependentUpon>SecurityDialogDictionary.xaml</DependentUpon>
     </Compile>
     <Compile Include="MessageBoxes\PrintBackgroundDialog.xaml.cs">
@@ -231,7 +225,7 @@
     <Compile Include="MessageBoxes\PageCountSettings.xaml.cs">
       <DependentUpon>PageCountSettings.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MessageBoxes\PrintBackgroundDialogDictionary.xaml.cs">
+    <Compile Include="MessageBoxes\Dictionaries\PrintBackgroundDialogDictionary.xaml.cs">
       <DependentUpon>PrintBackgroundDialogDictionary.xaml</DependentUpon>
     </Compile>
     <Compile Include="MessageBoxes\SaveMessage.xaml.cs">
@@ -240,13 +234,13 @@
     <Compile Include="MessageBoxes\ErrorWindow2.xaml.cs">
       <DependentUpon>ErrorWindow2.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MessageBoxes\PageCountSettingsDictionary.xaml.cs">
+    <Compile Include="MessageBoxes\Dictionaries\PageCountSettingsDictionary.xaml.cs">
       <DependentUpon>PageCountSettingsDictionary.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MessageBoxes\SaveMessageDictionary.xaml.cs">
+    <Compile Include="MessageBoxes\Dictionaries\SaveMessageDictionary.xaml.cs">
       <DependentUpon>SaveMessageDictionary.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MessageBoxes\ErrorWindow2Dictionary.xaml.cs">
+    <Compile Include="MessageBoxes\Dictionaries\ErrorWindow2Dictionary.xaml.cs">
       <DependentUpon>ErrorWindow2Dictionary.xaml</DependentUpon>
     </Compile>
     <Compile Include="MessageBoxes\FontStyleWindow.xaml.cs">
@@ -255,7 +249,7 @@
     <Compile Include="MessageBoxes\PrintDialogHelper.xaml.cs">
       <DependentUpon>PrintDialogHelper.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MessageBoxes\PrintDialogHelperDictionary.xaml.cs">
+    <Compile Include="MessageBoxes\Dictionaries\PrintDialogHelperDictionary.xaml.cs">
       <DependentUpon>PrintDialogHelperDictionary.xaml</DependentUpon>
     </Compile>
     <Compile Include="MessageBoxes\PasswordInput.xaml.cs">
@@ -264,7 +258,7 @@
     <Compile Include="MessageBoxes\QuoteWindow.xaml.cs">
       <DependentUpon>QuoteWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MessageBoxes\QuoteWindowDictionary.xaml.cs">
+    <Compile Include="MessageBoxes\Dictionaries\QuoteWindowDictionary.xaml.cs">
       <DependentUpon>QuoteWindowDictionary.xaml</DependentUpon>
     </Compile>
     <Compile Include="MessageBoxes\SimpleInput.xaml.cs">
@@ -273,16 +267,16 @@
     <Compile Include="MessageBoxes\TextInput.xaml.cs">
       <DependentUpon>TextInput.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MessageBoxes\FontStyleWindowDictionary.xaml.cs">
+    <Compile Include="MessageBoxes\Dictionaries\FontStyleWindowDictionary.xaml.cs">
       <DependentUpon>FontStyleWindowDictionary.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MessageBoxes\PasswordInputDictionary.xaml.cs">
+    <Compile Include="MessageBoxes\Dictionaries\PasswordInputDictionary.xaml.cs">
       <DependentUpon>PasswordInputDictionary.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MessageBoxes\SimpleInputDictionary.xaml.cs">
+    <Compile Include="MessageBoxes\Dictionaries\SimpleInputDictionary.xaml.cs">
       <DependentUpon>SimpleInputDictionary.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MessageBoxes\TextInputDictionary.xaml.cs">
+    <Compile Include="MessageBoxes\Dictionaries\TextInputDictionary.xaml.cs">
       <DependentUpon>TextInputDictionary.xaml</DependentUpon>
     </Compile>
     <Compile Include="MessageBoxes\DictionaryItem.cs" />
@@ -294,14 +288,11 @@
     <Compile Include="MessageBoxes\SymbolWindow.xaml.cs">
       <DependentUpon>SymbolWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MessageBoxes\DictionaryEditorDictionary.xaml.cs">
+    <Compile Include="MessageBoxes\Dictionaries\DictionaryEditorDictionary.xaml.cs">
       <DependentUpon>DictionaryEditorDictionary.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MessageBoxes\SymbolWindowDictionary.xaml.cs">
+    <Compile Include="MessageBoxes\Dictionaries\SymbolWindowDictionary.xaml.cs">
       <DependentUpon>SymbolWindowDictionary.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="MessageBoxes\ErrorWindowDictionary.cs">
-      <DependentUpon>ErrorWindowDictionary.xaml</DependentUpon>
     </Compile>
     <Compile Include="MessageBoxes\ImagePickerDictionary.cs">
       <DependentUpon>ImagePickerDictionary.xaml</DependentUpon>
@@ -452,18 +443,14 @@
     </Compile>
     <Compile Include="Commands\OwnPasteCommand.cs" />
     <Compile Include="Commands\OkCommand.cs" />
-    <Compile Include="Commands\CancelEndDialogCommand.cs" />
-    <Compile Include="Commands\EmptyFileCommand.cs" />
     <Compile Include="Commands\CancelCommand.cs" />
     <Compile Include="Commands\NoCommand.cs" />
     <Compile Include="Commands\YesCommand.cs" />
-    <Compile Include="Commands\StoreNameDialogCommand.cs" />
     <Compile Include="ComplexStyle.cs" />
     <Compile Include="DesignHelper.xaml.cs">
       <DependentUpon>DesignHelper.xaml</DependentUpon>
     </Compile>
     <Compile Include="global\Converters.cs" />
-    <Compile Include="Commands\IgnoreCommand.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -472,11 +459,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="MessageBoxes\CloseSettingsMessageBox.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MessageBoxes\AboutDictionary.xaml">
+    <Page Include="MessageBoxes\Dictionaries\AboutDictionary.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -484,7 +467,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="MessageBoxes\CharacterEditorDictionary.xaml">
+    <Page Include="MessageBoxes\Dictionaries\CharacterEditorDictionary.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -492,15 +475,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="MessageBoxes\FileOpenerDictionary.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="MessageBoxes\TextInputMultilineDictionary.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="MessageBoxes\TextInputMultiline.xaml">
+    <Page Include="MessageBoxes\Dictionaries\FileOpenerDictionary.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -508,7 +483,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="MessageBoxes\SecurityDialogDictionary.xaml">
+    <Page Include="MessageBoxes\Dictionaries\SecurityDialogDictionary.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -520,7 +495,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="MessageBoxes\PrintBackgroundDialogDictionary.xaml">
+    <Page Include="MessageBoxes\Dictionaries\PrintBackgroundDialogDictionary.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -532,15 +507,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="MessageBoxes\PageCountSettingsDictionary.xaml">
+    <Page Include="MessageBoxes\Dictionaries\PageCountSettingsDictionary.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="MessageBoxes\SaveMessageDictionary.xaml">
+    <Page Include="MessageBoxes\Dictionaries\SaveMessageDictionary.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="MessageBoxes\ErrorWindow2Dictionary.xaml">
+    <Page Include="MessageBoxes\Dictionaries\ErrorWindow2Dictionary.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -552,7 +527,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="MessageBoxes\PrintDialogHelperDictionary.xaml">
+    <Page Include="MessageBoxes\Dictionaries\PrintDialogHelperDictionary.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -564,7 +539,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="MessageBoxes\QuoteWindowDictionary.xaml">
+    <Page Include="MessageBoxes\Dictionaries\QuoteWindowDictionary.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -580,19 +555,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="MessageBoxes\FontStyleWindowDictionary.xaml">
+    <Page Include="MessageBoxes\Dictionaries\FontStyleWindowDictionary.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="MessageBoxes\PasswordInputDictionary.xaml">
+    <Page Include="MessageBoxes\Dictionaries\PasswordInputDictionary.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="MessageBoxes\SimpleInputDictionary.xaml">
+    <Page Include="MessageBoxes\Dictionaries\SimpleInputDictionary.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="MessageBoxes\TextInputDictionary.xaml">
+    <Page Include="MessageBoxes\Dictionaries\TextInputDictionary.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -600,11 +575,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="MessageBoxes\DictionaryEditorDictionary.xaml">
+    <Page Include="MessageBoxes\Dictionaries\DictionaryEditorDictionary.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="MessageBoxes\SymbolWindowDictionary.xaml">
+    <Page Include="MessageBoxes\Dictionaries\SymbolWindowDictionary.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -616,14 +591,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
       <DependentUpon>ImagePicker.xaml</DependentUpon>
-    </Page>
-    <Page Include="MessageBoxes\ErrorWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="MessageBoxes\ErrorWindowDictionary.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="MessageBoxes\ColorWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -657,11 +624,6 @@
       <SubType>Designer</SubType>
       <DependentUpon>QuestionBox.xaml</DependentUpon>
     </Page>
-    <Page Include="MessageBoxes\CloseSettingsMessageBoxDictionary.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-      <DependentUpon>CloseSettingsMessageBox.xaml</DependentUpon>
-    </Page>
     <Page Include="MessageBoxes\QuestionBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -691,17 +653,11 @@
     <Compile Include="MainWindowDictionary.xaml.cs">
       <DependentUpon>MainWindowDictionary.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MessageBoxes\CloseSettingsMessageBox.xaml.cs">
-      <DependentUpon>CloseSettingsMessageBox.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="MessageBoxes\AboutDictionary.xaml.cs">
+    <Compile Include="MessageBoxes\Dictionaries\AboutDictionary.xaml.cs">
       <DependentUpon>AboutDictionary.xaml</DependentUpon>
     </Compile>
     <Compile Include="MessageBoxes\ImagePicker.xaml.cs">
       <DependentUpon>ImagePicker.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="MessageBoxes\ErrorWindow.xaml.cs">
-      <DependentUpon>ErrorWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="MessageBoxes\UnicodeElement.cs" />
     <Compile Include="MessageBoxes\XamlMessageBoxDictionary.xaml.cs">
@@ -718,9 +674,6 @@
     </Compile>
     <Compile Include="MessageBoxes\QuestionBoxDictionary.xaml.cs">
       <DependentUpon>QuestionBoxDictionary.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="MessageBoxes\CloseSettingsMessageBoxDictionary.xaml.cs">
-      <DependentUpon>CloseSettingsMessageBoxDictionary.xaml</DependentUpon>
     </Compile>
     <Compile Include="MessageBoxes\QuestionBox.xaml.cs">
       <DependentUpon>QuestionBox.xaml</DependentUpon>

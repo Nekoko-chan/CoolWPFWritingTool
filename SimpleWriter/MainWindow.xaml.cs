@@ -1590,8 +1590,12 @@ namespace ComplexWriter
 
             var dlg = new PasswordInput
             {
-                Owner = this, Filename = file.Display, CheckPassword = true, PasswordDecrpyted = file.Password, PasswordQuestion = file.PasswordQuestion
+                Filename = file.Display, CheckPassword = true, PasswordDecrpyted = file.Password, PasswordQuestion = file.PasswordQuestion
             };
+            if (this.IsLoaded)
+            {
+                dlg.Owner = this;
+            }
 
             return (dlg.ShowDialog() == true && dlg.Result == MessageBoxResult.OK);
         }

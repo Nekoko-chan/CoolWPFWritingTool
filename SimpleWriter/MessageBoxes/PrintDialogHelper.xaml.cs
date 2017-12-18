@@ -360,7 +360,7 @@ namespace ComplexWriter.MessageBoxes
 
         private void CloseWithTagSave(object sender, RoutedEventArgs e)
         {
-            if(QuestionBox.ShowMessage(this,"Sollen die Einstellungen wirklich nur gespeichert werden?\n\n(Zum Drucken müsste \"Ok\" gedrückt werden.)","Wirklich schließen",false) == MessageBoxResult.Yes)
+            if(QuestionBox.ShowMessage(this,Properties.Resources.SaveOnlyQuestion,Properties.Resources.ReallyClosing,false) == MessageBoxResult.Yes)
                 Result = (MessageBoxResult)((Button)sender).Tag;
         }
 
@@ -368,7 +368,7 @@ namespace ComplexWriter.MessageBoxes
         {
             if (FontSizeInc == 0) return;
 
-            FontIncBlock.Text = string.Format("Abweichung in der Schriftgröße: {0}", FontSizeInc);
+            FontIncBlock.Text = string.Format(Properties.Resources.DeviationInFontSize,0);
             BuildDocument();
         }
 
@@ -376,14 +376,14 @@ namespace ComplexWriter.MessageBoxes
         {
             FontSizeInc++;
             BuildDocument();
-            FontIncBlock.Text = FontSizeInc == 0 ? string.Empty:string.Format("Abweichung in der Schriftgröße: {0}", FontSizeInc);
+            FontIncBlock.Text = FontSizeInc == 0 ? string.Empty:string.Format(Properties.Resources.DeviationInFontSize, FontSizeInc);
         }
 
         private void DecFont(object sender, RoutedEventArgs e)
         {
             FontSizeInc--;
             BuildDocument();
-            FontIncBlock.Text = FontSizeInc == 0 ? string.Empty : string.Format("Abweichung in der Schriftgröße: {0}", FontSizeInc);
+            FontIncBlock.Text = FontSizeInc == 0 ? string.Empty : string.Format(Properties.Resources.DeviationInFontSize, FontSizeInc);
         }
 
         private void SetOption(object sender, RoutedEventArgs e)

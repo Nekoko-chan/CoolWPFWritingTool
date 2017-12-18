@@ -7,7 +7,8 @@
         xmlns:commands1="clr-namespace:ComplexWriter.Commands"
         xmlns:customControls="clr-namespace:CustomControls;assembly=CustomControls"
         xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
-        Title="Namenseingabe" >
+        xmlns:p="clr-namespace:ComplexWriter.Properties"
+        Title="{x:Static p:Resources.AddFileName}" >
     <Window.InputBindings>
         <KeyBinding Key="A" Modifiers="Alt" Command="{x:Static commands1:CancelCommand.CancelOnA}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=messageBoxes:SimpleInput}}" />
         <KeyBinding Key="Enter" Modifiers="Alt" Command="{x:Static commands1:OkCommand.OkOnEnterOrO}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=messageBoxes:SimpleInput}}" />
@@ -15,7 +16,7 @@
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="SimpleInputDictionary.xaml"/>
+                <ResourceDictionary Source="./Dictionaries/SimpleInputDictionary.xaml"/>
                 <ResourceDictionary Source="../global/global.xaml"/>
                 <ResourceDictionary Source="../global/Scrollbars.xaml"/>
                 <ResourceDictionary Source="../global/checkbox.xaml"/>
@@ -86,7 +87,7 @@
         <Border Grid.Column="1" Grid.Row="1" Style="{StaticResource bord}" Background="{StaticResource background}" IsHitTestVisible="False"/>
 
         <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Center"  >
-            <TextBlock Text="Geben sie einen Dateinamen an." FontSize="{StaticResource fontSizeExtraLarge}" FontFamily="{StaticResource defaultFont}" Margin="10,30,45,0"></TextBlock>
+            <TextBlock Text="{x:Static p:Resources.AddFileName}" FontSize="{StaticResource fontSizeExtraLarge}" FontFamily="{StaticResource defaultFont}" Margin="10,30,45,0"></TextBlock>
             <Border Name="theBorder" Style="{StaticResource border}"
                          >
                 <Grid >
@@ -104,7 +105,7 @@
                             <ImageBrush ImageSource="../Images/errorNuke.png" />
                         </Border.OpacityMask>
                         <Border.ToolTip>
-                            <ToolTip Style="{StaticResource tipTest}" Content="Die Umbenennung ist ungültig"></ToolTip>
+                            <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.InvalidRenaming}"></ToolTip>
                         </Border.ToolTip>
                     </Border>
                 </Grid>
@@ -121,17 +122,14 @@
         <Border Name="buttonBorder" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right" Margin="0,-2,20,0" Background="{StaticResource BackColorBrush}" Effect="{StaticResource WindowShadow}" CornerRadius="0,0,10,10">
             <StackPanel Orientation="Horizontal" >
                 <customControls:GlassButton3 Style="{StaticResource GlassButtonStyle}" Click="CloseWithTag">
-                    <TextBlock TextAlignment="Center">
-                        <Run FontWeight="Bold" FontSize="25">O</Run><Run>K</Run>
+                    <TextBlock TextAlignment="Center" Text="OK">
                     </TextBlock>
                     <customControls:GlassButton3.Tag>
                         <x:Static Member="MessageBoxResult.OK"/>
                     </customControls:GlassButton3.Tag>
                 </customControls:GlassButton3>
                 <customControls:GlassButton3 Style="{StaticResource GlassButtonStyle}" x:Name="ForFocus" Click="CloseWithTag"   Margin="20,4,4,4">
-                    <TextBlock Width="100" TextAlignment="Center">
-                        <Run FontWeight="Bold" FontSize="25">A</Run><Run>bbrechen</Run>
-                    </TextBlock>
+                    <TextBlock Width="100" TextAlignment="Center" Text="{x:Static p:Resources.Cancel}"/>
                     <customControls:GlassButton3.Tag>
                         <x:Static Member="MessageBoxResult.Cancel"/>
                     </customControls:GlassButton3.Tag>

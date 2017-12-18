@@ -11,7 +11,8 @@
         xmlns:complexWriter="clr-namespace:ComplexWriter"
         xmlns:system="clr-namespace:System;assembly=mscorlib"
         xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
-        Title="Wörterbuch bearbeiten..." >
+        xmlns:p="clr-namespace:ComplexWriter.Properties"
+        Title="{x:Static p:Resources.OpenDictionaryWindow}">
     <Window.InputBindings>
         <KeyBinding Key="A" Modifiers="Alt" Command="{x:Static commands1:CancelCommand.CancelOnA}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=messageBoxes:DictionaryEditor}}" />
         <KeyBinding Key="Enter" Modifiers="Alt" Command="{x:Static commands1:OkCommand.OkOnEnterOrO}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=messageBoxes:DictionaryEditor}}" />
@@ -19,7 +20,7 @@
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="DictionaryEditorDictionary.xaml"/>
+                <ResourceDictionary Source="Dictionaries/DictionaryEditorDictionary.xaml"/>
                 <ResourceDictionary Source="../global/global.xaml"/>
                 <ResourceDictionary Source="../global/Scrollbars.xaml"/>
                 <ResourceDictionary Source="../global/checkbox.xaml"/>
@@ -109,7 +110,7 @@
                 </Grid.RowDefinitions>
                 <GroupBox BorderBrush="Black" Style="{StaticResource BoldTitleGroupBox}">
                     <GroupBox.Header>
-                        <TextBlock Text="Wörterliste" Foreground="{DynamicResource TitleBrush}"
+                        <TextBlock Text="{x:Static p:Resources.WordList}" Foreground="{DynamicResource TitleBrush}"
                                        FontFamily="{StaticResource defaultFont}"
                                        FontSize="{StaticResource fontSizeLarge}">
                         </TextBlock>
@@ -210,7 +211,7 @@
                                                              Width="26" Height="26"
                                                              Click="MergeDictionary">
                         <Button.ToolTip>
-                            <ToolTip Style="{StaticResource tipTest}" Content="Anderes Wörterbuch hineinmergen"/>
+                            <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.MergeDictionary}"/>
                         </Button.ToolTip>
                     </customControls:MaskedImageButtonEnlarge>
                     <customControls:MaskedImageButtonEnlarge ButtonMask="../Images/Add.png"
@@ -218,7 +219,7 @@
                                                              Width="26" Height="26"
                                                              Click="AddElement">
                         <Button.ToolTip>
-                            <ToolTip Style="{StaticResource tipTest}" Content="Neues Element erstellen"/>
+                            <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.CreateNewElement}"/>
                         </Button.ToolTip>
                     </customControls:MaskedImageButtonEnlarge>
 
@@ -234,23 +235,23 @@
                 <customControls:MaskedImageButtonEnlarge Width="24" Height="24" Cursor="{StaticResource overCursor}"
                                                          ButtonColor="{DynamicResource TitleBrush}" ButtonMask="../Images/DeleteDict.png" Click="ClearList">
                     <Button.ToolTip>
-                        <ToolTip Style="{StaticResource tipTest}" Content="Leeren"/>
+                        <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.Clear}"/>
                     </Button.ToolTip>
                 </customControls:MaskedImageButtonEnlarge>
                 <customControls:MaskedImageButtonEnlarge Width="24" Height="24" Cursor="{StaticResource overCursor}"
                                                          ButtonColor="{DynamicResource TitleBrush}" ButtonMask="../Images/UndoDeleteDict.png" Click="UnclearList">
                     <Button.ToolTip>
-                        <ToolTip Style="{StaticResource tipTest}" Content="Alle entfernten wieder reinnehmen"/>
+                        <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.ResetDelete}"/>
                     </Button.ToolTip>
                 </customControls:MaskedImageButtonEnlarge>
                 <customControls:MaskedImageButtonEnlarge Width="24" Height="24" Cursor="{StaticResource overCursor}" ButtonColor="{DynamicResource TitleBrush}" ButtonMask="../Images/expandAll.png" Click="ExpandAll">
                     <Button.ToolTip>
-                        <ToolTip Style="{StaticResource tipTest}" Content="Alle Expandieren"/>
+                        <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.ExpandAll}"/>
                     </Button.ToolTip>
                 </customControls:MaskedImageButtonEnlarge>
                 <customControls:MaskedImageButtonEnlarge Width="24" Height="24" Cursor="{StaticResource overCursor}" ButtonColor="{DynamicResource TitleBrush}" ButtonMask="../Images/collapseAll.png" Click="CollapseAll">
                     <Button.ToolTip>
-                        <ToolTip Style="{StaticResource tipTest}" Content="Alle Kollabieren"/>
+                        <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.CollapsAll}"/>
                     </Button.ToolTip>
                 </customControls:MaskedImageButtonEnlarge>
             </StackPanel>
@@ -260,16 +261,14 @@
         <Border Name="buttonBorder" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right" Margin="0,-2,20,0" Background="{StaticResource BackColorBrush}" Effect="{StaticResource WindowShadow}" CornerRadius="0,0,10,10">
             <StackPanel Orientation="Horizontal" >
                 <customControls:GlassButton3 Style="{StaticResource GlassButtonStyle}" Click="CloseWithTag">
-                    <TextBlock TextAlignment="Center">
-                        <Run FontWeight="Bold" FontSize="25">O</Run><Run>K</Run>
-                    </TextBlock>
+                    <TextBlock TextAlignment="Center" Text="Ok"/>
                     <customControls:GlassButton3.Tag>
                         <x:Static Member="MessageBoxResult.OK"/>
                     </customControls:GlassButton3.Tag>
                 </customControls:GlassButton3>
                 <customControls:GlassButton3 Style="{StaticResource GlassButtonStyle}" x:Name="ForFocus" Click="CloseWithTag"   Margin="20,4,4,4">
-                    <TextBlock Width="100" TextAlignment="Center">
-                        <Run FontWeight="Bold" FontSize="25">A</Run><Run>bbrechen</Run>
+                    <TextBlock Width="100" TextAlignment="Center" Text="{x:Static p:Resources.Cancel}">
+                       
                     </TextBlock>
                     <customControls:GlassButton3.Tag>
                         <x:Static Member="MessageBoxResult.Cancel"/>
