@@ -1125,11 +1125,17 @@ Are you sure, that you like to change it, without checking the spelling?</value>
   <data name="FileAlreadyOpen" xml:space="preserve">
     <value>The file is already open</value>
   </data>
+  <data name="HighQuality" xml:space="preserve">
+    <value>High quality</value>
+  </data>
   <data name="InsertFromClipboard" xml:space="preserve">
     <value>Insert from clipboard</value>
   </data>
   <data name="InvalidRenaming" xml:space="preserve">
     <value>The filename is anvalid</value>
+  </data>
+  <data name="NextNeighbor" xml:space="preserve">
+    <value>Next Neighbor</value>
   </data>
   <data name="SaveAndReload" xml:space="preserve">
     <value>Save and Reload</value>

@@ -3,17 +3,18 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:custom="clr-namespace:CustomControls;assembly=CustomControls"
         xmlns:complexWriter="clr-namespace:ComplexWriter"
+        xmlns:p="clr-namespace:ComplexWriter.Properties"
         Background="Transparent"
         FontFamily="{DynamicResource ControlsFont}"
         Name="AboutWindow" Foreground="Black"
         WindowStyle="None" AllowsTransparency="True"  Width="500"
-        Title="Über das Programm" SizeToContent="Height" Topmost="True" WindowStartupLocation="CenterScreen" RenderOptions.BitmapScalingMode="HighQuality" RenderOptions.ClearTypeHint="Enabled" >
+        Title="{x:Static p:Resources.AboutMe}" SizeToContent="Height" Topmost="True" WindowStartupLocation="CenterScreen" RenderOptions.BitmapScalingMode="HighQuality" RenderOptions.ClearTypeHint="Enabled" >
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="global/global.xaml"/>
                 <ResourceDictionary Source="global/ScrollViewer2.xaml"/>
-                <ResourceDictionary Source="MessageBoxes/AboutDictionary.xaml"/>
+                <ResourceDictionary Source="MessageBoxes/Dictionaries/AboutDictionary.xaml"/>
                 <ResourceDictionary>
                     <SolidColorBrush x:Key="AlternativeAboutBackground" Color="#23000000"></SolidColorBrush>
                     <SolidColorBrush x:Key="MainBackground" Color="{StaticResource BackColor}"></SolidColorBrush>
@@ -47,7 +48,7 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="166" />
                 <RowDefinition Height="86"/>
-                <RowDefinition Height="62"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Border Grid.Row="0" Grid.RowSpan="4" Effect="{StaticResource WindowShadow}" BorderThickness="1" BorderBrush="{DynamicResource TitleBrush}"></Border>
 
@@ -68,7 +69,7 @@
                     <ColumnDefinition Width="Auto" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Row="0" Grid.Column="0" Foreground="Black" Text="Konfigurationsordner"
+                <TextBlock Grid.Row="0" Grid.Column="0" Foreground="Black" Text="{x:Static p:Resources.ConfigurationFolder}"
                            Margin="{StaticResource mar}" FontFamily="{StaticResource ControlsFont}" />
                 <TextBox Foreground="Black" Grid.Row="0" Grid.Column="1" Style="{StaticResource realtextBoxStyle}" IsReadOnly="True"
                                Text="{Binding RelativeSource={RelativeSource AncestorType=complexWriter:About},Path=ConfigPath}"
@@ -81,20 +82,20 @@
                            Text="{Binding RelativeSource={RelativeSource AncestorType=complexWriter:About},Path=Version}" FontWeight="Light"
                            Margin="{StaticResource mar}" />
 
-                <TextBlock Grid.Row="2" Grid.Column="0" Text="Idee" Margin="{StaticResource mar}" FontFamily="{StaticResource ControlsFont}"/>
+                <TextBlock Grid.Row="2" Grid.Column="0" Text="{x:Static p:Resources.Idea}" Margin="{StaticResource mar}" FontFamily="{StaticResource ControlsFont}"/>
                 <TextBlock Grid.Row="2" Grid.Column="1" FontWeight="Light" Margin="{StaticResource mar}" >
                     Martina Gräber
                 </TextBlock>
 
                 <Border Grid.Row="3" Grid.ColumnSpan="2" Background="{StaticResource AlternativeAboutBackground}" />
 
-                <TextBlock Grid.Row="3" Grid.Column="0" Foreground="Black" Text="Programmierung"
+                <TextBlock Grid.Row="3" Grid.Column="0" Foreground="Black" Text="{x:Static p:Resources.Programing}"
                            Margin="{StaticResource mar}"  FontFamily="{StaticResource ControlsFont}"/>
                 <TextBlock Grid.Row="3" Grid.Column="1" Foreground="Black" Text="Martina Gräber"
                            Margin="{StaticResource mar}" />
 
 
-                <TextBlock Grid.Row="4" Grid.Column="0" Text="Zeichnungen und Icons" Margin="{StaticResource mar}" FontFamily="{StaticResource ControlsFont}"/>
+                <TextBlock Grid.Row="4" Grid.Column="0" Text="{x:Static p:Resources.DrawingsAndIcons}" Margin="{StaticResource mar}" FontFamily="{StaticResource ControlsFont}"/>
                 <TextBlock Grid.Row="4" Grid.Column="1" Margin="10,5,0,5" FontWeight="Light">
                     Martina Gräber
                     <LineBreak/>
@@ -124,10 +125,7 @@
                         Margin="10,25,10,10" />
                 <TextBlock Foreground="Black" Grid.Row="6" Grid.ColumnSpan="2"
                            TextWrapping="WrapWithOverflow" Margin="20,35,20,20" HorizontalAlignment="Center"
-                           VerticalAlignment="Center">
-                    Dieses Programm dient nur der privaten Nutzung und darf nicht für kommerzielle Zwecke verwendet werden.
-                    <LineBreak />
-                    Die Weitergabe darf nur unter Einhaltung dieser Regeln vorgenommen werden.
+                           VerticalAlignment="Center" Text="{x:Static p:Resources.PrivateText}">
                 </TextBlock>
             </Grid>
             <Border Grid.Row="0" Grid.RowSpan="4" Background="{StaticResource background}" IsHitTestVisible="False"  ></Border>

@@ -1163,6 +1163,15 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to High quality.
+        /// </summary>
+        public static string HighQuality {
+            get {
+                return ResourceManager.GetString("HighQuality", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hint.
         /// </summary>
         public static string Hint {
@@ -1637,6 +1646,15 @@ namespace ComplexWriter.Properties {
         public static string NewStyleTemplate {
             get {
                 return ResourceManager.GetString("NewStyleTemplate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Next Neighbor.
+        /// </summary>
+        public static string NextNeighbor {
+            get {
+                return ResourceManager.GetString("NextNeighbor", resourceCulture);
             }
         }
         

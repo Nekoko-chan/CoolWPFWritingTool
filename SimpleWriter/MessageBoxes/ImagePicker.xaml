@@ -5,9 +5,9 @@
         WindowStartupLocation="CenterOwner"
         xmlns:messageBoxes="clr-namespace:ComplexWriter.MessageBoxes"
         xmlns:commands1="clr-namespace:ComplexWriter.Commands"
-        xmlns:imageSelectionTool="clr-namespace:CustomControls.ImageSelectionTool;assembly=CustomControls"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:p="clr-namespace:ComplexWriter.Properties"
+        xmlns:complexWriter="clr-namespace:ComplexWriter"
         Loaded="FocusFirst" 
         Title="{x:Static p:Resources.InsertImage}">
     <Window.InputBindings>
@@ -63,8 +63,8 @@
               <Border x:Name="Content" Margin="20,27,10,10" Background="{StaticResource BackColorBrush}">
                     
               </Border>
-                <imageSelectionTool:ImageScaler StringList="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:ImagePicker},Path=StringList}" CanEditOpacity="True" CanDeleteFile="True" Margin="30,37,20,20" ButtonForeground="{StaticResource TitleColor}" Name="ImageScaler" ImageOptionFontFamily="{StaticResource defaultFont}" ControlFontFamily="{StaticResource defaultFont}" TextboxForeground="{DynamicResource TitleBrush}" LineColor="{StaticResource DarkerTitleColor}" TextboxBackground="{StaticResource BackColorBrush}">
-                    <imageSelectionTool:ImageScaler.Resources>
+                <complexWriter:ImageScaler CanEditOpacity="True" CanDeleteFile="True" Margin="30,37,20,20" ButtonForeground="{StaticResource TitleColor}" x:Name="ImageScaler" ImageOptionFontFamily="{StaticResource defaultFont}" ControlFontFamily="{StaticResource defaultFont}" TextboxForeground="{DynamicResource TitleBrush}" LineColor="{StaticResource DarkerTitleColor}" TextboxBackground="{StaticResource BackColorBrush}">
+                    <complexWriter:ImageScaler.Resources>
                         <ResourceDictionary>
                             <ResourceDictionary.MergedDictionaries>
                                 <ResourceDictionary Source="../global/Viewer.xaml"/>
@@ -114,8 +114,8 @@
                                 </ResourceDictionary>
                             </ResourceDictionary.MergedDictionaries>
                         </ResourceDictionary>
-                    </imageSelectionTool:ImageScaler.Resources>
-                </imageSelectionTool:ImageScaler>
+                    </complexWriter:ImageScaler.Resources>
+                </complexWriter:ImageScaler>
 
                 <Thumb Effect="{StaticResource WindowShadow}" Grid.Row="0" VerticalAlignment="Top" Height="10" Margin="0,-3,20,0"
                                                    Cursor="{StaticResource moveCursor}" DragDelta="MoveWindow"
@@ -159,3 +159,6 @@
         
     </Grid>
 </messageBoxes:MessageResultWindow>
+
+
+

@@ -131,6 +131,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClickOpensContextMenuBehavior.cs" />
+    <Compile Include="imageScaler.xaml.cs" />
     <Compile Include="MessageBoxes\FileOpener.xaml.cs">
       <DependentUpon>FileOpener.xaml</DependentUpon>
     </Compile>
@@ -423,6 +424,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="global\Viewer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="imageScaler.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

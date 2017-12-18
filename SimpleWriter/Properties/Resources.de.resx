@@ -1123,11 +1123,17 @@ Wollen sie es wirklich ändern, ohne sicher zu stellen, dass es auch so aussieht
   <data name="FileAlreadyOpen" xml:space="preserve">
     <value>Die Datei ist bereits geöffnet</value>
   </data>
+  <data name="HighQuality" xml:space="preserve">
+    <value>Hohe Qualität</value>
+  </data>
   <data name="InsertFromClipboard" xml:space="preserve">
     <value>Aus der Zwischenablage einfügen</value>
   </data>
   <data name="InvalidRenaming" xml:space="preserve">
     <value>Die Umbenennung ist ungültig</value>
+  </data>
+  <data name="NextNeighbor" xml:space="preserve">
+    <value>Nächster Nachbar</value>
   </data>
   <data name="SaveAndReload" xml:space="preserve">
     <value>Speichern und neues Laden</value>
