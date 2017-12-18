@@ -70,7 +70,9 @@ namespace ComplexWriter
                 AskPasswords = Settings.Default.AskForPassword,
                 AskPasswordsOnTabChange = Settings.Default.AskForPasswordOnTabChange,
                 SaveAutomatical =  Settings.Default.SaveAutomatical,
-                HideQuestion =  Settings.Default.HideQuestion
+                HideQuestion =  Settings.Default.HideQuestion,
+                UseEnglish =  Settings.Default.Language.StartsWith("en"),
+                UseGerman = Settings.Default.Language.StartsWith("de")
             };
 
             if (sd.ShowDialog() != true || sd.Result != MessageBoxResult.OK) return;
@@ -79,6 +81,12 @@ namespace ComplexWriter
             Settings.Default.AskForPassword = sd.AskPasswords;
             Settings.Default.AskForPasswordOnTabChange = sd.AskPasswordsOnTabChange;
             Settings.Default.HideQuestion = sd.HideQuestion;
+            var language = sd.UseEnglish ? "en" : "de";
+            if (Settings.Default.Language != language)
+            {
+                Settings.Default.Language = language;
+                MessageBoxes.MessageBox.ShowMessage(this, Properties.Resources.RestartForLanguage, Properties.Resources.Restart,fontSize:15d);
+            }
             if(sd.SaveAutomatical != Settings.Default.SaveAutomatical)
             {
                 Settings.Default.SaveAutomatical = sd.SaveAutomatical;

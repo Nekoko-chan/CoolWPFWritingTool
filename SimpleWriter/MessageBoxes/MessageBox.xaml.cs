@@ -57,9 +57,9 @@ namespace ComplexWriter.MessageBoxes
             Result = (MessageBoxResult) ((Button) sender).Tag;
         }
 
-        public static MessageBoxResult ShowMessage(Window owner, string text, string title, MessageBoxImage image=MessageBoxImage.Information, double maxwidth=600)
+        public static MessageBoxResult ShowMessage(Window owner, string text, string title, MessageBoxImage image=MessageBoxImage.Information, double maxwidth=600, double fontSize=22d)
         {
-            var dlg = new MessageBox { Title = title, Message = text, Owner = owner, MessageIcon = image ,MaxWidth = 600};
+            var dlg = new MessageBox { Title = title, Message = text, Owner = owner, MessageIcon = image ,MaxWidth = 600,MessageFontSize = fontSize};
             dlg.ShowDialog();
 
             return dlg.Result;

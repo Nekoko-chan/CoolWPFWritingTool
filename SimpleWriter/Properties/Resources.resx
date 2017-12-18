@@ -127,7 +127,7 @@
     <value>Add as name</value>
   </data>
   <data name="AddCharactersToStory" xml:space="preserve">
-    <value>Insert characters after the text is prodessed</value>
+    <value>Insert characters after the text is processed</value>
   </data>
   <data name="AddNewName" xml:space="preserve">
     <value>Add new name</value>
@@ -163,7 +163,7 @@
     <value>The file "{0}" is saved automatically</value>
   </data>
   <data name="BacketDescriptions" xml:space="preserve">
-    <value> On this dialog you are able to define the quuotation marks that are used by the document.
+    <value> On this dialog you are able to define the quotation marks that are used by the document.
 Please remember, that already inserted quotations are not updated.</value>
   </data>
   <data name="BlackBackground" xml:space="preserve">
@@ -322,7 +322,7 @@ Would you like to save them?</value>
     <value>Error</value>
   </data>
   <data name="ErrorWhileStyleCopy" xml:space="preserve">
-    <value>An error occured while coping the style. 
+    <value>An error occurred while coping the style. 
 
 The style is not added</value>
   </data>
@@ -341,7 +341,7 @@ The deletion is permanently.</value>
     <value>File {0} of {1} ("{2}") is loaded.</value>
   </data>
   <data name="FileIsOpen" xml:space="preserve">
-    <value>The file "{0}" is alread open
+    <value>The file "{0}" is already open
 
 Opening the same file in two tabs is not supported.</value>
   </data>
@@ -373,7 +373,7 @@ If you like to use it, copy it to the "Fonts" folder</value>
     <value>Missing font</value>
   </data>
   <data name="Fontstyle" xml:space="preserve">
-    <value>Font familiy</value>
+    <value>Font family</value>
   </data>
   <data name="FromPage" xml:space="preserve">
     <value>from Page</value>
@@ -388,7 +388,7 @@ If you like to use it, copy it to the "Fonts" folder</value>
     <value>Function</value>
   </data>
   <data name="Height" xml:space="preserve">
-    <value>Hight</value>
+    <value>Height</value>
     <comment>Image Dialog</comment>
   </data>
   <data name="Idea" xml:space="preserve">
@@ -527,7 +527,7 @@ Please choose a default style before using this feature.</value>
     <value>Numeric List</value>
   </data>
   <data name="Occurance" xml:space="preserve">
-    <value>Occurance</value>
+    <value>Occurrences</value>
   </data>
   <data name="OldNumbering" xml:space="preserve">
     <value>Keep old numbering</value>
@@ -582,7 +582,7 @@ Please choose a default style before using this feature.</value>
   </data>
   <data name="PrivateText" xml:space="preserve">
     <value>This program is written under a GNU General Public License and not for commercial usage.
-Permissions of this strong copyleft license are conditioned on making available complete source code of licensed works and modifications, which include larger works using a licensed work, under the same license. Copyright and license notices must be preserved. Contributors provide an express grant of patent rights.</value>
+Permissions of this strong copy license are conditioned on making available complete source code of licensed works and modifications, which include larger works using a licensed work, under the same license. Copyright and license notices must be preserved. Contributors provide an express grant of patent rights.</value>
   </data>
   <data name="Programing" xml:space="preserve">
     <value>Programing</value>
@@ -618,12 +618,12 @@ Permissions of this strong copyleft license are conditioned on making available 
     <value>Restart</value>
   </data>
   <data name="RestartForChanges" xml:space="preserve">
-    <value>Changings on the dictionary are only available after restarting the programm.
-Would you like to restart ist?</value>
+    <value>Changings on the dictionary are only available after restarting the program.
+Would you like to restart it?</value>
   </data>
   <data name="RestartForNameChanges" xml:space="preserve">
-    <value>Changings on the name list are only available after restarting the programm.
-Would you like to restart ist?</value>
+    <value>Changings on the name list are only available after restarting the program.
+Would you like to restart it?</value>
   </data>
   <data name="RightClickOptions" xml:space="preserve">
     <value>(Click right for more options)</value>
@@ -670,7 +670,7 @@ Would you like to close the program anyway?</value>
     <value>Variables initialized</value>
   </data>
   <data name="ShowAbout" xml:space="preserve">
-    <value>(Click the buton to show "About the programm")</value>
+    <value>(Click the button to show "About the program")</value>
   </data>
   <data name="ShowMessages" xml:space="preserve">
     <value>Show messages...</value>
@@ -703,13 +703,13 @@ Would you like to close the program anyway?</value>
     <value>Some files are changed. Would you like to save them?</value>
   </data>
   <data name="Speach" xml:space="preserve">
-    <value>Speach without quotes</value>
+    <value>Speech without quotes</value>
   </data>
   <data name="SpeachWithQuotes" xml:space="preserve">
-    <value>Speach with quotes</value>
+    <value>Speech with quotes</value>
   </data>
   <data name="SpeacSimpleQuotes" xml:space="preserve">
-    <value>Speach with single quotes</value>
+    <value>Speech with single quotes</value>
   </data>
   <data name="SpecialEntryAddedToDictionary" xml:space="preserve">
     <value>Add "{0}" to the dictionary ({1})</value>
@@ -871,7 +871,7 @@ Would you like to save it anyway?</value>
   </data>
   <data name="IgnoreAllHint" xml:space="preserve">
     <value>Ignores the word till the program is closed
-If you like to ignore it bejond this, you have to add the word to the dictionary!</value>
+If you like to ignore it beyond this, you have to add the word to the dictionary!</value>
   </data>
   <data name="PastePreview" xml:space="preserve">
     <value>The following text will be inserted:
@@ -890,7 +890,7 @@ If you like to ignore it bejond this, you have to add the word to the dictionary
     <value>Replace "{0}" with "{1}"</value>
   </data>
   <data name="StyleAddedWithName" xml:space="preserve">
-    <value>The style is alrady added as "{0}"!
+    <value>The style is already added as "{0}"!
 
 Would you like to rename it instead?</value>
   </data>
@@ -900,14 +900,14 @@ Would you like to rename it instead?</value>
 Would you like to rename it instead?</value>
   </data>
   <data name="WatermarkOnlyWithEtf" xml:space="preserve">
-    <value>The file contains a watermark, which is not supported by the used fily type.
+    <value>The file contains a watermark, which is not supported by the used file type.
 If you like to keep the watermark, you have to save it as an *.etf file</value>
   </data>
   <data name="DictionaryPath" xml:space="preserve">
     <value>Microsoft\Spelling\en-US\CoolWriter.dic</value>
   </data>
   <data name="ApplyStlye" xml:space="preserve">
-    <value>Apply the followign style:</value>
+    <value>Apply the following style:</value>
   </data>
   <data name="CountOccurances" xml:space="preserve">
     <value>Count usages</value>
@@ -934,13 +934,13 @@ If you like to keep the watermark, you have to save it as an *.etf file</value>
     <value>Export style</value>
   </data>
   <data name="FileFilterLarge" xml:space="preserve">
-    <value>Erweiterte Text-Dateien|*.etf|Text-Dateien|*.rtxt|Erlaubte Formate |*.etf;*.rtxt</value>
+    <value>Extended text files|*.etf|Text files|*.rtxt|Possible formats |*.etf;*.rtxt</value>
   </data>
   <data name="FileFilterSmall" xml:space="preserve">
-    <value>Erweiterte Text-Dateien|*.etf</value>
+    <value>Extended text files|*.etf</value>
   </data>
   <data name="GoToFirstUsage" xml:space="preserve">
-    <value>Go to fisrt usage</value>
+    <value>Go to first usage</value>
   </data>
   <data name="ImportStyles" xml:space="preserve">
     <value>Import styles</value>
@@ -985,7 +985,7 @@ If you like to keep the watermark, you have to save it as an *.etf file</value>
     <value>Yes</value>
   </data>
   <data name="Condensed" xml:space="preserve">
-    <value>Codensed</value>
+    <value>Condensed</value>
   </data>
   <data name="FontSize" xml:space="preserve">
     <value>Font size</value>
@@ -997,7 +997,7 @@ If you like to keep the watermark, you have to save it as an *.etf file</value>
     <value>Automatic</value>
   </data>
   <data name="CharacterEditorDescription" xml:space="preserve">
-    <value>In  this dialog you are able to descripe the character</value>
+    <value>In  this dialog you are able to describe the character</value>
   </data>
   <data name="CloseWindow" xml:space="preserve">
     <value>Close window</value>
@@ -1006,7 +1006,7 @@ If you like to keep the watermark, you have to save it as an *.etf file</value>
     <value>English</value>
   </data>
   <data name="ExportRTF" xml:space="preserve">
-    <value>Update as Richt text file</value>
+    <value>Update as Rich text file</value>
   </data>
   <data name="FileIsReadOnly" xml:space="preserve">
     <value>This file is read only</value>
@@ -1015,7 +1015,7 @@ If you like to keep the watermark, you have to save it as an *.etf file</value>
     <value>Image files|*.png;*.jpg</value>
   </data>
   <data name="IsPasswordProtected" xml:space="preserve">
-    <value>This file is protected by a passwort</value>
+    <value>This file is protected by a password</value>
   </data>
   <data name="LoadImage" xml:space="preserve">
     <value>Load image</value>
@@ -1024,7 +1024,7 @@ If you like to keep the watermark, you have to save it as an *.etf file</value>
     <value>Quotations without a style</value>
   </data>
   <data name="ReadOnlyDescription" xml:space="preserve">
-    <value>This file is reaf only. Please double click on its tab, to make it writable</value>
+    <value>This file is read only. Please double click on its tab, to make it writable</value>
   </data>
   <data name="SaveAll" xml:space="preserve">
     <value>Save all files</value>
@@ -1033,7 +1033,7 @@ If you like to keep the watermark, you have to save it as an *.etf file</value>
     <value>Save file...</value>
   </data>
   <data name="StrikedThroughOnOf" xml:space="preserve">
-    <value>Strikethrouh on /off</value>
+    <value>Strikethrough on /off</value>
   </data>
   <data name="UpdateLanguage" xml:space="preserve">
     <value>Set language</value>
@@ -1091,7 +1091,7 @@ Are you sure, that you like to change it, without checking the spelling?</value>
     <value>Close without printing?</value>
   </data>
   <data name="ResetDelete" xml:space="preserve">
-    <value>Revert all deletations</value>
+    <value>Revert all deletions</value>
   </data>
   <data name="RevertBackgroundColor" xml:space="preserve">
     <value>Revert background color</value>
@@ -1132,10 +1132,15 @@ Are you sure, that you like to change it, without checking the spelling?</value>
     <value>Insert from clipboard</value>
   </data>
   <data name="InvalidRenaming" xml:space="preserve">
-    <value>The filename is anvalid</value>
+    <value>The filename is invalid</value>
   </data>
   <data name="NextNeighbor" xml:space="preserve">
     <value>Next Neighbor</value>
+  </data>
+  <data name="RestartForLanguage" xml:space="preserve">
+    <value>Changes on the language are applied after the next start.
+
+The language defined here does not affect the spellchecking!</value>
   </data>
   <data name="SaveAndReload" xml:space="preserve">
     <value>Save and Reload</value>
@@ -1165,10 +1170,10 @@ Are you sure, that you like to change it, without checking the spelling?</value>
     <value>Cancel the process</value>
   </data>
   <data name="String9" xml:space="preserve">
-    <value>What qould you like to do?</value>
+    <value>What would you like to do?</value>
   </data>
   <data name="UseAsSpeach" xml:space="preserve">
-    <value>Use style as "Speach"</value>
+    <value>Use style as "Speech"</value>
   </data>
   <data name="UseOtherName" xml:space="preserve">
     <value>Choose an other name</value>

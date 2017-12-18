@@ -1135,6 +1135,11 @@ Wollen sie es wirklich ändern, ohne sicher zu stellen, dass es auch so aussieht
   <data name="NextNeighbor" xml:space="preserve">
     <value>Nächster Nachbar</value>
   </data>
+  <data name="RestartForLanguage" xml:space="preserve">
+    <value>Die Änderung der Sprache wird erst nach dem nächsten Neustart angewendet.
+
+Das hat keine Auswirkung auf die Sprache der Rechtschreibung!</value>
+  </data>
   <data name="SaveAndReload" xml:space="preserve">
     <value>Speichern und neues Laden</value>
   </data>

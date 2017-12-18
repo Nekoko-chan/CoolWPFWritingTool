@@ -88,7 +88,7 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Insert characters after the text is prodessed.
+        ///   Looks up a localized string similar to Insert characters after the text is processed.
         /// </summary>
         public static string AddCharactersToStory {
             get {
@@ -214,7 +214,7 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Apply the followign style:.
+        ///   Looks up a localized string similar to Apply the following style:.
         /// </summary>
         public static string ApplyStlye {
             get {
@@ -250,7 +250,7 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to  On this dialog you are able to define the quuotation marks that are used by the document.
+        ///   Looks up a localized string similar to  On this dialog you are able to define the quotation marks that are used by the document.
         ///Please remember, that already inserted quotations are not updated..
         /// </summary>
         public static string BacketDescriptions {
@@ -379,7 +379,7 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to In  this dialog you are able to descripe the character.
+        ///   Looks up a localized string similar to In  this dialog you are able to describe the character.
         /// </summary>
         public static string CharacterEditorDescription {
             get {
@@ -478,7 +478,7 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Codensed.
+        ///   Looks up a localized string similar to Condensed.
         /// </summary>
         public static string Condensed {
             get {
@@ -874,7 +874,7 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An error occured while coping the style. 
+        ///   Looks up a localized string similar to An error occurred while coping the style. 
         ///
         ///The style is not added.
         /// </summary>
@@ -912,7 +912,7 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Update as Richt text file.
+        ///   Looks up a localized string similar to Update as Rich text file.
         /// </summary>
         public static string ExportRTF {
             get {
@@ -949,7 +949,7 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Erweiterte Text-Dateien|*.etf|Text-Dateien|*.rtxt|Erlaubte Formate |*.etf;*.rtxt.
+        ///   Looks up a localized string similar to Extended text files|*.etf|Text files|*.rtxt|Possible formats |*.etf;*.rtxt.
         /// </summary>
         public static string FileFilterLarge {
             get {
@@ -958,7 +958,7 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Erweiterte Text-Dateien|*.etf.
+        ///   Looks up a localized string similar to Extended text files|*.etf.
         /// </summary>
         public static string FileFilterSmall {
             get {
@@ -976,7 +976,7 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The file &quot;{0}&quot; is alread open
+        ///   Looks up a localized string similar to The file &quot;{0}&quot; is already open
         ///
         ///Opening the same file in two tabs is not supported..
         /// </summary>
@@ -1082,7 +1082,7 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Font familiy.
+        ///   Looks up a localized string similar to Font family.
         /// </summary>
         public static string Fontstyle {
             get {
@@ -1136,7 +1136,7 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Go to fisrt usage.
+        ///   Looks up a localized string similar to Go to first usage.
         /// </summary>
         public static string GoToFirstUsage {
             get {
@@ -1145,7 +1145,7 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hight.
+        ///   Looks up a localized string similar to Height.
         /// </summary>
         public static string Height {
             get {
@@ -1200,7 +1200,7 @@ namespace ComplexWriter.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to Ignores the word till the program is closed
-        ///If you like to ignore it bejond this, you have to add the word to the dictionary!.
+        ///If you like to ignore it beyond this, you have to add the word to the dictionary!.
         /// </summary>
         public static string IgnoreAllHint {
             get {
@@ -1371,7 +1371,7 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The filename is anvalid.
+        ///   Looks up a localized string similar to The filename is invalid.
         /// </summary>
         public static string InvalidRenaming {
             get {
@@ -1389,7 +1389,7 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This file is protected by a passwort.
+        ///   Looks up a localized string similar to This file is protected by a password.
         /// </summary>
         public static string IsPasswordProtected {
             get {
@@ -1723,7 +1723,7 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Occurance.
+        ///   Looks up a localized string similar to Occurrences.
         /// </summary>
         public static string Occurance {
             get {
@@ -1934,7 +1934,7 @@ namespace ComplexWriter.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to This program is written under a GNU General Public License and not for commercial usage.
-        ///Permissions of this strong copyleft license are conditioned on making available complete source code of licensed works and modifications, which include larger works using a licensed work, under the same license. Copyright and license notices must be preserved. Contributors provide an express grant of patent rights..
+        ///Permissions of this strong copy license are conditioned on making available complete source code of licensed works and modifications, which include larger works using a licensed work, under the same license. Copyright and license notices must be preserved. Contributors provide an express grant of patent rights..
         /// </summary>
         public static string PrivateText {
             get {
@@ -1979,7 +1979,7 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This file is reaf only. Please double click on its tab, to make it writable.
+        ///   Looks up a localized string similar to This file is read only. Please double click on its tab, to make it writable.
         /// </summary>
         public static string ReadOnlyDescription {
             get {
@@ -2132,7 +2132,7 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Revert all deletations.
+        ///   Looks up a localized string similar to Revert all deletions.
         /// </summary>
         public static string ResetDelete {
             get {
@@ -2150,8 +2150,8 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Changings on the dictionary are only available after restarting the programm.
-        ///Would you like to restart ist?.
+        ///   Looks up a localized string similar to Changings on the dictionary are only available after restarting the program.
+        ///Would you like to restart it?.
         /// </summary>
         public static string RestartForChanges {
             get {
@@ -2160,8 +2160,19 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Changings on the name list are only available after restarting the programm.
-        ///Would you like to restart ist?.
+        ///   Looks up a localized string similar to Changes on the language are applied after the next start.
+        ///
+        ///The language defined here does not affect the spellchecking!.
+        /// </summary>
+        public static string RestartForLanguage {
+            get {
+                return ResourceManager.GetString("RestartForLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Changings on the name list are only available after restarting the program.
+        ///Would you like to restart it?.
         /// </summary>
         public static string RestartForNameChanges {
             get {
@@ -2371,7 +2382,7 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to (Click the buton to show &quot;About the programm&quot;).
+        ///   Looks up a localized string similar to (Click the button to show &quot;About the program&quot;).
         /// </summary>
         public static string ShowAbout {
             get {
@@ -2479,7 +2490,7 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Speach without quotes.
+        ///   Looks up a localized string similar to Speech without quotes.
         /// </summary>
         public static string Speach {
             get {
@@ -2488,7 +2499,7 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Speach with quotes.
+        ///   Looks up a localized string similar to Speech with quotes.
         /// </summary>
         public static string SpeachWithQuotes {
             get {
@@ -2497,7 +2508,7 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Speach with single quotes.
+        ///   Looks up a localized string similar to Speech with single quotes.
         /// </summary>
         public static string SpeacSimpleQuotes {
             get {
@@ -2569,7 +2580,7 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Strikethrouh on /off.
+        ///   Looks up a localized string similar to Strikethrough on /off.
         /// </summary>
         public static string StrikedThroughOnOf {
             get {
@@ -2650,7 +2661,7 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to What qould you like to do?.
+        ///   Looks up a localized string similar to What would you like to do?.
         /// </summary>
         public static string String9 {
             get {
@@ -2659,7 +2670,7 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The style is alrady added as &quot;{0}&quot;!
+        ///   Looks up a localized string similar to The style is already added as &quot;{0}&quot;!
         ///
         ///Would you like to rename it instead?.
         /// </summary>
@@ -2959,7 +2970,7 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Use style as &quot;Speach&quot;.
+        ///   Looks up a localized string similar to Use style as &quot;Speech&quot;.
         /// </summary>
         public static string UseAsSpeach {
             get {
@@ -3051,7 +3062,7 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The file contains a watermark, which is not supported by the used fily type.
+        ///   Looks up a localized string similar to The file contains a watermark, which is not supported by the used file type.
         ///If you like to keep the watermark, you have to save it as an *.etf file.
         /// </summary>
         public static string WatermarkOnlyWithEtf {
