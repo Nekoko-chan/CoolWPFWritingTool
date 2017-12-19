@@ -912,7 +912,7 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Update as Rich text file.
+        ///   Looks up a localized string similar to Export as Rich text file....
         /// </summary>
         public static string ExportRTF {
             get {

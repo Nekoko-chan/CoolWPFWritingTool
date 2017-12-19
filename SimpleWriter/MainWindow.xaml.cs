@@ -1920,32 +1920,39 @@ namespace ComplexWriter
 
         private void UpdateCurrentLanguage(TextChangedEventArgs e)
         {
-            var changeList = e.Changes.ToList();
-            if (changeList.Count > 0)
+            var test = Box.CaretPosition.Paragraph;
+            if (test == null) return;
+            Debug.WriteLine( test.Inlines.Count);
+            foreach (var inline in test.Inlines)
             {
-                foreach (var change in changeList)
-                {
-                    TextPointer start = null;
-                    TextPointer end = null;
-                    if (change.AddedLength > 0)
-                    {
-                        start = Box.Document.ContentStart.GetPositionAtOffset(change.Offset);
-                        end = Box.Document.ContentStart.GetPositionAtOffset(change.Offset + change.AddedLength);
-                    }
-                    else
-                    {
-                        int startOffset = Math.Max(change.Offset - change.RemovedLength, 0);
-                        start = Box.Document.ContentStart.GetPositionAtOffset(startOffset);
-                        end = Box.Document.ContentStart.GetPositionAtOffset(change.Offset);
-                    }
-
-                    if (start != null && end != null)
-                    {
-                        var range = new TextRange(start, end);
-                        range.ApplyPropertyValue(FrameworkElement.LanguageProperty, CurrentText.Document.Language);
-                    }
-                }
+                 inline.Language = XmlLanguage.GetLanguage(CurrentText.Language);
             }
+            //var changeList = e.Changes.ToList();
+            //if (changeList.Count > 0)
+            //{
+            //    foreach (var change in changeList)
+            //    {
+            //        TextPointer start = null;
+            //        TextPointer end = null;
+            //        if (change.AddedLength > 0)
+            //        {
+            //            start = Box.Document.ContentStart.GetPositionAtOffset(change.Offset);
+            //            end = Box.Document.ContentStart.GetPositionAtOffset(change.Offset + change.AddedLength);
+            //        }
+            //        else
+            //        {
+            //            int startOffset = Math.Max(change.Offset - change.RemovedLength, 0);
+            //            start = Box.Document.ContentStart.GetPositionAtOffset(startOffset);
+            //            end = Box.Document.ContentStart.GetPositionAtOffset(change.Offset);
+            //        }
+
+            //        if (start != null && end != null)
+            //        {
+            //            var range = new TextRange(start, end);
+            //            range.ApplyPropertyValue(FrameworkElement.LanguageProperty, CurrentText.Document.Language);
+            //        }
+            //    }
+            //}
         }
 
         private bool AskForSave(TextFile file = null)

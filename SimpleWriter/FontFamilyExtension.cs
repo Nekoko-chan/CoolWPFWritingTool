@@ -521,6 +521,7 @@ namespace ComplexWriter
 
         public static void UpdateLanguage(this FlowDocument document, string language)
         {
+            document.Language = XmlLanguage.GetLanguage(language);
             foreach (var block in document.Blocks.ToList())
             {
                 block.UpdateLanguage(language);
@@ -529,6 +530,7 @@ namespace ComplexWriter
 
         public static void UpdateLanguage(this Section section, string language)
         {
+            section.Language = XmlLanguage.GetLanguage(language);
             foreach (var block in section.Blocks.ToList())
             {
                 block.UpdateLanguage(language);
@@ -537,6 +539,7 @@ namespace ComplexWriter
 
         public static void UpdateLanguage(this Paragraph paragraph, string language)
         {
+            paragraph.Language = XmlLanguage.GetLanguage(language);
             foreach (var inline in paragraph.Inlines.ToList())
             {
                 inline.UpdateLanguage(language);
@@ -545,6 +548,7 @@ namespace ComplexWriter
 
         public static void UpdateLanguage(this List list, string language)
         {
+            list.Language = XmlLanguage.GetLanguage(language);
             foreach (var listItem in list.ListItems.ToList())
             {
                 listItem.UpdateLanguage(language);
@@ -553,6 +557,7 @@ namespace ComplexWriter
 
         public static void UpdateLanguage(this ListItem item, string language)
         {
+            item.Language = XmlLanguage.GetLanguage(language);
             foreach (var block in item.Blocks.ToList())
             {
                 block.UpdateLanguage(language);

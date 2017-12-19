@@ -998,7 +998,7 @@ Wenn sie das Wasserzeichen weiterhin haben wollen, speichern sie es als *.etf-Da
     <value>Automatisch</value>
   </data>
   <data name="ExportRTF" xml:space="preserve">
-    <value>Als RichTextFile exportieren</value>
+    <value>Als RichTextFile exportieren...</value>
   </data>
   <data name="SaveAll" xml:space="preserve">
     <value>Alle Dateien speichern</value>

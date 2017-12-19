@@ -1006,7 +1006,7 @@ If you like to keep the watermark, you have to save it as an *.etf file</value>
     <value>English</value>
   </data>
   <data name="ExportRTF" xml:space="preserve">
-    <value>Update as Rich text file</value>
+    <value>Export as Rich text file...</value>
   </data>
   <data name="FileIsReadOnly" xml:space="preserve">
     <value>This file is read only</value>
