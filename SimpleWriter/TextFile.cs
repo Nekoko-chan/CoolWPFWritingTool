@@ -31,7 +31,7 @@ namespace ComplexWriter
             set { OnPropertyChanged(); }
         }
         private string _lang= "de";
-        public string Language { get { return _lang; } set { _lang = value; } }
+        //public string Language { get { return _lang; } set { _lang = value; } }
 
         public bool ReadOnly
         {
@@ -351,14 +351,14 @@ namespace ComplexWriter
 
         private void LoadLanguage(SerializationInfo info)
         {
-            try
-            {
-                Language = info.GetString("Language");
-            }
-            catch
-            {
-                Language = "de";
-            }
+            //try
+            //{
+            //    Language = info.GetString("Language");
+            //}
+            //catch
+            //{
+            //    Language = "de";
+            //}
         }
 
         private void LoadReadOnly(SerializationInfo info)
@@ -870,7 +870,7 @@ namespace ComplexWriter
 
             info.AddValue("Characters",Character.ToXmlString(Characters));
           
-            info.AddValue("Language", Language);
+            //info.AddValue("Language", Language);
 
             //Letzte Property... hier nach darf nichts mehr kommen!
             if (Watermark?.ImageSource == null) return;

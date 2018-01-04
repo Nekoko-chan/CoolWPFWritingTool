@@ -77,4 +77,5 @@
     <global:PathToNameConverter x:Key="PathToNameConverter"/>
     <global:MultiDebugConverter x:Key="MultiDebugConverter"/>
     <global:QuoteButtonBackgroundConverter x:Key="QuoteButtonBackgroundConverter"/>
+    <global:LanguageTextConverter x:Key="LanguageTextConverter"/>
 </ResourceDictionary>

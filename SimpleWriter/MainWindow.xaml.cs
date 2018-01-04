@@ -60,7 +60,6 @@ namespace ComplexWriter
         
         public const string ComplexStyleCaption = "Global";
 
-       
 
         
         public static readonly DependencyProperty CurrentStyleProperty =
@@ -157,9 +156,7 @@ namespace ComplexWriter
             Thread.CurrentThread.CurrentCulture = currentUiCulture;
             Thread.CurrentThread.CurrentUICulture = currentUiCulture;
 
-
             InitializeComponent();
-            Box.Language = XmlLanguage.GetLanguage(currentUiCulture.IetfLanguageTag);
 
             InitTheDesigner();
             
@@ -1234,7 +1231,7 @@ namespace ComplexWriter
 
         internal bool CurrentTextIsEnglish()
         {
-            return CurrentText.Language.StartsWith("en");
+            return TextLanguage.StartsWith("en");
         }
 
 
@@ -1245,7 +1242,7 @@ namespace ComplexWriter
                 return Properties.Resources.EntryIsAddedToDictionary;
 
             var text = name ? Properties.Resources.SpecialEntryAddedToNames : Properties.Resources.SpecialEntryAddedToDictionary;
-            return string.Format(text, entry.Text,CurrentText.Language);
+            return string.Format(text, entry.Text,TextLanguage);
         }
 
         private Separator BuildSeperator(string text)
@@ -1568,7 +1565,7 @@ namespace ComplexWriter
 
                 AddInformation(string.Format(Properties.Resources.FileIsOpened, Path.GetFileName(fileName)),Properties.Resources.Diverse);
 
-                file.Document.UpdateLanguage(file.Language);
+               // file.Document.UpdateLanguage(TextLanguage);
                 var updated = file.CheckAndChangeFonts();
 
                 if (updated)
@@ -1915,18 +1912,18 @@ namespace ComplexWriter
             {
                 SearchAndReplaceControl.FlowDocument = Box.Document;
             }
-            UpdateCurrentLanguage(e);
+           // UpdateCurrentLanguage(e);
         }
 
         private void UpdateCurrentLanguage(TextChangedEventArgs e)
         {
-            var test = Box.CaretPosition.Paragraph;
-            if (test == null) return;
-            Debug.WriteLine( test.Inlines.Count);
-            foreach (var inline in test.Inlines)
-            {
-                 inline.Language = XmlLanguage.GetLanguage(CurrentText.Language);
-            }
+            //var test = Box.CaretPosition.Paragraph;
+            //if (test == null) return;
+            //Debug.WriteLine( test.Inlines.Count);
+            //foreach (var inline in test.Inlines)
+            //{
+            //     inline.Language = XmlLanguage.GetLanguage(CurrentText.Language);
+            //}
             //var changeList = e.Changes.ToList();
             //if (changeList.Count > 0)
             //{
@@ -3388,6 +3385,20 @@ namespace ComplexWriter
         }
 
         public string NameDict { get; set; }
+        /// <summary>
+        /// Gets or sets the inputLanguage
+        /// </summary>
+        public static readonly DependencyProperty TextLanguageProperty =
+        DependencyProperty.Register("TextLanguage", typeof(string), typeof(MainWindow), new UIPropertyMetadata(InputLanguageManager.Current.CurrentInputLanguage.ToString()));
+
+        /// <summary>
+        /// Sets the text language
+        /// </summary>
+        public string TextLanguage
+        {
+            get { return (string)GetValue(TextLanguageProperty); }
+            set { SetValue(TextLanguageProperty, value); }
+        }
 
         private static void RestartApplication()
         {
@@ -4168,11 +4179,17 @@ namespace ComplexWriter
 
         private void SetLanguage(object sender, RoutedEventArgs e)
         {
-            CurrentText.Language = (string) ((ToggleButton) sender).Tag;
-            CurrentText.Document.UpdateLanguage(CurrentText.Language);
-            languagePopup.IsOpen = false;
-            CurrentText.IsChanged = true;
-            // InputLanguageManager.SetInputLanguage(Box, CultureInfo.CreateSpecificCulture(CurrentText.Language));
+            if (QuestionBox.ShowMessage(this, Properties.Resources.UpdateLanguageQuestion,
+                Properties.Resources.UpdateLanguage, false) == MessageBoxResult.No)
+            {
+                languagePopup.IsOpen = false;
+                Box.Focus();
+                return;
+            }
+
+            InputLanguageManager.SetInputLanguage(Box, CultureInfo.CreateSpecificCulture((string)((ToggleButton)sender).Tag));
+            TextLanguage = InputLanguageManager.GetInputLanguage(Box).ToString();
+            Box.Focus();
         }
 
         private void ChangeLanguage(object sender, RoutedEventArgs e)
@@ -4182,8 +4199,7 @@ namespace ComplexWriter
 
         private void ShowLanguage(object sender, EventArgs e)
         {
-            enBtn.IsChecked = CurrentText.Language.IndexOf("en",StringComparison.InvariantCultureIgnoreCase)!= -1;
-            deBtn.IsChecked = CurrentText.Language.IndexOf("de", StringComparison.InvariantCultureIgnoreCase) != -1;
-        }
+            enBtn.IsChecked = TextLanguage.IndexOf("en",StringComparison.InvariantCultureIgnoreCase)!= -1;
+            deBtn.IsChecked = TextLanguage.IndexOf("de", StringComparison.InvariantCultureIgnoreCase) != -1;}
     }
 }

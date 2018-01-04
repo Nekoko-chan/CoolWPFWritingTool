@@ -1308,6 +1308,15 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Input language.
+        /// </summary>
+        public static string InputLanguage {
+            get {
+                return ResourceManager.GetString("InputLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Restore deleted.
         /// </summary>
         public static string InsertDeleted {
@@ -2916,11 +2925,22 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Set language.
+        ///   Looks up a localized string similar to Change language?.
         /// </summary>
         public static string UpdateLanguage {
             get {
                 return ResourceManager.GetString("UpdateLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If you change the input language, this change is used system wide.
+        ///
+        ///Are you sure, that you like to change the input language?.
+        /// </summary>
+        public static string UpdateLanguageQuestion {
+            get {
+                return ResourceManager.GetString("UpdateLanguageQuestion", resourceCulture);
             }
         }
         

@@ -297,7 +297,7 @@ namespace ComplexWriter.MessageBoxes
                 return Properties.Resources.EntryIsAddedToDictionary;
 
             var ext = name ? Properties.Resources.SpecialEntryAddedToNames: Properties.Resources.SpecialEntryAddedToDictionary;
-            return string.Format(ext, text, MainWindow.Global.CurrentText.Language);
+            return string.Format(ext, text, MainWindow.Global.TextLanguage);
         }
 
         private Separator BuildSeperator(string text)

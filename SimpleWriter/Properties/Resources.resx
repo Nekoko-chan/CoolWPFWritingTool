@@ -1036,7 +1036,7 @@ If you like to keep the watermark, you have to save it as an *.etf file</value>
     <value>Strikethrough on /off</value>
   </data>
   <data name="UpdateLanguage" xml:space="preserve">
-    <value>Set language</value>
+    <value>Change language?</value>
   </data>
   <data name="AddColor" xml:space="preserve">
     <value>Add color (doubled colors are ignored)</value>
@@ -1177,5 +1177,13 @@ The language defined here does not affect the spellchecking!</value>
   </data>
   <data name="UseOtherName" xml:space="preserve">
     <value>Choose an other name</value>
+  </data>
+  <data name="InputLanguage" xml:space="preserve">
+    <value>Input language</value>
+  </data>
+  <data name="UpdateLanguageQuestion" xml:space="preserve">
+    <value>If you change the input language, this change is used system wide.
+
+Are you sure, that you like to change the input language?</value>
   </data>
 </root>

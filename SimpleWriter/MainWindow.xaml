@@ -241,6 +241,77 @@
                         </Setter>
                     </Style>
 
+
+                    <Style x:Key="TextButtonSimple" TargetType="{x:Type Button}">
+                        <Setter Property="Cursor" Value="{StaticResource overCursor}"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                        <Border RenderTransformOrigin="0.5,0.5">
+                                            <ContentPresenter
+                                                              VerticalAlignment="Center" HorizontalAlignment="Center" />
+
+                                        <Border.RenderTransform>
+                                            <ScaleTransform x:Name="scaleMe" ScaleX="1.0" ScaleY="1.0" />
+                                        </Border.RenderTransform>
+                                    </Border>
+                                        
+                                    <ControlTemplate.Triggers>
+                                        <EventTrigger RoutedEvent="MouseEnter">
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <DoubleAnimation From="1.0" To="1.2" Duration="00:00:00.250" Storyboard.TargetName="scaleMe" Storyboard.TargetProperty="ScaleX" />
+                                                    <DoubleAnimation From="1.0" To="1.2" Duration="00:00:00.250" Storyboard.TargetName="scaleMe" Storyboard.TargetProperty="ScaleY" />
+
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </EventTrigger>
+                                        <EventTrigger RoutedEvent="MouseLeave">
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <DoubleAnimation From="1.2" To="1" Duration="00:00:00.250" Storyboard.TargetName="scaleMe" Storyboard.TargetProperty="ScaleX" />
+                                                    <DoubleAnimation From="1.2" To="1" Duration="00:00:00.250" Storyboard.TargetName="scaleMe" Storyboard.TargetProperty="ScaleY" />
+
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </EventTrigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+
+                            </Setter.Value>
+                        </Setter>
+                        <!--<Setter Property="Cursor" Value="{StaticResource overCursor}"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                        <Border x:Name="bord">
+                                            <ContentPresenter RenderTransformOrigin="0.5,0.5"
+                                                              VerticalAlignment="Center" HorizontalAlignment="Center" />
+                                        </Border>
+                                    <ControlTemplate.Triggers>
+                                        <EventTrigger RoutedEvent="MouseEnter">
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <DoubleAnimation From="1" To="0.7" Duration="00:00:00.250" Storyboard.TargetName="bord" Storyboard.TargetProperty="Opacity" />
+
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </EventTrigger>
+                                        <EventTrigger RoutedEvent="MouseLeave">
+                                            <BeginStoryboard>
+                                                <Storyboard>
+                                                    <DoubleAnimation From="0.7" To="1" Duration="00:00:00.250" Storyboard.TargetName="bord" Storyboard.TargetProperty="Opacity" />
+
+                                                </Storyboard>
+                                            </BeginStoryboard>
+                                        </EventTrigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+
+                            </Setter.Value>
+                        </Setter>-->
+                    </Style>
+
                     <Style x:Key="borderForTooltip"  TargetType="Border">
                         <!--<Setter Property="Margin" Value="3"/>-->
                         <Setter Property="Padding" Value="3"/>
@@ -342,7 +413,6 @@
 
                 <RichTextBox Grid.Column="1" Margin="12,0,-12,5" Grid.Row="1" x:Name="Box" 
                                  ScrollViewer.ScrollChanged="ScrollChanged" SnapsToDevicePixels="False"
-                                 xml:lang="en"
                                  SpellCheck.IsEnabled="{Binding RelativeSource={RelativeSource AncestorType=complexWriter:MainWindow},Path=CurrentText.SpellCheckEnabled}"
                                  IsInactiveSelectionHighlightEnabled="True" AutoWordSelection="False"
                                  Style="{StaticResource textBoxStyle3}" TextChanged="Textchanged"
@@ -947,19 +1017,7 @@
                                                 </DockPanel>
                                             </Border>
                                         </Popup>
-                                        <customControls:MaskedImageButtonEnlarge IsEnabled="true" x:Name="languageBtn"  Style="{StaticResource rimageButton}" ButtonMask="Images/language.png" Click="ChangeLanguage">
-                                            <customControls:MaskedImageButtonEnlarge.ToolTip>
-                                                <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.UpdateLanguage}"/>
-                                            </customControls:MaskedImageButtonEnlarge.ToolTip>
-                                        </customControls:MaskedImageButtonEnlarge>
-                                        <Popup PlacementTarget="{Binding ElementName=lineHightBtn}" Placement="Right" VerticalOffset="30" Name="languagePopup" MaxHeight="600" MaxWidth="600" StaysOpen="False" Closed="UpdateBlocks" Opened="ShowLanguage">
-                                            <Border Background="{StaticResource BackColorBrush}" BorderBrush="{DynamicResource TitleBrush}" BorderThickness="1">
-                                                <DockPanel>
-                                                    <ToggleButton DockPanel.Dock="Top" x:Name="enBtn"  Content="English (en)"  Style="{StaticResource FittingToggleButton}" Tag="en-US"  Click="SetLanguage" Padding="10,5" />
-                                                    <ToggleButton DockPanel.Dock="Top" x:Name="deBtn" Content="Deutsch (de)"  Style="{StaticResource FittingToggleButton}" Tag="de-DE"  Click="SetLanguage" Padding="10,5" />
-                                                </DockPanel>
-                                            </Border>
-                                        </Popup>
+                                       
                                         <Border Width="1.5" SnapsToDevicePixels="True" Background="{DynamicResource TitleBrush}" Margin="1" CornerRadius="2"></Border>
                 <customControls:MaskedImageButtonEnlarge x:Name="errors"  Style="{StaticResource rimageButton}" 
                 	ButtonMask="Images/info.png" Click="ShowOrActivateWindow">
@@ -1539,7 +1597,20 @@
                             </Border.OpacityMask>
                         </Border>
                     </Button>
-                    <customControls:MaskedImageButtonEnlarge  Cursor="{StaticResource overCursor}" ButtonColor="{DynamicResource TitleBrush}" Width="24" Height="24" ButtonMask="Images/Search.png" RenderOptions.BitmapScalingMode="HighQuality"
+                                            <Button IsEnabled="true" Foreground="{StaticResource TitleBrush}" x:Name="languageBtn" Height="20" Style="{StaticResource TextButtonSimple}" Content="{Binding RelativeSource={RelativeSource AncestorType=complexWriter:MainWindow}, Path=TextLanguage, Converter={StaticResource LanguageTextConverter}}"  Click="ChangeLanguage">
+                                                <Button.ToolTip>
+                                                    <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.InputLanguage}"/>
+                                                </Button.ToolTip>
+                                            </Button>
+                                            <Popup PlacementTarget="{Binding ElementName=languageBtn}" Placement="Top" VerticalOffset="0" Name="languagePopup" MaxHeight="600" MaxWidth="600" StaysOpen="False" Closed="UpdateBlocks" Opened="ShowLanguage">
+                                                <Border Background="{StaticResource BackColorBrush}" BorderBrush="{DynamicResource TitleBrush}" BorderThickness="1">
+                                                    <DockPanel>
+                                                        <ToggleButton DockPanel.Dock="Top" x:Name="enBtn"  Content="English (en)"  Style="{StaticResource FittingToggleButton}" Tag="en-US"  Click="SetLanguage" Padding="10,5" />
+                                                        <ToggleButton DockPanel.Dock="Top" x:Name="deBtn" Content="Deutsch (de)"  Style="{StaticResource FittingToggleButton}" Tag="de-DE"  Click="SetLanguage" Padding="10,5" />
+                                                    </DockPanel>
+                                                </Border>
+                                            </Popup>
+                                            <customControls:MaskedImageButtonEnlarge  Cursor="{StaticResource overCursor}" ButtonColor="{DynamicResource TitleBrush}" Width="24" Height="24" ButtonMask="Images/Search.png" RenderOptions.BitmapScalingMode="HighQuality"
                             Name="SearchBar" Visibility="{Binding ElementName=SearchAndReplaceControl,Path=Visibility,Converter={StaticResource InvertVisibilityConverter}}" Click="SwitchSearchBar">
                         <Button.ToolTip>
                                                     <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.ShowSearch}"></ToolTip>
@@ -1560,7 +1631,9 @@
                             </Border.Background>
                         </Border>
                     </Popup>
-                </StackPanel>
+
+                                           
+                                        </StackPanel>
             </Grid>
         </Border>
     </Grid>
