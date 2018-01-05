@@ -31,7 +31,7 @@ namespace ComplexWriter.MessageBoxes
 
         public string FirstLetter
         {
-            get { return Value.Substring(0, 1).ToUpperInvariant(); }
+            get { return Value?.Substring(0, 1).ToUpperInvariant()??""; }
             set {OnPropertyChanged(); }
         }
 

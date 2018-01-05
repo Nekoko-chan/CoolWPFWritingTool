@@ -170,6 +170,7 @@ namespace ComplexWriter
             CustomDict = Path.Combine(path, "Microsoft\\Spelling\\de-DE\\CoolWriter.dic");
             CustomDictEnglish = Path.Combine(path, "Microsoft\\Spelling\\en-US\\CoolWriter.dic");
             NameDict = System.IO.Path.Combine(path, "Microsoft\\Spelling\\de-DE\\CoolWriterNames.dic");
+            NameDictUs = System.IO.Path.Combine(path, "Microsoft\\Spelling\\en-US\\CoolWriterNames.dic");
             CanAddMessage = true;
             CheckForUpdate();
 
@@ -1266,9 +1267,23 @@ namespace ComplexWriter
                 stream.Close();
             }
 
+            if (dict.Equals(Global.NameDict) && !File.Exists(Global.NameDictUs))
+            {
+                var stream = File.Create(Global.NameDictUs);
+                stream.Close();
+            }
+
             using (var streamWriter = new StreamWriter(dict, true, Encoding.Unicode))
             {
                 streamWriter.WriteLine(entry.Text);
+            }
+
+            if (dict.Equals(Global.NameDict))
+            {
+                using (var streamWriter = new StreamWriter(Global.NameDictUs, true, Encoding.Unicode))
+                {
+                    streamWriter.WriteLine(entry.Text);
+                }
             }
         }
 
@@ -3395,11 +3410,15 @@ namespace ComplexWriter
             var dlg = new DictionaryEditor {Owner = this, Dictionary = NameDict, Title = Properties.Resources.EditNameList};
 
             if (dlg.ShowDialog() != true || dlg.Result != MessageBoxResult.OK) return;
+
+            File.Copy(NameDict,NameDictUs,true);
+
             if (QuestionBox.ShowMessage(this, Properties.Resources.RestartForNameChanges, Properties.Resources.Restart+"?") == MessageBoxResult.Yes)
                 RestartApplication();
         }
 
         public string NameDict { get; set; }
+        public string NameDictUs { get; set; }
         /// <summary>
         /// Gets or sets the inputLanguage
         /// </summary>

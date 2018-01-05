@@ -311,6 +311,7 @@ namespace ComplexWriter.MessageBoxes
 
         private void AddToDictionary(int index, string dict)
         {
+            
               var start = Box.GetSpellingErrorStart(index);
             var length = Box.GetSpellingErrorLength(index);
             string text = start < 0 || start + length > Box.Text.Length ? "" : Box.Text.Substring(start, length);
@@ -324,9 +325,23 @@ namespace ComplexWriter.MessageBoxes
                 stream.Close();
             }
 
+            if(dict.Equals(MainWindow.Global.NameDict)&&!File.Exists(MainWindow.Global.NameDictUs))
+            {
+                var stream = File.Create(MainWindow.Global.NameDictUs);
+                stream.Close();
+            }
+
             using (var streamWriter = new StreamWriter(dict, true, Encoding.Unicode))
             {
                 streamWriter.WriteLine(text);
+            }
+
+            if (dict.Equals(MainWindow.Global.NameDict))
+            {
+                using (var streamWriter = new StreamWriter(MainWindow.Global.NameDictUs, true, Encoding.Unicode))
+                {
+                    streamWriter.WriteLine(text);
+                }
             }
         }
 
