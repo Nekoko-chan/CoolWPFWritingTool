@@ -24,13 +24,13 @@
                         <Setter Property="Template">
                             <Setter.Value>
                                 <ControlTemplate TargetType="Button">
-                                    <Border Name="border" RenderTransformOrigin="0.5,0.5" Background="White" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"  RenderOptions.BitmapScalingMode="HighQuality">
+                                    <Border Name="border" RenderTransformOrigin="0.5,0.5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"  RenderOptions.BitmapScalingMode="HighQuality">
                                         <Border.RenderTransform>
                                             <RotateTransform Angle="-10"></RotateTransform>
                                         </Border.RenderTransform>
-                                        <Border.OpacityMask>
-                                            <ImageBrush ImageSource="Images/lock.png" Stretch="Uniform"/>
-                                        </Border.OpacityMask>
+                                        <Border.Background>
+                                            <ImageBrush ImageSource="Images/lock2.png" Stretch="Uniform"/>
+                                        </Border.Background>
                                     </Border>
                                 </ControlTemplate>
                             </Setter.Value>

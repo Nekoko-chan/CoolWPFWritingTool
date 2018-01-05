@@ -150,6 +150,7 @@
     <Content Include="Fonts\readme.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Images\lock2.png" />
     <Resource Include="Images\language.png" />
     <Resource Include="Images\line.png" />
     <Resource Include="Images\rtf.png" />
