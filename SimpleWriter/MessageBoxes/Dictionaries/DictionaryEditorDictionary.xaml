@@ -44,7 +44,7 @@
                                         <!-- System Button -->
                                        <!-- Window Title -->
                                         <Grid Grid.Row="0" HorizontalAlignment="Right">
-                                            <Thumb Effect="{StaticResource WindowShadow}" Grid.Row="0" Height="24"
+                                            <Thumb  Grid.Row="0" Height="24"
                                                    Cursor="{StaticResource moveCursor}" DragDelta="MoveWindow"
                                                    Tag="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}}">
                                                 <Thumb.Template>

@@ -496,5 +496,29 @@ namespace ComplexWriter.Properties {
                 this["Language"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("15")]
+        public double AutoSaveInterval {
+            get {
+                return ((double)(this["AutoSaveInterval"]));
+            }
+            set {
+                this["AutoSaveInterval"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool AutoSaveOnBreak {
+            get {
+                return ((bool)(this["AutoSaveOnBreak"]));
+            }
+            set {
+                this["AutoSaveOnBreak"] = value;
+            }
+        }
     }
 }

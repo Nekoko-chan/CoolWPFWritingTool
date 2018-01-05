@@ -72,7 +72,10 @@ namespace ComplexWriter
                 SaveAutomatical =  Settings.Default.SaveAutomatical,
                 HideQuestion =  Settings.Default.HideQuestion,
                 UseEnglish =  Settings.Default.Language.StartsWith("en"),
-                UseGerman = Settings.Default.Language.StartsWith("de")
+                UseGerman = Settings.Default.Language.StartsWith("de"),
+                AutoSaveInterval = Settings.Default.AutoSaveInterval,
+                SaveWhenIdle = Settings.Default.AutoSaveOnBreak,
+                NoSave = !Settings.Default.SaveAutomatical && !Settings.Default.AutoSaveOnBreak
             };
 
             if (sd.ShowDialog() != true || sd.Result != MessageBoxResult.OK) return;
@@ -87,10 +90,20 @@ namespace ComplexWriter
                 Settings.Default.Language = language;
                 MessageBoxes.MessageBox.ShowMessage(this, Properties.Resources.RestartForLanguage, Properties.Resources.Restart,fontSize:15d);
             }
-            if(sd.SaveAutomatical != Settings.Default.SaveAutomatical)
+            if (sd.SaveWhenIdle != Settings.Default.AutoSaveOnBreak)
+            {
+                Settings.Default.AutoSaveOnBreak = sd.SaveWhenIdle;
+                MainWindow.Global.UpdateAutosave();
+            }
+            if (sd.SaveAutomatical != Settings.Default.SaveAutomatical)
             {
                 Settings.Default.SaveAutomatical = sd.SaveAutomatical;
                 MainWindow.Global.UpdateAutosave();
+            }
+            if (!sd.AutoSaveInterval.Equals(Settings.Default.AutoSaveInterval))
+            {
+                Settings.Default.AutoSaveInterval = sd.AutoSaveInterval;
+                MainWindow.Global.UpdateAutoSaveInterval();
             }
             Settings.Default.Save();
         }

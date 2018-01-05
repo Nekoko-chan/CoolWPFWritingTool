@@ -90,7 +90,7 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type complexWriter:MainWindow}">
-                            <Grid Margin="20" Name="BorderGrid"  Effect="{StaticResource WindowShadow}" 
+                            <Grid Margin="20" Name="BorderGrid"  
                                   Opacity="{Binding RelativeSource={RelativeSource AncestorType=Window},Path=IsActive,Converter={StaticResource ActivOpacityConverter}}">
                                 <Border Background="Transparent" CornerRadius="3">
                                     <Grid>

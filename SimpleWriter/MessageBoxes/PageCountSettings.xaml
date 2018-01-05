@@ -123,11 +123,11 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
        
-        <Border Grid.Row="1" Grid.Column="1" Effect="{StaticResource WindowShadow}" Style="{StaticResource bord}" BorderThickness="1" BorderBrush="#FF054049"></Border>
-        <Border Grid.Row="1" Grid.Column="1" Style="{StaticResource bord}"  Background="{StaticResource BackgroundBrush}">
+        <Border Grid.Row="1" Grid.Column="1"  Style="{StaticResource bord}" BorderThickness="1" BorderBrush="#FF054049"></Border>
+        <Border Grid.Row="1" Grid.Column="1" Style="{StaticResource bord}"  Background="{StaticResource BackgroundBrush}" SnapsToDevicePixels="True">
 
             <Grid>
-                <Thumb Effect="{StaticResource WindowShadow}" Grid.Row="0" VerticalAlignment="Top" Height="10" Margin="0,-3,20,0"
+                <Thumb  Grid.Row="0" VerticalAlignment="Top" Height="10" Margin="0,-3,20,0"
                                                    Cursor="{StaticResource moveCursor}" DragDelta="MoveWindow"
                                                    Tag="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}}">
                     <Thumb.Template>
@@ -138,7 +138,7 @@
                 </Thumb>
             </Grid>
         </Border>
-        <Border Grid.Column="1" Grid.Row="1" Style="{StaticResource bord}" Background="{StaticResource background}" IsHitTestVisible="False"/>
+        <Border Grid.Column="1" Grid.Row="1" Style="{StaticResource bord}" Background="{StaticResource background}" IsHitTestVisible="False" BorderBrush="{DynamicResource BackColorBrush}" BorderThickness="1,1" SnapsToDevicePixels="True"/>
 
         <Grid Grid.Row="1" Grid.Column="1" Margin="5,15,50,15">
             <Grid.RowDefinitions>
@@ -340,10 +340,10 @@
 
         </Grid>
 
-        <Border Grid.Column="0" Grid.Row="1"  Background="{StaticResource BackColorBrush}"  MinWidth="22" Padding="4,10" CornerRadius="10,0,0,10" Effect="{StaticResource WindowShadow}" Margin="0,-3,0,15">
+        <Border Grid.Column="0" Grid.Row="1"  Background="{StaticResource BackColorBrush}"  MinWidth="22" Padding="4,10" CornerRadius="10,0,0,10"  Margin="0,-3,0,15">
            
         </Border>
-        <Border Name="buttonBorder" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right" Margin="0,-2,20,0" Background="{StaticResource BackColorBrush}" Effect="{StaticResource WindowShadow}" CornerRadius="0,0,10,10">
+        <Border Name="buttonBorder" Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right" Margin="0,-2,20,0" Background="{StaticResource BackColorBrush}" SnapsToDevicePixels="True" CornerRadius="5,5,5,10">
             <StackPanel Orientation="Horizontal">
                 <customControls:GlassButton3 Style="{StaticResource GlassButtonStyle}" Click="CloseWithTag">
                     <TextBlock Text="OK"/>

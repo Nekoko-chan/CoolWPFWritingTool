@@ -280,36 +280,7 @@
 
                             </Setter.Value>
                         </Setter>
-                        <!--<Setter Property="Cursor" Value="{StaticResource overCursor}"/>
-                        <Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate TargetType="Button">
-                                        <Border x:Name="bord">
-                                            <ContentPresenter RenderTransformOrigin="0.5,0.5"
-                                                              VerticalAlignment="Center" HorizontalAlignment="Center" />
-                                        </Border>
-                                    <ControlTemplate.Triggers>
-                                        <EventTrigger RoutedEvent="MouseEnter">
-                                            <BeginStoryboard>
-                                                <Storyboard>
-                                                    <DoubleAnimation From="1" To="0.7" Duration="00:00:00.250" Storyboard.TargetName="bord" Storyboard.TargetProperty="Opacity" />
-
-                                                </Storyboard>
-                                            </BeginStoryboard>
-                                        </EventTrigger>
-                                        <EventTrigger RoutedEvent="MouseLeave">
-                                            <BeginStoryboard>
-                                                <Storyboard>
-                                                    <DoubleAnimation From="0.7" To="1" Duration="00:00:00.250" Storyboard.TargetName="bord" Storyboard.TargetProperty="Opacity" />
-
-                                                </Storyboard>
-                                            </BeginStoryboard>
-                                        </EventTrigger>
-                                    </ControlTemplate.Triggers>
-                                </ControlTemplate>
-
-                            </Setter.Value>
-                        </Setter>-->
+                      
                     </Style>
 
                     <Style x:Key="borderForTooltip"  TargetType="Border">
@@ -366,7 +337,9 @@
 
         <Border Grid.Row="1" Grid.Column="1"  Style="{StaticResource bord}" BorderThickness="1" BorderBrush="#FF054049"  Margin="0,0,90,10"></Border>
 
-        <Border Grid.Row="1" Grid.Column="1" Style="{StaticResource bord}" Background="{StaticResource BackgroundBrush}" CornerRadius="0,0,3,0" Margin="0,0,90,10"/>
+        <Border Grid.Row="1" Grid.Column="1" Style="{StaticResource bord}" Background="{StaticResource BackgroundBrush}" BorderThickness="1" BorderBrush="{StaticResource BackColorBrush}" SnapsToDevicePixels="True" CornerRadius="0,0,3,0" Margin="0,0,90,10">
+            
+        </Border>
         <Border Grid.Row="1" Grid.Column="1" Style="{StaticResource bord}" Background="Black" CornerRadius="0,0,3,0" Margin="0,0,90,10">
             <Border.Visibility>
                 <MultiBinding Converter="{StaticResource IfThenElseMultiConverter}">
@@ -387,7 +360,7 @@
 
         <Grid Grid.Row="1" Grid.Column="1">
 
-            <Grid Margin="0,10,35,28">
+            <Grid Margin="0,10,35,28" >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
@@ -411,7 +384,7 @@
                            />
                 </Border>
 
-                <RichTextBox Grid.Column="1" Margin="12,0,-12,5" Grid.Row="1" x:Name="Box" 
+                <RichTextBox Grid.Column="1" Margin="11,-3,-11,5" Grid.Row="1" x:Name="Box" 
                                  ScrollViewer.ScrollChanged="ScrollChanged" SnapsToDevicePixels="False"
                                  SpellCheck.IsEnabled="{Binding RelativeSource={RelativeSource AncestorType=complexWriter:MainWindow},Path=CurrentText.SpellCheckEnabled}"
                                  IsInactiveSelectionHighlightEnabled="True" AutoWordSelection="False"
@@ -1107,7 +1080,7 @@
                                             </Popup.IsOpen>
 
                                            
-                                                <Border Effect="{StaticResource WindowShadow}" Cursor="{StaticResource standardCursor}"
+                                                <Border Cursor="{StaticResource standardCursor}"
                                 Width="320" CornerRadius="3" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center">
                             <Border.Background>
                                 <MultiBinding Converter="{StaticResource IfThenElseMultiConverter}">
@@ -1620,7 +1593,7 @@
                             Name="Info">
                     </customControls:MaskedImageButtonEnlarge>
                     <Popup PlacementTarget="{Binding ElementName=Info}" AllowsTransparency="True" Placement="Top" IsOpen="{Binding ElementName=Info, Path=IsMouseOver, Mode=OneWay, UpdateSourceTrigger=PropertyChanged}">
-                        <Border Effect="{StaticResource WindowShadow}" Cursor="{StaticResource standardCursor}" Child="{StaticResource Keys}"
+                        <Border Cursor="{StaticResource standardCursor}" Child="{StaticResource Keys}"
                                 Width="500" CornerRadius="3" Margin="10" HorizontalAlignment="Center" VerticalAlignment="Center">
                             <Border.Background>
                                 <MultiBinding Converter="{StaticResource IfThenElseMultiConverter}">

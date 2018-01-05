@@ -135,7 +135,7 @@ namespace ComplexWriter
 
         private readonly string _isOpendWithWindow = string.Empty;
         private readonly Object _savelock = new object();
-        private readonly Timer _t = new Timer {Interval = TimeSpan.FromSeconds(15).TotalMilliseconds};
+        private readonly Timer _t = new Timer {Interval = TimeSpan.FromSeconds(Settings.Default.AutoSaveInterval).TotalMilliseconds};
         private bool _disableTextChange;
         private bool _dontDateUp;
         private bool _erro;
@@ -582,7 +582,7 @@ namespace ComplexWriter
             UseBlackBackground = Settings.Default.UseBlackBackground;
             ShowToolbar = Settings.Default.ShowToolbar;
             ShowNameList = Settings.Default.ShowNames;
-            ShowSaveFile = !Settings.Default.SaveAutomatical;
+            ShowSaveFile = !Settings.Default.SaveAutomatical && !Settings.Default.AutoSaveOnBreak;
 
             ShowImagePopup = Settings.Default.Watermark != null && Settings.Default.Watermark.Any();
             if (ShowImagePopup)
@@ -1624,6 +1624,7 @@ namespace ComplexWriter
 
         private bool SaveFile(TextFile currentText)
         {
+        
             if (!currentText.IsChanged && !currentText.ReadOnly)
                 return true;
 
@@ -2031,9 +2032,23 @@ namespace ComplexWriter
             window.HideStylePopup();
         }
 
+        private DebounceDispatcher debounceTimer = new DebounceDispatcher();
         private void HandleKeysPreview(object sender, KeyEventArgs e)
         {
             HandleKey(e);
+
+            if (!Settings.Default.AutoSaveOnBreak) return;
+            debounceTimer.Debounce((int)TimeSpan.FromSeconds(3).TotalMilliseconds, (p) =>
+            {
+                UpdateCurrentText();
+
+                var observableCollection =
+                    TextFiles.Where(te => !string.IsNullOrEmpty(te.Filepath) && (te.IsChanged || te.ReadOnly));
+                if (!observableCollection.Any()) return;
+
+                _worker.RunWorkerAsync(observableCollection);
+                NotifySave();
+            });
         }
 
         private void HandleKey(KeyEventArgs e)
@@ -2722,9 +2737,9 @@ namespace ComplexWriter
             try
             {
                 var selectionRange = new TextRange(Box.Selection.Start, Box.Selection.End);
+                if (!selectionRange.IsEmpty) return;
 
                 CurrentFontFamily = FontFamilies.FirstOrDefault(elem => elem.Family.Equals(selectionRange.GetPropertyValue(FlowDocument.FontFamilyProperty) as FontFamily));
-                Debug.WriteLine(selectionRange.GetPropertyValue(FlowDocument.FontSizeProperty));
                 var test = selectionRange.GetPropertyValue(FlowDocument.FontSizeProperty);
 
                 if (test != DependencyProperty.UnsetValue)
@@ -3954,7 +3969,11 @@ namespace ComplexWriter
         public void UpdateAutosave()
         {
             _t.Enabled = Settings.Default.SaveAutomatical;
-            ShowSaveFile = !Settings.Default.SaveAutomatical;
+            ShowSaveFile = !Settings.Default.SaveAutomatical&& !Settings.Default.AutoSaveOnBreak;
+        }
+        public void UpdateAutoSaveInterval()
+        {
+            _t.Interval = Settings.Default.AutoSaveInterval;
         }
 
         private void RenameFile(object sender, RoutedEventArgs e)
@@ -4201,5 +4220,7 @@ namespace ComplexWriter
         {
             enBtn.IsChecked = TextLanguage.IndexOf("en",StringComparison.InvariantCultureIgnoreCase)!= -1;
             deBtn.IsChecked = TextLanguage.IndexOf("de", StringComparison.InvariantCultureIgnoreCase) != -1;}
+
+        
     }
 }

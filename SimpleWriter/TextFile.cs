@@ -745,7 +745,7 @@ namespace ComplexWriter
             get
             {
                 var pat = string.IsNullOrEmpty(Filepath) ? "<leer>" : Path.GetFileNameWithoutExtension(Filepath);
-                var sav = Settings.Default.SaveAutomatical ? string.Empty : IsChanged ? "*" : string.Empty;
+                var sav = Settings.Default.SaveAutomatical || Settings.Default.AutoSaveOnBreak ? string.Empty : IsChanged ? "*" : string.Empty;
                 return $"{sav}{pat}";
             }
             private set { OnPropertyChanged();}
@@ -944,8 +944,6 @@ namespace ComplexWriter
                 {
                     var formater = new BinaryFormatter();
                     var r = new TextRange(flowDocument.ContentStart, flowDocument.ContentEnd);
-                    Debug.WriteLine(r.Text);
-
                     using (
                         var stream = new FileStream(fileName, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None))
                     {

@@ -63,7 +63,7 @@
     </VisualBrush>
 
 
-    <LinearGradientBrush x:Key="BackgroundBrush" EndPoint="0.5,1" StartPoint="0.5,0" Opacity="0.9">
+    <LinearGradientBrush x:Key="BackgroundBrush" EndPoint="0.5,1" StartPoint="0.5,0" Opacity="1">
         <GradientStop Color="{StaticResource BackGradient1}" Offset="0"/>
         <GradientStop Color="{StaticResource BackGradient2}" Offset="1"/>
     </LinearGradientBrush>

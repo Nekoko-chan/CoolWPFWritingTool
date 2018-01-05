@@ -43,7 +43,6 @@ namespace ComplexWriter
         public void ReceiveMessage ( string message )
         {
             Message = message;
-            Debug.WriteLine ( Message );
             DispatcherHelper.DoEvents ( );
         }
        

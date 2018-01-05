@@ -229,7 +229,6 @@ namespace ComplexWriter
 
             LinearGradientBrush br = new LinearGradientBrush((Color)e.NewValue, col, new Point(0, 0), new Point(1, 1));
             scal.trenner.Stroke = br;
-            System.Diagnostics.Debug.WriteLine(br);
         }
 
         public bool scaleWidth = true;

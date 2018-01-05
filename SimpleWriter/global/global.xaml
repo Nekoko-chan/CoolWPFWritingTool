@@ -212,9 +212,6 @@
                 </Style.Triggers>
             </Style>
 
-
-            <DropShadowEffect x:Key="WindowShadow" Color="#FF21539B" Opacity="0.2" BlurRadius="6" ShadowDepth="3"/>
-
             <!-- MultiLineReadOnlyPasswordbox -->
 
             <Style x:Key="MultiLineReadOnlyPasswordbox" TargetType="{x:Type PasswordBox}">

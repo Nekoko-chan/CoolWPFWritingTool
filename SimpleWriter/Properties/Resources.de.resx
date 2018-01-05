@@ -1184,4 +1184,16 @@ Das hat keine Auswirkung auf die Sprache der Rechtschreibung!</value>
 
 Sind Sie sicher, dass sie die Eingabesprache ändern wollen?</value>
   </data>
+  <data name="AutoSaveByInterval" xml:space="preserve">
+    <value>Autosave nach Intervall</value>
+  </data>
+  <data name="AutoSaveIdle" xml:space="preserve">
+    <value>Autosave sobald inaktiv</value>
+  </data>
+  <data name="AutoSaveInterval" xml:space="preserve">
+    <value>Intervall (in Sekunden)</value>
+  </data>
+  <data name="NoAutosave" xml:space="preserve">
+    <value>Kein Autosave</value>
+  </data>
 </root>

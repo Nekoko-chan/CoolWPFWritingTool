@@ -55,9 +55,6 @@ namespace ComplexWriter.MessageBoxes
                     win.Width = win.ActualWidth + reducedWidth;
                     break;
             }
-            System.Diagnostics.Debug.WriteLine("{0},{1}", win.Height, win.Width);
-
-
         }
     }
 }

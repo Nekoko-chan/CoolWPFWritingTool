@@ -250,6 +250,33 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Auto save after interval.
+        /// </summary>
+        public static string AutoSaveByInterval {
+            get {
+                return ResourceManager.GetString("AutoSaveByInterval", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Auto save when idle.
+        /// </summary>
+        public static string AutoSaveIdle {
+            get {
+                return ResourceManager.GetString("AutoSaveIdle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Interval (in seconds).
+        /// </summary>
+        public static string AutoSaveInterval {
+            get {
+                return ResourceManager.GetString("AutoSaveInterval", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to  On this dialog you are able to define the quotation marks that are used by the document.
         ///Please remember, that already inserted quotations are not updated..
         /// </summary>
@@ -1682,6 +1709,15 @@ namespace ComplexWriter.Properties {
         public static string No {
             get {
                 return ResourceManager.GetString("No", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No auto save.
+        /// </summary>
+        public static string NoAutosave {
+            get {
+                return ResourceManager.GetString("NoAutosave", resourceCulture);
             }
         }
         

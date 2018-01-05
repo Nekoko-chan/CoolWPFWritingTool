@@ -1186,4 +1186,16 @@ The language defined here does not affect the spellchecking!</value>
 
 Are you sure, that you like to change the input language?</value>
   </data>
+  <data name="AutoSaveByInterval" xml:space="preserve">
+    <value>Auto save after interval</value>
+  </data>
+  <data name="AutoSaveIdle" xml:space="preserve">
+    <value>Auto save when idle</value>
+  </data>
+  <data name="AutoSaveInterval" xml:space="preserve">
+    <value>Interval (in seconds)</value>
+  </data>
+  <data name="NoAutosave" xml:space="preserve">
+    <value>No auto save</value>
+  </data>
 </root>

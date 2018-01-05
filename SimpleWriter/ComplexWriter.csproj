@@ -131,6 +131,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClickOpensContextMenuBehavior.cs" />
+    <Compile Include="DebounceDispatcher.cs" />
     <Compile Include="imageScaler.xaml.cs" />
     <Compile Include="MessageBoxes\FileOpener.xaml.cs">
       <DependentUpon>FileOpener.xaml</DependentUpon>

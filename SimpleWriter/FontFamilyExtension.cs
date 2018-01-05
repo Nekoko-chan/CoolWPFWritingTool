@@ -444,12 +444,6 @@ namespace ComplexWriter
             {
                 block.Margin = new Thickness(thickness.Left, thickness.Top, thickness.Right, thickness.Bottom);
             }
-
-            foreach (var block in flowDocument.Blocks.OfType<Paragraph>())
-            {
-                if (block.BreakPageBefore)
-                    Debug.WriteLine("IsBreakedAfter");
-            }
             return flowDocument;
         }
 

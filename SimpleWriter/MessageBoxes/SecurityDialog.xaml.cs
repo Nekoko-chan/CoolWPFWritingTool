@@ -91,6 +91,25 @@ namespace ComplexWriter.MessageBoxes
             set { SetValue(SaveAutomaticalProperty, value); }
         }
 
+        public static readonly DependencyProperty SaveWhenIdleProperty =
+       DependencyProperty.Register("SaveWhenIdle", typeof(bool), typeof(SecurityDialog),
+           new PropertyMetadata(true));
+
+        public bool SaveWhenIdle
+        {
+            get { return (bool)GetValue(SaveWhenIdleProperty); }
+            set { SetValue(SaveWhenIdleProperty, value); }
+        }
+        public static readonly DependencyProperty NoSaveProperty =
+       DependencyProperty.Register("NoSave", typeof(bool), typeof(SecurityDialog),
+           new PropertyMetadata(true));
+
+        public bool NoSave
+        {
+            get { return (bool)GetValue(NoSaveProperty); }
+            set { SetValue(NoSaveProperty, value); }
+        }
+
         public static readonly DependencyProperty HideQuestionProperty =
        DependencyProperty.Register("HideQuestion", typeof(bool), typeof(SecurityDialog),
            new PropertyMetadata(true));
@@ -100,6 +119,23 @@ namespace ComplexWriter.MessageBoxes
             get { return (bool)GetValue(HideQuestionProperty); }
             set { SetValue(HideQuestionProperty, value); }
         }
+
+
+        /// <summary>
+        /// DependencyProperty for 'AutoSaveInterval'
+        /// </summary>
+        public static readonly DependencyProperty AutoSaveIntervalProperty =
+        DependencyProperty.Register("AutoSaveInterval", typeof(double), typeof(SecurityDialog), new PropertyMetadata(15d));
+
+        /// <summary>
+        /// Sets the interval, the app saves automatically
+        /// </summary>
+        public double AutoSaveInterval
+        {
+            get { return (double)GetValue(AutoSaveIntervalProperty); }
+            set { SetValue(AutoSaveIntervalProperty, value); }
+        }
+
 
     }
 }

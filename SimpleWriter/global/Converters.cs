@@ -442,7 +442,6 @@ namespace ComplexWriter.global
 
                 var hasText = s;
 
-                Debug.WriteLine(hasText + "  :" + hasText.Length);
                 var hasFocus2 = (bool) values[1];
                 bool stopReadOnly = !(bool) values[3] && (bool) values[2];
 
@@ -539,10 +538,6 @@ namespace ComplexWriter.global
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
-            foreach (var value in values)
-            {
-                Debug.WriteLine(value.GetType() + ": " + value);
-            }
             return values[0];
         }
 
@@ -798,7 +793,6 @@ namespace ComplexWriter.global
             var box = value as TextBox;
             if (box != null)
             {
-                Debug.WriteLine(box.Text.Trim());
                 return !string.IsNullOrEmpty(box.Text.Trim());
             }
 
