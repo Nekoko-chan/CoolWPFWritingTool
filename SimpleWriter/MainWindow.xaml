@@ -87,6 +87,7 @@
                     <ImageBrush x:Key="CopyIcon" ImageSource="Images/Copy.png" Stretch="Uniform"/>
                     <ImageBrush x:Key="CutIcon" ImageSource="Images/Cut.png" Stretch="Uniform"/>
                     <ImageBrush x:Key="PasteIcon" ImageSource="Images/PasteStyle.png" Stretch="Uniform"/>
+                    <ImageBrush x:Key="LanguageIcon" ImageSource="Images/language.png" Stretch="Uniform"/>
                     <ImageBrush x:Key="PasteNonStyleIcon" ImageSource="Images/Paste.png" Stretch="Uniform"/>
                     <ImageBrush x:Key="AddDictionary" ImageSource="Images/bookClosed.png" Stretch="Uniform"/>
                     <ImageBrush x:Key="DictionaryEntry" ImageSource="Images/bookOpen.png" Stretch="Uniform"/>

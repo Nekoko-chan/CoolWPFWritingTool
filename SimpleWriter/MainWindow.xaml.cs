@@ -910,6 +910,10 @@ namespace ComplexWriter
             item.IsChecked = !CurrentText.SpellCheckEnabled;
             standardCommands.Add(item);
 
+            item = BuildLanguageItem();
+
+            standardCommands.Add(item);
+
             if (CanInsertPageBreakOnCaretPosition())
             {
                 item = BuildItem(AddSectionWithPageBreak, "page.png", Properties.Resources.PageBreak);
@@ -924,6 +928,8 @@ namespace ComplexWriter
             item = BuildItem(delegate { AddSelectedNameToDocument(); }, null, Properties.Resources.AddAsName, "Ctrl + N");
 
             standardCommands.Add(item);
+
+            
 
             return standardCommands;
         }
@@ -1068,15 +1074,57 @@ namespace ComplexWriter
             };
         }
 
-        private MenuItem BuildItem(RoutedEventHandler handler, string iconName, string header, string inputGestureString="")
+        private MenuItem BuildItem(RoutedEventHandler handler, string iconName, string header, string inputGestureString = "")
         {
             var buildItem = new MenuItem
             {
-                Icon = BuildIcon(iconName), Header = header, Style = FindResource("menuItem") as Style,
+                Icon = BuildIcon(iconName),
+                Header = header,
+                Style = FindResource("menuItem") as Style,
                 InputGestureText = inputGestureString
             };
             buildItem.Click += handler;
             return buildItem;
+        }
+
+        private MenuItem BuildLanguageItem()
+        {
+            var buildItem = new MenuItem
+            {
+                Header = Properties.Resources.UpdateLanguage,
+                Style = FindResource("menuItem") as Style,
+                Icon = BuildIcon("LanguageIcon")
+            };
+
+
+            var german = new MenuItem
+            {
+                Header = "Deutsch",
+                Style = FindResource("menuItem") as Style,
+                Tag = "de-DE"
+            };
+            german.Click += ToLanguage;
+
+            var english = new MenuItem
+            {
+                Header = "English",
+                Style = FindResource("menuItem") as Style,
+                Tag = "en-US"
+            };
+            english.Click += ToLanguage;
+
+            buildItem.Items.Add(german);
+            buildItem.Items.Add(english);
+
+            return buildItem;
+        }
+
+        private void ToLanguage(object sender, RoutedEventArgs e)
+        {
+            var tag = ((MenuItem) sender).Tag as string;
+            if (string.IsNullOrEmpty(tag)) return;
+
+            Box.Selection.ApplyPropertyValue(FrameworkContentElement.LanguageProperty,tag);
         }
 
         private IList<Control> GetSpellingSuggestions()
@@ -4218,7 +4266,7 @@ namespace ComplexWriter
         private void SetLanguage(object sender, RoutedEventArgs e)
         {
             if (QuestionBox.ShowMessage(this, Properties.Resources.UpdateLanguageQuestion,
-                Properties.Resources.UpdateLanguage, false) == MessageBoxResult.No)
+                $"{Properties.Resources.UpdateLanguage}?", false) == MessageBoxResult.No)
             {
                 languagePopup.IsOpen = false;
                 Box.Focus();

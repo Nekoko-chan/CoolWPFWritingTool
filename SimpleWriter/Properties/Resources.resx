@@ -1036,7 +1036,7 @@ If you like to keep the watermark, you have to save it as an *.etf file</value>
     <value>Strikethrough on /off</value>
   </data>
   <data name="UpdateLanguage" xml:space="preserve">
-    <value>Change language?</value>
+    <value>Change language</value>
   </data>
   <data name="AddColor" xml:space="preserve">
     <value>Add color (doubled colors are ignored)</value>

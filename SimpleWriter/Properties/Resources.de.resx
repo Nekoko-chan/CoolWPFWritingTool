@@ -1007,7 +1007,7 @@ Wenn sie das Wasserzeichen weiterhin haben wollen, speichern sie es als *.etf-Da
     <value>Datei speichern...</value>
   </data>
   <data name="UpdateLanguage" xml:space="preserve">
-    <value>Sprache ändern?</value>
+    <value>Sprache ändern</value>
   </data>
   <data name="CharacterEditorDescription" xml:space="preserve">
     <value>Hier können die Eigenschaften des gewählten Characters bearbeitet werden</value>

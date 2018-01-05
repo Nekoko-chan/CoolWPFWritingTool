@@ -2961,7 +2961,7 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Change language?.
+        ///   Looks up a localized string similar to Change language.
         /// </summary>
         public static string UpdateLanguage {
             get {
