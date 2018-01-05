@@ -14,9 +14,11 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Markup;
 using System.Windows.Media;
 using System.Windows.Media.Effects;
 using System.Windows.Media.Imaging;
+using System.Xaml;
 using ComplexWriter.Commands;
 using ComplexWriter.Properties;
 using Microsoft.Win32;
@@ -32,6 +34,7 @@ namespace ComplexWriter.MessageBoxes
         {
             InitializeComponent();
             Loaded += LoadWindow;
+            Box.Language = XmlLanguage.GetLanguage(InputLanguageManager.Current.CurrentInputLanguage.IetfLanguageTag);
         }
 
         private void MoveWindow(object sender, DragDeltaEventArgs e)
@@ -152,8 +155,51 @@ namespace ComplexWriter.MessageBoxes
                 }
                 ContextMenu.Items.Add(menu4);
             }
+
+                 var item = BuildLanguageItem();
+
+            ContextMenu.Items.Add(item);
         }
 
+        private MenuItem BuildLanguageItem()
+        {
+            var buildItem = new MenuItem
+            {
+                Header = Properties.Resources.UpdateLanguage,
+                Style = MainWindow.Global.FindResource("menuItem") as Style,
+                Icon = BuildIcon("LanguageIcon")
+            };
+
+
+            var german = new MenuItem
+            {
+                Header = "Deutsch",
+                Style = MainWindow.Global.FindResource("menuItem") as Style,
+                Tag = "de-DE"
+            };
+            german.Click += ToLanguage;
+
+            var english = new MenuItem
+            {
+                Header = "English",
+                Style = MainWindow.Global.FindResource("menuItem") as Style,
+                Tag = "en-US"
+            };
+            english.Click += ToLanguage;
+
+            buildItem.Items.Add(german);
+            buildItem.Items.Add(english);
+
+            return buildItem;
+        }
+
+        private void ToLanguage(object sender, RoutedEventArgs e)
+        {
+            var tag = ((MenuItem)sender).Tag as string;
+            if (string.IsNullOrEmpty(tag)) return;
+
+            Box.Language = XmlLanguage.GetLanguage(tag);
+        }
 
         private MenuItem BuildItem(ICommand command, string iconName, string header)
         {
