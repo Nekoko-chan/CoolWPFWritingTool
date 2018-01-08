@@ -36,6 +36,9 @@
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>if_color_settings_67268.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="BlendModeEffects">
       <HintPath>..\SimpleWriter\dlls\BlendModeEffects.dll</HintPath>
@@ -141,6 +144,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\clipboard.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="if_color_settings_67268.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
