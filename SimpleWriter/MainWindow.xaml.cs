@@ -425,18 +425,22 @@ namespace ComplexWriter
 
         private void t_Elapsed(object sender, ElapsedEventArgs e)
         {
-            Dispatcher.Invoke(() =>
+            try
             {
-                if (!Settings.Default.SaveAutomatical) return;
-                UpdateCurrentText();
+                Dispatcher.Invoke(() =>
+                {
+                    if (!Settings.Default.SaveAutomatical) return;
+                    UpdateCurrentText();
 
-                var observableCollection =
-                    TextFiles.Where(te => !string.IsNullOrEmpty(te.Filepath) && (te.IsChanged || te.ReadOnly));
-                if (!observableCollection.Any()) return;
+                    var observableCollection =
+                        TextFiles.Where(te => !string.IsNullOrEmpty(te.Filepath) && (te.IsChanged || te.ReadOnly));
+                    if (!observableCollection.Any()) return;
 
-                _worker.RunWorkerAsync(observableCollection);
-                NotifySave();
-            });
+                    _worker.RunWorkerAsync(observableCollection);
+                    NotifySave();
+                });
+            }
+            catch (Exception ex) { AddException(ex);}
         }
 
         private void MainWindow_Activated(object sender, EventArgs e)

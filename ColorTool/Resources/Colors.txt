@@ -1,0 +1,70 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- 
+             +- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - +
+             |                          Wichtig!                          |
+             |                                                            |
+             | Keine Schlüssel weglöschen, sonst gibt es Probleme !!!     |
+             +- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - +
+    -->
+
+    <!-- Hintergrundfarben (In der Regel eine dunkle Farbe) -->
+    <Color x:Key="BackColor">{0}</Color>
+    <Color x:Key="AlternateBackColor">{1}</Color>
+    
+    <!-- Farbe des Sliders, wenn die Maus drüber ist -->
+    <Color x:Key="OverColor">{2}</Color>
+    <!--Farbe des Sliders, wenn er gezogen wird -->
+    <Color x:Key="DragColor">{3}</Color>
+
+    <!-- Vordergrundfarbe-->
+    <Color x:Key="TitleColor">{4}</Color>
+    <Color x:Key="DarkerTitleColor">{5}</Color>
+
+    <!--  Farbe der Textboxselektion-->
+    <Color x:Key="SelectionColor">{6}</Color>
+    <Color x:Key="SelectionColor2">{7}</Color>
+
+    <!-- Hintergrundfarbe der Schreibfläche -->
+        <Color x:Key="BackGradient1">{8}</Color>
+        <Color x:Key="BackGradient2">{9}</Color>
+
+    <!-- Farbschlüssel der Buttons-->
+        <SolidColorBrush x:Key="ButtonLight">{10}</SolidColorBrush>
+        <SolidColorBrush x:Key="ButtonFocus">{11}</SolidColorBrush>
+        <Color x:Key="ButtonHighlight">{12}</Color>
+        <Color x:Key="ButtonShadow">{13}</Color>
+        <SolidColorBrush x:Key="ButtonBorder">{14}</SolidColorBrush>
+
+    <!-- Pinsel für Dateien, die nur im rtf-Format geschrieben sind -->
+
+
+    <LinearGradientBrush x:Key="SelectionBrush"  EndPoint="1,1" StartPoint="0.5,0">
+        <GradientStop Color="{DynamicResource SelectionColor}" Offset="1"/>
+        <GradientStop Color="{DynamicResource SelectionColor2}"/>
+    </LinearGradientBrush>
+    <SolidColorBrush x:Key="RtfBrush">{15}</SolidColorBrush>
+
+    
+    <SolidColorBrush x:Key="TitleBrush" Color="{StaticResource TitleColor}"/>
+    <SolidColorBrush x:Key="DarkerTitleBrush" Color="{StaticResource DarkerTitleColor}"/>
+
+    <SolidColorBrush x:Key="BackColorBrush" Color="{StaticResource BackColor}"/>
+    <SolidColorBrush x:Key="BackColorBrush2" Color="{StaticResource BackColor}"/>
+    <SolidColorBrush x:Key="AlternateForeground" Color="{StaticResource AlternateBackColor}"></SolidColorBrush>
+
+    <VisualBrush x:Key="BackColorBrushStripes" TileMode="Tile" Viewport="0,0,3,3" ViewportUnits="Absolute">
+        <VisualBrush.Visual>
+            <Canvas SnapsToDevicePixels="True" Background="{StaticResource BackColorBrush}" Width="3" Height="3">
+                <Path Stroke="{StaticResource DarkerTitleBrush}" Opacity=".5" Data="M 0 0 l 3 3" />
+            </Canvas>
+        </VisualBrush.Visual>
+    </VisualBrush>
+
+
+    <LinearGradientBrush x:Key="BackgroundBrush" EndPoint="0.5,1" StartPoint="0.5,0" Opacity="1">
+        <GradientStop Color="{StaticResource BackGradient1}" Offset="0"/>
+        <GradientStop Color="{StaticResource BackGradient2}" Offset="1"/>
+    </LinearGradientBrush>
+</ResourceDictionary>
