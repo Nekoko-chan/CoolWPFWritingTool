@@ -1178,7 +1178,65 @@
                                                                      Visibility="{Binding HasCaption, Converter={StaticResource falseCollapsedConverter}}"
                                                                      Margin="0,0,0,5" >
                                                                                         <TextBox.ContextMenu>
-                                                                                            <ContextMenu Visibility="Collapsed">
+                                                                                            <ContextMenu Style="{StaticResource context}">
+                                                                                                <MenuItem Style="{StaticResource menuItem}"
+                                                                                  Tag="{Binding}"
+                                                                                  Header="{x:Static p:Resources.EditSelectedStyle}"
+                                                                                  Click="EditCurrentLocal">
+                                                                                                    <MenuItem.Icon>
+                                                                                                        <ImageBrush
+                                                                                    ImageSource="Images/EditStyle.png" />
+                                                                                                    </MenuItem.Icon>
+                                                                                                </MenuItem>
+                                                                                                <MenuItem Style="{StaticResource menuItem}"
+                                                                                  Tag="{Binding}"
+                                                                                  Header="{x:Static p:Resources.UpdateStyle}"
+                                                                                  Click="ChangeThisToSelected">
+                                                                                                    <MenuItem.Icon>
+                                                                                                        <ImageBrush
+                                                                                    ImageSource="Images/StilAktualisieren.png" />
+                                                                                                    </MenuItem.Icon>
+                                                                                                </MenuItem>
+                                                                                                <Separator Style="{StaticResource shortsep}"/>
+                                                                                                <MenuItem Style="{StaticResource menuItem}"
+                                                                                  Tag="{Binding}"
+                                                                                  Header="{x:Static p:Resources.ReplaceStyleInDocument}"
+                                                                                  Click="ChangeCurrentToThis">
+                                                                                                    <MenuItem.Icon>
+                                                                                                        <ImageBrush
+                                                                                    ImageSource="Images/StilAnwenden.png" />
+                                                                                                    </MenuItem.Icon>
+                                                                                                </MenuItem>
+
+                                                                                                <Separator Style="{StaticResource shortsep}"/>
+
+                                                                                                <MenuItem Style="{StaticResource menuItem}"
+                                                                                  Tag="{Binding}"
+                                                                                  Header="{x:Static p:Resources.RemoveStyleFromDocument}"
+                                                                                  Click="EmptyStyle" >
+                                                                                                    <MenuItem.Icon>
+                                                                                                        <ImageBrush
+                                                                                    ImageSource="Images/deleteStyle.png" />
+                                                                                                    </MenuItem.Icon>
+                                                                                                </MenuItem>
+
+                                                                                                <MenuItem Style="{StaticResource menuItem}"
+                                                                                  Tag="{Binding}"
+                                                                                  Header="{x:Static p:Resources.UseStyleAsDefault}"
+                                                                                  Click="SetDefaultStyle" >
+                                                                                                </MenuItem>
+                                                                                                <Separator Style="{StaticResource shortsep}"/>
+                                                                                                <MenuItem Style="{StaticResource menuItem}"
+                                                                                  Tag="{Binding}"
+                                                                                  Header="{x:Static p:Resources.CountOccurances}"
+                                                                                  Click="CountStylePositions" >
+                                                                                                </MenuItem>
+                                                                                                <MenuItem Style="{StaticResource menuItem}"
+                                                                                  Tag="{Binding}"
+                                                                                  Header="{x:Static p:Resources.GoToFirstUsage}"
+                                                                                  Click="GoToFirstCall" >
+                                                                                                </MenuItem>
+
                                                                                             </ContextMenu>
                                                                                         </TextBox.ContextMenu>
                                                                                     </TextBox>
