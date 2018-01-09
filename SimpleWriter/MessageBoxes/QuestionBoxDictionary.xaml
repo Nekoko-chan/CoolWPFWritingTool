@@ -2,7 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     x:Class="ComplexWriter.QuestionBoxDictionary"
                     xmlns:custom="clr-namespace:CustomControls;assembly=CustomControls"
-                    xmlns:ComplexWriter="clr-namespace:ComplexWriter.MessageBoxes">
+                    xmlns:ComplexWriter="clr-namespace:ComplexWriter.MessageBoxes"
+                    xmlns:p="clr-namespace:ComplexWriter.Properties">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="../global/global.xaml"/>
         <ResourceDictionary Source="../global/Tooltip.xaml"/>
@@ -53,7 +54,7 @@
                                                                              ButtonMask="../Images/exit.png"
                                                                              Click="CloseMe" Margin="0,0,4,0">
                                                 <Button.ToolTip>
-                                                    <ToolTip Style="{StaticResource tipTest}" Content="Fenster schließen"></ToolTip>
+                                                    <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.CloseWindow}"></ToolTip>
                                                 </Button.ToolTip>
                                             </custom:MaskedImageButtonEnlarge>
                                         </Grid>

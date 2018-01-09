@@ -146,7 +146,7 @@
 
             <customControls:MaskedImageButtonEnlarge Grid.Row="0" ButtonMask="../Images/blackout.png" Cursor="{StaticResource overCursor}" ButtonColor="{DynamicResource TitleBrush}" Grid.Column="5" Width="16" Height="16" Click="HideMe">
                 <Button.ToolTip>
-                    <ToolTip Style="{StaticResource tipTest}" Content="Fenster schließen"/>
+                    <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.CloseWindow}"/>
                 </Button.ToolTip>
             </customControls:MaskedImageButtonEnlarge>
 
