@@ -1104,7 +1104,7 @@
                                 <DockPanel Grid.Row="0" Grid.Column="1" >
                                     <ToggleButton Style="{StaticResource ToggleBtnStyle2}" DockPanel.Dock="Right" IsChecked="{Binding RelativeSource={RelativeSource AncestorType=complexWriter:MainWindow},Path=PopupIsAttachedToMainWindow}">
                                         <ToggleButton.ToolTip>
-                                            <ToolTip Style="{StaticResource tipTest}" Content="Position am Hauptfenster fixieren"></ToolTip>
+                                                                    <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.FixPosition}"></ToolTip>
                                         </ToggleButton.ToolTip>
                                     </ToggleButton>
                                     <Thumb IsHitTestVisible="{Binding RelativeSource={RelativeSource AncestorType=complexWriter:MainWindow},Path=PopupIsAttachedToMainWindow,Converter={StaticResource InvertBoolConverter}}"

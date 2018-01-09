@@ -137,8 +137,6 @@
                    HorizontalOffset="-75" Margin="0,0,0,166" Grid.RowSpan="2">
                 <Grid>
                     <Image Source="Images/me.png" Height="400"></Image>
-                    <Button VerticalAlignment="Bottom" Margin="0,0,10,10" HorizontalAlignment="Right" Height="32" Width="32" Style="{StaticResource HiddenButton}" Click="UpdateSaveSettings"></Button>
-
                 </Grid>
             </Popup>
             <!--<Popup AllowsTransparency="True" IsOpen="True" StaysOpen="True" Placement="Left" VerticalOffset="-20" HorizontalOffset="35">

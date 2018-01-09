@@ -16,8 +16,6 @@ namespace ComplexWriter
         public About()
         {
             InitializeComponent();
-            //ani.StandardDuration = 200;
-            //ani.ZipSource = "../Images/anim.zip";
             Loaded += (s, e) =>
                 {
                     var elem = Template.FindName("close", this) as Button;
@@ -61,51 +59,5 @@ namespace ComplexWriter
             System.Diagnostics.Process.Start(e.Uri.ToString());
         }
 
-        private void UpdateSaveSettings(object sender, RoutedEventArgs e)
-        {
-            var sd = new SecurityDialog
-            {
-                Owner = this,
-                AllowEmptyPasswordQuestions = Settings.Default.AllowEmptyQuestions,
-                AskPasswords = Settings.Default.AskForPassword,
-                AskPasswordsOnTabChange = Settings.Default.AskForPasswordOnTabChange,
-                SaveAutomatical =  Settings.Default.SaveAutomatical,
-                HideQuestion =  Settings.Default.HideQuestion,
-                UseEnglish =  Settings.Default.Language.StartsWith("en"),
-                UseGerman = Settings.Default.Language.StartsWith("de"),
-                AutoSaveInterval = Settings.Default.AutoSaveInterval,
-                SaveWhenIdle = Settings.Default.AutoSaveOnBreak,
-                NoSave = !Settings.Default.SaveAutomatical && !Settings.Default.AutoSaveOnBreak
-            };
-
-            if (sd.ShowDialog() != true || sd.Result != MessageBoxResult.OK) return;
-
-            Settings.Default.AllowEmptyQuestions = sd.AllowEmptyPasswordQuestions;
-            Settings.Default.AskForPassword = sd.AskPasswords;
-            Settings.Default.AskForPasswordOnTabChange = sd.AskPasswordsOnTabChange;
-            Settings.Default.HideQuestion = sd.HideQuestion;
-            var language = sd.UseEnglish ? "en" : "de";
-            if (Settings.Default.Language != language)
-            {
-                Settings.Default.Language = language;
-                MessageBoxes.MessageBox.ShowMessage(this, Properties.Resources.RestartForLanguage, Properties.Resources.Restart,fontSize:15d);
-            }
-            if (sd.SaveWhenIdle != Settings.Default.AutoSaveOnBreak)
-            {
-                Settings.Default.AutoSaveOnBreak = sd.SaveWhenIdle;
-                MainWindow.Global.UpdateAutosave();
-            }
-            if (sd.SaveAutomatical != Settings.Default.SaveAutomatical)
-            {
-                Settings.Default.SaveAutomatical = sd.SaveAutomatical;
-                MainWindow.Global.UpdateAutosave();
-            }
-            if (!sd.AutoSaveInterval.Equals(Settings.Default.AutoSaveInterval))
-            {
-                Settings.Default.AutoSaveInterval = sd.AutoSaveInterval;
-                MainWindow.Global.UpdateAutoSaveInterval();
-            }
-            Settings.Default.Save();
-        }
     }
 }

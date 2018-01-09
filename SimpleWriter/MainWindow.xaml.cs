@@ -1477,7 +1477,11 @@ namespace ComplexWriter
             {
                 Settings.Default.Watermark = null;
             }
+
             Settings.Default.Save();
+
+            if(_saveColorsOnClose)
+                if (!SaveData(_colors) && QuestionBox.ShowMessage(this, Properties.Resources.ErrorClosing, Properties.Resources.CloseAnyway) == MessageBoxResult.No) return;
 
             Application.Current.Shutdown();
         }
@@ -2910,7 +2914,7 @@ namespace ComplexWriter
             FocusTextbox();
         }
 
-        private void Changes(object sender, RoutedEventArgs e)
+        private void RoutedChanges(object sender, RoutedEventArgs e)
         {
             CurrentText.IsChanged = true;
             FocusTextbox();
@@ -3486,8 +3490,11 @@ namespace ComplexWriter
             set { SetValue(TextLanguageProperty, value); }
         }
 
-        private static void RestartApplication()
+        private void RestartApplication()
         {
+            if (_saveColorsOnClose)
+                if (!SaveData(_colors) && QuestionBox.ShowMessage(this,Properties.Resources.ErrorClosing,Properties.Resources.CloseAnyway) == MessageBoxResult.No) return;
+
             Application.Current.Exit += (s, arg) => { Process.Start(Application.ResourceAssembly.Location, "-n"); };
             Application.Current.Shutdown();
         }
@@ -4292,6 +4299,159 @@ namespace ComplexWriter
             enBtn.IsChecked = TextLanguage.IndexOf("en",StringComparison.InvariantCultureIgnoreCase)!= -1;
             deBtn.IsChecked = TextLanguage.IndexOf("de", StringComparison.InvariantCultureIgnoreCase) != -1;}
 
-        
+        public void OpenSettings()
+        {
+            var askForRestart = false;
+            var loadedColors = LoadColors();
+            var sd = new SecurityDialog
+            {
+                Owner = this,
+                AllowEmptyPasswordQuestions = Settings.Default.AllowEmptyQuestions,
+                AskPasswords = Settings.Default.AskForPassword,
+                AskPasswordsOnTabChange = Settings.Default.AskForPasswordOnTabChange,
+                SaveAutomatical = Settings.Default.SaveAutomatical,
+                HideQuestion = Settings.Default.HideQuestion,
+                UseEnglish = Settings.Default.Language.StartsWith("en"),
+                UseGerman = Settings.Default.Language.StartsWith("de"),
+                AutoSaveInterval = Settings.Default.AutoSaveInterval,
+                SaveWhenIdle = Settings.Default.AutoSaveOnBreak,
+                NoSave = !Settings.Default.SaveAutomatical && !Settings.Default.AutoSaveOnBreak,
+                Colors = new ObservableCollection<ColorElement>(loadedColors.CloneColors())
+            };
+
+            if (sd.ShowDialog() != true || sd.Result != MessageBoxResult.OK) return;
+
+            Settings.Default.AllowEmptyQuestions = sd.AllowEmptyPasswordQuestions;
+            Settings.Default.AskForPassword = sd.AskPasswords;
+            Settings.Default.AskForPasswordOnTabChange = sd.AskPasswordsOnTabChange;
+            Settings.Default.HideQuestion = sd.HideQuestion;
+            var language = sd.UseEnglish ? "en" : "de";
+            if (Settings.Default.Language != language)
+            {
+                Settings.Default.Language = language;
+                askForRestart = true;
+            }
+            if (sd.SaveWhenIdle != Settings.Default.AutoSaveOnBreak)
+            {
+                Settings.Default.AutoSaveOnBreak = sd.SaveWhenIdle;
+                UpdateAutosave();
+            }
+            if (sd.SaveAutomatical != Settings.Default.SaveAutomatical)
+            {
+                Settings.Default.SaveAutomatical = sd.SaveAutomatical;
+                UpdateAutosave();
+            }
+            if (!sd.AutoSaveInterval.Equals(Settings.Default.AutoSaveInterval))
+            {
+                Settings.Default.AutoSaveInterval = sd.AutoSaveInterval;
+                UpdateAutoSaveInterval();
+            }
+            if (!EqualColors(loadedColors, sd.Colors))
+            {
+                askForRestart = true;
+                _colors = sd.Colors;
+                _saveColorsOnClose = true;
+            }
+
+            Settings.Default.Save();
+            if (askForRestart && QuestionBox.ShowMessage(this, Properties.Resources.RestartForLanguage, Properties.Resources.Restart, false, fontsize: 15d) == MessageBoxResult.Yes)
+                RestartApplication();
+        }
+
+        private bool _saveColorsOnClose = false;
+        private ObservableCollection<ColorElement> _colors;
+
+        private bool SaveData(ObservableCollection<ColorElement> colors)
+        {
+            try
+            {
+                var filename = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+                filename = Path.Combine(filename, "ColorSet");
+                filename = Path.Combine(filename, "Colors.xaml");
+
+                SaveOld(filename);
+                string res;
+                using (
+                    StreamReader reader =
+                        new StreamReader(
+                            Assembly.GetExecutingAssembly().GetManifestResourceStream("ComplexWriter.global.Colors.txt"))
+                    )
+                {
+                    res = reader.ReadToEnd();
+                }
+
+                using (var streamWriter = new StreamWriter(filename, false, Encoding.Unicode))
+                {
+                    streamWriter.Write(ReplaceElements(res, colors));
+                }
+                return true;
+            }
+            catch (Exception e)
+            {
+                AddException(e);
+                return false;
+            }
+        }
+
+        private void SaveOld(string fileName)
+        {
+            var counter = 1;
+
+            var name = $"{Path.GetFileNameWithoutExtension(fileName)}_Sicherung{counter:00}.xaml";
+            var newname = Path.Combine(Path.GetDirectoryName(fileName), name);
+            while (File.Exists(newname))
+            {
+                counter++;
+                name = $"{Path.GetFileNameWithoutExtension(fileName)}_Sicherung{counter:00}.xaml";
+                newname = Path.Combine(Path.GetDirectoryName(fileName), name);
+            }
+            File.Copy(fileName, newname);
+        }
+
+        private string ReplaceElements(string res,ObservableCollection<ColorElement> colors )
+        {
+            var test = res;
+            for (int i = 0; i < colors.Count; i++)
+            {
+                var oldValue = "{" + i + "}";
+                test = test.Replace(oldValue, colors[i].Color.ToString());
+            }
+            return test;
+        }
+
+        private bool EqualColors(ObservableCollection<ColorElement> loadedColors, ObservableCollection<ColorElement> colors)
+        {
+            return loadedColors.SequenceEqual(colors,new ColorComparer());
+        }
+
+        private ObservableCollection<ColorElement> LoadColors()
+        {
+            var filename = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            filename = Path.Combine(filename, "ColorSet");
+            filename = Path.Combine(filename, "Colors.xaml");
+
+            var colors = new ObservableCollection<ColorElement>();
+            var dict = new ResourceDictionary() { Source = new Uri(filename, UriKind.Absolute) };
+
+            colors.Add(new ColorElement("BackColor",Properties.Resources.ColorSettingBackColor, dict));
+            colors.Add(new ColorElement("AlternateBackColor", Properties.Resources.ColorSettingAlternateBackColor, dict));
+            colors.Add(new ColorElement("OverColor", Properties.Resources.ColorSettingOverColor, dict));
+            colors.Add(new ColorElement("DragColor", Properties.Resources.ColorSettingDragColor, dict));
+            colors.Add(new ColorElement("TitleColor", Properties.Resources.ColorSettingTitleColor, dict));
+            colors.Add(new ColorElement("DarkerTitleColor", Properties.Resources.ColorSettingDarkerTitleColor, dict));
+            colors.Add(new ColorElement("SelectionColor", Properties.Resources.ColorSettingSelectionColor, dict));
+            colors.Add(new ColorElement("SelectionColor2", Properties.Resources.ColorSettingSelectionColor2, dict));
+            colors.Add(new ColorElement("BackGradient1", Properties.Resources.ColorSettingBackGradient1, dict));
+            colors.Add(new ColorElement("BackGradient2", Properties.Resources.ColorSettingBackGradient2, dict));
+            colors.Add(new ColorElement("ButtonHighlight", Properties.Resources.ColorSettingButtonHighlight, dict));
+            colors.Add(new ColorElement("ButtonShadow", Properties.Resources.ColorSettingButtonShadow, dict));
+            colors.Add(new ColorElement("ButtonLight", Properties.Resources.ColorSettingButtonLight, dict));
+            colors.Add(new ColorElement("ButtonFocus", Properties.Resources.ColorSettingButtonFocus, dict));
+            colors.Add(new ColorElement("ButtonBorder", Properties.Resources.ColorSettingButtonBorder, dict));
+            colors.Add(new ColorElement("RtfBrush", Properties.Resources.ColorSettingRtfBrush, dict));
+
+            return colors;
+        } 
+
     }
 }

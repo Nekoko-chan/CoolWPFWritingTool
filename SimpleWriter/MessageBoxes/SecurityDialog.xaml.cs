@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -31,6 +32,20 @@ namespace ComplexWriter.MessageBoxes
             Result = messageBoxResult;
         }
 
+        /// <summary>
+        /// DependencyProperty for 'Colors'
+        /// </summary>
+        public static readonly DependencyProperty ColorsProperty =
+        DependencyProperty.Register("Colors", typeof(ObservableCollection<ColorElement>), typeof(SecurityDialog), new UIPropertyMetadata(new ObservableCollection<ColorElement>()));
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public ObservableCollection<ColorElement> Colors
+        {
+            get { return (ObservableCollection<ColorElement>)GetValue(ColorsProperty); }
+            set { SetValue(ColorsProperty, value); }
+        }
 
         public static readonly DependencyProperty AskPasswordsProperty =
          DependencyProperty.Register("AskPasswords", typeof(bool), typeof(SecurityDialog),
@@ -136,6 +151,13 @@ namespace ComplexWriter.MessageBoxes
             set { SetValue(AutoSaveIntervalProperty, value); }
         }
 
+        private void UpdateColor(object sender, RoutedEventArgs e)
+        {
+            var colors = new ObservableCollection<ColorElement>(Colors.CloneColors());
+            var settings = new ColorSettings {Colors = colors,Owner = this};
+            if (settings.ShowDialog() != true || settings.Result == MessageBoxResult.Cancel) return;
 
+            Colors = settings.Colors;
+        }
     }
 }

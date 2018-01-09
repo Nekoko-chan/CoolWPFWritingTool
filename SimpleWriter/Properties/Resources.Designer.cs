@@ -505,6 +505,159 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Menu background 2.
+        /// </summary>
+        public static string ColorSettingAlternateBackColor {
+            get {
+                return ResourceManager.GetString("ColorSettingAlternateBackColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Menu background.
+        /// </summary>
+        public static string ColorSettingBackColor {
+            get {
+                return ResourceManager.GetString("ColorSettingBackColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Writer background.
+        /// </summary>
+        public static string ColorSettingBackGradient1 {
+            get {
+                return ResourceManager.GetString("ColorSettingBackGradient1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Writer bacground 2.
+        /// </summary>
+        public static string ColorSettingBackGradient2 {
+            get {
+                return ResourceManager.GetString("ColorSettingBackGradient2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Button border.
+        /// </summary>
+        public static string ColorSettingButtonBorder {
+            get {
+                return ResourceManager.GetString("ColorSettingButtonBorder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Focused button.
+        /// </summary>
+        public static string ColorSettingButtonFocus {
+            get {
+                return ResourceManager.GetString("ColorSettingButtonFocus", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Button mouse over.
+        /// </summary>
+        public static string ColorSettingButtonHighlight {
+            get {
+                return ResourceManager.GetString("ColorSettingButtonHighlight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Button highlight.
+        /// </summary>
+        public static string ColorSettingButtonLight {
+            get {
+                return ResourceManager.GetString("ColorSettingButtonLight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Button shadow.
+        /// </summary>
+        public static string ColorSettingButtonShadow {
+            get {
+                return ResourceManager.GetString("ColorSettingButtonShadow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Menu text darker.
+        /// </summary>
+        public static string ColorSettingDarkerTitleColor {
+            get {
+                return ResourceManager.GetString("ColorSettingDarkerTitleColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dragging scrollbar.
+        /// </summary>
+        public static string ColorSettingDragColor {
+            get {
+                return ResourceManager.GetString("ColorSettingDragColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Highlight.
+        /// </summary>
+        public static string ColorSettingOverColor {
+            get {
+                return ResourceManager.GetString("ColorSettingOverColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Marker for RTF documents.
+        /// </summary>
+        public static string ColorSettingRtfBrush {
+            get {
+                return ResourceManager.GetString("ColorSettingRtfBrush", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Color settings.
+        /// </summary>
+        public static string ColorSettingsDialog {
+            get {
+                return ResourceManager.GetString("ColorSettingsDialog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Selection.
+        /// </summary>
+        public static string ColorSettingSelectionColor {
+            get {
+                return ResourceManager.GetString("ColorSettingSelectionColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Selection 2.
+        /// </summary>
+        public static string ColorSettingSelectionColor2 {
+            get {
+                return ResourceManager.GetString("ColorSettingSelectionColor2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Menu text.
+        /// </summary>
+        public static string ColorSettingTitleColor {
+            get {
+                return ResourceManager.GetString("ColorSettingTitleColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Condensed.
         /// </summary>
         public static string Condensed {
@@ -874,6 +1027,15 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;unset&gt;.
+        /// </summary>
+        public static string EmptyTag {
+            get {
+                return ResourceManager.GetString("EmptyTag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The entry is added to the dictionary.
         /// </summary>
         public static string EntryIsAddedToDictionary {
@@ -897,6 +1059,17 @@ namespace ComplexWriter.Properties {
         public static string Error {
             get {
                 return ResourceManager.GetString("Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An error occured while closing.
+        ///
+        ///Would you like to close it anyway?.
+        /// </summary>
+        public static string ErrorClosing {
+            get {
+                return ResourceManager.GetString("ErrorClosing", resourceCulture);
             }
         }
         
@@ -1066,6 +1239,15 @@ namespace ComplexWriter.Properties {
         public static string FileWouldBeInserted {
             get {
                 return ResourceManager.GetString("FileWouldBeInserted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dock to main window.
+        /// </summary>
+        public static string FixPosition {
+            get {
+                return ResourceManager.GetString("FixPosition", resourceCulture);
             }
         }
         
@@ -1804,6 +1986,15 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Open color settings.
+        /// </summary>
+        public static string OpenColorSettingsDialog {
+            get {
+                return ResourceManager.GetString("OpenColorSettingsDialog", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Open dictionary.
         /// </summary>
         public static string OpenDictionary {
@@ -2196,7 +2387,7 @@ namespace ComplexWriter.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to Changings on the dictionary are only available after restarting the program.
-        ///Would you like to restart it?.
+        ///Would you like to restart it now?.
         /// </summary>
         public static string RestartForChanges {
             get {
@@ -2205,9 +2396,11 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Changes on the language are applied after the next start.
+        ///   Looks up a localized string similar to Some changes are applied, when the program is closing.
+        ///It is recomended to restart the applicatiton, for the changes taking effect.
+        ///If the program is not closed properly, some changes might be lost.
         ///
-        ///The language defined here does not affect the spellchecking!.
+        ///Would you like to restart it now?.
         /// </summary>
         public static string RestartForLanguage {
             get {
@@ -2414,6 +2607,15 @@ namespace ComplexWriter.Properties {
         public static string Search {
             get {
                 return ResourceManager.GetString("Search", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings....
+        /// </summary>
+        public static string Settings {
+            get {
+                return ResourceManager.GetString("Settings", resourceCulture);
             }
         }
         

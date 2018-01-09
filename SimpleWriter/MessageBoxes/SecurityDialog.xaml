@@ -10,7 +10,7 @@
         xmlns:system="clr-namespace:System;assembly=mscorlib"
         xmlns:p="clr-namespace:ComplexWriter.Properties"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
-        Title="{x:Static p:Resources.SavetySettings}" >
+        Title="{x:Static p:Resources.Settings}" >
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -106,6 +106,10 @@
                       IsEnabled="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:SecurityDialog},Path=AskPasswords}"
                       IsChecked="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:SecurityDialog},Path=AllowEmptyPasswordQuestions}" Style="{StaticResource globalCheckbox}" Content="{x:Static p:Resources.AllowEmptyPasswordHint}"/>
 
+            <customControls:GlassButton3 Width="300" Style="{StaticResource GlassButtonStyle}" x:Name="colorSettings" Click="UpdateColor"  HorizontalAlignment="Left" Margin="7,0,0,0">
+                <TextBlock VerticalAlignment="Center" TextAlignment="Center" Text="{x:Static p:Resources.OpenColorSettingsDialog}"/>
+            </customControls:GlassButton3>
+            
             <TextBlock Margin="25,2.5" Text="{x:Static p:Resources.Language}"></TextBlock>
             <RadioButton Margin="20,2.5" GroupName="Language"
                       IsEnabled="true"

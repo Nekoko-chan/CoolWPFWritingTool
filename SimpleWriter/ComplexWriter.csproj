@@ -131,8 +131,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClickOpensContextMenuBehavior.cs" />
+    <Compile Include="ColorScheme.cs" />
     <Compile Include="DebounceDispatcher.cs" />
     <Compile Include="imageScaler.xaml.cs" />
+    <Compile Include="MessageBoxes\ColorSettings.xaml.cs">
+      <DependentUpon>ColorSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MessageBoxes\Dictionaries\ColorSettingsDictionary.xaml.cs">
+      <DependentUpon>ColorSettingsDictionary.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MessageBoxes\FileOpener.xaml.cs">
       <DependentUpon>FileOpener.xaml</DependentUpon>
     </Compile>
@@ -150,6 +157,8 @@
     <Content Include="Fonts\readme.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <EmbeddedResource Include="global\Colors.txt" />
+    <Resource Include="Images\gear.png" />
     <Resource Include="Images\lock2.png" />
     <Resource Include="Images\language.png" />
     <Resource Include="Images\line.png" />
@@ -475,6 +484,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="MessageBoxes\Dictionaries\CharacterEditorDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MessageBoxes\ColorSettings.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MessageBoxes\Dictionaries\ColorSettingsDictionary.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

@@ -744,7 +744,7 @@ namespace ComplexWriter
         {
             get
             {
-                var pat = string.IsNullOrEmpty(Filepath) ? "<leer>" : Path.GetFileNameWithoutExtension(Filepath);
+                var pat = string.IsNullOrEmpty(Filepath) ? Resources.EmptyTag: Path.GetFileNameWithoutExtension(Filepath);
                 var sav = Settings.Default.SaveAutomatical || Settings.Default.AutoSaveOnBreak ? string.Empty : IsChanged ? "*" : string.Empty;
                 return $"{sav}{pat}";
             }

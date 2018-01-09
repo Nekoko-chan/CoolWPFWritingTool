@@ -1136,9 +1136,12 @@ Wollen sie es wirklich ändern, ohne sicher zu stellen, dass es auch so aussieht
     <value>Nächster Nachbar</value>
   </data>
   <data name="RestartForLanguage" xml:space="preserve">
-    <value>Die Änderung der Sprache wird erst nach dem nächsten Neustart angewendet.
+    <value>Einige Änderungen werden erst beim Schließen der Anwendung angewendet.
 
-Das hat keine Auswirkung auf die Sprache der Rechtschreibung!</value>
+Es empfielt sich daher, die Anwendung neu zu starten, damit sie genutzt werden können.
+Wenn das Programm nicht korrekt beendet wird, kann es nämlich vorkommen, dass Änderungen verloren gehen.
+
+Soll das Programm jetzt neu gestartet werden?</value>
   </data>
   <data name="SaveAndReload" xml:space="preserve">
     <value>Speichern und neues Laden</value>
@@ -1195,5 +1198,75 @@ Sind Sie sicher, dass sie die Eingabesprache ändern wollen?</value>
   </data>
   <data name="NoAutosave" xml:space="preserve">
     <value>Kein Autosave</value>
+  </data>
+  <data name="ColorSettingAlternateBackColor" xml:space="preserve">
+    <value>Menü-Hintergrund 2</value>
+  </data>
+  <data name="ColorSettingBackColor" xml:space="preserve">
+    <value>Menü-Hintergrund</value>
+  </data>
+  <data name="ColorSettingBackGradient1" xml:space="preserve">
+    <value>Editor-Hintergrund</value>
+  </data>
+  <data name="ColorSettingBackGradient2" xml:space="preserve">
+    <value>Editor-Hintergrund 2</value>
+  </data>
+  <data name="ColorSettingButtonBorder" xml:space="preserve">
+    <value>Button Rahmen</value>
+  </data>
+  <data name="ColorSettingButtonFocus" xml:space="preserve">
+    <value>Fokusierter Button</value>
+  </data>
+  <data name="ColorSettingButtonHighlight" xml:space="preserve">
+    <value>Button Mouseover</value>
+  </data>
+  <data name="ColorSettingButtonLight" xml:space="preserve">
+    <value>Button Highlight</value>
+  </data>
+  <data name="ColorSettingButtonShadow" xml:space="preserve">
+    <value>Button Schatten</value>
+  </data>
+  <data name="ColorSettingDarkerTitleColor" xml:space="preserve">
+    <value>Menü-Text dunkler</value>
+  </data>
+  <data name="ColorSettingDragColor" xml:space="preserve">
+    <value>Gedrückter Schieber</value>
+  </data>
+  <data name="ColorSettingOverColor" xml:space="preserve">
+    <value>Mousover</value>
+  </data>
+  <data name="ColorSettingRtfBrush" xml:space="preserve">
+    <value>Marker für RTF Dokumente</value>
+  </data>
+  <data name="ColorSettingsDialog" xml:space="preserve">
+    <value>Farbeinstellungen</value>
+  </data>
+  <data name="ColorSettingSelectionColor" xml:space="preserve">
+    <value>Auswahl</value>
+  </data>
+  <data name="ColorSettingSelectionColor2" xml:space="preserve">
+    <value>Auswahl 2</value>
+  </data>
+  <data name="ColorSettingTitleColor" xml:space="preserve">
+    <value>Menü-Text</value>
+  </data>
+  <data name="EmptyTag" xml:space="preserve">
+    <value>&lt;leer&gt;</value>
+  </data>
+  <data name="ErrorClosing" xml:space="preserve">
+    <value>Beim Schließen der Anwendung ist ein Fehler aufgetreten.
+
+Soll die Anwendung trotzdem beendet werden?
+
+Would you like to close it anyway?</value>
+  </data>
+  <data name="FixPosition" xml:space="preserve">
+    <value>Position am Hauptfenster fixieren</value>
+  </data>
+  <data name="OpenColorSettingsDialog" xml:space="preserve">
+    <value>Farbeinstellungen öffnen</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Einstellungen...</value>
   </data>
 </root>

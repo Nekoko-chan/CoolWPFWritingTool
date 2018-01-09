@@ -619,7 +619,7 @@ Permissions of this strong copy license are conditioned on making available comp
   </data>
   <data name="RestartForChanges" xml:space="preserve">
     <value>Changings on the dictionary are only available after restarting the program.
-Would you like to restart it?</value>
+Would you like to restart it now?</value>
   </data>
   <data name="RestartForNameChanges" xml:space="preserve">
     <value>Changings on the name list are only available after restarting the program.
@@ -1138,9 +1138,11 @@ Are you sure, that you like to change it, without checking the spelling?</value>
     <value>Next Neighbor</value>
   </data>
   <data name="RestartForLanguage" xml:space="preserve">
-    <value>Changes on the language are applied after the next start.
+    <value>Some changes are applied, when the program is closing.
+It is recomended to restart the applicatiton, for the changes taking effect.
+If the program is not closed properly, some changes might be lost.
 
-The language defined here does not affect the spellchecking!</value>
+Would you like to restart it now?</value>
   </data>
   <data name="SaveAndReload" xml:space="preserve">
     <value>Save and Reload</value>
@@ -1197,5 +1199,73 @@ Are you sure, that you like to change the input language?</value>
   </data>
   <data name="NoAutosave" xml:space="preserve">
     <value>No auto save</value>
+  </data>
+  <data name="ColorSettingAlternateBackColor" xml:space="preserve">
+    <value>Menu background 2</value>
+  </data>
+  <data name="ColorSettingBackColor" xml:space="preserve">
+    <value>Menu background</value>
+  </data>
+  <data name="ColorSettingBackGradient1" xml:space="preserve">
+    <value>Writer background</value>
+  </data>
+  <data name="ColorSettingBackGradient2" xml:space="preserve">
+    <value>Writer bacground 2</value>
+  </data>
+  <data name="ColorSettingButtonBorder" xml:space="preserve">
+    <value>Button border</value>
+  </data>
+  <data name="ColorSettingButtonFocus" xml:space="preserve">
+    <value>Focused button</value>
+  </data>
+  <data name="ColorSettingButtonHighlight" xml:space="preserve">
+    <value>Button mouse over</value>
+  </data>
+  <data name="ColorSettingButtonLight" xml:space="preserve">
+    <value>Button highlight</value>
+  </data>
+  <data name="ColorSettingButtonShadow" xml:space="preserve">
+    <value>Button shadow</value>
+  </data>
+  <data name="ColorSettingDarkerTitleColor" xml:space="preserve">
+    <value>Menu text darker</value>
+  </data>
+  <data name="ColorSettingDragColor" xml:space="preserve">
+    <value>Dragging scrollbar</value>
+  </data>
+  <data name="ColorSettingOverColor" xml:space="preserve">
+    <value>Highlight</value>
+  </data>
+  <data name="ColorSettingRtfBrush" xml:space="preserve">
+    <value>Marker for RTF documents</value>
+  </data>
+  <data name="ColorSettingsDialog" xml:space="preserve">
+    <value>Color settings</value>
+  </data>
+  <data name="ColorSettingSelectionColor" xml:space="preserve">
+    <value>Selection</value>
+  </data>
+  <data name="ColorSettingSelectionColor2" xml:space="preserve">
+    <value>Selection 2</value>
+  </data>
+  <data name="ColorSettingTitleColor" xml:space="preserve">
+    <value>Menu text</value>
+  </data>
+  <data name="EmptyTag" xml:space="preserve">
+    <value>&lt;unset&gt;</value>
+  </data>
+  <data name="ErrorClosing" xml:space="preserve">
+    <value>An error occured while closing.
+
+Would you like to close it anyway?</value>
+  </data>
+  <data name="FixPosition" xml:space="preserve">
+    <value>Dock to main window</value>
+  </data>
+  <data name="OpenColorSettingsDialog" xml:space="preserve">
+    <value>Open color settings</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Settings...</value>
   </data>
 </root>

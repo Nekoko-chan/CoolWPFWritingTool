@@ -584,6 +584,12 @@ namespace ComplexWriter
                 list.UpdateLanguage(language);
         }
 
+        public static IEnumerable<ColorElement> CloneColors(this IEnumerable<ColorElement> colors)
+        {
+            return colors.Select(elem => new ColorElement(elem.Key, elem.Display, elem.Color));
+        }
+         
+
     }
 
 }

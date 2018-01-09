@@ -168,5 +168,13 @@ namespace ComplexWriter
             };
             Application.Current.Shutdown();
         }
+
+        private void OpenSettings(object sender, RoutedEventArgs e)
+        {
+            var window = ((Button) sender).Tag as MainWindow;
+            if (window == null) return;
+
+            window.OpenSettings();
+        }
     }
 }
