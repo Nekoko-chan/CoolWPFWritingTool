@@ -3969,7 +3969,16 @@ namespace ComplexWriter
         {
             var dlg = new FontStyleWindow(oldStyle.ForegroundBrush, oldStyle.BackgroundBrush)
             {
-                Owner = this, TheFontFamily = Utilities.PossibleFonts.FirstOrDefault(elem => elem.Family.Equals(oldStyle.FontFamily)), TheTextDecoration = oldStyle.Decoration, TheFontSize = oldStyle.FontSize, TheFontStyle = oldStyle.Style, TheFontWeight = oldStyle.Weight, TextForground = oldStyle.ForegroundBrush, TextBackground = oldStyle.BackgroundBrush ?? Brushes.Transparent, TheFontStretch = oldStyle.Stretch, PredefinedColors = GetColors()
+                Owner = this,
+                TheFontFamily = Utilities.PossibleFonts.FirstOrDefault(elem => elem.Family.Equals(oldStyle.FontFamily)),
+                TheTextDecoration = oldStyle.Decoration,
+                TheFontSize = oldStyle.FontSize,
+                TheFontStyle = oldStyle.Style,
+                TheFontWeight = oldStyle.Weight,
+                TextForground = oldStyle.ForegroundBrush,
+                TextBackground = oldStyle.BackgroundBrush ?? Brushes.Transparent,
+                TheFontStretch = oldStyle.Stretch,
+                PredefinedColors = GetColors()
             };
 
             dlg.ShowDialog();
@@ -3978,7 +3987,17 @@ namespace ComplexWriter
                 return;
             var addstyle = new ComplexStyle
             {
-                FontFamily = dlg.TheFontFamily == null ? oldStyle.FontFamily : dlg.TheFontFamily.Family, FontSize = dlg.TheFontSize, IsBold = dlg.TheFontWeight == FontWeights.Bold, IsItalic = dlg.TheFontStyle == FontStyles.Italic, IsUnderlined = TextDecorations.Underline.Equals(dlg.TheTextDecoration), IsStrikedOut = TextDecorations.Strikethrough.Equals(dlg.TheTextDecoration), BackgroundBrush = dlg.TextBackground, ForegroundBrush = dlg.TextForground, IsCondenced = dlg.TheFontStretch == FontStretches.Condensed, Caption = oldStyle.Caption
+                FontFamily = dlg.TheFontFamily == null ? oldStyle.FontFamily : dlg.TheFontFamily.Family,
+                FontSize = dlg.TheFontSize,
+                IsBold = dlg.TheFontWeight == FontWeights.Bold,
+                IsItalic = dlg.TheFontStyle == FontStyles.Italic,
+                IsUnderlined = TextDecorations.Underline.Equals(dlg.TheTextDecoration),
+                IsStrikedOut = TextDecorations.Strikethrough.Equals(dlg.TheTextDecoration),
+                BackgroundBrush = dlg.TextBackground,
+                ForegroundBrush = dlg.TextForground,
+                IsCondenced = dlg.TheFontStretch == FontStretches.Condensed,
+                Caption = oldStyle.Caption,
+                IsDefault = oldStyle.IsDefault
             };
 
             ReplaceStyleWith(styles, oldStyle, addstyle, ask);
