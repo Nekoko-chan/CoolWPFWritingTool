@@ -1210,7 +1210,7 @@ Are you sure, that you like to change the input language?</value>
     <value>Writer background</value>
   </data>
   <data name="ColorSettingBackGradient2" xml:space="preserve">
-    <value>Writer bacground 2</value>
+    <value>Writer background 2</value>
   </data>
   <data name="ColorSettingButtonBorder" xml:space="preserve">
     <value>Button border</value>

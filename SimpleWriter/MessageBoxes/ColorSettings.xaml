@@ -11,7 +11,7 @@
         xmlns:local="clr-namespace:ComplexWriter.global"
         xmlns:system="clr-namespace:System;assembly=mscorlib"
         xmlns:p="clr-namespace:ComplexWriter.Properties"
-                                  Width="900" SizeToContent="Height"
+                                  Width="950" SizeToContent="Height"
         Title="{x:Static p:Resources.ColorSettingsDialog}" >
     <Window.InputBindings>
         <KeyBinding Key="A" Command="{x:Static commands1:CancelCommand.CancelOnA}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=messageBoxes:ColorSettings}}" />

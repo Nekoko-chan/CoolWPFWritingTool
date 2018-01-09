@@ -532,7 +532,7 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Writer bacground 2.
+        ///   Looks up a localized string similar to Writer background 2.
         /// </summary>
         public static string ColorSettingBackGradient2 {
             get {
