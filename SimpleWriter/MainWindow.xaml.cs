@@ -1425,19 +1425,28 @@ namespace ComplexWriter
 
         public void CloseIt()
         {
+            if (!HandleClose()) return;
+
+            Application.Current.Shutdown();
+        }
+
+        private bool HandleClose()
+        {
             var observableCollection = TextFiles.Where(GetUnsavedFiles).ToList();
             if (observableCollection.Any())
                 try
                 {
-                    var allowSave = Settings.Default.SaveAutomatical ||
+                    var allowSave = Settings.Default.SaveAutomatical || Settings.Default.AutoSaveOnBreak ||
                                     QuestionBox.ShowMessage(this,
                                         Properties.Resources.SomeFilesChanged,
                                         Properties.Resources.SaveChanged, false) == MessageBoxResult.Yes;
-                    if(allowSave)
+                    if (allowSave)
                         if (!SaveAllFiles(observableCollection))
                         {
-                            if (QuestionBox.ShowMessage(this, Properties.Resources.SaveError, Properties.Resources.CloseAnyway, false) == MessageBoxResult.No)
-                                return;
+                            if (
+                                QuestionBox.ShowMessage(this, Properties.Resources.SaveError, Properties.Resources.CloseAnyway,
+                                    false) == MessageBoxResult.No)
+                                return false;
                         }
                 }
                 catch (Exception e)
@@ -1447,7 +1456,7 @@ namespace ComplexWriter
 
             UpdateOpenFileList();
 
-            Settings.Default.LastFontName = CurrentFontFamily == null ? null : CurrentFontFamily.Family.FamilyNames.FirstOrDefault().Value;
+            Settings.Default.LastFontName = CurrentFontFamily?.Family.FamilyNames.FirstOrDefault().Value;
             Settings.Default.LastFontSize = CurrentFontSize;
             //Settings.Default.CheckSpelling = SpellCheckEnabled;
             Settings.Default.TopMost = IsTopMost;
@@ -1464,14 +1473,13 @@ namespace ComplexWriter
             Settings.Default.ShowToolbar = ShowToolbar;
             Settings.Default.ShowNames = ShowNameList;
 
-            if(ShowImagePopup)
+            if (ShowImagePopup)
             {
-                Settings.Default.ImagePopupLocation = new Point(ImagePopup.HorizontalOffset,ImagePopup.VerticalOffset);
+                Settings.Default.ImagePopupLocation = new Point(ImagePopup.HorizontalOffset, ImagePopup.VerticalOffset);
                 Settings.Default.Watermark = Utilities.ConvertImageToByteArray(imageForPopup.Source);
                 Settings.Default.WatermarkOpacity = imageForPopup.Opacity;
-                Settings.Default.WatermarkSize  = new Size(ImagePopup.Width, ImagePopup.Height);
+                Settings.Default.WatermarkSize = new Size(ImagePopup.Width, ImagePopup.Height);
                 Settings.Default.FlipImage = FlipImage;
-
             }
             else
             {
@@ -1480,10 +1488,11 @@ namespace ComplexWriter
 
             Settings.Default.Save();
 
-            if(_saveColorsOnClose)
-                if (!SaveData(_colors) && QuestionBox.ShowMessage(this, Properties.Resources.ErrorClosing, Properties.Resources.CloseAnyway) == MessageBoxResult.No) return;
-
-            Application.Current.Shutdown();
+            if (_saveColorsOnClose)
+                if (!SaveData(_colors) &&
+                    QuestionBox.ShowMessage(this, Properties.Resources.ErrorClosing, Properties.Resources.CloseAnyway) ==
+                    MessageBoxResult.No) return false;
+            return true;
         }
 
         private void SaveImageInSettings()
@@ -3490,11 +3499,9 @@ namespace ComplexWriter
             set { SetValue(TextLanguageProperty, value); }
         }
 
-        private void RestartApplication()
+        public void RestartApplication()
         {
-            if (_saveColorsOnClose)
-                if (!SaveData(_colors) && QuestionBox.ShowMessage(this,Properties.Resources.ErrorClosing,Properties.Resources.CloseAnyway) == MessageBoxResult.No) return;
-
+            if (!HandleClose()) return;
             Application.Current.Exit += (s, arg) => { Process.Start(Application.ResourceAssembly.Location, "-n"); };
             Application.Current.Shutdown();
         }

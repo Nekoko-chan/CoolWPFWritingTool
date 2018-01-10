@@ -163,10 +163,7 @@ namespace ComplexWriter
 
         private void Restart(object sender, RoutedEventArgs e)
         {
-            Application.Current.Exit += delegate {
-                System.Diagnostics.Process.Start(Application.ResourceAssembly.Location,"-n");
-            };
-            Application.Current.Shutdown();
+            MainWindow.Global.RestartApplication();
         }
 
         private void OpenSettings(object sender, RoutedEventArgs e)
