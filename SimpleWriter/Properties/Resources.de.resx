@@ -702,10 +702,10 @@ Soll trotzdem beendet werden?</value>
   <data name="SomeFilesChanged" xml:space="preserve">
     <value>Einige Dateien wurden geändert. Sollen diese gespeichert werden?</value>
   </data>
-  <data name="Speach" xml:space="preserve">
+  <data name="Speech" xml:space="preserve">
     <value>Sprache ohne Anführungszeichen</value>
   </data>
-  <data name="SpeachWithQuotes" xml:space="preserve">
+  <data name="SpeechWithQuotes" xml:space="preserve">
     <value>Sprache mit Anfühgrungszeichen</value>
   </data>
   <data name="SpeacSimpleQuotes" xml:space="preserve">
@@ -1173,7 +1173,7 @@ Soll das Programm jetzt neu gestartet werden?</value>
   <data name="String9" xml:space="preserve">
     <value>Wie möchten Sie mit der Datei verfahren?</value>
   </data>
-  <data name="UseAsSpeach" xml:space="preserve">
+  <data name="UseAsSpeech" xml:space="preserve">
     <value>Stil als "Sprache" verwenden</value>
   </data>
   <data name="UseOtherName" xml:space="preserve">
@@ -1268,5 +1268,8 @@ Would you like to close it anyway?</value>
   </data>
   <data name="Settings" xml:space="preserve">
     <value>Einstellungen...</value>
+  </data>
+  <data name="SpeechShort" xml:space="preserve">
+    <value>Sprache</value>
   </data>
 </root>

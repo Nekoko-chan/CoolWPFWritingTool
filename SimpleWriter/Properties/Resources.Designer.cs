@@ -2737,24 +2737,6 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Speech without quotes.
-        /// </summary>
-        public static string Speach {
-            get {
-                return ResourceManager.GetString("Speach", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Speech with quotes.
-        /// </summary>
-        public static string SpeachWithQuotes {
-            get {
-                return ResourceManager.GetString("SpeachWithQuotes", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Speech with single quotes.
         /// </summary>
         public static string SpeacSimpleQuotes {
@@ -2796,6 +2778,33 @@ namespace ComplexWriter.Properties {
         public static string Species {
             get {
                 return ResourceManager.GetString("Species", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Speech without quotes.
+        /// </summary>
+        public static string Speech {
+            get {
+                return ResourceManager.GetString("Speech", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Speech.
+        /// </summary>
+        public static string SpeechShort {
+            get {
+                return ResourceManager.GetString("SpeechShort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Speech with quotes.
+        /// </summary>
+        public static string SpeechWithQuotes {
+            get {
+                return ResourceManager.GetString("SpeechWithQuotes", resourceCulture);
             }
         }
         
@@ -3230,9 +3239,9 @@ namespace ComplexWriter.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Use style as &quot;Speech&quot;.
         /// </summary>
-        public static string UseAsSpeach {
+        public static string UseAsSpeech {
             get {
-                return ResourceManager.GetString("UseAsSpeach", resourceCulture);
+                return ResourceManager.GetString("UseAsSpeech", resourceCulture);
             }
         }
         

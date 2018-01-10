@@ -702,10 +702,10 @@ Would you like to close the program anyway?</value>
   <data name="SomeFilesChanged" xml:space="preserve">
     <value>Some files are changed. Would you like to save them?</value>
   </data>
-  <data name="Speach" xml:space="preserve">
+  <data name="Speech" xml:space="preserve">
     <value>Speech without quotes</value>
   </data>
-  <data name="SpeachWithQuotes" xml:space="preserve">
+  <data name="SpeechWithQuotes" xml:space="preserve">
     <value>Speech with quotes</value>
   </data>
   <data name="SpeacSimpleQuotes" xml:space="preserve">
@@ -1174,7 +1174,7 @@ Would you like to restart it now?</value>
   <data name="String9" xml:space="preserve">
     <value>What would you like to do?</value>
   </data>
-  <data name="UseAsSpeach" xml:space="preserve">
+  <data name="UseAsSpeech" xml:space="preserve">
     <value>Use style as "Speech"</value>
   </data>
   <data name="UseOtherName" xml:space="preserve">
@@ -1267,5 +1267,8 @@ Would you like to close it anyway?</value>
   </data>
   <data name="Settings" xml:space="preserve">
     <value>Settings...</value>
+  </data>
+  <data name="SpeechShort" xml:space="preserve">
+    <value>Speech</value>
   </data>
 </root>

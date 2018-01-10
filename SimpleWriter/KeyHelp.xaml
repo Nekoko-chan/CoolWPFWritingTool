@@ -60,10 +60,10 @@
                 <TextBlock Grid.Row="2" Grid.Column="1" Text="{x:Static p:Resources.StyleNumber}" Style="{StaticResource CombinationKey}" />
 
                 <TextBlock Grid.Row="3" Grid.Column="0" Text="F8" Style="{StaticResource CombinationValue}" />
-                <TextBlock Grid.Row="3" Grid.Column="1" Text="{x:Static p:Resources.SpeachWithQuotes}" Style="{StaticResource CombinationKey}" />
+                <TextBlock Grid.Row="3" Grid.Column="1" Text="{x:Static p:Resources.SpeechWithQuotes}" Style="{StaticResource CombinationKey}" />
 
                 <TextBlock Grid.Row="4" Grid.Column="0" Text="F7" Style="{StaticResource CombinationValue}" />
-                <TextBlock Grid.Row="4" Grid.Column="1" Text="{x:Static p:Resources.Speach}" Style="{StaticResource CombinationKey}" />
+                <TextBlock Grid.Row="4" Grid.Column="1" Text="{x:Static p:Resources.Speech}" Style="{StaticResource CombinationKey}" />
 
                 <TextBlock Grid.Row="5" Grid.Column="0" Text="F6" Style="{StaticResource CombinationValue}" />
                 <TextBlock Grid.Row="5" Grid.Column="1" Text="{x:Static p:Resources.QuotesWithoutAStyle}" Style="{StaticResource CombinationKey}" />

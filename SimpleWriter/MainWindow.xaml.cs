@@ -3184,9 +3184,17 @@ namespace ComplexWriter
                 Owner = this, Watermark = Properties.Resources.StyleTitle, Title = Properties.Resources.ReplaceStyle+": " + styles.Title
             };
             input.ShowDialog();
-            captionText = input.UseAsSpeek ? Properties.Resources.Language : input.Text;
+            captionText = input.UseAsSpeek ? GetSpeechCaption() : input.Text;
             isSpeak = input.UseAsSpeek;
             return input.Result == MessageBoxResult.OK;
+        }
+
+        private string GetSpeechCaption()
+        {
+            return InputLanguageManager.Current.CurrentInputLanguage.IetfLanguageTag.StartsWith("de",
+                StringComparison.InvariantCultureIgnoreCase)
+                ? "Sprache"
+                : "Speech";
         }
 
         private void HandleStyles(ComplexStyles styles, ComplexStyle applyableStyle, ComplexStyle style, string text, bool ignoreMesage = false)

@@ -96,7 +96,7 @@
                     FontSize="{StaticResource fontSizeMedium}" FontFamily="{StaticResource defaultFont}">
                 </TextBox>
             </Border>
-            <CheckBox Style="{StaticResource globalCheckbox}" IsChecked="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:TextInput},Path=UseAsSpeek}" Margin="20,0,40,10" FontFamily="{StaticResource defaultFont}" FontSize="{StaticResource fontSizeMedium}" Content="{x:Static p:Resources.UseAsSpeach}"/>
+            <CheckBox Style="{StaticResource globalCheckbox}" IsChecked="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:TextInput},Path=UseAsSpeek}" Margin="20,0,40,10" FontFamily="{StaticResource defaultFont}" FontSize="{StaticResource fontSizeMedium}" Content="{x:Static p:Resources.UseAsSpeech}"/>
         </StackPanel>
 
 
