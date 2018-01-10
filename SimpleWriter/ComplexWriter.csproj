@@ -157,6 +157,7 @@
     <Content Include="Fonts\readme.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Images\ColorSchemes.png" />
     <EmbeddedResource Include="global\Colors.txt" />
     <Resource Include="Images\gear.png" />
     <Resource Include="Images\lock2.png" />
