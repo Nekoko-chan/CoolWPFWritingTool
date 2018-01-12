@@ -10,54 +10,14 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="global/global.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="global/RingBlock.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
-            <VisualBrush x:Key="BreakerBrush" TileMode="Tile" Stretch="Uniform" Viewport="0,0,288,20" ViewportUnits="Absolute">
-                <VisualBrush.Visual>
-                    <Border Width="288" Height="20">
-                        <Border.Background>
-                            <DrawingBrush Viewport="0,0,16,34" ViewportUnits="Absolute" TileMode="FlipX">
-                                <DrawingBrush.Drawing>
-                                    <DrawingGroup>
-                                        <GeometryDrawing Brush="Transparent">
-                                            <GeometryDrawing.Geometry>
-                                                <RectangleGeometry Rect="0,0,16,34"/>
-                                            </GeometryDrawing.Geometry>
-                                        </GeometryDrawing>
-                                        <GeometryDrawing>
-                                            <GeometryDrawing.Pen>
-                                                <Pen Brush="#90000000" Thickness="1" DashStyle="{StaticResource Dashes}" />
-                                            </GeometryDrawing.Pen>
-                                            <GeometryDrawing.Geometry>
-                                                <PathGeometry>
-                                                    <PathGeometry.Figures>
-                                                        <PathFigure StartPoint="0,34">
-                                                            <LineSegment Point="16,0" IsStroked="True"/>
-                                                        </PathFigure>
-                                                        <PathFigure StartPoint="0,0">
-                                                            <LineSegment Point="16,34" IsStroked="True"/>
-                                                        </PathFigure>
-                                                    </PathGeometry.Figures>
-                                                </PathGeometry>
-                                            </GeometryDrawing.Geometry>
-                                        </GeometryDrawing>
-                                    </DrawingGroup>
-                                </DrawingBrush.Drawing>
-                            </DrawingBrush>
-                        </Border.Background>
-                        <TextBlock Foreground="#B2000000" HorizontalAlignment="Center" VerticalAlignment="Center" FontFamily="{StaticResource defaultFont}" FontSize="17" Text="Zeilenumbruch"></TextBlock>
-                    </Border>
-                </VisualBrush.Visual>
-            </VisualBrush>
-           
         </ResourceDictionary>
     </UserControl.Resources>
     <Grid>
-        <FlowDocumentPageViewer>
-            <FlowDocument>
-                <Paragraph Margin="0" FontSize="25" FontFamily="{StaticResource numberFont}">Testee</Paragraph>
-                <Paragraph Style="{StaticResource PageBreaker}"/>
-                <Paragraph Margin="0" FontSize="25" FontFamily="{StaticResource numberFont}">Tester</Paragraph>
-            </FlowDocument>
-        </FlowDocumentPageViewer>
+
+        <Border Height="45" Width="450" Background="{StaticResource Ringblock}">
+        </Border>
     </Grid>
 </UserControl>
+

@@ -1,0 +1,104 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:ComplexWriter.global">
+    <Pen x:Key="BorderPen" Brush="Black" Thickness="1"></Pen>
+    <Pen x:Key="BorderPen2" Brush="Gray" Thickness="1"></Pen>
+    
+    <SolidColorBrush x:Key="PaperBrush" Color="Yellow"/>
+    <SolidColorBrush x:Key="PaperHole" Color="Black" Opacity="0.4"/>
+
+    <DrawingBrush x:Key="Ringblock" TileMode="Tile" Viewport="0,0,22.5,45" ViewportUnits="Absolute">
+        <DrawingBrush.Drawing>
+            <DrawingGroup>
+                <GeometryDrawing>
+                    <GeometryDrawing.Pen>
+                        <Pen>
+                            <Pen.Brush>
+                                <LinearGradientBrush>
+                                    <GradientStop Color="#FFC0C8EE" Offset="0.31"/>
+                                    <GradientStop Color="#FF575757" Offset="1"/>
+                                    <GradientStop Color="#FF8F95B0"/>
+                                </LinearGradientBrush>
+                            </Pen.Brush>
+                        </Pen>
+                    </GeometryDrawing.Pen>
+                    <GeometryDrawing.Brush>
+                        <LinearGradientBrush>
+                            <GradientStop Color="#FFE2E7FF" Offset="0.31"/>
+                            <GradientStop Color="#FF999999" Offset="1"/>
+                            <GradientStop Color="#FFA5ADD4"/>
+                        </LinearGradientBrush>
+                    </GeometryDrawing.Brush>
+                    <GeometryDrawing.Geometry>
+                        <PathGeometry>
+                            <PathFigure IsClosed="True" IsFilled="True" StartPoint="10,2">
+                                <PathFigure.Segments>
+                                    <!--<LineSegment Point="20,2"/>-->
+                                    <BezierSegment Point1="15,0" Point2="15,0" Point3="20,2"/>
+                                    <BezierSegment Point1="22,10" Point2="22,40" Point3="20,52"/>
+                                    <LineSegment Point="10,52"/>
+                                    <BezierSegment Point1="12,40" Point2="12,10" Point3="10,2"/>
+                                </PathFigure.Segments>
+                            </PathFigure>
+                        </PathGeometry>
+                    </GeometryDrawing.Geometry>
+                </GeometryDrawing>
+                <GeometryDrawing Brush="Transparent">
+                    <GeometryDrawing.Geometry>
+                        <RectangleGeometry Rect="0,0,20,60"></RectangleGeometry>
+                    </GeometryDrawing.Geometry>
+                </GeometryDrawing>
+
+                <GeometryDrawing Brush="{StaticResource PaperBrush}">
+                    <GeometryDrawing.Geometry>
+                        <RectangleGeometry Rect="0,20,30,50"></RectangleGeometry>
+                    </GeometryDrawing.Geometry>
+                </GeometryDrawing>
+
+                <GeometryDrawing Pen="{StaticResource BorderPen2}">
+                    <GeometryDrawing.Geometry>
+                        <EllipseGeometry RadiusX="8" RadiusY="8" Center="15,50"></EllipseGeometry>
+                    </GeometryDrawing.Geometry>
+                </GeometryDrawing>
+                <GeometryDrawing Brush="{StaticResource PaperHole}" Pen="{StaticResource BorderPen}">
+                    <GeometryDrawing.Geometry>
+                        <EllipseGeometry RadiusX="7" RadiusY="7" Center="15,50"></EllipseGeometry>
+                    </GeometryDrawing.Geometry>
+                </GeometryDrawing>
+                <GeometryDrawing>
+                    <GeometryDrawing.Pen>
+                        <Pen>
+                            <Pen.Brush>
+                                <LinearGradientBrush>
+                                    <GradientStop Color="#FFC0C8EE" Offset="0.31"/>
+                                    <GradientStop Color="#FF575757" Offset="1"/>
+                                    <GradientStop Color="#FF8F95B0"/>
+                                </LinearGradientBrush>
+                            </Pen.Brush>
+                        </Pen>
+                    </GeometryDrawing.Pen>
+                    <GeometryDrawing.Brush>
+                        <LinearGradientBrush>
+                            <GradientStop Color="#FFE2E7FF" Offset="0.31"/>
+                            <GradientStop Color="#FF999999" Offset="1"/>
+                            <GradientStop Color="#FFA5ADD4"/>
+                        </LinearGradientBrush>
+                    </GeometryDrawing.Brush>
+                    <GeometryDrawing.Geometry>
+                        <PathGeometry>
+                            <PathFigure IsClosed="True" IsFilled="True" StartPoint="10,2">
+                                <PathFigure.Segments>
+                                    <LineSegment Point="20,2"/>
+                                    <BezierSegment Point1="15,0" Point2="15,0" Point3="20,2"/>
+                                    <BezierSegment Point1="17,10" Point2="17,40" Point3="20,52"/>
+                                    <LineSegment Point="10,52"/>
+                                    <BezierSegment Point1="7,40" Point2="7,10" Point3="10,2"/>
+                                </PathFigure.Segments>
+                            </PathFigure>
+                        </PathGeometry>
+                    </GeometryDrawing.Geometry>
+                </GeometryDrawing>
+            </DrawingGroup>
+        </DrawingBrush.Drawing>
+    </DrawingBrush>
+</ResourceDictionary>

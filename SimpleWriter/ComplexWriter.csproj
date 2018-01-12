@@ -391,6 +391,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="global\RingBlock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="global\Scrollbars.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
