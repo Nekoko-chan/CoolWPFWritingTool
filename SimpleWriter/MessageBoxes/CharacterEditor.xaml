@@ -132,7 +132,7 @@
                           AutoWordSelection="False" x:Name="Box"
                     FontSize="{StaticResource fontSizeMedium}" FontFamily="{StaticResource defaultFont}">
                     <TextBox.ContextMenu>
-                        <ContextMenu Name="ContextMenu" Style="{StaticResource context}">
+                        <ContextMenu Name="ContextMenu" Style="{StaticResource context}" MaxHeight="{Binding RelativeSource={RelativeSource Self},Path=Height,Converter={StaticResource MaxHeightConverter}}">
                             <ContextMenu.CommandBindings>
                                 <CommandBinding Command="commands1:OwnPasteCommand.Paste"
                                                     CanExecute="CanExecuteRerollCommand"

@@ -4,8 +4,11 @@
                     xmlns:system="clr-namespace:System;assembly=mscorlib">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="global.xaml"/>
+        <ResourceDictionary Source="Scrollbars.xaml"/>
         <ResourceDictionary Source="../ColorSet/Colors.xaml"/>
         <ResourceDictionary>
+            
+            
     <Style x:Key="context" TargetType="{x:Type ContextMenu}">
         <Setter Property="SnapsToDevicePixels" Value="True"/>
         <Setter Property="OverridesDefaultStyle" Value="True"/>
@@ -42,7 +45,9 @@
                                 <Border Grid.Row="1" Margin="2,0" BorderThickness="1,0,1,0"  Padding="2" Background="{StaticResource BackColorBrush}" BorderBrush="{DynamicResource TitleBrush}">
                                     <Border Background="{StaticResource BackColorBrush}" Margin="5" BorderBrush="Transparent" ClipToBounds="True" BorderThickness="1">
                                         <Grid>
-                                            <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Cycle" Margin="3"/>
+                                            <ScrollViewer VerticalScrollBarVisibility="Auto" Style="{StaticResource TopScroller}">
+                                                <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Cycle" Margin="3"/>
+                                            </ScrollViewer>
                                         </Grid>
                                     </Border>
                                 </Border>
@@ -90,7 +95,9 @@
                                 <Border Grid.Row="1" Margin="2,0" BorderThickness="1,0,1,0"  Padding="2" Background="{StaticResource BackColorBrush}" BorderBrush="{DynamicResource TitleBrush}">
                                     <Border Background="{StaticResource BackColorBrush}" Margin="5" BorderBrush="Transparent" ClipToBounds="True" BorderThickness="1">
                                         <Grid>
-                                            <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Cycle" Margin="3"/>
+                                            <ScrollViewer VerticalScrollBarVisibility="Auto" Style="{StaticResource TopScroller}">
+                                                <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Cycle" Margin="3"/>
+                                            </ScrollViewer>
                                         </Grid>
                                     </Border>
                                 </Border>

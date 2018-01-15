@@ -8,12 +8,17 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
-using System.Windows.Input;
+using System.Windows.Forms;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using ComplexWriter.MessageBoxes;
 using ComplexWriter.Properties;
 using CustomControls;
+using Cursors = System.Windows.Input.Cursors;
+using FlowDirection = System.Windows.FlowDirection;
+using ListView = System.Windows.Controls.ListView;
+using ListViewItem = System.Windows.Controls.ListViewItem;
+using TextBox = System.Windows.Controls.TextBox;
 
 namespace ComplexWriter.global
 {
@@ -2304,9 +2309,22 @@ namespace ComplexWriter.global
     }
 
 
+    public class MaxHeightConverter  : IValueConverter
+    {
+        public object Convert(object value, Type type, object parameter, CultureInfo culture)
+        {
+            return  SystemInformation.VirtualScreen.Height-50;
+        }
+
+        public object ConvertBack(object value, Type type, object parameter, CultureInfo culture)
+        {
+            throw new NotSupportedException();
+        }
+    }
 
 
 
-#endregion
+
+    #endregion
 
 }

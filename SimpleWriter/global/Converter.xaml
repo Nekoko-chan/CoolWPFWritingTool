@@ -78,4 +78,6 @@
     <global:MultiDebugConverter x:Key="MultiDebugConverter"/>
     <global:QuoteButtonBackgroundConverter x:Key="QuoteButtonBackgroundConverter"/>
     <global:LanguageTextConverter x:Key="LanguageTextConverter"/>
+    <global:MaxHeightConverter x:Key="MaxHeightConverter"/>
+
 </ResourceDictionary>

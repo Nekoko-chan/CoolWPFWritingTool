@@ -409,7 +409,7 @@
                         </MultiBinding>
                     </RichTextBox.Cursor>
                     <RichTextBox.ContextMenu>
-                        <ContextMenu Name="ContextMenu" Style="{StaticResource context}">
+                        <ContextMenu MaxHeight="{Binding RelativeSource={RelativeSource Self},Path=Height, Converter={StaticResource MaxHeightConverter}}" Name="ContextMenu" Style="{StaticResource context}">
                             <ContextMenu.CommandBindings>
                                 <CommandBinding Command="commands:OwnPasteCommand.Paste"
                                                     CanExecute="CanExecuteRerollCommand"
