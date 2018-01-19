@@ -7,7 +7,8 @@ SimpleWriter/bin/
 SimpleWriter/obj/
 test/bin/
 test/obj/
-TestElements/
 ColorTool/bin/
 ColorTool/obj/Debug/App.g.cs
 ColorTool/obj/
+TestElements/bin/
+TestElements/obj/

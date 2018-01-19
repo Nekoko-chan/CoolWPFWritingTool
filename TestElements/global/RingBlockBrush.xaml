@@ -4,8 +4,23 @@
     <Pen x:Key="BorderPen" Brush="Black" Thickness="1"></Pen>
     <Pen x:Key="BorderPen2" Brush="Gray" Thickness="1"></Pen>
 
-    <SolidColorBrush x:Key="PaperBrush" Color="#E0A6C5"/>
+    <Color x:Key="PaperColor2">#FFDFFAFF</Color>
+    <Color x:Key="PaperColor">#FFF8FEFF</Color>
+
+    <SolidColorBrush x:Key="PaperBrush" Color="{DynamicResource PaperColor}"/>
+
+    <LinearGradientBrush x:Key="PaperBrushGradient" EndPoint="0.5,1" StartPoint="0.5,0" Opacity="1">
+        <GradientStop Color="{StaticResource PaperColor2}" Offset="1"/>
+        <GradientStop Color="{StaticResource PaperColor}" Offset="0"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="BottomMenuBrush" EndPoint="0.5,1" StartPoint="0.5,0" Opacity="1">
+        <GradientStop Color="#FF004F63" Offset="0"/>
+        <GradientStop Color="#FF002049" Offset="1"/>
+    </LinearGradientBrush>
     <SolidColorBrush x:Key="PaperHole" Color="Black" Opacity="0.4"/>
+    <SolidColorBrush x:Key="PaperBrushDark" Color="#FFA0E3F0"/>
+    <SolidColorBrush x:Key="PaperBrushDarkBorder" Color="#FF4AA0B1"/>
 
     <DrawingBrush x:Key="Ringblock" TileMode="Tile" Viewport="0,0,22.5,45" ViewportUnits="Absolute">
         <DrawingBrush.Drawing>
