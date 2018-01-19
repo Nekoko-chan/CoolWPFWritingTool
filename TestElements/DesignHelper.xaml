@@ -11,7 +11,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="global/global.xaml"/>
                 <ResourceDictionary Source="global/RingBlockBrush.xaml"/>
-                <ResourceDictionary Source="global/Scrollbars.xaml"/>
+                <ResourceDictionary Source="global/ScrollbarsHidden.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
