@@ -11,7 +11,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="global/global.xaml"/>
                 <ResourceDictionary Source="global/RingBlockBrush.xaml"/>
-                <ResourceDictionary Source="global/ScrollbarsHidden.xaml"/>
+                <ResourceDictionary Source="global/RichTextBox.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
@@ -29,17 +29,17 @@
                         <RowDefinition Height="*" />
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
-                    <RichTextBox Margin="5,5,5,0" PreviewKeyDown="UIElement_OnPreviewKeyDown" x:Name="Box" VerticalScrollBarVisibility="Auto">
-                        <RichTextBox.Resources>
-                            <Style TargetType="FlowDocument">
-                                <Setter Property="FontFamily" Value="{StaticResource defaultFont}"/>
-                                <Setter Property="FontSize" Value="13.5"/>
-                            </Style>
-                            <Style TargetType="Paragraph">
-                                <Setter Property="Margin" Value="0"/>
-                            </Style>
-                        </RichTextBox.Resources>
-                    </RichTextBox>
+                        <RichTextBox Background="White" BorderBrush="{StaticResource PaperBrushDarkBorder}" BorderThickness="1" Margin="15,15,15,0" Style="{StaticResource TheBox}" PreviewKeyDown="UIElement_OnPreviewKeyDown" x:Name="Box">
+                            <RichTextBox.Resources>
+                                <Style TargetType="FlowDocument">
+                                    <Setter Property="FontFamily" Value="{StaticResource defaultFont}"/>
+                                    <Setter Property="FontSize" Value="13.5"/>
+                                </Style>
+                                <Style TargetType="Paragraph">
+                                    <Setter Property="Margin" Value="0"/>
+                                </Style>
+                            </RichTextBox.Resources>
+                        </RichTextBox>
                     <Border Height="60" Grid.Row="1">
                         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                             <Button Content="Close" Click="Shutdown"></Button>
