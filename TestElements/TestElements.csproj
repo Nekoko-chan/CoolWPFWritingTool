@@ -118,6 +118,9 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
+    <Resource Include="Resources\New Comic BD Outline.otf" />
+    <Resource Include="Resources\New Comic BD Shadow.otf" />
+    <Resource Include="Resources\New Comic BD.otf" />
     <Resource Include="Resources\AveriaSansLibre-Bold.ttf" />
     <Resource Include="Resources\AveriaSansLibre-BoldItalic.ttf" />
     <Resource Include="Resources\AveriaSansLibre-Italic.ttf" />
