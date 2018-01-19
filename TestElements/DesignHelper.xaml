@@ -31,7 +31,7 @@
                         <RowDefinition Height="*" />
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
-                        <TextBlock Margin="15" FontSize="26" FontFamily="{StaticResource numberFont}" Text="{Binding RelativeSource={RelativeSource AncestorType=testElements:DesignHelper},Path=Datetext}"></TextBlock>
+                        <TextBlock Margin="15,15,15,5" FontSize="26" FontFamily="{StaticResource numberFont}" Text="{Binding RelativeSource={RelativeSource AncestorType=testElements:DesignHelper},Path=Datetext}"></TextBlock>
                         <RichTextBox Grid.Row="1" Background="White" BorderBrush="{StaticResource PaperBrushDarkBorder}" BorderThickness="1" Margin="15,0" Style="{StaticResource TheBox}" PreviewKeyDown="UIElement_OnPreviewKeyDown" x:Name="Box">
                             <RichTextBox.Resources>
                                 <Style TargetType="FlowDocument">
