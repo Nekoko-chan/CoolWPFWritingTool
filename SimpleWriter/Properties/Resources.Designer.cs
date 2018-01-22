@@ -151,6 +151,15 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add tag.
+        /// </summary>
+        public static string AddTag {
+            get {
+                return ResourceManager.GetString("AddTag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Show password if the tab is changed.
         /// </summary>
         public static string AksForPasswordTabs {
@@ -2287,6 +2296,15 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Remove current tag.
+        /// </summary>
+        public static string RemoveTag {
+            get {
+                return ResourceManager.GetString("RemoveTag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rename.
         /// </summary>
         public static string Rename {
@@ -3069,6 +3087,24 @@ namespace ComplexWriter.Properties {
         public static string SystemColors {
             get {
                 return ResourceManager.GetString("SystemColors", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tags loaded.
+        /// </summary>
+        public static string TagHandlerLoaded {
+            get {
+                return ResourceManager.GetString("TagHandlerLoaded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tag hover color.
+        /// </summary>
+        public static string TagOverColor {
+            get {
+                return ResourceManager.GetString("TagOverColor", resourceCulture);
             }
         }
         

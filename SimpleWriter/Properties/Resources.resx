@@ -1271,4 +1271,16 @@ Would you like to close it anyway?</value>
   <data name="SpeechShort" xml:space="preserve">
     <value>Speech</value>
   </data>
+  <data name="AddTag" xml:space="preserve">
+    <value>Add tag</value>
+  </data>
+  <data name="RemoveTag" xml:space="preserve">
+    <value>Remove current tag</value>
+  </data>
+  <data name="TagHandlerLoaded" xml:space="preserve">
+    <value>Tags loaded</value>
+  </data>
+  <data name="TagOverColor" xml:space="preserve">
+    <value>Tag hover color</value>
+  </data>
 </root>

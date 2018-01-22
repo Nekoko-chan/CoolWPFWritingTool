@@ -36,6 +36,10 @@
         <Color x:Key="ButtonHighlight">{12}</Color>
         <Color x:Key="ButtonShadow">{13}</Color>
         <SolidColorBrush x:Key="ButtonBorder">{14}</SolidColorBrush>
+    <!-- Farbschlüssel des Tag Buttons-->
+
+		 <Color x:Key="TagOverColor">{16}</Color>
+
 
     <!-- Pinsel für Dateien, die nur im rtf-Format geschrieben sind -->
 

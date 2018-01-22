@@ -11,6 +11,7 @@
 
     <!-- Hintergrundfarben (In der Regel eine dunkle Farbe) -->
     <Color x:Key="BackColor">#FF26002d</Color>
+    <Color x:Key="TagOverColor">#FFe62e00</Color>
     <Color x:Key="AlternateBackColor">#FF26002d</Color>
     
     <!-- Farbe des Sliders, wenn die Maus drüber ist -->

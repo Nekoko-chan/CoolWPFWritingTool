@@ -11,6 +11,7 @@
         xmlns:characterNames="clr-namespace:ComplexWriter.CharacterNames"
         xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
         xmlns:system="clr-namespace:System;assembly=mscorlib"
+        xmlns:wpfTagControl="clr-namespace:WPFTagControl;assembly=WPFTagControl"
         Title="{x:Static p:Resources.Title}" Height="444" Width="616">
     <Window.Resources>
         <ResourceDictionary>
@@ -24,6 +25,7 @@
                 <ResourceDictionary Source="KeyHelp.xaml"/>
                 <ResourceDictionary Source="global/MenuItem.xaml"/>
                 <ResourceDictionary Source="ColorSet/Colors.xaml"/>
+                <ResourceDictionary Source="global/TagStyles.xaml"/>
                 <ResourceDictionary>
                     <Cursor x:Key="waitCursor">Images/Wait.ani</Cursor>
 
@@ -366,6 +368,7 @@
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -385,7 +388,7 @@
                            />
                 </Border>
 
-                <RichTextBox Grid.Column="1" Margin="11,-3,-11,5" Grid.Row="1" x:Name="Box" 
+                <RichTextBox Grid.Column="1" Margin="11,-3,-11,-7" Grid.Row="1" x:Name="Box" 
                                  ScrollViewer.ScrollChanged="ScrollChanged" SnapsToDevicePixels="False"
                                  SpellCheck.IsEnabled="{Binding RelativeSource={RelativeSource AncestorType=complexWriter:MainWindow},Path=CurrentText.SpellCheckEnabled}"
                                  IsInactiveSelectionHighlightEnabled="True" AutoWordSelection="False"
@@ -836,7 +839,19 @@
                 <Border Width="150" Visibility="{Binding RelativeSource={RelativeSource AncestorType=complexWriter:MainWindow},Path=ShowNameList,Converter={StaticResource falseCollapsedConverter}}" Grid.Row="0" Grid.RowSpan="3" Margin="0,-5,-12,0" Grid.Column="0" >
                     <characterNames:CharacterNameControl Names="{Binding RelativeSource={RelativeSource AncestorType=complexWriter:MainWindow},Path=CurrentText.Characters}" TextClicked="TextClicked"/>
                 </Border>
-                <searchAndReplace:SearchAndReplaceControl Grid.Column="0" Grid.ColumnSpan="3" IsClosedFromWithin="FocusTextbox" MatchingChanged="UpdateView" Grid.Row="2" Visibility="Collapsed" x:Name="SearchAndReplaceControl" Margin="0,0,25,0"/>
+                <Border Grid.Row="2" Grid.Column="1" BorderBrush="{DynamicResource BackColorBrush}" BorderThickness="0,1,0,0" Margin="10,0,0,0">
+                    <wpfTagControl:TagControl Margin="0,0,0,10"
+                                               SelectedTags="{Binding RelativeSource={RelativeSource AncestorType= complexWriter:MainWindow},Path=CurrentText.Tags}"
+                         SuggestedTags="{Binding RelativeSource={RelativeSource AncestorType=complexWriter:MainWindow},Path=TagHandler.Suggestions,Converter={StaticResource debugConverter}}"
+                         TagAdded="Ctl_Tags_TagAdded"
+                         IsEditingOnSingleClick="True"
+                         RemoveText="{x:Static p:Resources.RemoveTag}"
+                         ShowRemoveButton="False"
+                         TagRemoved="Ctl_Tags_OnTagRemoved"
+                         TagEdited="Ctl_Tags_OnTagEdited"
+                         ShowSeperateAddButton="False"></wpfTagControl:TagControl>
+                </Border>
+                <searchAndReplace:SearchAndReplaceControl Grid.Column="0" Grid.ColumnSpan="3" IsClosedFromWithin="FocusTextbox" MatchingChanged="UpdateView" Grid.Row="3" Visibility="Collapsed" x:Name="SearchAndReplaceControl" Margin="0,0,25,0"/>
             </Grid>
 
             <Thumb  Grid.Row="0" VerticalAlignment="Top" Height="10" Margin="0,-3,70,0"

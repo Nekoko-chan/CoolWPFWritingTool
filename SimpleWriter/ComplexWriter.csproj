@@ -112,6 +112,13 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Controls.Input.Toolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dlls\System.Windows.Controls.Input.Toolkit.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Controls.Layout.Toolkit">
+      <HintPath>dlls\System.Windows.Controls.Layout.Toolkit.dll</HintPath>
+    </Reference>
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -124,6 +131,13 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WPFTagControl">
+      <HintPath>dlls\WPFTagControl.dll</HintPath>
+    </Reference>
+    <Reference Include="WPFToolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dlls\WPFToolkit.dll</HintPath>
+    </Reference>
     <Reference Include="Xceed.Wpf.Toolkit, Version=1.9.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>dlls\Xceed.Wpf.Toolkit.dll</HintPath>
@@ -133,6 +147,7 @@
     <Compile Include="ClickOpensContextMenuBehavior.cs" />
     <Compile Include="ColorScheme.cs" />
     <Compile Include="DebounceDispatcher.cs" />
+    <Compile Include="Extensions.cs" />
     <Compile Include="imageScaler.xaml.cs" />
     <Compile Include="MessageBoxes\ColorSettings.xaml.cs">
       <DependentUpon>ColorSettings.xaml</DependentUpon>
@@ -146,12 +161,14 @@
     <Compile Include="MessageBoxes\Dictionaries\FileOpenerDictionary.xaml.cs">
       <DependentUpon>FileOpenerDictionary.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\Resources.de.Designer.cs">
       <DependentUpon>Resources.de.resx</DependentUpon>
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="Rescources.cs" />
+    <Compile Include="TagList.cs" />
     <Compile Include="TreeViewDirectOverItem.cs" />
     <Compile Include="Watermark.cs" />
     <Content Include="Fonts\readme.txt">
@@ -331,6 +348,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="global\AutoCompleteControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="global\Buttons.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -354,6 +375,10 @@
     <Page Include="global\global.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="global\KeyedListBoxItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="global\ListElementsForOpener.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -422,6 +447,10 @@
     <Page Include="global\SpectrumSlider.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="global\TagStyles.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="global\ToggleButton.xaml">
       <SubType>Designer</SubType>
@@ -670,6 +699,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Testblock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="global\TestDictionay.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -126,7 +126,6 @@ namespace ComplexWriter
         [OptionalField]
         private ObservableCollection<string> _characterNames;
 
-
         [OptionalField]
         private string _openingQuote;
         [OptionalField]
@@ -184,6 +183,12 @@ namespace ComplexWriter
 
         [NonSerialized]
         ObservableCollection<Character> _characters;
+
+        public List<string> Tags
+        {
+            get { return _tags; }
+            set { _tags = value; OnPropertyChanged(); }
+        }
 
         public ObservableCollection<Character> Characters
         {
@@ -317,7 +322,22 @@ namespace ComplexWriter
                     case "UseCharacters":
                         LoadCharacterUse(info);
                         break;
+                    case "Tags":
+                        LoadTags(info); break;
                 }
+            }
+        }
+
+        private void LoadTags(SerializationInfo info)
+        {
+            try
+            {
+                Tags = (List<string>) info.GetValue("Tags", typeof (List<string>));
+            }
+            catch (Exception)
+            {
+                Tags = new List<string>();
+                throw;
             }
         }
 
@@ -869,17 +889,22 @@ namespace ComplexWriter
             info.AddValue("ReadOnly", ReadOnly);
 
             info.AddValue("Characters",Character.ToXmlString(Characters));
+
           
             //info.AddValue("Language", Language);
 
             //Letzte Property... hier nach darf nichts mehr kommen!
-            if (Watermark?.ImageSource == null) return;
+            if (Watermark?.ImageSource != null)
+            {
 
-            var bytes = Utilities.ConvertImageToByteArray(Watermark.ImageSource);
-            info.AddValue("Watermark", bytes);
+                var bytes = Utilities.ConvertImageToByteArray(Watermark.ImageSource);
+                info.AddValue("Watermark", bytes);
 
-            info.AddValue("WatermarkSize", Watermark.Size);
-            info.AddValue("WatermarkOpacity",Watermark.Opacity);
+                info.AddValue("WatermarkSize", Watermark.Size);
+                info.AddValue("WatermarkOpacity",Watermark.Opacity);
+            }
+
+            info.AddValue("Tags",Tags);
         }
 
         private void SaveBrush(SerializationInfo info)
@@ -931,6 +956,9 @@ namespace ComplexWriter
         }
         
         private bool _useCharacters;
+
+        [OptionalField]
+        private List<string> _tags = new List<string>();
 
         public bool Save(string fileName, out bool saveas)
         {

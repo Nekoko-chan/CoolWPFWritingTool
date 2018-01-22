@@ -1272,4 +1272,16 @@ Would you like to close it anyway?</value>
   <data name="SpeechShort" xml:space="preserve">
     <value>Sprache</value>
   </data>
+  <data name="AddTag" xml:space="preserve">
+    <value>Tag hinzufügen</value>
+  </data>
+  <data name="RemoveTag" xml:space="preserve">
+    <value>Tag entfernen</value>
+  </data>
+  <data name="TagHandlerLoaded" xml:space="preserve">
+    <value>Tags geladen</value>
+  </data>
+  <data name="TagOverColor" xml:space="preserve">
+    <value>Mouse Over Farbe für Tag</value>
+  </data>
 </root>

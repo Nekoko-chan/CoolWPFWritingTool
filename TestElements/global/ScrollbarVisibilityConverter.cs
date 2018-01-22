@@ -15,6 +15,10 @@ namespace TestElements.global
     {
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
         {
+            bool designTime = System.ComponentModel.DesignerProperties.GetIsInDesignMode(
+    new DependencyObject());
+
+            if (designTime) return Visibility.Visible;
             var vis = (Visibility) values[0];
             var check = (bool) values[1];
 

@@ -34,6 +34,7 @@ using global::ComplexWriter.global;
 using MessageBox = ComplexWriter.MessageBoxes.MessageBox;
 using ComplexWriter.CharacterNames;
 using SplashDemo;
+using WPFTagControl;
 using Xceed.Wpf.Toolkit;
 using Application = System.Windows.Application;
 using Button = System.Windows.Controls.Button;
@@ -133,6 +134,9 @@ namespace ComplexWriter
             DependencyProperty.Register("ErrorWindow", typeof (ErrorWindow2), typeof (MainWindow),
                 new PropertyMetadata(null));
 
+        public static readonly DependencyProperty TagHandlerProperty =
+DependencyProperty.Register("TagHandler", typeof(TagHandler), typeof(MainWindow), new UIPropertyMetadata(new TagHandler()));
+
         private readonly string _isOpendWithWindow = string.Empty;
         private readonly Object _savelock = new object();
         private readonly Timer _t = new Timer {Interval = TimeSpan.FromSeconds(Settings.Default.AutoSaveInterval).TotalMilliseconds};
@@ -199,9 +203,14 @@ namespace ComplexWriter
 
             InitFromSettings();
             AddToSplash(Properties.Resources.LoadSettings);
-            
+
+            TagHandler.LoadTags();
+            AddToSplash(Properties.Resources.TagHandlerLoaded);
+
             InitRichtextBox();
             AddToSplash(Properties.Resources.InitEditor);
+
+            
             LoadOpenFiles();
             SetAutoSaveTimer();
 
@@ -215,6 +224,7 @@ namespace ComplexWriter
                 ShowTextfileInView(TextFiles.LastOrDefault());
 
             InitDefaultFolder();
+            
             Splasher.CloseSplash();
         }
 
@@ -264,6 +274,12 @@ namespace ComplexWriter
             {
                 SetValue(CurrentTextFile, value);
             }
+        }
+
+        public TagHandler TagHandler
+        {
+            get { return (TagHandler)GetValue(TagHandlerProperty); }
+            set { SetValue(TagHandlerProperty, value); }
         }
 
         public static readonly DependencyProperty IsMinimizedProperty =
@@ -4266,7 +4282,7 @@ namespace ComplexWriter
 
         private void ChangeLineHeight(object sender, RoutedEventArgs e)
         {
-            var lineHeight = CurrentText.Document.Blocks.FirstBlock.LineHeight;
+            var lineHeight = CurrentText.Document.Blocks.FirstBlock?.LineHeight;
             LineHightDouble.Value = lineHeight.Equals(Double.NaN) ? 1 : lineHeight;
             lineHightPopup.IsOpen = true;
 
@@ -4483,9 +4499,25 @@ namespace ComplexWriter
             colors.Add(new ColorElement("ButtonFocus", Properties.Resources.ColorSettingButtonFocus, dict));
             colors.Add(new ColorElement("ButtonBorder", Properties.Resources.ColorSettingButtonBorder, dict));
             colors.Add(new ColorElement("RtfBrush", Properties.Resources.ColorSettingRtfBrush, dict));
+            colors.Add(new ColorElement("TagOverColor", Properties.Resources.TagOverColor, dict));
 
             return colors;
-        } 
+        }
 
+        private void Ctl_Tags_TagAdded(object sender, TagEventArgs e)
+        {
+            TagHandler.AddTag(e.Item.Text);
+            CurrentText.IsChanged = true;
+        }
+
+        private void Ctl_Tags_OnTagRemoved(object sender, TagEventArgs e)
+        {
+            CurrentText.IsChanged = true;
+        }
+
+        private void Ctl_Tags_OnTagEdited(object sender, TagEventArgs e)
+        {
+            CurrentText.IsChanged = true;
+        }
     }
 }
