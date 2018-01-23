@@ -137,6 +137,9 @@ namespace ComplexWriter
         public static readonly DependencyProperty TagHandlerProperty =
 DependencyProperty.Register("TagHandler", typeof(TagHandler), typeof(MainWindow), new UIPropertyMetadata(new TagHandler()));
 
+        public static readonly DependencyProperty ShowTaglistProperty =
+DependencyProperty.Register("ShowTaglist", typeof(bool), typeof(MainWindow), new UIPropertyMetadata(true));
+
         private readonly string _isOpendWithWindow = string.Empty;
         private readonly Object _savelock = new object();
         private readonly Timer _t = new Timer {Interval = TimeSpan.FromSeconds(Settings.Default.AutoSaveInterval).TotalMilliseconds};
@@ -254,6 +257,16 @@ DependencyProperty.Register("TagHandler", typeof(TagHandler), typeof(MainWindow)
                 SetValue(ShowImagePopupProperty, value);
             }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool ShowTaglist
+        {
+            get { return (bool)GetValue(ShowTaglistProperty); }
+            set { SetValue(ShowTaglistProperty, value); }
+        }
+
 
         public static readonly DependencyProperty ShowImagePopupProperty =
                  DependencyProperty.Register("ShowImagePopup", typeof(bool), typeof(MainWindow),
@@ -603,6 +616,7 @@ DependencyProperty.Register("TagHandler", typeof(TagHandler), typeof(MainWindow)
             UseBlackBackground = Settings.Default.UseBlackBackground;
             ShowToolbar = Settings.Default.ShowToolbar;
             ShowNameList = Settings.Default.ShowNames;
+            ShowTaglist = Settings.Default.ShowTagList;
             ShowSaveFile = !Settings.Default.SaveAutomatical && !Settings.Default.AutoSaveOnBreak;
 
             ShowImagePopup = Settings.Default.Watermark != null && Settings.Default.Watermark.Any();
@@ -1488,6 +1502,7 @@ DependencyProperty.Register("TagHandler", typeof(TagHandler), typeof(MainWindow)
             Settings.Default.UseBlackBackground = UseBlackBackground;
             Settings.Default.ShowToolbar = ShowToolbar;
             Settings.Default.ShowNames = ShowNameList;
+            Settings.Default.ShowTagList = ShowTaglist;
 
             if (ShowImagePopup)
             {

@@ -388,7 +388,7 @@
                            />
                 </Border>
 
-                <RichTextBox Grid.Column="1" Margin="0,-3,-11,-7" Grid.Row="1" x:Name="Box" 
+                <RichTextBox Grid.Column="1" Margin="0,-3,-11,3" Grid.Row="1" x:Name="Box" 
                                  ScrollViewer.ScrollChanged="ScrollChanged" SnapsToDevicePixels="False"
                                  SpellCheck.IsEnabled="{Binding RelativeSource={RelativeSource AncestorType=complexWriter:MainWindow},Path=CurrentText.SpellCheckEnabled}"
                                  IsInactiveSelectionHighlightEnabled="True" AutoWordSelection="False"
@@ -839,7 +839,7 @@
                 <Border Width="150" Visibility="{Binding RelativeSource={RelativeSource AncestorType=complexWriter:MainWindow},Path=ShowNameList,Converter={StaticResource falseCollapsedConverter}}" Grid.Row="0" Grid.RowSpan="3" Margin="0,-5,0,0" Grid.Column="0" >
                     <characterNames:CharacterNameControl Names="{Binding RelativeSource={RelativeSource AncestorType=complexWriter:MainWindow},Path=CurrentText.Characters}" TextClicked="TextClicked"/>
                 </Border>
-                <Border Grid.Row="2" Grid.Column="1" BorderBrush="{DynamicResource BackColorBrush}" BorderThickness="0,1,0,0" Margin="10,0,0,0">
+                <Border Grid.Row="2" Grid.Column="1" Visibility="{Binding RelativeSource={RelativeSource AncestorType=complexWriter:MainWindow},Path=ShowTaglist,Converter={StaticResource falseCollapsedConverter}}" BorderBrush="{DynamicResource BackColorBrush}" Background="{DynamicResource BackColorBrush}" Margin="0,-7,-16,0">
                     <wpfTagControl:TagControl Margin="5,0,0,10"
                                                SelectedTags="{Binding RelativeSource={RelativeSource AncestorType= complexWriter:MainWindow},Path=CurrentText.Tags}"
                          SuggestedTags="{Binding RelativeSource={RelativeSource AncestorType=complexWriter:MainWindow},Path=TagHandler.Suggestions,Converter={StaticResource debugConverter}}"
@@ -1078,13 +1078,20 @@
                             <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.ShowStylesWindow}"/>
                         </customControls:MaskedToggleButtonEnlarge.ToolTip>
                     </customControls:MaskedToggleButtonEnlarge>
-                    <customControls:MaskedToggleButtonEnlarge  IsChecked="{Binding RelativeSource={RelativeSource AncestorType=complexWriter:MainWindow},Path=ShowNameList}" Width="24" Height="24" ButtonMask="Images/id.png" ButtonColor="{DynamicResource TitleBrush}">
-                        <ToggleButton.ToolTip>
+                                            <customControls:MaskedToggleButtonEnlarge  IsChecked="{Binding RelativeSource={RelativeSource AncestorType=complexWriter:MainWindow},Path=ShowNameList}" Width="24" Height="24" ButtonMask="Images/id.png" ButtonColor="{DynamicResource TitleBrush}">
+                                                <ToggleButton.ToolTip>
                                                     <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.ElementsForInsert}"></ToolTip>
-                        </ToggleButton.ToolTip>
-                    </customControls:MaskedToggleButtonEnlarge>
+                                                </ToggleButton.ToolTip>
+                                            </customControls:MaskedToggleButtonEnlarge>
+                                            <ToggleButton Style="{StaticResource TagToggleBtn}"
+                                                 IsChecked="{Binding RelativeSource={RelativeSource AncestorType=complexWriter:MainWindow},Path=ShowTaglist}" Width="24" Height="24">
+                                                <ToggleButton.ToolTip>
+                                                    <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.ShowTags}"></ToolTip>
+                                                </ToggleButton.ToolTip>
+                                               
+                                            </ToggleButton>
 
-                                       
+
                                             <Popup Placement="Absolute" x:Name="StylePopup2" MaxHeight="600" StaysOpen="True" AllowsTransparency="True" Cursor="{StaticResource standardCursor}">
                                             <Popup.IsOpen>
                                                 <MultiBinding Converter="{StaticResource ShowStylesMultiConverter}">
@@ -1690,3 +1697,4 @@
         </Border>
     </Grid>
 </Window>
+

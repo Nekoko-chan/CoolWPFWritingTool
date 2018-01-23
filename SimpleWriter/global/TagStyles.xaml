@@ -18,12 +18,30 @@
         </ResourceDictionary>
     </ResourceDictionary.MergedDictionaries>
 
+
+    <Geometry x:Key="oldTag">M 50.535714,0.44196425 0.00446427,34.754464 l 0,106.906246 100.71874573,0 0,-107.124996 L 50.535714,0.44196425 z m 0.1875,21.21874975 c 6.311826,0 11.40625,5.094424 11.40625,11.40625 0,6.311826 -5.094424,11.4375 -11.40625,11.4375 -6.311826,0 -11.4375,-5.125674 -11.4375,-11.4375 0,-6.311826 5.125674,-11.40625 11.4375,-11.40625 z</Geometry>
+    <Geometry x:Key="TagGeometry">
+        M5.5,7A1.5,1.5 0 0,1 4,5.5A1.5,1.5 0 0,1 5.5,4A1.5,1.5 0 0,1 7,5.5A1.5,1.5 0 0,1 5.5,7M21.41,11.58L12.41,2.58C12.05,2.22 11.55,2 11,2H4C2.89,2 2,2.89 2,4V11C2,11.55 2.22,12.05 2.59,12.41L11.58,21.41C11.95,21.77 12.45,22 13,22C13.55,22 14.05,21.77 14.41,21.41L21.41,14.41C21.78,14.05 22,13.55 22,13C22,12.44 21.77,11.94 21.41,11.58Z
+    </Geometry>
+
+    <Geometry x:Key="CharacterGeometry">M77.067,59.255L62.99,52.54l-5.754-2.745c0.101-0.069,0.201-0.139,0.301-0.208h7.833c1.212,0,2.196-0.983,2.196-2.196
+		v-5.779h-0.02c-0.228-7.653-2.767-14.425-6.622-18.894c-2.71-3.484-6.605-5.681-10.971-5.681c-4.732,0-8.911,2.586-11.625,6.593
+		c-3.435,4.452-5.664,10.833-5.877,17.982h-0.02v5.779c0,1.213,0.983,2.196,2.196,2.196h7.855c0.155,0.105,0.312,0.207,0.469,0.309
+		l-5.551,2.584l-14.534,6.768c-1.152,0.54-1.936,1.776-2.065,3.198c-0.029,0.205-0.046,0.414-0.046,0.626v13.57v2.435
+		c0,2.146,1.495,3.884,3.34,3.884h51.806c1.846,0,3.34-1.739,3.34-3.884v-2.435v-13.57c0-0.805-0.212-1.563-0.582-2.196
+		C78.3,60.165,77.752,59.586,77.067,59.255z M25.646,52.52v-6.081h0.027c0.243-8.172,2.377-15.627,5.776-21.472c-1.654-1.008-3.513-1.623-5.511-1.623
+		c-6.666,0-12.062,6.28-12.062,14.034c0,5.425,2.651,10.12,6.524,12.457l-16.349,7.61c-1.02,0.479-1.691,1.629-1.691,2.915v12.903
+		c0,1.729,1.209,3.13,2.694,3.13h10.805v-13.54c0-3.503,1.938-6.672,4.943-8.08L25.646,52.52z M95.948,57.635L79.6,50.025c3.873-2.337,6.524-7.032,6.524-12.457c0-7.754-5.396-14.034-12.062-14.034
+		c-1.998,0-3.857,0.615-5.511,1.623c3.399,5.845,5.532,13.3,5.776,21.472h0.027v6.081l4.844,2.256
+		c3.005,1.407,4.943,4.576,4.943,8.08v13.54h10.805c1.485,0,2.694-1.401,2.694-3.13V60.55
+		C97.639,59.264,96.968,58.114,95.948,57.635z</Geometry>
+
     <global:FalseCollapsedConverter x:Key="CollapseOnFalseConverter"/>
     <global:TrueCollapsedConverter x:Key="CollapseOnTrueConverter"/>
     <global:TextInputToVisibilityConverter x:Key="TextInputToVisibilityConverter"/>
 
     <SolidColorBrush x:Key="TextColorOver" Color="{StaticResource TagOverColor}"></SolidColorBrush>
-    <SolidColorBrush x:Key="TextColor" Color="{StaticResource BackColor}"/>
+    <SolidColorBrush x:Key="TextColor" Color="{StaticResource TitleColor}"/>
     
     <LinearGradientBrush x:Key="IconBorderBrush" EndPoint="0,1" Opacity="0.4">
         <GradientStop Offset="0" Color="#FF004F63" />
@@ -36,18 +54,71 @@
 
     <Style x:Key="TextboxWithWatermark" TargetType="{x:Type TextBox}">
         <Setter Property="Foreground" Value="{StaticResource TextColor}"></Setter>
+        <Setter Property="CaretBrush" Value="{StaticResource TextColor}"></Setter>
         <Setter Property="SelectionBrush" Value="{DynamicResource SelectionBrush}"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type TextBox}">
                     <Border CornerRadius="3" BorderThickness="1" Name="theBorder" BorderBrush="{StaticResource TextColor}" SnapsToDevicePixels="True" Padding="3">
-                        <ScrollViewer x:Name="PART_ContentHost" VerticalAlignment="Center" TextElement.Foreground="{StaticResource TextColor}" BorderBrush="Transparent" Background="Transparent" BorderThickness="0" FontFamily="{TemplateBinding FontFamily}" FontSize="{TemplateBinding FontSize}" Height="Auto" />
+                        <ScrollViewer x:Name="PART_ContentHost" VerticalAlignment="Center" VerticalContentAlignment="Bottom" TextElement.Foreground="{StaticResource TextColor}" BorderBrush="Transparent" Background="Transparent" BorderThickness="0" FontFamily="{TemplateBinding FontFamily}" FontSize="{TemplateBinding FontSize}" Height="Auto" />
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsReadOnly" Value="true">
                             <Setter Property="BorderBrush" TargetName="theBorder" Value="Transparent"/>
                             <Setter Property="Background" TargetName="theBorder" Value="Transparent"/>
                         </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="TagBtn" TargetType="Button">
+        <Setter Property="Height" Value="24"></Setter>
+        <Setter Property="Margin" Value="2,15,0,0"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Border Name="theGrid" Padding="3">
+                        <Grid RenderTransformOrigin="0.5,0.5">
+                            <Grid.RenderTransform>
+                                <ScaleTransform x:Name="scaleMe" ScaleX="1.02" ScaleY="1.02" />
+                            </Grid.RenderTransform>
+                            <Border Name="Normal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                <Path 
+                              
+                              VerticalAlignment="Top"
+                              Data="{StaticResource TagGeometry}"
+                              Fill="{DynamicResource SelectionBrush}"
+                                  Stroke="{StaticResource IconBorderBrush}"
+                              Stretch="Uniform" ></Path>
+                            </Border>
+                            <Border Background="Transparent" IsHitTestVisible="False"></Border>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <EventTrigger RoutedEvent="MouseEnter">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation To="1.3" Duration="00:00:00.250" Storyboard.TargetName="scaleMe" Storyboard.TargetProperty="ScaleX" />
+                                    <DoubleAnimation To="1.3" Duration="00:00:00.250" Storyboard.TargetName="scaleMe" Storyboard.TargetProperty="ScaleY" />
+
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="MouseLeave">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation To="1.02" Duration="00:00:00.250" Storyboard.TargetName="scaleMe" Storyboard.TargetProperty="ScaleX" />
+                                    <DoubleAnimation To="1.02" Duration="00:00:00.250" Storyboard.TargetName="scaleMe" Storyboard.TargetProperty="ScaleY" />
+
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" TargetName="theGrid" Value="0.2" />
+                        </Trigger>
+
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
@@ -62,8 +133,7 @@
         </Style.Resources>
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="VerticalAlignment" Value="Top" />
-        <Setter Property="Margin" Value="5" />
-        <Setter Property="MinHeight" Value="25" />
+        <Setter Property="MinHeight" Value="32" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="SnapsToDevicePixels" Value="True" />
         <Setter Property="Template">
@@ -72,26 +142,14 @@
                     <WrapPanel x:Name="PART_ControlStackPanel"
                                 HorizontalAlignment="Stretch"
                                 Orientation="Horizontal">
-                        <Path x:Name="PART_TagIcon"
-                              Height="19"
-                              Margin="2,7,12,0"
-                              VerticalAlignment="Top"
-                              Data="M 50.535714,0.44196425 0.00446427,34.754464 l 0,106.906246 100.71874573,0 0,-107.124996 L 50.535714,0.44196425 z m 0.1875,21.21874975 c 6.311826,0 11.40625,5.094424 11.40625,11.40625 0,6.311826 -5.094424,11.4375 -11.40625,11.4375 -6.311826,0 -11.4375,-5.125674 -11.4375,-11.4375 0,-6.311826 5.125674,-11.40625 11.4375,-11.40625 z"
-                              
-                              Fill="{DynamicResource SelectionBrush}"
-                              Stroke="{StaticResource IconBorderBrush}"
-                              Stretch="Uniform" >
-                            <Path.ToolTip>
+                        <Button x:Name="PART_TagIcon" Style="{StaticResource TagBtn}" Margin="0,2,0,0">
+                            <Button.ToolTip>
                                 <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.AddTag}"></ToolTip>
-                            </Path.ToolTip>
-                            <Path.RenderTransform>
-                                <RotateTransform Angle="-15"/>
-                            </Path.RenderTransform>
-                        </Path>
+                            </Button.ToolTip>
+                        </Button>
                         <ItemsPresenter />
                         <Button x:Name="PART_CreateTagButton"
-                                Margin="2,10,0,0"
-                                VerticalAlignment="Top"
+                                
                                 Visibility="{Binding ShowSeperateAddButton,
                                                 RelativeSource={RelativeSource TemplatedParent}, 
                                                 Converter={StaticResource CollapseOnFalseConverter}}"
@@ -162,19 +220,22 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type wpfTagControl:TagItem}">
+                    <Border CornerRadius="3" Margin="0,2,0,0" BorderThickness="1" Name="theBorder" BorderBrush="Transparent" SnapsToDevicePixels="True" Padding="0,3">
                     <Button x:Name="PART_TagButton"
                             Margin="{TemplateBinding Margin}"
                             Content="{TemplateBinding Text}" 
                             Padding="{TemplateBinding Padding}">
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
-                                <Border Margin="{TemplateBinding Margin}"
+                                <Border
                                         Background="#01FFFFFF"
+                                        VerticalAlignment="Top"
                                         BorderBrush="Transparent"
                                         BorderThickness="1"
                                         CornerRadius="2"
+                                    Margin="5,0"
                                         x:Name="bord"
-                                        Padding="{TemplateBinding Padding}">
+                                       >
                                     <Border.ContextMenu>
                                         <ContextMenu Style="{StaticResource context}">
                                             <MenuItem Style="{StaticResource menuItem}" x:Name="PART_DeleteMenuItem" Header="{Binding RelativeSource={RelativeSource AncestorType={x:Type wpfTagControl:TagControl}},Path=RemoveText}"></MenuItem>
@@ -187,7 +248,7 @@
                                         </Grid.ColumnDefinitions>
                                         <ContentPresenter Margin="0,0,0,0" TextElement.Foreground="{StaticResource TextColor}"
                                                           HorizontalAlignment="Left" x:Name="cont"
-                                                          VerticalAlignment="Top" />
+                                                          VerticalAlignment="Center" />
                                         <Button x:Name="PART_DeleteTagButton"
                                                 Visibility="Collapsed">
                                         </Button>
@@ -202,6 +263,7 @@
                             </ControlTemplate>
                         </Button.Template>
                     </Button>
+                        </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -237,5 +299,71 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+
+    <Style x:Key="TagToggleBtn" TargetType="ToggleButton">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                    <Border Name="theGrid" Padding="3">
+                        <Grid RenderTransformOrigin="0.5,0.5">
+                            <Grid.RenderTransform>
+                                <ScaleTransform x:Name="scaleMe" ScaleX="1.02" ScaleY="1.02" />
+                            </Grid.RenderTransform>
+                            <Border Name="Normal" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                                <Path 
+                              
+                              VerticalAlignment="Top"
+                              Data="{StaticResource TagGeometry}"
+                              
+                              Fill="{DynamicResource TitleBrush}"
+                              Stretch="Uniform" ></Path>
+                            </Border>
+                            <Border Name="Pressed" Visibility="Hidden" Opacity="0.6" >
+                                <Grid>
+                                    <Border CornerRadius="10" Background="{DynamicResource TitleBrush}"/>
+                                    <Border CornerRadius="10" Background="{DynamicResource TitleBrush}">
+                                        <Border.Effect>
+                                            <BlurEffect Radius="3.4"/>
+                                        </Border.Effect>
+                                    </Border>
+                                </Grid>
+                            </Border>
+                            <Border Background="Transparent" IsHitTestVisible="False"></Border>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <EventTrigger RoutedEvent="MouseEnter">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation To="1.3" Duration="00:00:00.250" Storyboard.TargetName="scaleMe" Storyboard.TargetProperty="ScaleX" />
+                                    <DoubleAnimation To="1.3" Duration="00:00:00.250" Storyboard.TargetName="scaleMe" Storyboard.TargetProperty="ScaleY" />
+
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="MouseLeave">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation To="1.02" Duration="00:00:00.250" Storyboard.TargetName="scaleMe" Storyboard.TargetProperty="ScaleX" />
+                                    <DoubleAnimation To="1.02" Duration="00:00:00.250" Storyboard.TargetName="scaleMe" Storyboard.TargetProperty="ScaleY" />
+
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Opacity" TargetName="theGrid" Value="0.2" />
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter Property="Visibility" TargetName="Pressed" Value="Visible" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    
+
+
 
 </ResourceDictionary>

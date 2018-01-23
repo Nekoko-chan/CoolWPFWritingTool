@@ -1287,6 +1287,9 @@ Would you like to close it anyway?</value>
   <data name="Characters" xml:space="preserve">
     <value>Charaktere</value>
   </data>
+  <data name="ShowTags" xml:space="preserve">
+    <value>Tag Liste anzeigen</value>
+  </data>
   <data name="Tags" xml:space="preserve">
     <value>Tags</value>
   </data>

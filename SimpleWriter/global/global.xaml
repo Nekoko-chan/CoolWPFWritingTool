@@ -771,6 +771,24 @@
                 </Setter>
             </Style>
 
+            <DrawingImage x:Key="TagImage">
+                <DrawingImage.Drawing>
+                    <GeometryDrawing>
+                        <GeometryDrawing.Geometry>
+                            <RectangleGeometry Rect="0,0,24,24"/>
+                        </GeometryDrawing.Geometry>
+                        <GeometryDrawing.Brush>
+                            <VisualBrush Viewbox="0,0,24,24" ViewboxUnits="Absolute">
+                                <VisualBrush.Visual>
+                                    <Path Stroke="Black" Fill="Black" StrokeThickness="1" Height="19" Data="M 50.535714,0.44196425 0.00446427,34.754464 l 0,106.906246 100.71874573,0 0,-107.124996 L 50.535714,0.44196425 z m 0.1875,21.21874975 c 6.311826,0 11.40625,5.094424 11.40625,11.40625 0,6.311826 -5.094424,11.4375 -11.40625,11.4375 -6.311826,0 -11.4375,-5.125674 -11.4375,-11.4375 0,-6.311826 5.125674,-11.40625 11.4375,-11.40625 z"></Path>
+                                </VisualBrush.Visual>
+                            </VisualBrush>
+                        </GeometryDrawing.Brush>
+                    </GeometryDrawing>
+                  
+                    <!--<GeometryDrawing Brush="Black" Geometry="M 50.535714,0.44196425 0.00446427,34.754464 l 0,106.906246 100.71874573,0 0,-107.124996 L 50.535714,0.44196425 z m 0.1875,21.21874975 c 6.311826,0 11.40625,5.094424 11.40625,11.40625 0,6.311826 -5.094424,11.4375 -11.40625,11.4375 -6.311826,0 -11.4375,-5.125674 -11.4375,-11.4375 0,-6.311826 5.125674,-11.40625 11.4375,-11.40625 z"/>-->
+                </DrawingImage.Drawing>
+            </DrawingImage>
         </ResourceDictionary>
         </ResourceDictionary.MergedDictionaries>
     </ResourceDictionary>

@@ -2728,6 +2728,15 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Show tag list.
+        /// </summary>
+        public static string ShowTags {
+            get {
+                return ResourceManager.GetString("ShowTags", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Show XAML code for the document....
         /// </summary>
         public static string ShowXAML {

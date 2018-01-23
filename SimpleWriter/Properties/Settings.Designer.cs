@@ -520,5 +520,17 @@ namespace ComplexWriter.Properties {
                 this["AutoSaveOnBreak"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ShowTagList {
+            get {
+                return ((bool)(this["ShowTagList"]));
+            }
+            set {
+                this["ShowTagList"] = value;
+            }
+        }
     }
 }
