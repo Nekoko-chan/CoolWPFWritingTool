@@ -424,6 +424,15 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Characters.
+        /// </summary>
+        public static string Characters {
+            get {
+                return ResourceManager.GetString("Characters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Please enter a password for the file &quot;{0}&quot;..
         /// </summary>
         public static string ChoosePassword {
@@ -3105,6 +3114,15 @@ namespace ComplexWriter.Properties {
         public static string TagOverColor {
             get {
                 return ResourceManager.GetString("TagOverColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tags.
+        /// </summary>
+        public static string Tags {
+            get {
+                return ResourceManager.GetString("Tags", resourceCulture);
             }
         }
         

@@ -42,7 +42,7 @@ namespace ComplexWriter.MessageBoxes
             var width2 = Document.PageWidth - width - 190;
 
             Document.Blocks.Add(
-             new Paragraph(new Run("Charaktere")
+             new Paragraph(new Run(Properties.Resources.Characters)
              {
                  FontFamily = _family,
                  FontSize = _fsize + 10,

@@ -170,6 +170,54 @@ namespace ComplexWriter.MessageBoxes
             set { SetValue(CharacterListProperty, value); }
         }
 
+        /// <summary>
+        /// DependencyProperty for 'Tags'
+        /// </summary>
+        public static readonly DependencyProperty TagsProperty =
+        DependencyProperty.Register("Tags", typeof(IEnumerable<string>), typeof(FileOpener), new UIPropertyMetadata());
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public IEnumerable<string> Tags
+        {
+            get { return (IEnumerable<string>)GetValue(TagsProperty); }
+            set { SetValue(TagsProperty, value); }
+        }
+
+        /// <summary>
+        /// DependencyProperty for 'Showtags'
+        /// </summary>
+        public static readonly DependencyProperty ShowtagsProperty =
+        DependencyProperty.Register("Showtags", typeof(Visibility), typeof(FileOpener), new UIPropertyMetadata(Visibility.Collapsed));
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public Visibility Showtags
+        {
+            get { return (Visibility)GetValue(ShowtagsProperty); }
+            set { SetValue(ShowtagsProperty, value); }
+        }
+
+
+        /// <summary>
+        /// DependencyProperty for 'CharacterlistVisibility'
+        /// </summary>
+        public static readonly DependencyProperty CharacterlistVisibilityProperty =
+        DependencyProperty.Register("CharacterlistVisibility", typeof(Visibility), typeof(FileOpener), new UIPropertyMetadata(Visibility.Collapsed));
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public Visibility CharacterlistVisibility
+        {
+            get { return (Visibility)GetValue(CharacterlistVisibilityProperty); }
+            set { SetValue(CharacterlistVisibilityProperty, value); }
+        }
+
+
+
 
         private static void UpdatePathForSelection(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
@@ -261,7 +309,10 @@ namespace ComplexWriter.MessageBoxes
             var file = TextFile.Load(add.Last());
 
             Content.Document = file.Document;
-            CharacterList = file.Characters == null ? Enumerable.Empty<Character>() : file.Characters.OrderByDescending(GetOrderNumber).Take(5);
+            CharacterList = file.Characters?.OrderByDescending(GetOrderNumber).Take(5) ?? Enumerable.Empty<Character>();
+            Tags = file.Tags ?? Enumerable.Empty<string>();
+            Showtags = Tags.Any() ? Visibility.Visible : Visibility.Collapsed;
+            CharacterlistVisibility = CharacterList.Any() ? Visibility.Visible : Visibility.Collapsed;
         }
 
         private static string GetOrderNumber(Character elem)

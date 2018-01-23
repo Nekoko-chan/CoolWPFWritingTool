@@ -1283,4 +1283,10 @@ Would you like to close it anyway?</value>
   <data name="TagOverColor" xml:space="preserve">
     <value>Tag hover color</value>
   </data>
+  <data name="Characters" xml:space="preserve">
+    <value>Characters</value>
+  </data>
+  <data name="Tags" xml:space="preserve">
+    <value>Tags</value>
+  </data>
 </root>
