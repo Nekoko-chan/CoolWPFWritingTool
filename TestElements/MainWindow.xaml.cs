@@ -32,5 +32,10 @@ namespace TestElements
             Left = Left + e.HorizontalChange;
             Top = Top + e.VerticalChange;
         }
+
+        private void closeme(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
     }
 }
