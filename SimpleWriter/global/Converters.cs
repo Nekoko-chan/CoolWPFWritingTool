@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Globalization;
@@ -2309,11 +2310,57 @@ namespace ComplexWriter.global
     }
 
 
-    public class MaxHeightConverter  : IValueConverter
+    public class MaxHeightConverter : IValueConverter
     {
         public object Convert(object value, Type type, object parameter, CultureInfo culture)
         {
-            return  SystemInformation.VirtualScreen.Height-50;
+            return SystemInformation.VirtualScreen.Height - 50;
+        }
+
+        public object ConvertBack(object value, Type type, object parameter, CultureInfo culture)
+        {
+            throw new NotSupportedException();
+        }
+    }
+
+    public class CollapseOnEmptyCollectionConverter : IValueConverter
+    {
+        public object Convert(object value, Type type, object parameter, CultureInfo culture)
+        {
+            var col = value as IList;
+            return (col == null || col.Count == 0) ? Visibility.Collapsed : Visibility.Visible;
+        }
+
+        public object ConvertBack(object value, Type type, object parameter, CultureInfo culture)
+        {
+            throw new NotSupportedException();
+        }
+    }
+
+    public class CollapseZeroConverter : IValueConverter
+    {
+        public object Convert(object value, Type type, object parameter, CultureInfo culture)
+        {
+            var col = value as int?;
+            return (col == null || col.Value == 0) ? Visibility.Collapsed : Visibility.Visible;
+        }
+
+        public object ConvertBack(object value, Type type, object parameter, CultureInfo culture)
+        {
+            throw new NotSupportedException();
+        }
+    }
+
+    public class EntryTextConverter : IValueConverter
+    {
+        public object Convert(object value, Type type, object parameter, CultureInfo culture)
+        {
+            var col = value as int?;
+
+            if (col == null || col.Value == 0) return string.Empty;
+
+            var text = col.Value == 1 ? Resources.Entry : Resources.Entries;
+            return $"({col.Value} {text})";
         }
 
         public object ConvertBack(object value, Type type, object parameter, CultureInfo culture)

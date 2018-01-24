@@ -12,6 +12,8 @@
     <!-- Hintergrundfarben (In der Regel eine dunkle Farbe) -->
     <Color x:Key="BackColor">{0}</Color>
     <Color x:Key="AlternateBackColor">{1}</Color>
+    <Color x:Key="CursorColor">{17}</Color>
+
     
     <!-- Farbe des Sliders, wenn die Maus drüber ist -->
     <Color x:Key="OverColor">{2}</Color>
@@ -49,6 +51,7 @@
         <GradientStop Color="{DynamicResource SelectionColor2}"/>
     </LinearGradientBrush>
     <SolidColorBrush x:Key="RtfBrush">{15}</SolidColorBrush>
+    <SolidColorBrush x:Key="CursorBrush" Color="{StaticResource CursorColor}"></SolidColorBrush>
 
     
     <SolidColorBrush x:Key="TitleBrush" Color="{StaticResource TitleColor}"/>

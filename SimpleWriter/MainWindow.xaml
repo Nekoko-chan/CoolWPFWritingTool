@@ -394,15 +394,16 @@
                                  IsInactiveSelectionHighlightEnabled="True" AutoWordSelection="False"
                                  Style="{StaticResource textBoxStyle3}" TextChanged="Textchanged"
                                  PreviewKeyDown="HandleKeysPreview" SelectionChanged="UpdateInfos"
+                             CaretBrush="{DynamicResource CursorBrush}"
                              IsReadOnly="{Binding RelativeSource={RelativeSource AncestorType=complexWriter:MainWindow},Path=CurrentText.ReadOnly}"
                                 Foreground="Black">
-                    <RichTextBox.CaretBrush>
+                    <!--<RichTextBox.CaretBrush>
                         <MultiBinding Converter="{StaticResource IfThenElseMultiConverter}">
                             <Binding RelativeSource="{RelativeSource AncestorType=complexWriter:MainWindow}" Path="UseBlackBackground"/>
                             <Binding Source="{StaticResource DarkerTitleBrush}"/>
                             <Binding Source="{StaticResource BackColorBrush}"/>
                         </MultiBinding>
-                    </RichTextBox.CaretBrush>
+                    </RichTextBox.CaretBrush>-->
 
                     <RichTextBox.Cursor>
                         <MultiBinding Converter="{StaticResource IfThenElseMultiConverter}">
@@ -695,7 +696,9 @@
                                         </ToggleButton.ToolTip>
                                     </customControls:MaskedToggleButtonEnlarge>
                                 </Border>
-                                <Border Style="{StaticResource disableBox}" Width="24" BorderThickness="0,0,0,3.5"></Border>
+                                <Border Style="{StaticResource disableBox}" Width="24" BorderThickness="0,0,0,3.5">
+                                   
+                                </Border>
 
                                 <Border Style="{StaticResource disableBox}" BorderThickness="0,0,0,3.5">
                                     <customControls:MaskedImageButtonEnlarge

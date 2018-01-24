@@ -793,6 +793,15 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cursor color.
+        /// </summary>
+        public static string CursorColor {
+            get {
+                return ResourceManager.GetString("CursorColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cut.
         /// </summary>
         public static string Cut {
@@ -1050,6 +1059,24 @@ namespace ComplexWriter.Properties {
         public static string EmptyTag {
             get {
                 return ResourceManager.GetString("EmptyTag", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to entries.
+        /// </summary>
+        public static string Entries {
+            get {
+                return ResourceManager.GetString("Entries", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to entry.
+        /// </summary>
+        public static string Entry {
+            get {
+                return ResourceManager.GetString("Entry", resourceCulture);
             }
         }
         
@@ -3150,6 +3177,15 @@ namespace ComplexWriter.Properties {
         public static string ToPage {
             get {
                 return ResourceManager.GetString("ToPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total entries: {0}.
+        /// </summary>
+        public static string TotalEntries {
+            get {
+                return ResourceManager.GetString("TotalEntries", resourceCulture);
             }
         }
         

@@ -26,8 +26,10 @@
                 <ResourceDictionary Source="../global/Converter.xaml"/>
                 <ResourceDictionary Source="../global/MenuItem.xaml"/>
                 <ResourceDictionary>
+                    <global:CollapseZeroConverter x:Key="CollapseOnEmptyCollectionConverter"/>
                     <global:TrueCollapsedConverter x:Key="trueConverter"/>
                     <global:FalseCollapsedConverter x:Key="falseConverter"/>
+                    <global:EntryTextConverter x:Key="EntryTextConverter"/>
                     <CollectionViewSource x:Key="namelist" IsLiveGroupingRequested="True" IsLiveSortingRequested="True" Source="{Binding RelativeSource={RelativeSource AncestorType=char:CharacterNameControl},Path=Names}" >
                         <CollectionViewSource.SortDescriptions>
                             <componentModel:SortDescription PropertyName="Type" Direction="Descending"/>
@@ -55,7 +57,9 @@
             <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
+            
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                 <customControls:MaskedImageButtonEnlarge   ButtonColor="{StaticResource TitleBrush}" ButtonMask="../Images/Add.png" Width="24" Height="24" Click="AddSelected">
                     <Button.ToolTip>
@@ -175,9 +179,14 @@
                                                 <GroupBox Style="{StaticResource SmallTitleGroupBox}" VerticalAlignment="Top"
                                                                   BorderBrush="{StaticResource TitleBrush}" Margin="0,0,2,0" >
                                                     <GroupBox.Header>
-                                                        <TextBlock FontFamily="{StaticResource defaultFont}" FontSize="10" FontWeight="Bold"
-                                                                           Foreground="{DynamicResource TitleBrush}"
+                                                        <Grid>
+                                                            <TextBlock FontFamily="{StaticResource defaultFont}" FontSize="10" FontWeight="Bold"
+                                                                           Foreground="{DynamicResource TitleBrush}" HorizontalAlignment="Left"
                                                                    Text="{Binding Path=Name,Converter={StaticResource CharacterTypeConverter}}" />
+                                                            <TextBlock FontFamily="{StaticResource defaultFont}" FontSize="10" FontWeight="Bold"
+                                                                           Foreground="{DynamicResource TitleBrush}" HorizontalAlignment="Right"
+                                                                   Text="{Binding Path=Items.Count,StringFormat=({0})}" />
+                                                        </Grid>
                                                     </GroupBox.Header>
                                                     <ItemsPresenter/>
                                                 </GroupBox>
@@ -197,6 +206,10 @@
                     </ItemsControl.GroupStyle>
         </ItemsControl>
             </ScrollViewer>
+            <TextBlock Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Left" Foreground="{StaticResource TitleBrush}" Margin="0,0,10,10" FontFamily="{StaticResource defaultFont}"
+                       FontSize="10" Text="{Binding RelativeSource={RelativeSource AncestorType=char:CharacterNameControl},Path=Names.Count,StringFormat={x:Static p:Resources.TotalEntries}}"
+                       Visibility="{Binding RelativeSource={RelativeSource AncestorType=char:CharacterNameControl},Path=Names.Count, Converter={StaticResource CollapseOnEmptyCollectionConverter}}"
+                       ></TextBlock>
         </Grid>
     </Border>
 </UserControl>

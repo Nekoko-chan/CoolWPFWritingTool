@@ -12,6 +12,7 @@
     <!-- Hintergrundfarben (In der Regel eine dunkle Farbe) -->
     <Color x:Key="BackColor">#FF26002d</Color>
     <Color x:Key="TagOverColor">#FFe62e00</Color>
+    <Color x:Key="CursorColor">Black</Color>
     <Color x:Key="AlternateBackColor">#FF26002d</Color>
     
     <!-- Farbe des Sliders, wenn die Maus drüber ist -->
@@ -37,6 +38,7 @@
     <Color x:Key="ButtonHighlight">#7Ffffbb7</Color>
     <Color x:Key="ButtonShadow">#FF002893</Color>
     <SolidColorBrush x:Key="ButtonBorder">DimGray</SolidColorBrush>
+    <SolidColorBrush x:Key="CursorBrush" Color="{StaticResource CursorColor}"></SolidColorBrush>
 
     <!-- Pinsel für Dateien, die nur im rtf-Format geschrieben sind -->
 

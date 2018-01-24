@@ -3321,6 +3321,11 @@ DependencyProperty.Register("ShowTaglist", typeof(bool), typeof(MainWindow), new
 
         private void InsertSpanAtCurrentCaret(Span img)
         {
+            InsertInline(img);
+        }
+
+        private void InsertInline(Inline img)
+        {
             var p = Box.CaretPosition.Paragraph;
             if (p == null)
             {
@@ -4515,6 +4520,7 @@ DependencyProperty.Register("ShowTaglist", typeof(bool), typeof(MainWindow), new
             colors.Add(new ColorElement("ButtonBorder", Properties.Resources.ColorSettingButtonBorder, dict));
             colors.Add(new ColorElement("RtfBrush", Properties.Resources.ColorSettingRtfBrush, dict));
             colors.Add(new ColorElement("TagOverColor", Properties.Resources.TagOverColor, dict));
+            colors.Add(new ColorElement("CursorColor", Properties.Resources.CursorColor, dict));
 
             return colors;
         }
@@ -4534,5 +4540,6 @@ DependencyProperty.Register("ShowTaglist", typeof(bool), typeof(MainWindow), new
         {
             CurrentText.IsChanged = true;
         }
+
     }
 }

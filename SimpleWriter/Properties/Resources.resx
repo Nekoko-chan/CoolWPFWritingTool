@@ -1292,4 +1292,16 @@ Would you like to close it anyway?</value>
   <data name="Tags" xml:space="preserve">
     <value>Tags</value>
   </data>
+  <data name="CursorColor" xml:space="preserve">
+    <value>Cursor color</value>
+  </data>
+  <data name="Entries" xml:space="preserve">
+    <value>entries</value>
+  </data>
+  <data name="Entry" xml:space="preserve">
+    <value>entry</value>
+  </data>
+  <data name="TotalEntries" xml:space="preserve">
+    <value>Total entries: {0}</value>
+  </data>
 </root>

@@ -90,7 +90,7 @@
                 </Border>
                 <GridSplitter Grid.Column="1" Width="5" HorizontalAlignment="Stretch" Background="{StaticResource BackColorBrush}" />
                 <Border Grid.Column="2">
-                    <ListBox MouseDoubleClick="OpenFile" Style="{StaticResource AListBox}" x:Name="FileView" SelectionChanged="FileIsSelected" ItemsSource="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:FileOpener},Path=FilesForPath}">
+                    <ListBox SelectionMode="Extended" MouseDoubleClick="OpenFile" Style="{StaticResource AListBox}" x:Name="FileView" SelectionChanged="FileIsSelected" ItemsSource="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:FileOpener},Path=FilesForPath}">
                         <ListBox.ItemTemplate>
                             <DataTemplate DataType="system:String">
                                 <TextBlock Foreground="Black" Text="{Binding Converter={StaticResource PathToNameConverter}}"/>
