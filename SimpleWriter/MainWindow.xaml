@@ -387,7 +387,6 @@
                            Opacity="{Binding RelativeSource={RelativeSource AncestorType=complexWriter:MainWindow},Path=CurrentText.Watermark.Opacity}"
                            />
                 </Border>
-
                 <RichTextBox Grid.Column="1" Margin="0,-3,-11,3" Grid.Row="1" x:Name="Box" 
                                  ScrollViewer.ScrollChanged="ScrollChanged" SnapsToDevicePixels="False"
                                  SpellCheck.IsEnabled="{Binding RelativeSource={RelativeSource AncestorType=complexWriter:MainWindow},Path=CurrentText.SpellCheckEnabled}"
@@ -441,7 +440,7 @@
                         </ResourceDictionary>
                     </RichTextBox.Resources>
                 </RichTextBox>
-               
+
                 <Border Grid.Row="0" Grid.RowSpan="3" Grid.Column="2" VerticalAlignment="Top" IsEnabled="{Binding RelativeSource={RelativeSource AncestorType=complexWriter:MainWindow},Path=CurrentText.ReadOnly,Converter={StaticResource InvertBoolConverter}}"
                          Visibility="{Binding ElementName=options,Path=IsChecked, Converter={StaticResource falseHideConverter}}"
                         >
@@ -855,6 +854,7 @@
                          ShowSeperateAddButton="False"></wpfTagControl:TagControl>
                 </Border>
                 <searchAndReplace:SearchAndReplaceControl Grid.Column="0" Grid.ColumnSpan="3" IsClosedFromWithin="FocusTextbox" MatchingChanged="UpdateView" Grid.Row="3" Visibility="Collapsed" x:Name="SearchAndReplaceControl" Margin="0,0,25,0"/>
+            
             </Grid>
 
             <Thumb  Grid.Row="0" VerticalAlignment="Top" Height="10" Margin="0,-3,70,0"
@@ -1698,6 +1698,7 @@
                                         </StackPanel>
             </Grid>
         </Border>
-    </Grid>
+
+                    </Grid>
 </Window>
 

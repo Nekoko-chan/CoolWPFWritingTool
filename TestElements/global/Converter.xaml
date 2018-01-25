@@ -5,4 +5,5 @@
     <local:DebugMultiConverter x:Key="DebugMultiConverter"/>
     <local:IsDifferentConverter x:Key="IsDifferentConverter"/>
     <local:ScrollbarVisibilityConverter x:Key="ScrollbarVisibilityConverter"/>
+    <local:TagsVisibilityConverter x:Key="TagsVisibilityConverter"/>
 </ResourceDictionary>

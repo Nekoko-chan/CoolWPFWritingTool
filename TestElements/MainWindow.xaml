@@ -3,13 +3,30 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:TestElements" AllowsTransparency="True" Background="Transparent" WindowStyle="None"
+        xmlns:local="clr-namespace:TestElements"
+        xmlns:wpfTagControl="clr-namespace:WPFTagControl;assembly=WPFTagControl"
+        xmlns:global="clr-namespace:TestElements.global"
+        xmlns:system="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="MainWindow" SizeToContent="WidthAndHeight">
+        Title="MainWindow" SizeToContent="Height" Width="400">
     
     <Window.Resources>
         <ResourceDictionary>
+            <global:TagsVisibilityConverter x:Key="TagsVisibilityConverter"/>
+
             <Geometry x:Key="testpath">M68.29,68.29v363.421c0,20.078,16.264,36.34,36.343,36.34h304.363  c12.536,0,22.716-10.175,22.716-22.711c0-12.541-10.18-22.716-22.716-22.716H131.889c-9.996,0-18.17-8.18-18.17-18.172  c0-9.987,8.175-18.168,18.17-18.168h263.478c20.078,0,36.345-16.267,36.345-36.346V68.29c0-20.077-16.267-36.34-36.345-36.34  H268.172v163.45c0,2.36-0.905,4.719-2.636,6.538c-3.538,3.54-9.362,3.54-12.902,0c-2.363-2.457-38.976-32.89-38.976-32.89  s-36.612,30.433-38.977,32.89c-3.54,3.54-9.359,3.54-12.901,0c-1.725-1.819-2.635-4.178-2.635-6.538V31.949h-54.512  C84.553,31.949,68.29,48.213,68.29,68.29z</Geometry>
+            <Geometry x:Key="Peoply">M77.067,59.255L62.99,52.54l-5.754-2.745c0.101-0.069,0.201-0.139,0.301-0.208h7.833c1.212,0,2.196-0.983,2.196-2.196
+		v-5.779h-0.02c-0.228-7.653-2.767-14.425-6.622-18.894c-2.71-3.484-6.605-5.681-10.971-5.681c-4.732,0-8.911,2.586-11.625,6.593
+		c-3.435,4.452-5.664,10.833-5.877,17.982h-0.02v5.779c0,1.213,0.983,2.196,2.196,2.196h7.855c0.155,0.105,0.312,0.207,0.469,0.309
+		l-5.551,2.584l-14.534,6.768c-1.152,0.54-1.936,1.776-2.065,3.198c-0.029,0.205-0.046,0.414-0.046,0.626v13.57v2.435
+		c0,2.146,1.495,3.884,3.34,3.884h51.806c1.846,0,3.34-1.739,3.34-3.884v-2.435v-13.57c0-0.805-0.212-1.563-0.582-2.196
+		C78.3,60.165,77.752,59.586,77.067,59.255z M25.646,52.52v-6.081h0.027c0.243-8.172,2.377-15.627,5.776-21.472c-1.654-1.008-3.513-1.623-5.511-1.623
+		c-6.666,0-12.062,6.28-12.062,14.034c0,5.425,2.651,10.12,6.524,12.457l-16.349,7.61c-1.02,0.479-1.691,1.629-1.691,2.915v12.903
+		c0,1.729,1.209,3.13,2.694,3.13h10.805v-13.54c0-3.503,1.938-6.672,4.943-8.08L25.646,52.52z M95.948,57.635L79.6,50.025c3.873-2.337,6.524-7.032,6.524-12.457c0-7.754-5.396-14.034-12.062-14.034
+		c-1.998,0-3.857,0.615-5.511,1.623c3.399,5.845,5.532,13.3,5.776,21.472h0.027v6.081l4.844,2.256
+		c3.005,1.407,4.943,4.576,4.943,8.08v13.54h10.805c1.485,0,2.694-1.401,2.694-3.13V60.55
+		C97.639,59.264,96.968,58.114,95.948,57.635z
+            </Geometry>
             <Style TargetType="{x:Type local:PathButton}">
                 <Setter Property="VerticalAlignment" Value="Top"/>
                 <Setter Property="Fill" Value="Red"/>
@@ -39,13 +56,54 @@
             </Style>
         </ResourceDictionary>
     </Window.Resources>
-    <StackPanel Orientation="Horizontal">
-       
-        <local:PathButton Data="{StaticResource testpath}" Width="16" Height="16" StrokeThickness="0" Click="closeme"/>
-        <local:PathButton Data="{StaticResource testpath}" Width="32" Height="32" StrokeThickness="0" Click="closeme"/>
-        <local:PathButton Data="{StaticResource testpath}" Width="72" Height="72" Click="closeme"/>
-        <local:PathButton Data="{StaticResource testpath}" Width="128" Height="128" Click="closeme"/>
-        <local:PathButton Data="{StaticResource testpath}" Width="256" Height="256" StrokeThickness="2" Click="closeme"/>
+    <StackPanel>
+        <wpfTagControl:TagControl Margin="5,20,0,10"
+                                               SelectedTags="{Binding SelectedTags}"
+                         SuggestedTags="{Binding SuggestedTags}"
+                         TagAdded="Ctl_Tags_TagAdded"
+                         IsEditingOnSingleClick="True"
+                         RemoveText="Remove Tag"
+                         TagRemoved="Ctl_Tags_OnTagRemoved"
+                         TagEdited="Ctl_Tags_OnTagEdited"
+                         ShowSeperateAddButton="False"
+            ></wpfTagControl:TagControl>
+       <StackPanel Orientation="Horizontal" Margin=" 10">
+            <local:PathButton Data="{StaticResource testpath}" Width="24" Height="24" StrokeThickness="0" Click="closeme">
+                <local:PathButton.Visibility>
+                    <MultiBinding Converter="{StaticResource TagsVisibilityConverter}">
+                        <Binding Path="SelectedTags"/>
+                        <Binding>
+                            <Binding.Source>
+                                <system:String>Schließen</system:String>
+                            </Binding.Source>
+                        </Binding>
+                    </MultiBinding>
+                </local:PathButton.Visibility>
+            </local:PathButton>
+
+            <local:PathButton Data="{StaticResource Peoply}" Width="24" Height="24" StrokeThickness="0" Margin="20,0">
+                <local:PathButton.Visibility>
+                    <MultiBinding Converter="{StaticResource TagsVisibilityConverter}">
+                        <Binding Path="SelectedTags"/>
+                        <Binding>
+                            <Binding.Source>
+                                <system:String>Musical</system:String>
+                            </Binding.Source>
+                        </Binding>
+                        <Binding>
+                            <Binding.Source>
+                                <system:String>Show</system:String>
+                            </Binding.Source>
+                        </Binding>
+                        <Binding>
+                            <Binding.Source>
+                                <system:String>Event</system:String>
+                            </Binding.Source>
+                        </Binding>
+                    </MultiBinding>
+                </local:PathButton.Visibility>
+            </local:PathButton>
+        </StackPanel>
     </StackPanel>
 </Window>
 

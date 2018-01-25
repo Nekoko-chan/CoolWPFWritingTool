@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WPFTagControl;
 
 namespace TestElements
 {
@@ -25,6 +26,7 @@ namespace TestElements
         public MainWindow()
         {
             InitializeComponent();
+            DataContext = new MainWindowViewModel();
         }
 
         private void MoveWindow(object sender, DragDeltaEventArgs e)
@@ -36,6 +38,28 @@ namespace TestElements
         private void closeme(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
+        }
+
+        private void Ctl_Tags_OnTagRemoved(object sender, TagEventArgs e)
+        {
+        }
+
+        private void Ctl_Tags_OnTagEdited(object sender, TagEventArgs e)
+        {
+            var suggestedTags = ((MainWindowViewModel)DataContext).SuggestedTags;
+            if (!suggestedTags.Contains(e.Item.Text))
+            {
+                suggestedTags.Add(e.Item.Text);
+            }
+        }
+
+        private void Ctl_Tags_TagAdded(object sender, TagEventArgs e)
+        {
+            var suggestedTags = ((MainWindowViewModel)DataContext).SuggestedTags;
+            if (!suggestedTags.Contains(e.Item.Text))
+            {
+                suggestedTags.Add(e.Item.Text);
+            }
         }
     }
 }
