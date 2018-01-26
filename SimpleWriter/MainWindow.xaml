@@ -847,6 +847,7 @@
                          SuggestedTags="{Binding RelativeSource={RelativeSource AncestorType=complexWriter:MainWindow},Path=TagHandler.Suggestions,Converter={StaticResource debugConverter}}"
                          TagAdded="Ctl_Tags_TagAdded"
                          IsEditingOnSingleClick="True"
+                         SortSource="True"
                          RemoveText="{x:Static p:Resources.RemoveTag}"
                          ShowRemoveButton="False"
                          TagRemoved="Ctl_Tags_OnTagRemoved"

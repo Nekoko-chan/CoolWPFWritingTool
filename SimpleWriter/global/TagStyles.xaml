@@ -272,7 +272,7 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="{x:Type wpfTagControl:TagItem}">
-                            <tkInput:AutoCompleteBox x:Name="PART_InputBox" FilterMode="Contains"
+                            <tkInput:AutoCompleteBox x:Name="PART_InputBox" FilterMode="StartsWithCaseSensitive"
                                                      Margin="0,2,0,0"
                                                      IsTextCompletionEnabled="True"
                                                      Tag="Enter a tag"
