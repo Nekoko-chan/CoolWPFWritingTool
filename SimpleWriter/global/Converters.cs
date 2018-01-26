@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using ComplexWriter.MessageBoxes;
 using ComplexWriter.Properties;
 using CustomControls;
+using Writer.Data;
 using Cursors = System.Windows.Input.Cursors;
 using FlowDirection = System.Windows.FlowDirection;
 using ListView = System.Windows.Controls.ListView;

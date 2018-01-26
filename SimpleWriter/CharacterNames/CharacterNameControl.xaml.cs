@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Collections.ObjectModel;
 using System.Windows.Forms.VisualStyles;
+using Writer.Data;
 
 namespace ComplexWriter.CharacterNames
 {

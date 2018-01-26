@@ -17,6 +17,7 @@ using ComplexWriter.Properties;
 using ExtensionObjects;
 using Microsoft.Win32;
 using PdfSharp.Xps;
+using Writer.Data;
 using Size = System.Windows.Size;
 
 namespace ComplexWriter

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Documents;
 using System.Windows.Media;
+using Writer.Data;
 
 namespace ComplexWriter
 {

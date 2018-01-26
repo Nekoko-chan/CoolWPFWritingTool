@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using ComplexWriter.Properties;
 using ExtensionObjects;
+using Writer.Data;
 using Xceed.Wpf.Toolkit;
 using RichTextBox = System.Windows.Controls.RichTextBox;
 

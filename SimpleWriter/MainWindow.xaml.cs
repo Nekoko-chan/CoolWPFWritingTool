@@ -35,12 +35,14 @@ using MessageBox = ComplexWriter.MessageBoxes.MessageBox;
 using ComplexWriter.CharacterNames;
 using SplashDemo;
 using WPFTagControl;
+using Writer.Data;
 using Xceed.Wpf.Toolkit;
 using Application = System.Windows.Application;
 using Button = System.Windows.Controls.Button;
 using Clipboard = System.Windows.Clipboard;
 using Control = System.Windows.Controls.Control;
 using Cursor = System.Windows.Input.Cursor;
+using FlowDocumentExtensions = ExtensionObjects.FlowDocumentExtensions;
 using KeyEventArgs = System.Windows.Input.KeyEventArgs;
 using MenuItem = System.Windows.Controls.MenuItem;
 using OpenFileDialog = Microsoft.Win32.OpenFileDialog;
@@ -1958,7 +1960,7 @@ DependencyProperty.Register("ShowTaglist", typeof(bool), typeof(MainWindow), new
                     var index = -1;
                     for (var i = 0; i < 5; i++)
                     {
-                        index = boxText.IndexOfWhitespaceOrNewline(index + 1);
+                        index = DataTypeExtensions.IndexOfWhitespaceOrNewline(boxText, index + 1);
                         if (index == -1)
                         {
                             text = boxText;
@@ -2862,7 +2864,7 @@ DependencyProperty.Register("ShowTaglist", typeof(bool), typeof(MainWindow), new
                 if (CurrentText != null && !CurrentText.ReadOnly)
                     CurrentText.CaretOffset = Box.Document.ContentStart.GetOffsetToPosition(Box.CaretPosition);
 
-                var currentStyle = FlowDocumentExtensions.GetCurrentStyle(selectionRange, CurrentFontSize);
+                var currentStyle = Writer.Data.FlowDocumentExtensions.GetCurrentStyle(selectionRange, CurrentFontSize);
 
                 if (CurrentText == null) return;
 
@@ -3156,7 +3158,7 @@ DependencyProperty.Register("ShowTaglist", typeof(bool), typeof(MainWindow), new
                        return;
                     }
 
-                    applyableStyle = FlowDocumentExtensions.GetCurrentStyle(range, CurrentFontSize);
+                    applyableStyle = Writer.Data.FlowDocumentExtensions.GetCurrentStyle(range, CurrentFontSize);
                 }
 
                 if (!complexStyles.Styles.Contains(applyableStyle))
@@ -3893,7 +3895,7 @@ DependencyProperty.Register("ShowTaglist", typeof(bool), typeof(MainWindow), new
             CurrentText.Document.CheckAndChangeFonts(style, CurrentText.DefaultStyle);
             var selectionRange = new TextRange(Box.Selection.Start, Box.Selection.End);
 
-            CurrentStyle = FlowDocumentExtensions.GetCurrentStyle(selectionRange, CurrentFontSize);
+            CurrentStyle = Writer.Data.FlowDocumentExtensions.GetCurrentStyle(selectionRange, CurrentFontSize);
         }
 
         private void AddToApplyable(object sender, RoutedEventArgs e)
@@ -3973,24 +3975,24 @@ DependencyProperty.Register("ShowTaglist", typeof(bool), typeof(MainWindow), new
 
         public void ExportStyle(ComplexStyles style)
         {
-            style.Export();
+            style.Export(Settings.Default.DefaultFolder);
         }
 
         private void MakeEmptyStyle(object sender, RoutedEventArgs e)
         {
-            var style = ComplexStyles.Import();
+            var style = ComplexStyles.Import(Settings.Default.DefaultFolder);
             MakeTheFile(style);
         }
 
         private void ImportCurrentStyle(object sender, RoutedEventArgs e)
         {
-            var styles = ComplexStyles.Import();
+            var styles = ComplexStyles.Import(Settings.Default.DefaultFolder);
             CurrentText.Styles = styles;
         }
 
         private void ImportGlobalStyle(object sender, RoutedEventArgs e)
         {
-            var styles = ComplexStyles.Import();
+            var styles = ComplexStyles.Import(Settings.Default.DefaultFolder);
             ApplyableStyles = styles;
         }
 
@@ -4189,7 +4191,7 @@ DependencyProperty.Register("ShowTaglist", typeof(bool), typeof(MainWindow), new
             CurrentText.Document.CheckAndChangeFonts(style, CurrentText.DefaultStyle);
             var selectionRange = new TextRange(Box.Selection.Start, Box.Selection.End);
 
-            CurrentStyle = FlowDocumentExtensions.GetCurrentStyle(selectionRange, CurrentFontSize);
+            CurrentStyle = Writer.Data.FlowDocumentExtensions.GetCurrentStyle(selectionRange, CurrentFontSize);
         }
 
         private void OpenAbout(object sender, RoutedEventArgs e)

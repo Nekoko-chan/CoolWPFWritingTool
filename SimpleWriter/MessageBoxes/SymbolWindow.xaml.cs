@@ -10,6 +10,7 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 using ComplexWriter.Properties;
 using CustomControls;
+using Writer.Data;
 
 namespace ComplexWriter.MessageBoxes
 {

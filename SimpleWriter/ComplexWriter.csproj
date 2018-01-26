@@ -148,7 +148,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClickOpensContextMenuBehavior.cs" />
-    <Compile Include="ColorScheme.cs" />
     <Compile Include="DebounceDispatcher.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="imageScaler.xaml.cs" />
@@ -164,9 +163,6 @@
     <Compile Include="MessageBoxes\Dictionaries\FileOpenerDictionary.xaml.cs">
       <DependentUpon>FileOpenerDictionary.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MessageBoxes\FileCombiner.xaml.cs">
-      <DependentUpon>FileCombiner.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\Resources.de.Designer.cs">
       <DependentUpon>Resources.de.resx</DependentUpon>
@@ -176,7 +172,6 @@
     <Compile Include="Rescources.cs" />
     <Compile Include="TagList.cs" />
     <Compile Include="TreeViewDirectOverItem.cs" />
-    <Compile Include="Watermark.cs" />
     <Content Include="Fonts\readme.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -224,7 +219,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Compile Include="AutoCorrectElement.cs" />
-    <Compile Include="Character.cs" />
     <Compile Include="CharacterNames\CharacterNameControl.xaml.cs">
       <DependentUpon>CharacterNameControl.xaml</DependentUpon>
     </Compile>
@@ -232,10 +226,7 @@
     <Compile Include="CharacterNames\TextButton.xaml.cs" />
     <Compile Include="DispatcherHelper.cs" />
     <Compile Include="DocumentPaginatorWrapper.cs" />
-    <Compile Include="EnumHelper.cs" />
     <Compile Include="ErrorMessageItem.cs" />
-    <Compile Include="FontClass.cs" />
-    <Compile Include="FontFamilyExtension.cs" />
     <Compile Include="global\CountDown.cs" />
     <Compile Include="MatchEventArgs.cs" />
     <Compile Include="MessageBoxes\ColorWindow.xaml.cs">
@@ -503,7 +494,6 @@
     <Compile Include="Commands\CancelCommand.cs" />
     <Compile Include="Commands\NoCommand.cs" />
     <Compile Include="Commands\YesCommand.cs" />
-    <Compile Include="ComplexStyle.cs" />
     <Compile Include="DesignHelper.xaml.cs">
       <DependentUpon>DesignHelper.xaml</DependentUpon>
     </Compile>
@@ -609,10 +599,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="MessageBoxes\SimpleInput.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="MessageBoxes\FileCombiner.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -757,8 +743,6 @@
       <DependentUpon>MyPageViewer.xaml</DependentUpon>
     </Compile>
     <Compile Include="OpenFiles.cs" />
-    <Compile Include="PageBreakHelper.cs" />
-    <Compile Include="PageCountElement.cs" />
     <Compile Include="PasswordHelper.cs" />
     <Compile Include="PdfHelper.cs" />
     <Compile Include="PrintSettings.cs" />
@@ -775,16 +759,13 @@
     <Compile Include="SearchAndReplace\SearchAndReplaceControl.xaml.cs">
       <DependentUpon>SearchAndReplaceControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="SpezialSettingsConverter.cs" />
     <Compile Include="Testblock.xaml.cs">
       <DependentUpon>Testblock.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TextFile.cs" />
     <Compile Include="ThreeStateButton.xaml.cs">
       <DependentUpon>ThreeStateButton.xaml</DependentUpon>
     </Compile>
     <Compile Include="UIServices.cs" />
-    <Compile Include="Utilities.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

@@ -17,6 +17,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using ComplexWriter.Properties;
 using Microsoft.Win32;
+using Writer.Data;
 
 namespace ComplexWriter.MessageBoxes
 {
@@ -120,7 +121,7 @@ namespace ComplexWriter.MessageBoxes
                 PasswordQuestion = file.PasswordQuestion,
                 PrintBackground = file.PrintBackground,
                 PrintBackgroundString = file.PrintBackgroundString,
-                QuotationButtonState = CopyButtonState(file.QuotationButtonState),
+                QuotationButtonState = file.QuotationButtonState,
                 ReadOnly = file.ReadOnly,
                 ScrollOffset = file.ScrollOffset,
                 ShowPageNumber = file.ShowPageNumber,

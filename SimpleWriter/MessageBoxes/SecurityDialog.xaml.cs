@@ -5,6 +5,7 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using ExtensionObjects;
+using Writer.Data;
 
 namespace ComplexWriter.MessageBoxes
 {

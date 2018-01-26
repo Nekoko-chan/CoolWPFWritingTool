@@ -22,6 +22,7 @@ using System.Xaml;
 using ComplexWriter.Commands;
 using ComplexWriter.Properties;
 using Microsoft.Win32;
+using Writer.Data;
 
 namespace ComplexWriter.MessageBoxes
 {

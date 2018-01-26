@@ -9,6 +9,7 @@
         xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
         xmlns:complexWriter="clr-namespace:ComplexWriter"
         xmlns:p="clr-namespace:ComplexWriter.Properties"
+        xmlns:data="clr-namespace:Writer.Data;assembly=Writer.Data"
         Title="{x:Static p:Resources.NameDialog}" >
     <Window.InputBindings>
         <KeyBinding Key="Escape" Command="{x:Static commands1:CancelCommand.CancelOnA}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=messageBoxes:TextInput}}" />
@@ -49,7 +50,7 @@
                         <Setter Property="Margin" Value="-5,0,30,0"/>
                     </Style>
 
-                    <CollectionViewSource x:Key="namelist" IsLiveSortingRequested="True" Source="{Binding Source={complexWriter:EnumBindingSource {x:Type complexWriter:NameType}}}" >
+                    <CollectionViewSource x:Key="namelist" IsLiveSortingRequested="True" Source="{Binding Source={data:EnumBindingSource {x:Type data:NameType}}}" >
                         <CollectionViewSource.SortDescriptions>
                             <componentModel:SortDescription Direction="Descending"/>
                         </CollectionViewSource.SortDescriptions>

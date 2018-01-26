@@ -180,9 +180,9 @@ namespace ComplexWriter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public global::ComplexWriter.ComplexStyle Style {
+        public global::Writer.Data.ComplexStyle Style {
             get {
-                return ((global::ComplexWriter.ComplexStyle)(this["Style"]));
+                return ((global::Writer.Data.ComplexStyle)(this["Style"]));
             }
             set {
                 this["Style"] = value;
@@ -191,9 +191,9 @@ namespace ComplexWriter.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        public global::ComplexWriter.ComplexStyles Styles {
+        public global::Writer.Data.ComplexStyles Styles {
             get {
-                return ((global::ComplexWriter.ComplexStyles)(this["Styles"]));
+                return ((global::Writer.Data.ComplexStyles)(this["Styles"]));
             }
             set {
                 this["Styles"] = value;

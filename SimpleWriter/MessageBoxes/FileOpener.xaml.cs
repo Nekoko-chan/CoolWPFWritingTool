@@ -14,6 +14,7 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media;
 using ComplexWriter.Properties;
+using Writer.Data;
 
 namespace ComplexWriter.MessageBoxes
 {

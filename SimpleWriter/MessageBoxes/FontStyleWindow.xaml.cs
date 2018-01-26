@@ -14,6 +14,7 @@ using System.Windows.Threading;
 using CustomControls;
 using ExtensionObjects;
 using PdfSharp.Pdf.Filters;
+using Writer.Data;
 
 namespace ComplexWriter.MessageBoxes
 {
