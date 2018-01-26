@@ -1,0 +1,1307 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AboutMe" xml:space="preserve">
+    <value>About the program</value>
+  </data>
+  <data name="AcrobatSize" xml:space="preserve">
+    <value>100% in Acrobat Reader</value>
+  </data>
+  <data name="AddAsName" xml:space="preserve">
+    <value>Add as name</value>
+  </data>
+  <data name="AddCharactersToStory" xml:space="preserve">
+    <value>Insert characters after the text is processed</value>
+  </data>
+  <data name="AddNewName" xml:space="preserve">
+    <value>Add new name</value>
+  </data>
+  <data name="AddSelectedStyle" xml:space="preserve">
+    <value>Add selected style</value>
+  </data>
+  <data name="AddSelectedText" xml:space="preserve">
+    <value>Add selected text as new name</value>
+  </data>
+  <data name="AksForPasswordTabs" xml:space="preserve">
+    <value>Show password if the tab is changed</value>
+  </data>
+  <data name="AllowEmptyPasswordHint" xml:space="preserve">
+    <value>Allow empty password hints</value>
+  </data>
+  <data name="AllStylesUpToDate" xml:space="preserve">
+    <value>All styles are up to date</value>
+  </data>
+  <data name="AlwaysOnTop" xml:space="preserve">
+    <value>Show always on top</value>
+  </data>
+  <data name="Antagonists" xml:space="preserve">
+    <value>Antagonist</value>
+  </data>
+  <data name="Appearance" xml:space="preserve">
+    <value>Appearance:</value>
+  </data>
+  <data name="AskForPassword" xml:space="preserve">
+    <value>Ask for passwords</value>
+  </data>
+  <data name="AutomaticSavedMessage" xml:space="preserve">
+    <value>The file "{0}" is saved automatically</value>
+  </data>
+  <data name="BacketDescriptions" xml:space="preserve">
+    <value> On this dialog you are able to define the quotation marks that are used by the document.
+Please remember, that already inserted quotations are not updated.</value>
+  </data>
+  <data name="BlackBackground" xml:space="preserve">
+    <value>Use a black background</value>
+  </data>
+  <data name="BlackWhite" xml:space="preserve">
+    <value>Black and White (not seen in the preview)</value>
+  </data>
+  <data name="BlockText" xml:space="preserve">
+    <value>Block text</value>
+  </data>
+  <data name="Bold" xml:space="preserve">
+    <value>Bold</value>
+  </data>
+  <data name="BoldOnOf" xml:space="preserve">
+    <value>Bold on / off</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="CaseSensitivity" xml:space="preserve">
+    <value>Case sensitivity</value>
+  </data>
+  <data name="CenteredText" xml:space="preserve">
+    <value>Centered Text</value>
+  </data>
+  <data name="ChangeBackColor" xml:space="preserve">
+    <value>Change background color...</value>
+  </data>
+  <data name="ChangeForeColor" xml:space="preserve">
+    <value>Change foreground color...</value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>Set / change password</value>
+  </data>
+  <data name="ChangesInFile" xml:space="preserve">
+    <value>There are unsaved changes on the file "{0}"!
+
+Would you like to save them?</value>
+  </data>
+  <data name="ChrateNewFile" xml:space="preserve">
+    <value>Create new file</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="CloseAnyway" xml:space="preserve">
+    <value>Close anyway</value>
+  </data>
+  <data name="CloseOther" xml:space="preserve">
+    <value>Close all but this</value>
+  </data>
+  <data name="ClosingBrackets" xml:space="preserve">
+    <value>Closing brackets</value>
+  </data>
+  <data name="CollapsAll" xml:space="preserve">
+    <value>Collapse all</value>
+    <comment>Message-Window</comment>
+  </data>
+  <data name="Color" xml:space="preserve">
+    <value>Color</value>
+  </data>
+  <data name="ConfigurationFolder" xml:space="preserve">
+    <value>Settings folder</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>Copy</value>
+  </data>
+  <data name="CorrectText" xml:space="preserve">
+    <value>Spellchecker</value>
+  </data>
+  <data name="CreateNewElement" xml:space="preserve">
+    <value>Create new element</value>
+  </data>
+  <data name="CtrlNumber" xml:space="preserve">
+    <value>Ctrl+&lt;Number&gt;</value>
+  </data>
+  <data name="CtrlShiftNumber" xml:space="preserve">
+    <value>Ctrl+Shift+&lt;Number&gt;</value>
+  </data>
+  <data name="CtrlShiftV" xml:space="preserve">
+    <value>Ctrl + Shift +V</value>
+  </data>
+  <data name="Currency" xml:space="preserve">
+    <value>Currency</value>
+  </data>
+  <data name="Cut" xml:space="preserve">
+    <value>Cut</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Date</value>
+    <comment>Message-Window</comment>
+  </data>
+  <data name="DecreaseFOnt" xml:space="preserve">
+    <value>Decrease font</value>
+  </data>
+  <data name="DecreaseRighSpace" xml:space="preserve">
+    <value>Decrease right indent</value>
+  </data>
+  <data name="DecreaseSpace" xml:space="preserve">
+    <value>Decrease indent</value>
+  </data>
+  <data name="DecZoom" xml:space="preserve">
+    <value>Decrease zoom</value>
+  </data>
+  <data name="DeleteEntry" xml:space="preserve">
+    <value>Delete entry</value>
+  </data>
+  <data name="DeleteFromDrive" xml:space="preserve">
+    <value>Remove from file system</value>
+  </data>
+  <data name="DeleteImage" xml:space="preserve">
+    <value>Delete image</value>
+    <comment>Image Dialog</comment>
+  </data>
+  <data name="DeleteTitle" xml:space="preserve">
+    <value>Delete?</value>
+  </data>
+  <data name="Dictionary" xml:space="preserve">
+    <value>Dictionary</value>
+  </data>
+  <data name="Diverse" xml:space="preserve">
+    <value>Diverse</value>
+    <comment>Message-Window</comment>
+  </data>
+  <data name="DoubleClickTooltip" xml:space="preserve">
+    <value>Double click to open an image</value>
+    <comment>Image Dialog</comment>
+  </data>
+  <data name="DrawingsAndIcons" xml:space="preserve">
+    <value>Images and icons</value>
+  </data>
+  <data name="EditEntry" xml:space="preserve">
+    <value>Edit entry</value>
+  </data>
+  <data name="EditOnOf" xml:space="preserve">
+    <value>Editable on / off</value>
+  </data>
+  <data name="ElementsForInsert" xml:space="preserve">
+    <value>Show insertable elements</value>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>Clear</value>
+    <comment>Message-Window</comment>
+  </data>
+  <data name="EmptyFile" xml:space="preserve">
+    <value>Empty file</value>
+  </data>
+  <data name="EntryIsAddedToDictionary" xml:space="preserve">
+    <value>The entry is added to the dictionary</value>
+  </data>
+  <data name="EntryIsAddedToNames" xml:space="preserve">
+    <value>The entry is added to the name list</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="ErrorWhileStyleCopy" xml:space="preserve">
+    <value>An error occurred while coping the style. 
+
+The style is not added</value>
+  </data>
+  <data name="ExpandAll" xml:space="preserve">
+    <value>Expand all</value>
+    <comment>Message-Window</comment>
+  </data>
+  <data name="Export" xml:space="preserve">
+    <value>Export...</value>
+  </data>
+  <data name="FileDeleteQuestion" xml:space="preserve">
+    <value>Are you sure, that you like to delete the file? 
+The deletion is permanently.</value>
+  </data>
+  <data name="FileIsLoadedLarge" xml:space="preserve">
+    <value>File {0} of {1} ("{2}") is loaded.</value>
+  </data>
+  <data name="FileIsOpen" xml:space="preserve">
+    <value>The file "{0}" is already open
+
+Opening the same file in two tabs is not supported.</value>
+  </data>
+  <data name="FileIsOpened" xml:space="preserve">
+    <value>The File "{0}" is opened</value>
+    <comment>Message-Window</comment>
+  </data>
+  <data name="FileIsOpenTitle" xml:space="preserve">
+    <value>Already open</value>
+  </data>
+  <data name="FileISSaved" xml:space="preserve">
+    <value>The file "{0}" is saved</value>
+    <comment>Message-Window</comment>
+  </data>
+  <data name="FileWouldBeInserted" xml:space="preserve">
+    <value>The following data would be inserted:</value>
+  </data>
+  <data name="FontIsUpdated" xml:space="preserve">
+    <value>The fonts for the file "{0}" were updated</value>
+    <comment>Message-Window</comment>
+  </data>
+  <data name="FontMissing" xml:space="preserve">
+    <value>The font "Arial Unicode MS" is not found.
+For that reason, the "standard font" button is disabled.
+
+If you like to use it, copy it to the "Fonts" folder</value>
+  </data>
+  <data name="FontMissingTitle" xml:space="preserve">
+    <value>Missing font</value>
+  </data>
+  <data name="Fontstyle" xml:space="preserve">
+    <value>Font family</value>
+  </data>
+  <data name="FromPage" xml:space="preserve">
+    <value>from Page</value>
+  </data>
+  <data name="FromReferenceFile" xml:space="preserve">
+    <value>From reference file</value>
+  </data>
+  <data name="FromStyleFile" xml:space="preserve">
+    <value>From style file</value>
+  </data>
+  <data name="Function" xml:space="preserve">
+    <value>Function</value>
+  </data>
+  <data name="Height" xml:space="preserve">
+    <value>Height</value>
+    <comment>Image Dialog</comment>
+  </data>
+  <data name="Idea" xml:space="preserve">
+    <value>Idea</value>
+  </data>
+  <data name="IgnorenAll" xml:space="preserve">
+    <value>Ignore all</value>
+  </data>
+  <data name="ImportantFunctions" xml:space="preserve">
+    <value>Important Functions</value>
+  </data>
+  <data name="IncreaseFont" xml:space="preserve">
+    <value>Increase font</value>
+  </data>
+  <data name="IncreaseRighSpace" xml:space="preserve">
+    <value>Increase right indent</value>
+  </data>
+  <data name="IncreaseSpace" xml:space="preserve">
+    <value>Increase indent</value>
+  </data>
+  <data name="IncZoom" xml:space="preserve">
+    <value>Increase zoom</value>
+  </data>
+  <data name="InitEditor" xml:space="preserve">
+    <value>Initialized editor</value>
+  </data>
+  <data name="InitializedComponents" xml:space="preserve">
+    <value>Initialized components</value>
+  </data>
+  <data name="InsertDeleted" xml:space="preserve">
+    <value>Restore deleted</value>
+  </data>
+  <data name="InserTextOnly" xml:space="preserve">
+    <value>Insert option: text only</value>
+  </data>
+  <data name="InsertImage" xml:space="preserve">
+    <value>Insert image...</value>
+  </data>
+  <data name="InsertLastUnicode" xml:space="preserve">
+    <value>Insert last used unicode</value>
+  </data>
+  <data name="InsertUnicode" xml:space="preserve">
+    <value>Insert unicode...</value>
+  </data>
+  <data name="Italic" xml:space="preserve">
+    <value>Italic</value>
+  </data>
+  <data name="ItalicOnOf" xml:space="preserve">
+    <value>Italic on / off</value>
+  </data>
+  <data name="Keycode" xml:space="preserve">
+    <value>Key code</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Language</value>
+  </data>
+  <data name="LastName" xml:space="preserve">
+    <value>Last name</value>
+  </data>
+  <data name="LeadingZero" xml:space="preserve">
+    <value>Add leading zero</value>
+  </data>
+  <data name="LeftText" xml:space="preserve">
+    <value>Left aligned text</value>
+  </data>
+  <data name="LikeThisOne" xml:space="preserve">
+    <value>From current File</value>
+  </data>
+  <data name="LinkValues" xml:space="preserve">
+    <value>Link values</value>
+    <comment>Image Dialog</comment>
+  </data>
+  <data name="List" xml:space="preserve">
+    <value>List</value>
+  </data>
+  <data name="LoadElements" xml:space="preserve">
+    <value>Load elements</value>
+  </data>
+  <data name="LoadError" xml:space="preserve">
+    <value>Error loading "{0}"</value>
+  </data>
+  <data name="LoadFile" xml:space="preserve">
+    <value>Load file...</value>
+  </data>
+  <data name="LoadSettings" xml:space="preserve">
+    <value>Load settings</value>
+  </data>
+  <data name="Locality" xml:space="preserve">
+    <value>Locality</value>
+  </data>
+  <data name="MergeDictionary" xml:space="preserve">
+    <value>Merge with an other dictionary</value>
+  </data>
+  <data name="Messages" xml:space="preserve">
+    <value>Messages</value>
+    <comment>Message-Window</comment>
+  </data>
+  <data name="Minimize" xml:space="preserve">
+    <value>Minimize</value>
+  </data>
+  <data name="NameAlreadyExists" xml:space="preserve">
+    <value>The Name "{0}" is already taken and can not be added twice.</value>
+  </data>
+  <data name="Names" xml:space="preserve">
+    <value>Names</value>
+  </data>
+  <data name="NameWithSpaceEnd" xml:space="preserve">
+    <value>Names with space as suffix</value>
+  </data>
+  <data name="NameWithSpaces" xml:space="preserve">
+    <value>Names with space on both ends</value>
+  </data>
+  <data name="NameWithSpaceStart" xml:space="preserve">
+    <value>Names with space as prefix</value>
+  </data>
+  <data name="NewFileCreated" xml:space="preserve">
+    <value>A new file is created</value>
+  </data>
+  <data name="NewStyleTemplate" xml:space="preserve">
+    <value>XXX_New style {0:00}</value>
+  </data>
+  <data name="NextPage" xml:space="preserve">
+    <value>Next page</value>
+  </data>
+  <data name="NoDefaultStyle" xml:space="preserve">
+    <value>There is no default style defined for this text.
+Please choose a default style before using this feature.</value>
+  </data>
+  <data name="NoDefaultStyleTitle" xml:space="preserve">
+    <value>No default style defined</value>
+  </data>
+  <data name="NoPasswordHint" xml:space="preserve">
+    <value>Hide password hints</value>
+  </data>
+  <data name="NumericList" xml:space="preserve">
+    <value>Numeric List</value>
+  </data>
+  <data name="Occurance" xml:space="preserve">
+    <value>Occurrences</value>
+  </data>
+  <data name="OldNumbering" xml:space="preserve">
+    <value>Keep old numbering</value>
+  </data>
+  <data name="Opacity" xml:space="preserve">
+    <value>Opacity</value>
+  </data>
+  <data name="OpenBackets" xml:space="preserve">
+    <value>Opening Brackets</value>
+  </data>
+  <data name="OpenDictionary" xml:space="preserve">
+    <value>Open dictionary</value>
+  </data>
+  <data name="OpenDictionaryWindow" xml:space="preserve">
+    <value>Open the dialog for editing the dictionary</value>
+  </data>
+  <data name="OpenNameDictionary" xml:space="preserve">
+    <value>Open name list</value>
+  </data>
+  <data name="OpenNameDictionaryWindow" xml:space="preserve">
+    <value>Open the dialog for editing the name list</value>
+  </data>
+  <data name="OriginalFontSize" xml:space="preserve">
+    <value>Original font size</value>
+  </data>
+  <data name="OriginalSize" xml:space="preserve">
+    <value>Original size</value>
+  </data>
+  <data name="Other" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="OwnColors" xml:space="preserve">
+    <value>Custom colors</value>
+  </data>
+  <data name="PageBreak" xml:space="preserve">
+    <value>Add new paragraph with page break</value>
+  </data>
+  <data name="PageNumberinOptions" xml:space="preserve">
+    <value>Page numbering settings</value>
+  </data>
+  <data name="Paste" xml:space="preserve">
+    <value>Paste</value>
+  </data>
+  <data name="PossibleReplacements" xml:space="preserve">
+    <value>Possible replacements</value>
+  </data>
+  <data name="PreviousPage" xml:space="preserve">
+    <value>Previous page</value>
+  </data>
+  <data name="PrintPreview" xml:space="preserve">
+    <value>Print preview</value>
+  </data>
+  <data name="PrivateText" xml:space="preserve">
+    <value>This program is written under a GNU General Public License and not for commercial usage.
+Permissions of this strong copy license are conditioned on making available complete source code of licensed works and modifications, which include larger works using a licensed work, under the same license. Copyright and license notices must be preserved. Contributors provide an express grant of patent rights.</value>
+  </data>
+  <data name="Programing" xml:space="preserve">
+    <value>Programing</value>
+  </data>
+  <data name="Protagonists" xml:space="preserve">
+    <value>Protagonist</value>
+  </data>
+  <data name="ReadOnly" xml:space="preserve">
+    <value>Read only</value>
+  </data>
+  <data name="RemovedStyles" xml:space="preserve">
+    <value>Removed styles</value>
+  </data>
+  <data name="RemoveSpecial" xml:space="preserve">
+    <value>Delete "{0}"</value>
+  </data>
+  <data name="RemoveStyleQuestion" xml:space="preserve">
+    <value>Remove style?</value>
+  </data>
+  <data name="RenameFile" xml:space="preserve">
+    <value>Rename file</value>
+  </data>
+  <data name="Replace" xml:space="preserve">
+    <value>Replace</value>
+  </data>
+  <data name="ReplaceAll" xml:space="preserve">
+    <value>Replace all</value>
+  </data>
+  <data name="ReplaceQuestion" xml:space="preserve">
+    <value>Replace?</value>
+  </data>
+  <data name="Restart" xml:space="preserve">
+    <value>Restart</value>
+  </data>
+  <data name="RestartForChanges" xml:space="preserve">
+    <value>Changings on the dictionary are only available after restarting the program.
+Would you like to restart it now?</value>
+  </data>
+  <data name="RestartForNameChanges" xml:space="preserve">
+    <value>Changings on the name list are only available after restarting the program.
+Would you like to restart it?</value>
+  </data>
+  <data name="RightClickOptions" xml:space="preserve">
+    <value>(Click right for more options)</value>
+  </data>
+  <data name="RightText" xml:space="preserve">
+    <value>Right aligned text</value>
+  </data>
+  <data name="RomoveUsageAsWell" xml:space="preserve">
+    <value>Would you like to remove all usages of the style as well?</value>
+  </data>
+  <data name="SaveAsRTF" xml:space="preserve">
+    <value>Export as *.rtf</value>
+  </data>
+  <data name="SaveAutomatical" xml:space="preserve">
+    <value>Save automatically</value>
+  </data>
+  <data name="SaveChanged" xml:space="preserve">
+    <value>Save changed files</value>
+  </data>
+  <data name="SaveError" xml:space="preserve">
+    <value>Some files could not be saved, because of errors happening during this operation.
+Would you like to close the program anyway?</value>
+  </data>
+  <data name="SaveFileAs" xml:space="preserve">
+    <value>Save file as...</value>
+  </data>
+  <data name="SaveOnly" xml:space="preserve">
+    <value>Save only</value>
+  </data>
+  <data name="SaveQuestion" xml:space="preserve">
+    <value>Save?</value>
+  </data>
+  <data name="SavetySettings" xml:space="preserve">
+    <value>Security settings</value>
+  </data>
+  <data name="Saving" xml:space="preserve">
+    <value>Saving</value>
+    <comment>Message-Window</comment>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="SetVariables" xml:space="preserve">
+    <value>Variables initialized</value>
+  </data>
+  <data name="ShowAbout" xml:space="preserve">
+    <value>(Click the button to show "About the program")</value>
+  </data>
+  <data name="ShowMessages" xml:space="preserve">
+    <value>Show messages...</value>
+  </data>
+  <data name="ShowOptions" xml:space="preserve">
+    <value>Show options</value>
+  </data>
+  <data name="ShowPageNumbering" xml:space="preserve">
+    <value>Show page numbering (not shown in preview)</value>
+  </data>
+  <data name="ShowQuotes" xml:space="preserve">
+    <value>Show quotations</value>
+  </data>
+  <data name="ShowSearch" xml:space="preserve">
+    <value>Show search</value>
+  </data>
+  <data name="ShowStylesWindow" xml:space="preserve">
+    <value>Show style window</value>
+  </data>
+  <data name="ShowXAML" xml:space="preserve">
+    <value>Show XAML code for the document...</value>
+  </data>
+  <data name="SingleClosingBracket" xml:space="preserve">
+    <value>Closing brackets (single)</value>
+  </data>
+  <data name="SingleOpenBracket" xml:space="preserve">
+    <value>Opening brackets (single)</value>
+  </data>
+  <data name="SomeFilesChanged" xml:space="preserve">
+    <value>Some files are changed. Would you like to save them?</value>
+  </data>
+  <data name="Speech" xml:space="preserve">
+    <value>Speech without quotes</value>
+  </data>
+  <data name="SpeechWithQuotes" xml:space="preserve">
+    <value>Speech with quotes</value>
+  </data>
+  <data name="SpeacSimpleQuotes" xml:space="preserve">
+    <value>Speech with single quotes</value>
+  </data>
+  <data name="SpecialEntryAddedToDictionary" xml:space="preserve">
+    <value>Add "{0}" to the dictionary ({1})</value>
+  </data>
+  <data name="SpecialEntryAddedToNames" xml:space="preserve">
+    <value>Add "{0}" to the name list</value>
+  </data>
+  <data name="SpecialKeycode" xml:space="preserve">
+    <value>Special key codes</value>
+  </data>
+  <data name="Species" xml:space="preserve">
+    <value>Species</value>
+  </data>
+  <data name="SpellCheckOnOf" xml:space="preserve">
+    <value>Spell checking on / off</value>
+  </data>
+  <data name="StandardCommands" xml:space="preserve">
+    <value>Standard commands</value>
+  </data>
+  <data name="StyleAlreadyExists" xml:space="preserve">
+    <value>The name for the style is already taken.
+
+Would you like to replace the previous style?</value>
+  </data>
+  <data name="StyleExists" xml:space="preserve">
+    <value>A style with this settings is already defined under the name
+"{0}"
+
+Please use that style instead.</value>
+  </data>
+  <data name="StyleExistsWithoutName" xml:space="preserve">
+    <value>This style is added without a name. 
+
+Styles have to be unique to be registered.</value>
+  </data>
+  <data name="StyleNumber" xml:space="preserve">
+    <value>Style &lt;number&gt;</value>
+  </data>
+  <data name="StyleNumberQuote" xml:space="preserve">
+    <value>Style &lt;number&gt; with quotation marks</value>
+  </data>
+  <data name="StyleRemoveQuestion" xml:space="preserve">
+    <value>Are you sure, that you like to remove the style?
+It is impossible to undone the operation.</value>
+  </data>
+  <data name="StyleRemoveQuestionTitle" xml:space="preserve">
+    <value>Are you sure, that you like to remove the style?</value>
+  </data>
+  <data name="StyleTitle" xml:space="preserve">
+    <value>Please enter a title for your style</value>
+  </data>
+  <data name="StyleUpdateInfo" xml:space="preserve">
+    <value>{0} style(s) deleted and {1} added.</value>
+  </data>
+  <data name="StyleUsageCount" xml:space="preserve">
+    <value>The style "{0}" is used {1} times</value>
+  </data>
+  <data name="Support" xml:space="preserve">
+    <value>Support characters</value>
+  </data>
+  <data name="SystemColors" xml:space="preserve">
+    <value>System colors</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Cool Writer</value>
+  </data>
+  <data name="ToPage" xml:space="preserve">
+    <value>to page</value>
+  </data>
+  <data name="Underlined" xml:space="preserve">
+    <value>Underlined</value>
+  </data>
+  <data name="UnderlineOnOf" xml:space="preserve">
+    <value>Underlined  on / off</value>
+  </data>
+  <data name="Unknown" xml:space="preserve">
+    <value>Unknown.etf</value>
+  </data>
+  <data name="Unset" xml:space="preserve">
+    <value>Unset</value>
+  </data>
+  <data name="UpdateBackground" xml:space="preserve">
+    <value>Update background</value>
+  </data>
+  <data name="UpdateElements" xml:space="preserve">
+    <value>Would you like to update all elements using this style as well?</value>
+  </data>
+  <data name="UpdateFont" xml:space="preserve">
+    <value>Update font...</value>
+  </data>
+  <data name="UpdateLineSpacing" xml:space="preserve">
+    <value>Update line spacing...</value>
+  </data>
+  <data name="UpdateQuotes" xml:space="preserve">
+    <value>Update quotation marks...</value>
+  </data>
+  <data name="UpdateSideImage" xml:space="preserve">
+    <value>Update side image...</value>
+  </data>
+  <data name="UpdateWatermark" xml:space="preserve">
+    <value>Update watermark...</value>
+  </data>
+  <data name="UseDefaultFOnt" xml:space="preserve">
+    <value>Use default font</value>
+  </data>
+  <data name="UseDefaultStyle" xml:space="preserve">
+    <value>Use default style</value>
+  </data>
+  <data name="UseStartFont" xml:space="preserve">
+    <value>Use initial font</value>
+  </data>
+  <data name="WatermarkNotSupportedMessage" xml:space="preserve">
+    <value>This file contains a watermark, which is not supported by the used file format and would not be saved.
+
+Would you like to save it anyway?</value>
+  </data>
+  <data name="WholePage" xml:space="preserve">
+    <value>Show whole page</value>
+  </data>
+  <data name="WholeWord" xml:space="preserve">
+    <value>Whole word</value>
+  </data>
+  <data name="Width" xml:space="preserve">
+    <value>Width</value>
+    <comment>Image Dialog</comment>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="Identifier" xml:space="preserve">
+    <value>Identifier</value>
+  </data>
+  <data name="Image" xml:space="preserve">
+    <value>Image</value>
+  </data>
+  <data name="NameDialog" xml:space="preserve">
+    <value>Name Dialog</value>
+  </data>
+  <data name="RervertForeground" xml:space="preserve">
+    <value>Revert foreground color</value>
+  </data>
+  <data name="RevertBackground" xml:space="preserve">
+    <value>Revert background color</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="UsedFont" xml:space="preserve">
+    <value>Used font:</value>
+  </data>
+  <data name="AddStyle" xml:space="preserve">
+    <value>Add Style</value>
+  </data>
+  <data name="DoubleEntry" xml:space="preserve">
+    <value>Doubled entry</value>
+  </data>
+  <data name="Doubleing" xml:space="preserve">
+    <value>Doubling</value>
+  </data>
+  <data name="IgnoreAllHint" xml:space="preserve">
+    <value>Ignores the word till the program is closed
+If you like to ignore it beyond this, you have to add the word to the dictionary!</value>
+  </data>
+  <data name="PastePreview" xml:space="preserve">
+    <value>The following text will be inserted:
+{0}</value>
+  </data>
+  <data name="PasteWithoutFormatting" xml:space="preserve">
+    <value>Paste (WITHOUT formatting)</value>
+  </data>
+  <data name="Rename" xml:space="preserve">
+    <value>Rename</value>
+  </data>
+  <data name="ReplaceStyle" xml:space="preserve">
+    <value>Replace style</value>
+  </data>
+  <data name="ReplaceText" xml:space="preserve">
+    <value>Replace "{0}" with "{1}"</value>
+  </data>
+  <data name="StyleAddedWithName" xml:space="preserve">
+    <value>The style is already added as "{0}"!
+
+Would you like to rename it instead?</value>
+  </data>
+  <data name="StyleAddedWithoutName" xml:space="preserve">
+    <value>The style is already added without a given identifier!
+
+Would you like to rename it instead?</value>
+  </data>
+  <data name="WatermarkOnlyWithEtf" xml:space="preserve">
+    <value>The file contains a watermark, which is not supported by the used file type.
+If you like to keep the watermark, you have to save it as an *.etf file</value>
+  </data>
+  <data name="DictionaryPath" xml:space="preserve">
+    <value>Microsoft\Spelling\en-US\CoolWriter.dic</value>
+  </data>
+  <data name="ApplyStlye" xml:space="preserve">
+    <value>Apply the following style:</value>
+  </data>
+  <data name="CountOccurances" xml:space="preserve">
+    <value>Count usages</value>
+  </data>
+  <data name="DeleteAllStyles" xml:space="preserve">
+    <value>Delete all styles</value>
+  </data>
+  <data name="DeleteSpezial" xml:space="preserve">
+    <value>Delete "{0}"</value>
+  </data>
+  <data name="EditDictionary" xml:space="preserve">
+    <value>Edit dictionary</value>
+  </data>
+  <data name="EditNameList" xml:space="preserve">
+    <value>Edit name list</value>
+  </data>
+  <data name="EditSelectedStyle" xml:space="preserve">
+    <value>Edit selected style</value>
+  </data>
+  <data name="ExampleText" xml:space="preserve">
+    <value>Example text</value>
+  </data>
+  <data name="ExportStyle" xml:space="preserve">
+    <value>Export style</value>
+  </data>
+  <data name="FileFilterLarge" xml:space="preserve">
+    <value>Extended text files|*.etf|Text files|*.rtxt|Possible formats |*.etf;*.rtxt</value>
+  </data>
+  <data name="FileFilterSmall" xml:space="preserve">
+    <value>Extended text files|*.etf</value>
+  </data>
+  <data name="GoToFirstUsage" xml:space="preserve">
+    <value>Go to first usage</value>
+  </data>
+  <data name="ImportStyles" xml:space="preserve">
+    <value>Import styles</value>
+  </data>
+  <data name="IsMainEntry" xml:space="preserve">
+    <value>Is main entry</value>
+  </data>
+  <data name="MergeStyles" xml:space="preserve">
+    <value>Match style list with usages</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="RemoveEntry" xml:space="preserve">
+    <value>Remove entry</value>
+  </data>
+  <data name="RemoveStyle" xml:space="preserve">
+    <value>Remove style</value>
+  </data>
+  <data name="RemoveStyleFromDocument" xml:space="preserve">
+    <value>Remove style from document</value>
+  </data>
+  <data name="ReplaceStyleInDocument" xml:space="preserve">
+    <value>Replace style in document</value>
+  </data>
+  <data name="RevertDelete" xml:space="preserve">
+    <value>Revert deleting  "{0}"</value>
+  </data>
+  <data name="StylesUpdated" xml:space="preserve">
+    <value>Style list updated</value>
+  </data>
+  <data name="UnknowTxt" xml:space="preserve">
+    <value>Unbekannt.txt</value>
+  </data>
+  <data name="UpdateStyle" xml:space="preserve">
+    <value>Update Style</value>
+  </data>
+  <data name="UseStyleAsDefault" xml:space="preserve">
+    <value>Use style as default</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="Condensed" xml:space="preserve">
+    <value>Condensed</value>
+  </data>
+  <data name="FontSize" xml:space="preserve">
+    <value>Font size</value>
+  </data>
+  <data name="StrikedThrough" xml:space="preserve">
+    <value>Strikethrough</value>
+  </data>
+  <data name="Automatic" xml:space="preserve">
+    <value>Automatic</value>
+  </data>
+  <data name="CharacterEditorDescription" xml:space="preserve">
+    <value>In  this dialog you are able to describe the character</value>
+  </data>
+  <data name="CloseWindow" xml:space="preserve">
+    <value>Close window</value>
+  </data>
+  <data name="CurrentLanguage" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="ExportRTF" xml:space="preserve">
+    <value>Export as Rich text file...</value>
+  </data>
+  <data name="FileIsReadOnly" xml:space="preserve">
+    <value>This file is read only</value>
+  </data>
+  <data name="ImageFilter" xml:space="preserve">
+    <value>Image files|*.png;*.jpg</value>
+  </data>
+  <data name="IsPasswordProtected" xml:space="preserve">
+    <value>This file is protected by a password</value>
+  </data>
+  <data name="LoadImage" xml:space="preserve">
+    <value>Load image</value>
+  </data>
+  <data name="QuotesWithoutAStyle" xml:space="preserve">
+    <value>Quotations without a style</value>
+  </data>
+  <data name="ReadOnlyDescription" xml:space="preserve">
+    <value>This file is read only. Please double click on its tab, to make it writable</value>
+  </data>
+  <data name="SaveAll" xml:space="preserve">
+    <value>Save all files</value>
+  </data>
+  <data name="SaveFile" xml:space="preserve">
+    <value>Save file...</value>
+  </data>
+  <data name="StrikedThroughOnOf" xml:space="preserve">
+    <value>Strikethrough on /off</value>
+  </data>
+  <data name="UpdateLanguage" xml:space="preserve">
+    <value>Change language</value>
+  </data>
+  <data name="AddColor" xml:space="preserve">
+    <value>Add color (doubled colors are ignored)</value>
+  </data>
+  <data name="ApplyChanges" xml:space="preserve">
+    <value>Apply changes</value>
+  </data>
+  <data name="BackgroundColor" xml:space="preserve">
+    <value>background color</value>
+  </data>
+  <data name="ChoosePassword" xml:space="preserve">
+    <value>Please enter a password for the file "{0}".</value>
+  </data>
+  <data name="CtrlClick" xml:space="preserve">
+    <value>Ctrl + Click to delete the color</value>
+  </data>
+  <data name="DeviationInFontSize" xml:space="preserve">
+    <value>Deviation from original font size: {0}</value>
+  </data>
+  <data name="FileIsProtected" xml:space="preserve">
+    <value>The file "{0}" is password protected.
+
+Please enter the password.</value>
+  </data>
+  <data name="ForegroundColor" xml:space="preserve">
+    <value>foreground color</value>
+  </data>
+  <data name="HidePassword" xml:space="preserve">
+    <value>Hide password</value>
+  </data>
+  <data name="Hint" xml:space="preserve">
+    <value>Hint</value>
+  </data>
+  <data name="InvalidPassword" xml:space="preserve">
+    <value>The password you entered is invalid! Please try again.</value>
+  </data>
+  <data name="NoEmptyHint" xml:space="preserve">
+    <value>The hint can not be empty</value>
+  </data>
+  <data name="PasswordInput" xml:space="preserve">
+    <value>Please enter the password</value>
+  </data>
+  <data name="PasswordIsHidden" xml:space="preserve">
+    <value>The password is currently hidden.
+
+Are you sure, that you like to change it, without checking the spelling?</value>
+  </data>
+  <data name="PleaseChooseColor" xml:space="preserve">
+    <value>Please choose a color</value>
+  </data>
+  <data name="ReallyClosing" xml:space="preserve">
+    <value>Close without printing?</value>
+  </data>
+  <data name="ResetDelete" xml:space="preserve">
+    <value>Revert all deletions</value>
+  </data>
+  <data name="RevertBackgroundColor" xml:space="preserve">
+    <value>Revert background color</value>
+  </data>
+  <data name="RevertForegroundColor" xml:space="preserve">
+    <value>Revert foreground color</value>
+  </data>
+  <data name="SaveOnlyQuestion" xml:space="preserve">
+    <value>Are you sure, that you only want to save the options?
+
+(For printing "OK" should be pressed.)</value>
+  </data>
+  <data name="ShowPassword" xml:space="preserve">
+    <value>Show password</value>
+  </data>
+  <data name="UseExampleText" xml:space="preserve">
+    <value>Use example text</value>
+  </data>
+  <data name="UseWatermark" xml:space="preserve">
+    <value>Use watermark (not shown in preview)</value>
+  </data>
+  <data name="WordList" xml:space="preserve">
+    <value>Word list</value>
+  </data>
+  <data name="AddFileName" xml:space="preserve">
+    <value>Please enter a filename</value>
+  </data>
+  <data name="CopyToClipboard" xml:space="preserve">
+    <value>Copy to clipboard</value>
+  </data>
+  <data name="FileAlreadyOpen" xml:space="preserve">
+    <value>The file is already open</value>
+  </data>
+  <data name="HighQuality" xml:space="preserve">
+    <value>High quality</value>
+  </data>
+  <data name="InsertFromClipboard" xml:space="preserve">
+    <value>Insert from clipboard</value>
+  </data>
+  <data name="InvalidRenaming" xml:space="preserve">
+    <value>The filename is invalid</value>
+  </data>
+  <data name="NextNeighbor" xml:space="preserve">
+    <value>Next Neighbor</value>
+  </data>
+  <data name="RestartForLanguage" xml:space="preserve">
+    <value>Some changes are applied, when the program is closing.
+It is recomended to restart the applicatiton, for the changes taking effect.
+If the program is not closed properly, some changes might be lost.
+
+Would you like to restart it now?</value>
+  </data>
+  <data name="SaveAndReload" xml:space="preserve">
+    <value>Save and Reload</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value>The file</value>
+  </data>
+  <data name="String2" xml:space="preserve">
+    <value>is already open.</value>
+  </data>
+  <data name="String3" xml:space="preserve">
+    <value>To prevent consistency problems, no file is opened twice.</value>
+  </data>
+  <data name="String4" xml:space="preserve">
+    <value>You have the following options to avoid the problem:</value>
+  </data>
+  <data name="String5" xml:space="preserve">
+    <value>Use the name anyway</value>
+  </data>
+  <data name="String6" xml:space="preserve">
+    <value>(The file is reloaded)</value>
+  </data>
+  <data name="String7" xml:space="preserve">
+    <value>Use an other name</value>
+  </data>
+  <data name="String8" xml:space="preserve">
+    <value>Cancel the process</value>
+  </data>
+  <data name="String9" xml:space="preserve">
+    <value>What would you like to do?</value>
+  </data>
+  <data name="UseAsSpeech" xml:space="preserve">
+    <value>Use style as "Speech"</value>
+  </data>
+  <data name="UseOtherName" xml:space="preserve">
+    <value>Choose an other name</value>
+  </data>
+  <data name="InputLanguage" xml:space="preserve">
+    <value>Input language</value>
+  </data>
+  <data name="UpdateLanguageQuestion" xml:space="preserve">
+    <value>If you change the input language, this change is used system wide.
+
+Are you sure, that you like to change the input language?</value>
+  </data>
+  <data name="AutoSaveByInterval" xml:space="preserve">
+    <value>Auto save after interval</value>
+  </data>
+  <data name="AutoSaveIdle" xml:space="preserve">
+    <value>Auto save when idle</value>
+  </data>
+  <data name="AutoSaveInterval" xml:space="preserve">
+    <value>Interval (in seconds)</value>
+  </data>
+  <data name="NoAutosave" xml:space="preserve">
+    <value>No auto save</value>
+  </data>
+  <data name="ColorSettingAlternateBackColor" xml:space="preserve">
+    <value>Menu background 2</value>
+  </data>
+  <data name="ColorSettingBackColor" xml:space="preserve">
+    <value>Menu background</value>
+  </data>
+  <data name="ColorSettingBackGradient1" xml:space="preserve">
+    <value>Writer background</value>
+  </data>
+  <data name="ColorSettingBackGradient2" xml:space="preserve">
+    <value>Writer background 2</value>
+  </data>
+  <data name="ColorSettingButtonBorder" xml:space="preserve">
+    <value>Button border</value>
+  </data>
+  <data name="ColorSettingButtonFocus" xml:space="preserve">
+    <value>Focused button</value>
+  </data>
+  <data name="ColorSettingButtonHighlight" xml:space="preserve">
+    <value>Button mouse over</value>
+  </data>
+  <data name="ColorSettingButtonLight" xml:space="preserve">
+    <value>Button highlight</value>
+  </data>
+  <data name="ColorSettingButtonShadow" xml:space="preserve">
+    <value>Button shadow</value>
+  </data>
+  <data name="ColorSettingDarkerTitleColor" xml:space="preserve">
+    <value>Menu text darker</value>
+  </data>
+  <data name="ColorSettingDragColor" xml:space="preserve">
+    <value>Dragging scrollbar</value>
+  </data>
+  <data name="ColorSettingOverColor" xml:space="preserve">
+    <value>Highlight</value>
+  </data>
+  <data name="ColorSettingRtfBrush" xml:space="preserve">
+    <value>Marker for RTF documents</value>
+  </data>
+  <data name="ColorSettingsDialog" xml:space="preserve">
+    <value>Color settings</value>
+  </data>
+  <data name="ColorSettingSelectionColor" xml:space="preserve">
+    <value>Selection</value>
+  </data>
+  <data name="ColorSettingSelectionColor2" xml:space="preserve">
+    <value>Selection 2</value>
+  </data>
+  <data name="ColorSettingTitleColor" xml:space="preserve">
+    <value>Menu text</value>
+  </data>
+  <data name="EmptyTag" xml:space="preserve">
+    <value>&lt;unset&gt;</value>
+  </data>
+  <data name="ErrorClosing" xml:space="preserve">
+    <value>An error occured while closing.
+
+Would you like to close it anyway?</value>
+  </data>
+  <data name="FixPosition" xml:space="preserve">
+    <value>Dock to main window</value>
+  </data>
+  <data name="OpenColorSettingsDialog" xml:space="preserve">
+    <value>Open color settings</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Settings...</value>
+  </data>
+  <data name="SpeechShort" xml:space="preserve">
+    <value>Speech</value>
+  </data>
+  <data name="AddTag" xml:space="preserve">
+    <value>Add tag</value>
+  </data>
+  <data name="RemoveTag" xml:space="preserve">
+    <value>Remove current tag</value>
+  </data>
+  <data name="TagHandlerLoaded" xml:space="preserve">
+    <value>Tags loaded</value>
+  </data>
+  <data name="TagOverColor" xml:space="preserve">
+    <value>Tag hover color</value>
+  </data>
+  <data name="Characters" xml:space="preserve">
+    <value>Characters</value>
+  </data>
+  <data name="ShowTags" xml:space="preserve">
+    <value>Show tag list</value>
+  </data>
+  <data name="Tags" xml:space="preserve">
+    <value>Tags</value>
+  </data>
+  <data name="CursorColor" xml:space="preserve">
+    <value>Cursor color</value>
+  </data>
+  <data name="Entries" xml:space="preserve">
+    <value>entries</value>
+  </data>
+  <data name="Entry" xml:space="preserve">
+    <value>entry</value>
+  </data>
+  <data name="TotalEntries" xml:space="preserve">
+    <value>Total entries: {0}</value>
+  </data>
+</root>

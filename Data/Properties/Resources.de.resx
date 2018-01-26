@@ -1,0 +1,1308 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AboutMe" xml:space="preserve">
+    <value>Über das Programm</value>
+  </data>
+  <data name="AcrobatSize" xml:space="preserve">
+    <value>100% im Acrobat Reader</value>
+  </data>
+  <data name="AddAsName" xml:space="preserve">
+    <value>Als Name hinzufügen</value>
+  </data>
+  <data name="AddCharactersToStory" xml:space="preserve">
+    <value>Charaktere an die Geschichte anfügen</value>
+  </data>
+  <data name="AddNewName" xml:space="preserve">
+    <value>Neuen Namen hinzufügen</value>
+  </data>
+  <data name="AddSelectedStyle" xml:space="preserve">
+    <value>Auswahlstil hinzunehmen</value>
+  </data>
+  <data name="AddSelectedText" xml:space="preserve">
+    <value>Selektierten Text als Name hinzufügen</value>
+  </data>
+  <data name="AksForPasswordTabs" xml:space="preserve">
+    <value>Passwort beim Wechsel von Tabs anzeigen</value>
+  </data>
+  <data name="AllowEmptyPasswordHint" xml:space="preserve">
+    <value>Leere Passworthinweise erlauben</value>
+  </data>
+  <data name="AllStylesUpToDate" xml:space="preserve">
+    <value>Die Stile sind bereits aktuell</value>
+  </data>
+  <data name="AlwaysOnTop" xml:space="preserve">
+    <value>Immer im Vordergrund anzeigen</value>
+  </data>
+  <data name="Antagonists" xml:space="preserve">
+    <value>Antagonist</value>
+  </data>
+  <data name="Appearance" xml:space="preserve">
+    <value>Aussehen:</value>
+  </data>
+  <data name="AskForPassword" xml:space="preserve">
+    <value>Passwort abfragen</value>
+  </data>
+  <data name="AutomaticSavedMessage" xml:space="preserve">
+    <value>Die Datei "{0}" wurde automatisch gespeichert</value>
+  </data>
+  <data name="BacketDescriptions" xml:space="preserve">
+    <value>Hier können sie die Anführungszeichen (doppelt und einzelnd) angeben, die im Dokument verwendet werden sollen. 
+Beachten sie aber, dass bisherige Anführungszeichen nicht verändert werden.</value>
+  </data>
+  <data name="BlackBackground" xml:space="preserve">
+    <value>Schwarz als Hintergrund</value>
+  </data>
+  <data name="BlackWhite" xml:space="preserve">
+    <value>Schwarz-Weiß (Vorschau nicht betroffen)</value>
+  </data>
+  <data name="BlockText" xml:space="preserve">
+    <value>Blocktext</value>
+  </data>
+  <data name="Bold" xml:space="preserve">
+    <value>Fettgedruckt</value>
+  </data>
+  <data name="BoldOnOf" xml:space="preserve">
+    <value>Fett an / aus</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Abbrechen</value>
+  </data>
+  <data name="CaseSensitivity" xml:space="preserve">
+    <value>Groß- und Kleinschreibung</value>
+  </data>
+  <data name="CenteredText" xml:space="preserve">
+    <value>Zentrierter Text</value>
+  </data>
+  <data name="ChangeBackColor" xml:space="preserve">
+    <value>Hintergrundfarbe ändern...</value>
+  </data>
+  <data name="ChangeForeColor" xml:space="preserve">
+    <value>Vordergrundfarbe ändern...</value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>Passwort vergeben / ändern</value>
+  </data>
+  <data name="ChangesInFile" xml:space="preserve">
+    <value>Es liegen ungespeicherte Änderungen der Datei "{0}" vor!
+
+Sollen diese gespeichert werden?</value>
+  </data>
+  <data name="ChrateNewFile" xml:space="preserve">
+    <value>Neue Datei erstellen</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Beenden</value>
+  </data>
+  <data name="CloseAnyway" xml:space="preserve">
+    <value>Trotzdem beenden</value>
+  </data>
+  <data name="CloseOther" xml:space="preserve">
+    <value>Alle bis auf dieses schließen</value>
+  </data>
+  <data name="ClosingBrackets" xml:space="preserve">
+    <value>Schließende Klammern</value>
+  </data>
+  <data name="CollapsAll" xml:space="preserve">
+    <value>Alle zusammenklappen</value>
+    <comment>Message-Window</comment>
+  </data>
+  <data name="Color" xml:space="preserve">
+    <value>Farbe</value>
+  </data>
+  <data name="ConfigurationFolder" xml:space="preserve">
+    <value>Konfigurationsordner</value>
+  </data>
+  <data name="Copy" xml:space="preserve">
+    <value>Kopieren</value>
+  </data>
+  <data name="CorrectText" xml:space="preserve">
+    <value>Textkorrektur</value>
+  </data>
+  <data name="CreateNewElement" xml:space="preserve">
+    <value>Neues Element erstellen</value>
+  </data>
+  <data name="CtrlNumber" xml:space="preserve">
+    <value>Strg+&lt;Nummer&gt;</value>
+  </data>
+  <data name="CtrlShiftNumber" xml:space="preserve">
+    <value>Strg+Shift+&lt;Nummer&gt;</value>
+  </data>
+  <data name="CtrlShiftV" xml:space="preserve">
+    <value>Strg + Shift +V</value>
+  </data>
+  <data name="Currency" xml:space="preserve">
+    <value>Währung</value>
+  </data>
+  <data name="Cut" xml:space="preserve">
+    <value>Ausschneiden</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Datum</value>
+    <comment>Message-Window</comment>
+  </data>
+  <data name="DecreaseFOnt" xml:space="preserve">
+    <value>Schrift verkleinern</value>
+  </data>
+  <data name="DecreaseRighSpace" xml:space="preserve">
+    <value>Abstand rechts verkleinern</value>
+  </data>
+  <data name="DecreaseSpace" xml:space="preserve">
+    <value>Abstand verringern</value>
+  </data>
+  <data name="DecZoom" xml:space="preserve">
+    <value>Zoom vergrößern</value>
+  </data>
+  <data name="DeleteEntry" xml:space="preserve">
+    <value>Eintrag löschen</value>
+  </data>
+  <data name="DeleteFromDrive" xml:space="preserve">
+    <value>Von der Festplatte löschen</value>
+  </data>
+  <data name="DeleteImage" xml:space="preserve">
+    <value>Bild löschen</value>
+    <comment>Image Dialog</comment>
+  </data>
+  <data name="DeleteTitle" xml:space="preserve">
+    <value>Löschen?</value>
+  </data>
+  <data name="Dictionary" xml:space="preserve">
+    <value>Wörterbuch</value>
+  </data>
+  <data name="Diverse" xml:space="preserve">
+    <value>Diverse</value>
+    <comment>Message-Window</comment>
+  </data>
+  <data name="DoubleClickTooltip" xml:space="preserve">
+    <value>Doppelklick, um ein Bild zu öffnen</value>
+    <comment>Image Dialog</comment>
+  </data>
+  <data name="DrawingsAndIcons" xml:space="preserve">
+    <value>Zeichnungen und Icons</value>
+  </data>
+  <data name="EditEntry" xml:space="preserve">
+    <value>Eintrag bearbeiten</value>
+  </data>
+  <data name="EditOnOf" xml:space="preserve">
+    <value>Bearbeitungsmodus ein/aus</value>
+  </data>
+  <data name="ElementsForInsert" xml:space="preserve">
+    <value>Elemente zum Einfügen anzeigen</value>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>Leeren</value>
+    <comment>Message-Window</comment>
+  </data>
+  <data name="EmptyFile" xml:space="preserve">
+    <value>Leere Datei</value>
+  </data>
+  <data name="EntryIsAddedToDictionary" xml:space="preserve">
+    <value>Der Eintrag wird zum Wörterbuch hinzugefügt</value>
+  </data>
+  <data name="EntryIsAddedToNames" xml:space="preserve">
+    <value>Der Eintrag wird zur Namensliste hinzugefügt</value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Fehler</value>
+  </data>
+  <data name="ErrorWhileStyleCopy" xml:space="preserve">
+    <value>Beim Kopieren des Stils ist ein Fehler aufgetreten.
+
+Er wurde folglich nicht hinzugefügt.</value>
+  </data>
+  <data name="ExpandAll" xml:space="preserve">
+    <value>Alle expandieren</value>
+    <comment>Message-Window</comment>
+  </data>
+  <data name="Export" xml:space="preserve">
+    <value>Exportieren...</value>
+  </data>
+  <data name="FileDeleteQuestion" xml:space="preserve">
+    <value>Sind Sie sicher, dass sie die Datei unwiederruflich löschen wollen?
+Dieser Vorgang lässt sich nicht wieder rückgängig machen!</value>
+  </data>
+  <data name="FileIsLoadedLarge" xml:space="preserve">
+    <value>Datei {0} von {1} ("{2}") wird geladen</value>
+  </data>
+  <data name="FileIsOpen" xml:space="preserve">
+    <value>Die Datei "{0}" ist bereits offen.
+
+Damit Sie die Daten nicht versehentlich überschreiben, wurde die Datei kein 2. Mal geöffnet.</value>
+  </data>
+  <data name="FileIsOpened" xml:space="preserve">
+    <value>Die Datei "{0}" wurde geöffnet</value>
+    <comment>Message-Window</comment>
+  </data>
+  <data name="FileIsOpenTitle" xml:space="preserve">
+    <value>Bereits offen</value>
+  </data>
+  <data name="FileISSaved" xml:space="preserve">
+    <value>Die Datei "{0}" wurde gespeichert</value>
+    <comment>Message-Window</comment>
+  </data>
+  <data name="FileWouldBeInserted" xml:space="preserve">
+    <value>Folgende Daten würde eingefügt werden:</value>
+  </data>
+  <data name="FontIsUpdated" xml:space="preserve">
+    <value>Die Schriften der Datei "{0}" wurden angepasst</value>
+    <comment>Message-Window</comment>
+  </data>
+  <data name="FontMissing" xml:space="preserve">
+    <value>Die Schriftart "Arial Unicode MS" wurde nicht gefunden.
+Somit steht Ihnen der "Standard-Schrift verwenden"-Button nicht zur Verfügung.
+
+Kopieren sie die Schrift wenn gewünscht in den Ordner "Fonts".</value>
+  </data>
+  <data name="FontMissingTitle" xml:space="preserve">
+    <value>Fehlende Schrift</value>
+  </data>
+  <data name="Fontstyle" xml:space="preserve">
+    <value>Schriftart</value>
+  </data>
+  <data name="FromPage" xml:space="preserve">
+    <value>von Seite</value>
+  </data>
+  <data name="FromReferenceFile" xml:space="preserve">
+    <value>Anhand einer Referenzdatei</value>
+  </data>
+  <data name="FromStyleFile" xml:space="preserve">
+    <value>Anhand einer Stildatei</value>
+  </data>
+  <data name="Function" xml:space="preserve">
+    <value>Funktion</value>
+  </data>
+  <data name="Height" xml:space="preserve">
+    <value>Höhe</value>
+    <comment>Image Dialog</comment>
+  </data>
+  <data name="Idea" xml:space="preserve">
+    <value>Idee</value>
+  </data>
+  <data name="IgnorenAll" xml:space="preserve">
+    <value>Alle ignorieren</value>
+  </data>
+  <data name="ImportantFunctions" xml:space="preserve">
+    <value>Wichtige Funktionen</value>
+  </data>
+  <data name="IncreaseFont" xml:space="preserve">
+    <value>Schrift vergößern</value>
+  </data>
+  <data name="IncreaseRighSpace" xml:space="preserve">
+    <value>Abstand rechts vergrößern</value>
+  </data>
+  <data name="IncreaseSpace" xml:space="preserve">
+    <value>Abstand vergrößern</value>
+  </data>
+  <data name="IncZoom" xml:space="preserve">
+    <value>Zoom verringer</value>
+  </data>
+  <data name="InitEditor" xml:space="preserve">
+    <value>Editor eingerichtet</value>
+  </data>
+  <data name="InitializedComponents" xml:space="preserve">
+    <value>Komponenten initialisiert</value>
+  </data>
+  <data name="InsertDeleted" xml:space="preserve">
+    <value>Alle entfernen wieder reinnehmen</value>
+  </data>
+  <data name="InserTextOnly" xml:space="preserve">
+    <value>Einfügeoption: Nur Text</value>
+  </data>
+  <data name="InsertImage" xml:space="preserve">
+    <value>Bild einfügen...</value>
+  </data>
+  <data name="InsertLastUnicode" xml:space="preserve">
+    <value>Letztes Sonderzeichen einfügen</value>
+  </data>
+  <data name="InsertUnicode" xml:space="preserve">
+    <value>Sonderzeichen einfügen...</value>
+  </data>
+  <data name="Italic" xml:space="preserve">
+    <value>Schräggestellt</value>
+  </data>
+  <data name="ItalicOnOf" xml:space="preserve">
+    <value>Schräg stellen an / aus</value>
+  </data>
+  <data name="Keycode" xml:space="preserve">
+    <value>Tastenkombination</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Sprache</value>
+  </data>
+  <data name="LastName" xml:space="preserve">
+    <value>Nachname</value>
+  </data>
+  <data name="LeadingZero" xml:space="preserve">
+    <value>Null voranstellen</value>
+  </data>
+  <data name="LeftText" xml:space="preserve">
+    <value>Linksbündiger Text</value>
+  </data>
+  <data name="LikeThisOne" xml:space="preserve">
+    <value>Nach aktuellem Vorbild</value>
+  </data>
+  <data name="LinkValues" xml:space="preserve">
+    <value>Werte verankern</value>
+    <comment>Image Dialog</comment>
+  </data>
+  <data name="List" xml:space="preserve">
+    <value>Liste</value>
+  </data>
+  <data name="LoadElements" xml:space="preserve">
+    <value>Elemente geladen</value>
+  </data>
+  <data name="LoadError" xml:space="preserve">
+    <value>Fehler beim Laden von "{0}"</value>
+  </data>
+  <data name="LoadFile" xml:space="preserve">
+    <value>Datei laden...</value>
+  </data>
+  <data name="LoadSettings" xml:space="preserve">
+    <value>Einstellungen geladen</value>
+  </data>
+  <data name="Locality" xml:space="preserve">
+    <value>Örtlichkeit</value>
+  </data>
+  <data name="MergeDictionary" xml:space="preserve">
+    <value>Mit einem anderem Wörterbuch zusammenführen</value>
+  </data>
+  <data name="Messages" xml:space="preserve">
+    <value>Meldungen</value>
+    <comment>Message-Window</comment>
+  </data>
+  <data name="Minimize" xml:space="preserve">
+    <value>Minimieren</value>
+  </data>
+  <data name="NameAlreadyExists" xml:space="preserve">
+    <value>Der Name "{0}" ist bereits vorhanden und wird daher nicht noch einmal hinzugenommen.</value>
+  </data>
+  <data name="Names" xml:space="preserve">
+    <value>Namen</value>
+  </data>
+  <data name="NameWithSpaceEnd" xml:space="preserve">
+    <value>Namen mit Leerzeichen am Ende</value>
+  </data>
+  <data name="NameWithSpaces" xml:space="preserve">
+    <value>Namen mit Leerzeichen an beiden Enden</value>
+  </data>
+  <data name="NameWithSpaceStart" xml:space="preserve">
+    <value>Namen mit Leerzeichen am Anfang</value>
+  </data>
+  <data name="NewFileCreated" xml:space="preserve">
+    <value>Es wurde eine neue Datei erstellt</value>
+  </data>
+  <data name="NewStyleTemplate" xml:space="preserve">
+    <value>XXX_Neuer Stil {0:00}</value>
+  </data>
+  <data name="NextPage" xml:space="preserve">
+    <value>Nächste Seite</value>
+  </data>
+  <data name="NoDefaultStyle" xml:space="preserve">
+    <value>Für den aktuellen Text wurde kein Default- Stil angegeben.
+Bitte wählen sie erst einen Stil als default aus.</value>
+  </data>
+  <data name="NoDefaultStyleTitle" xml:space="preserve">
+    <value>Kein Default-Stil ausgewählt</value>
+  </data>
+  <data name="NoPasswordHint" xml:space="preserve">
+    <value>Keine Passworthinweise anzeigen</value>
+  </data>
+  <data name="NumericList" xml:space="preserve">
+    <value>Numerierte Liste</value>
+  </data>
+  <data name="Occurance" xml:space="preserve">
+    <value>Vorkommen</value>
+  </data>
+  <data name="OldNumbering" xml:space="preserve">
+    <value>Alte Seitenzahlen beibehalten</value>
+  </data>
+  <data name="Opacity" xml:space="preserve">
+    <value>Transparenz</value>
+  </data>
+  <data name="OpenBackets" xml:space="preserve">
+    <value>Öffnende Klammern</value>
+  </data>
+  <data name="OpenDictionary" xml:space="preserve">
+    <value>Wörterbucheditor öffnen</value>
+  </data>
+  <data name="OpenDictionaryWindow" xml:space="preserve">
+    <value>Öffnet einen Dialog zum Bearbeiten des Wörterbuchs</value>
+  </data>
+  <data name="OpenNameDictionary" xml:space="preserve">
+    <value>Namensliste öffnen</value>
+  </data>
+  <data name="OpenNameDictionaryWindow" xml:space="preserve">
+    <value>Öffnet einen Dialog zum Bearbeiten der Namensliste</value>
+  </data>
+  <data name="OriginalFontSize" xml:space="preserve">
+    <value>Originale Schriftgröße</value>
+  </data>
+  <data name="OriginalSize" xml:space="preserve">
+    <value>Originalgröße</value>
+  </data>
+  <data name="Other" xml:space="preserve">
+    <value>Weiteres</value>
+  </data>
+  <data name="OwnColors" xml:space="preserve">
+    <value>Eigene Farben</value>
+  </data>
+  <data name="PageBreak" xml:space="preserve">
+    <value>Neuen Bereich mit Seitenumbruch erstellen</value>
+  </data>
+  <data name="PageNumberinOptions" xml:space="preserve">
+    <value>Seitenzahloptionen</value>
+  </data>
+  <data name="Paste" xml:space="preserve">
+    <value>Einfügen</value>
+  </data>
+  <data name="PossibleReplacements" xml:space="preserve">
+    <value>Mögliche Ersetzungen</value>
+  </data>
+  <data name="PreviousPage" xml:space="preserve">
+    <value>Vorherige Seite</value>
+  </data>
+  <data name="PrintPreview" xml:space="preserve">
+    <value>Druckvorschau</value>
+  </data>
+  <data name="PrivateText" xml:space="preserve">
+    <value>Dieses Programm dient nur der privaten Nutzung und darf nicht für kommerzielle Zwecke verwendet werden.
+Die Weitergabe darf nur unter Einhaltung dieser Regeln vorgenommen werden.</value>
+  </data>
+  <data name="Programing" xml:space="preserve">
+    <value>Programmierung</value>
+  </data>
+  <data name="Protagonists" xml:space="preserve">
+    <value>Protagonist</value>
+  </data>
+  <data name="ReadOnly" xml:space="preserve">
+    <value>Nur lesen</value>
+  </data>
+  <data name="RemovedStyles" xml:space="preserve">
+    <value>Entfernte Stile</value>
+  </data>
+  <data name="RemoveSpecial" xml:space="preserve">
+    <value>"{0}" löschen</value>
+  </data>
+  <data name="RemoveStyleQuestion" xml:space="preserve">
+    <value>Stil entfernen?</value>
+  </data>
+  <data name="RenameFile" xml:space="preserve">
+    <value>Datei umbenennen</value>
+  </data>
+  <data name="Replace" xml:space="preserve">
+    <value>Ersetzen</value>
+  </data>
+  <data name="ReplaceAll" xml:space="preserve">
+    <value>Alle Vorkommen ersetzen</value>
+  </data>
+  <data name="ReplaceQuestion" xml:space="preserve">
+    <value>Ersetzen?</value>
+  </data>
+  <data name="Restart" xml:space="preserve">
+    <value>Neu starten</value>
+  </data>
+  <data name="RestartForChanges" xml:space="preserve">
+    <value>Änderungen am Wörterbuch werden erst nach einem Neustart aktiv.
+Soll jetzt neu gestartet werden?</value>
+  </data>
+  <data name="RestartForNameChanges" xml:space="preserve">
+    <value>Änderungen an der Namensliste werden erst nach einem Neustart aktiv.
+Soll jetzt neu gestartet werden?</value>
+  </data>
+  <data name="RightClickOptions" xml:space="preserve">
+    <value>(Rechtsklick für weitere Optionen)</value>
+  </data>
+  <data name="RightText" xml:space="preserve">
+    <value>Rechtsbündiger Text</value>
+  </data>
+  <data name="RomoveUsageAsWell" xml:space="preserve">
+    <value>Möchten sie die Benutzung des Stils ebenfalls entfernen?</value>
+  </data>
+  <data name="SaveAsRTF" xml:space="preserve">
+    <value>Als RTF Datei exportieren</value>
+  </data>
+  <data name="SaveAutomatical" xml:space="preserve">
+    <value>Automatisch speichern</value>
+  </data>
+  <data name="SaveChanged" xml:space="preserve">
+    <value>Geänderte Dateien speichern</value>
+  </data>
+  <data name="SaveError" xml:space="preserve">
+    <value>Es liegen Fehler beim Speichern von Dateien vor. Das hat zur Folge, das einige Dateien ungespeicherte Änderungen haben.
+Soll trotzdem beendet werden?</value>
+  </data>
+  <data name="SaveFileAs" xml:space="preserve">
+    <value>Datei speichern unter...</value>
+  </data>
+  <data name="SaveOnly" xml:space="preserve">
+    <value>Nur speichern</value>
+  </data>
+  <data name="SaveQuestion" xml:space="preserve">
+    <value>Speichern?</value>
+  </data>
+  <data name="SavetySettings" xml:space="preserve">
+    <value>Sicherheitseinstellungen</value>
+  </data>
+  <data name="Saving" xml:space="preserve">
+    <value>Speicherung</value>
+    <comment>Message-Window</comment>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Suchen</value>
+  </data>
+  <data name="SetVariables" xml:space="preserve">
+    <value>Variablen gesetzt</value>
+  </data>
+  <data name="ShowAbout" xml:space="preserve">
+    <value>(Klick auf den Button zeigt "Über mich")</value>
+  </data>
+  <data name="ShowMessages" xml:space="preserve">
+    <value>Meldungen ansehen...</value>
+  </data>
+  <data name="ShowOptions" xml:space="preserve">
+    <value>Optionen anzeigen</value>
+  </data>
+  <data name="ShowPageNumbering" xml:space="preserve">
+    <value>Seitenanzahl anzeigent (Vorschau nicht betroffen)</value>
+  </data>
+  <data name="ShowQuotes" xml:space="preserve">
+    <value>Anführungszeichen anzeigen</value>
+  </data>
+  <data name="ShowSearch" xml:space="preserve">
+    <value>Suche anzeigen</value>
+  </data>
+  <data name="ShowStylesWindow" xml:space="preserve">
+    <value>Stilfenster anzeigen</value>
+  </data>
+  <data name="ShowXAML" xml:space="preserve">
+    <value>XAML-Code des FlowDocuments anzeigen...</value>
+  </data>
+  <data name="SingleClosingBracket" xml:space="preserve">
+    <value>Schließende Klammern (einzeln)</value>
+  </data>
+  <data name="SingleOpenBracket" xml:space="preserve">
+    <value>Öffnende Klammern (einzeln)</value>
+  </data>
+  <data name="SomeFilesChanged" xml:space="preserve">
+    <value>Einige Dateien wurden geändert. Sollen diese gespeichert werden?</value>
+  </data>
+  <data name="Speech" xml:space="preserve">
+    <value>Sprache ohne Anführungszeichen</value>
+  </data>
+  <data name="SpeechWithQuotes" xml:space="preserve">
+    <value>Sprache mit Anfühgrungszeichen</value>
+  </data>
+  <data name="SpeacSimpleQuotes" xml:space="preserve">
+    <value>Sprache mit einfachen Anführungszeichen</value>
+  </data>
+  <data name="SpecialEntryAddedToDictionary" xml:space="preserve">
+    <value>"{0}" zum Wörterbuch ({1}) hinzufügen</value>
+  </data>
+  <data name="SpecialEntryAddedToNames" xml:space="preserve">
+    <value>"{0}" zur Namensliste hinzufügen</value>
+  </data>
+  <data name="SpecialKeycode" xml:space="preserve">
+    <value>Spezielle Tastenkombinationen</value>
+  </data>
+  <data name="Species" xml:space="preserve">
+    <value>Spezien</value>
+  </data>
+  <data name="SpellCheckOnOf" xml:space="preserve">
+    <value>Rechtschreibprüfung an / aus</value>
+  </data>
+  <data name="StandardCommands" xml:space="preserve">
+    <value>Standard-Befehle</value>
+  </data>
+  <data name="StyleAlreadyExists" xml:space="preserve">
+    <value>Es existiert bereits ein Stil mit diesem Namen.
+
+Soll der alte Stil ersetzt werden?</value>
+  </data>
+  <data name="StyleExists" xml:space="preserve">
+    <value>Ein Stil mit den gewüschten Einstellungen wurde bereits unter dem Namen 
+"{0}"
+hinzugefügt!
+
+Bitte verwenden sie genannten Stil.</value>
+  </data>
+  <data name="StyleExistsWithoutName" xml:space="preserve">
+    <value>Der Stil wurde bereits ohne Namensangabe hinzugefügt.
+
+Dopplung der Stildaten ist nicht erlaubt.</value>
+  </data>
+  <data name="StyleNumber" xml:space="preserve">
+    <value>Stil &lt;Nummer&gt;</value>
+  </data>
+  <data name="StyleNumberQuote" xml:space="preserve">
+    <value>Stil &lt;Nummer&gt; mit Anführungszeichen</value>
+  </data>
+  <data name="StyleRemoveQuestion" xml:space="preserve">
+    <value>Sind sie sich sicher, dass sie alle Stile entfernen möchten?
+Dieser Vorgang lässt sich nicht wieder rückgängig machen!</value>
+  </data>
+  <data name="StyleRemoveQuestionTitle" xml:space="preserve">
+    <value>Soll der Stil wirklich entfernt werden?</value>
+  </data>
+  <data name="StyleTitle" xml:space="preserve">
+    <value>Geben Sie bitte einen Titel für den Stil ein</value>
+  </data>
+  <data name="StyleUpdateInfo" xml:space="preserve">
+    <value>Es wurden {0} Stil(e) entfernt und {1} hinzugefügt.</value>
+  </data>
+  <data name="StyleUsageCount" xml:space="preserve">
+    <value>Der Stil "{0}" kommt {1} Mal im Dokument vor</value>
+  </data>
+  <data name="Support" xml:space="preserve">
+    <value>Erweiterter Personenkreis</value>
+  </data>
+  <data name="SystemColors" xml:space="preserve">
+    <value>Systemfarben</value>
+  </data>
+  <data name="Title" xml:space="preserve">
+    <value>Cool Writer</value>
+  </data>
+  <data name="ToPage" xml:space="preserve">
+    <value>bis Seite</value>
+  </data>
+  <data name="Underlined" xml:space="preserve">
+    <value>Unterstrichen</value>
+  </data>
+  <data name="UnderlineOnOf" xml:space="preserve">
+    <value>Unterstrichen an / aus</value>
+  </data>
+  <data name="Unknown" xml:space="preserve">
+    <value>Unbekannt.etf</value>
+  </data>
+  <data name="Unset" xml:space="preserve">
+    <value>Nicht angegeben</value>
+  </data>
+  <data name="UpdateBackground" xml:space="preserve">
+    <value>Hintergrund anpassen</value>
+  </data>
+  <data name="UpdateElements" xml:space="preserve">
+    <value>Sollen alle Elemente, die den Stil verwenden ebenfalls angepasst werden?</value>
+  </data>
+  <data name="UpdateFont" xml:space="preserve">
+    <value>Schriftart anpassen...</value>
+  </data>
+  <data name="UpdateLineSpacing" xml:space="preserve">
+    <value>Zeilenabstand bestimmen...</value>
+  </data>
+  <data name="UpdateQuotes" xml:space="preserve">
+    <value>Anführungszeichen anpassen...</value>
+  </data>
+  <data name="UpdateSideImage" xml:space="preserve">
+    <value>Seitenbild anpassen...</value>
+  </data>
+  <data name="UpdateWatermark" xml:space="preserve">
+    <value>Wasserzeichen anpassen...</value>
+  </data>
+  <data name="UseDefaultFOnt" xml:space="preserve">
+    <value>Standard-Schrift verwenden</value>
+  </data>
+  <data name="UseDefaultStyle" xml:space="preserve">
+    <value>Default-Stil anwenden</value>
+  </data>
+  <data name="UseStartFont" xml:space="preserve">
+    <value>Ausgangsschrift verwenden</value>
+  </data>
+  <data name="WatermarkNotSupportedMessage" xml:space="preserve">
+    <value>Die zu speichernde Datei enthält ein Wasserzeichen. Dieses würde in dem Format nicht gespeichert werden.
+
+Wollen sie es trotzdem in dem Format speichern?</value>
+  </data>
+  <data name="WholePage" xml:space="preserve">
+    <value>Ganze Seite anzeigen</value>
+  </data>
+  <data name="WholeWord" xml:space="preserve">
+    <value>Ganzes Wort</value>
+  </data>
+  <data name="Width" xml:space="preserve">
+    <value>Breite</value>
+    <comment>Image Dialog</comment>
+  </data>
+  <data name="Description" xml:space="preserve">
+    <value>Beschreibung</value>
+  </data>
+  <data name="Identifier" xml:space="preserve">
+    <value>Bezeichner</value>
+  </data>
+  <data name="Image" xml:space="preserve">
+    <value>Bild</value>
+  </data>
+  <data name="NameDialog" xml:space="preserve">
+    <value>Namenseingabe</value>
+  </data>
+  <data name="RervertForeground" xml:space="preserve">
+    <value>Vordergrundfarbe zurücksetzen</value>
+  </data>
+  <data name="RevertBackground" xml:space="preserve">
+    <value>Hintergrundfarbe zurücksetzen</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Art</value>
+  </data>
+  <data name="UsedFont" xml:space="preserve">
+    <value>Genutze Schrift:</value>
+  </data>
+  <data name="AddStyle" xml:space="preserve">
+    <value>Stil hinzufügen</value>
+  </data>
+  <data name="DoubleEntry" xml:space="preserve">
+    <value>Doppelter Eintrag</value>
+  </data>
+  <data name="Doubleing" xml:space="preserve">
+    <value>Dopplung</value>
+  </data>
+  <data name="IgnoreAllHint" xml:space="preserve">
+    <value>Wort bis zum Schließen des Programmes ignorieren.
+Wenn das Wort auch darüber hinaus ignoriert werden soll, muss es zum Wörterbuch hinzugefügt werden!</value>
+  </data>
+  <data name="PastePreview" xml:space="preserve">
+    <value>Folgender Text würde eingefügt werden:
+{0}</value>
+  </data>
+  <data name="Rename" xml:space="preserve">
+    <value>Umbenennen</value>
+  </data>
+  <data name="ReplaceStyle" xml:space="preserve">
+    <value>Stil ersetzen</value>
+  </data>
+  <data name="ReplaceText" xml:space="preserve">
+    <value>"{0}" durch "{1}" ersetzen</value>
+  </data>
+  <data name="StyleAddedWithName" xml:space="preserve">
+    <value>Ein zugehöriger Stil wurde bereits unter dem Namen "{0}" hinzugefügt!
+
+Soll dieser Umbenannt werden?</value>
+  </data>
+  <data name="StyleAddedWithoutName" xml:space="preserve">
+    <value>Ein zugehöriger Stil wurde bereits ohne Namensangabe hinzugefügt.
+
+Soll dieser Umbenannt werden?</value>
+  </data>
+  <data name="WatermarkOnlyWithEtf" xml:space="preserve">
+    <value>Die Datei enthält ein Wasserzeichen. Dieses wird im aktuellen Format nicht mitgespeichert.
+Wenn sie das Wasserzeichen weiterhin haben wollen, speichern sie es als *.etf-Datei.</value>
+  </data>
+  <data name="DictionaryPath" xml:space="preserve">
+    <value>Microsoft\Spelling\de-DE\CoolWriter.dic</value>
+  </data>
+  <data name="PasteWithoutFormatting" xml:space="preserve">
+    <value>Einfügen (OHNE Formatierung)</value>
+  </data>
+  <data name="ApplyStlye" xml:space="preserve">
+    <value>Folgenden Stil anwenden</value>
+  </data>
+  <data name="Condensed" xml:space="preserve">
+    <value>Zusammengepresst</value>
+  </data>
+  <data name="CountOccurances" xml:space="preserve">
+    <value>Vorkommen zählen</value>
+  </data>
+  <data name="DeleteAllStyles" xml:space="preserve">
+    <value>Alle Stile löschen</value>
+  </data>
+  <data name="DeleteSpezial" xml:space="preserve">
+    <value>"{0}" löschen</value>
+  </data>
+  <data name="EditDictionary" xml:space="preserve">
+    <value>Wörterbuch bearbeiten</value>
+  </data>
+  <data name="EditNameList" xml:space="preserve">
+    <value>Namensliste bearbeiten</value>
+  </data>
+  <data name="EditSelectedStyle" xml:space="preserve">
+    <value>Selektierten Stil bearbeiten</value>
+  </data>
+  <data name="ExampleText" xml:space="preserve">
+    <value>Beispieltext</value>
+  </data>
+  <data name="ExportStyle" xml:space="preserve">
+    <value>Stil exportieren</value>
+  </data>
+  <data name="FileFilterLarge" xml:space="preserve">
+    <value>Erweiterte Text-Dateien|*.etf|Text-Dateien|*.rtxt|Erlaubte Formate |*.etf;*.rtxt</value>
+  </data>
+  <data name="FileFilterSmall" xml:space="preserve">
+    <value>Erweiterte Text-Dateien|*.etf</value>
+  </data>
+  <data name="FontSize" xml:space="preserve">
+    <value>Schriftgröße</value>
+  </data>
+  <data name="GoToFirstUsage" xml:space="preserve">
+    <value>Zum ersten Vorkommen springen</value>
+  </data>
+  <data name="ImportStyles" xml:space="preserve">
+    <value>Stile importieren</value>
+  </data>
+  <data name="IsMainEntry" xml:space="preserve">
+    <value>Ist ein Haupteintrag</value>
+  </data>
+  <data name="MergeStyles" xml:space="preserve">
+    <value>Stilliste an Dokument angleichen</value>
+  </data>
+  <data name="No" xml:space="preserve">
+    <value>Nein</value>
+  </data>
+  <data name="RemoveEntry" xml:space="preserve">
+    <value>Eintrag löschen</value>
+  </data>
+  <data name="RemoveStyle" xml:space="preserve">
+    <value>Stil entfernen</value>
+  </data>
+  <data name="RemoveStyleFromDocument" xml:space="preserve">
+    <value>Stil aus dem Dokument entfernen</value>
+  </data>
+  <data name="ReplaceStyleInDocument" xml:space="preserve">
+    <value>Stil im Dokument ersetzen</value>
+  </data>
+  <data name="RevertDelete" xml:space="preserve">
+    <value>Löschung von "{0}" wieder rückgängig machen</value>
+  </data>
+  <data name="StrikedThrough" xml:space="preserve">
+    <value>Durchgestrichen</value>
+  </data>
+  <data name="StylesUpdated" xml:space="preserve">
+    <value>Stilliste aktualisiert</value>
+  </data>
+  <data name="UnknowTxt" xml:space="preserve">
+    <value>Unbekannt.txt</value>
+  </data>
+  <data name="UpdateStyle" xml:space="preserve">
+    <value>Stil aktualisieren</value>
+  </data>
+  <data name="UseStyleAsDefault" xml:space="preserve">
+    <value>Stil als default verwenden</value>
+  </data>
+  <data name="Yes" xml:space="preserve">
+    <value>Ja</value>
+  </data>
+  <data name="Automatic" xml:space="preserve">
+    <value>Automatisch</value>
+  </data>
+  <data name="ExportRTF" xml:space="preserve">
+    <value>Als RichTextFile exportieren...</value>
+  </data>
+  <data name="SaveAll" xml:space="preserve">
+    <value>Alle Dateien speichern</value>
+  </data>
+  <data name="SaveFile" xml:space="preserve">
+    <value>Datei speichern...</value>
+  </data>
+  <data name="UpdateLanguage" xml:space="preserve">
+    <value>Sprache ändern</value>
+  </data>
+  <data name="CharacterEditorDescription" xml:space="preserve">
+    <value>Hier können die Eigenschaften des gewählten Characters bearbeitet werden</value>
+  </data>
+  <data name="FileIsReadOnly" xml:space="preserve">
+    <value>Diese Datei kann nicht verändert werden</value>
+  </data>
+  <data name="ImageFilter" xml:space="preserve">
+    <value>Bilddateien|*.png;*.jpg</value>
+  </data>
+  <data name="IsPasswordProtected" xml:space="preserve">
+    <value>Diese Datei ist mit einem Passwort versehen</value>
+  </data>
+  <data name="LoadImage" xml:space="preserve">
+    <value>Bild laden</value>
+  </data>
+  <data name="QuotesWithoutAStyle" xml:space="preserve">
+    <value>Anführungszeichen ohne Stil</value>
+  </data>
+  <data name="ReadOnlyDescription" xml:space="preserve">
+    <value>Die Datei ist schreibgeschützt, Doppelklick auf Tab zum entsperren</value>
+  </data>
+  <data name="StrikedThroughOnOf" xml:space="preserve">
+    <value>Durchgestrichen an/ aus</value>
+  </data>
+  <data name="CloseWindow" xml:space="preserve">
+    <value>Fenster schließen</value>
+  </data>
+  <data name="AddColor" xml:space="preserve">
+    <value>Farbe hinzufügen (Doppelte werden ignoriert!)</value>
+  </data>
+  <data name="BackgroundColor" xml:space="preserve">
+    <value>Hintergrundfarbe</value>
+  </data>
+  <data name="CtrlClick" xml:space="preserve">
+    <value>Strg + Klick zum Löschen der Farbe</value>
+  </data>
+  <data name="ForegroundColor" xml:space="preserve">
+    <value>Vordergrundfarbe</value>
+  </data>
+  <data name="PleaseChooseColor" xml:space="preserve">
+    <value>Wählen sie die gewünschte Farbe</value>
+  </data>
+  <data name="ResetDelete" xml:space="preserve">
+    <value>Alle entfernten wieder reinnehmen</value>
+  </data>
+  <data name="RevertBackgroundColor" xml:space="preserve">
+    <value>Hintergrundfarbe zurücksetzen</value>
+  </data>
+  <data name="RevertForegroundColor" xml:space="preserve">
+    <value>Vordergrundfarbe zurücksetzen</value>
+  </data>
+  <data name="UseExampleText" xml:space="preserve">
+    <value>Beispiel Text verwenden</value>
+  </data>
+  <data name="WordList" xml:space="preserve">
+    <value>Wörterliste</value>
+  </data>
+  <data name="ApplyChanges" xml:space="preserve">
+    <value>Änderung anwenden</value>
+  </data>
+  <data name="ChoosePassword" xml:space="preserve">
+    <value>Bitte geben sie ein Passwort für die Datei "{0}" an.</value>
+  </data>
+  <data name="DeviationInFontSize" xml:space="preserve">
+    <value>Abweichung in der Schriftgröße: {0}</value>
+  </data>
+  <data name="FileIsProtected" xml:space="preserve">
+    <value>Die Datei "{0}" ist mit einem Passwort geschützt.
+
+Bitte geben sie das Passwort ein.</value>
+  </data>
+  <data name="HidePassword" xml:space="preserve">
+    <value>Passwort wieder verstecken</value>
+  </data>
+  <data name="Hint" xml:space="preserve">
+    <value>Hinweis</value>
+  </data>
+  <data name="InvalidPassword" xml:space="preserve">
+    <value>Das eingegebene Passwort ist leider falsch, versuchen sie es erneut.</value>
+  </data>
+  <data name="NoEmptyHint" xml:space="preserve">
+    <value>Der Hinweis darf nicht leer sein</value>
+  </data>
+  <data name="PasswordInput" xml:space="preserve">
+    <value>Geben sie bitte das Passwort für die Datei an.</value>
+  </data>
+  <data name="PasswordIsHidden" xml:space="preserve">
+    <value>Sie zeigen Ihr Passwort gerade nicht an.
+
+Wollen sie es wirklich ändern, ohne sicher zu stellen, dass es auch so aussieht, wie er soll?</value>
+  </data>
+  <data name="ReallyClosing" xml:space="preserve">
+    <value>Wirklich schließen?</value>
+  </data>
+  <data name="SaveOnlyQuestion" xml:space="preserve">
+    <value>Sollen die Einstellungen wirklich nur gespeichert werden?
+
+(Zum Drucken müsste "Ok" gedrückt werden.)</value>
+  </data>
+  <data name="ShowPassword" xml:space="preserve">
+    <value>Passwort anzeigen</value>
+  </data>
+  <data name="UseWatermark" xml:space="preserve">
+    <value>Wasserzeichen verwenden (Vorschau nicht betroffen)</value>
+  </data>
+  <data name="AddFileName" xml:space="preserve">
+    <value>Geben sie einen Dateinamen an</value>
+  </data>
+  <data name="CopyToClipboard" xml:space="preserve">
+    <value>In die Zwischenablage kopieren</value>
+  </data>
+  <data name="FileAlreadyOpen" xml:space="preserve">
+    <value>Die Datei ist bereits geöffnet</value>
+  </data>
+  <data name="HighQuality" xml:space="preserve">
+    <value>Hohe Qualität</value>
+  </data>
+  <data name="InsertFromClipboard" xml:space="preserve">
+    <value>Aus der Zwischenablage einfügen</value>
+  </data>
+  <data name="InvalidRenaming" xml:space="preserve">
+    <value>Die Umbenennung ist ungültig</value>
+  </data>
+  <data name="NextNeighbor" xml:space="preserve">
+    <value>Nächster Nachbar</value>
+  </data>
+  <data name="RestartForLanguage" xml:space="preserve">
+    <value>Einige Änderungen werden erst beim Schließen der Anwendung angewendet.
+
+Es empfielt sich daher, die Anwendung neu zu starten, damit sie genutzt werden können.
+Wenn das Programm nicht korrekt beendet wird, kann es nämlich vorkommen, dass Änderungen verloren gehen.
+
+Soll das Programm jetzt neu gestartet werden?</value>
+  </data>
+  <data name="SaveAndReload" xml:space="preserve">
+    <value>Speichern und neues Laden</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value>Die Datei</value>
+  </data>
+  <data name="String2" xml:space="preserve">
+    <value>ist bereits geöffnet.</value>
+  </data>
+  <data name="String3" xml:space="preserve">
+    <value>Da dies zu Konsistenzproblemen führen kann, wird keine Datei mehr als einmal geöffnet.</value>
+  </data>
+  <data name="String4" xml:space="preserve">
+    <value>Um dieses Problem zu umgehen, stehen ihnen die folgenden Möglichkeiten zur Verfügung:</value>
+  </data>
+  <data name="String5" xml:space="preserve">
+    <value>Trotzdem den Namen verwenden</value>
+  </data>
+  <data name="String6" xml:space="preserve">
+    <value>(Es wird neu geladen)</value>
+  </data>
+  <data name="String7" xml:space="preserve">
+    <value>Einen anderen Namen verwenden</value>
+  </data>
+  <data name="String8" xml:space="preserve">
+    <value>Abbrechen und nicht speichern</value>
+  </data>
+  <data name="String9" xml:space="preserve">
+    <value>Wie möchten Sie mit der Datei verfahren?</value>
+  </data>
+  <data name="UseAsSpeech" xml:space="preserve">
+    <value>Stil als "Sprache" verwenden</value>
+  </data>
+  <data name="UseOtherName" xml:space="preserve">
+    <value>Unter anderem Namen Speichern</value>
+  </data>
+  <data name="InputLanguage" xml:space="preserve">
+    <value>Eingabesprache</value>
+  </data>
+  <data name="UpdateLanguageQuestion" xml:space="preserve">
+    <value>Wenn Sie die Eingabesprache ändern, wird diese systemweit geändert.
+
+Sind Sie sicher, dass sie die Eingabesprache ändern wollen?</value>
+  </data>
+  <data name="AutoSaveByInterval" xml:space="preserve">
+    <value>Autosave nach Intervall</value>
+  </data>
+  <data name="AutoSaveIdle" xml:space="preserve">
+    <value>Autosave sobald inaktiv</value>
+  </data>
+  <data name="AutoSaveInterval" xml:space="preserve">
+    <value>Intervall (in Sekunden)</value>
+  </data>
+  <data name="NoAutosave" xml:space="preserve">
+    <value>Kein Autosave</value>
+  </data>
+  <data name="ColorSettingAlternateBackColor" xml:space="preserve">
+    <value>Menü-Hintergrund 2</value>
+  </data>
+  <data name="ColorSettingBackColor" xml:space="preserve">
+    <value>Menü-Hintergrund</value>
+  </data>
+  <data name="ColorSettingBackGradient1" xml:space="preserve">
+    <value>Editor-Hintergrund</value>
+  </data>
+  <data name="ColorSettingBackGradient2" xml:space="preserve">
+    <value>Editor-Hintergrund 2</value>
+  </data>
+  <data name="ColorSettingButtonBorder" xml:space="preserve">
+    <value>Button Rahmen</value>
+  </data>
+  <data name="ColorSettingButtonFocus" xml:space="preserve">
+    <value>Fokusierter Button</value>
+  </data>
+  <data name="ColorSettingButtonHighlight" xml:space="preserve">
+    <value>Button Mouseover</value>
+  </data>
+  <data name="ColorSettingButtonLight" xml:space="preserve">
+    <value>Button Highlight</value>
+  </data>
+  <data name="ColorSettingButtonShadow" xml:space="preserve">
+    <value>Button Schatten</value>
+  </data>
+  <data name="ColorSettingDarkerTitleColor" xml:space="preserve">
+    <value>Menü-Text dunkler</value>
+  </data>
+  <data name="ColorSettingDragColor" xml:space="preserve">
+    <value>Gedrückter Schieber</value>
+  </data>
+  <data name="ColorSettingOverColor" xml:space="preserve">
+    <value>Mousover</value>
+  </data>
+  <data name="ColorSettingRtfBrush" xml:space="preserve">
+    <value>Marker für RTF Dokumente</value>
+  </data>
+  <data name="ColorSettingsDialog" xml:space="preserve">
+    <value>Farbeinstellungen</value>
+  </data>
+  <data name="ColorSettingSelectionColor" xml:space="preserve">
+    <value>Auswahl</value>
+  </data>
+  <data name="ColorSettingSelectionColor2" xml:space="preserve">
+    <value>Auswahl 2</value>
+  </data>
+  <data name="ColorSettingTitleColor" xml:space="preserve">
+    <value>Menü-Text</value>
+  </data>
+  <data name="EmptyTag" xml:space="preserve">
+    <value>&lt;leer&gt;</value>
+  </data>
+  <data name="ErrorClosing" xml:space="preserve">
+    <value>Beim Schließen der Anwendung ist ein Fehler aufgetreten.
+
+Soll die Anwendung trotzdem beendet werden?
+
+Would you like to close it anyway?</value>
+  </data>
+  <data name="FixPosition" xml:space="preserve">
+    <value>Position am Hauptfenster fixieren</value>
+  </data>
+  <data name="OpenColorSettingsDialog" xml:space="preserve">
+    <value>Farbeinstellungen öffnen</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Einstellungen...</value>
+  </data>
+  <data name="SpeechShort" xml:space="preserve">
+    <value>Sprache</value>
+  </data>
+  <data name="AddTag" xml:space="preserve">
+    <value>Tag hinzufügen</value>
+  </data>
+  <data name="RemoveTag" xml:space="preserve">
+    <value>Tag entfernen</value>
+  </data>
+  <data name="TagHandlerLoaded" xml:space="preserve">
+    <value>Tags geladen</value>
+  </data>
+  <data name="TagOverColor" xml:space="preserve">
+    <value>Mouse Over Farbe für Tag</value>
+  </data>
+  <data name="Characters" xml:space="preserve">
+    <value>Charaktere</value>
+  </data>
+  <data name="ShowTags" xml:space="preserve">
+    <value>Tag Liste anzeigen</value>
+  </data>
+  <data name="Tags" xml:space="preserve">
+    <value>Tags</value>
+  </data>
+  <data name="CursorColor" xml:space="preserve">
+    <value>Cursorfarbe</value>
+  </data>
+  <data name="Entries" xml:space="preserve">
+    <value>Einträge</value>
+  </data>
+  <data name="Entry" xml:space="preserve">
+    <value>Eintrag</value>
+  </data>
+  <data name="TotalEntries" xml:space="preserve">
+    <value>Einträge insgesamt: {0}</value>
+  </data>
+</root>

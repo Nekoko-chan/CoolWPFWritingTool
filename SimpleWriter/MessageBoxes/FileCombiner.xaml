@@ -1,0 +1,24 @@
+﻿<messageBoxes:MessageResultWindow x:Class="ComplexWriter.MessageBoxes.FileCombiner"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        WindowStartupLocation="CenterOwner"
+        xmlns:messageBoxes="clr-namespace:ComplexWriter.MessageBoxes"
+        xmlns:p="clr-namespace:ComplexWriter.Properties"
+        Title="Ausgabe" >
+    <Window.Resources>
+        <ResourceDictionary>
+                
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <RichTextBox x:Name="Box">
+            <RichTextBox.Resources>
+                <ResourceDictionary>
+                    <Style TargetType="Paragraph">
+                        <Setter Property="Margin" Value="10"></Setter>
+                    </Style>
+                </ResourceDictionary>
+            </RichTextBox.Resources>
+        </RichTextBox>
+    </Grid>
+</messageBoxes:MessageResultWindow>
