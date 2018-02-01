@@ -15,11 +15,13 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using FileExporter.Properties;
+using System.Reflection;
 using Writer.Data;
 using MessageBox = System.Windows.MessageBox;
 using Path = System.IO.Path;
 using RichTextBox = System.Windows.Controls.RichTextBox;
 using SaveFileDialog = Microsoft.Win32.SaveFileDialog;
+using System.Windows.Markup;
 
 namespace FileExporter
 {
@@ -159,9 +161,49 @@ namespace FileExporter
 
             }
 
-            TextFile.SaveFile(dlg.FileName,document);
+            //TextFile.SaveFile(dlg.FileName,document);
 
-            MessageBox.Show("Converted");
+            var blubb = XamlWriter.Save(document);
+            System.Diagnostics.Debug.WriteLine(blubb);
+            var test = ConvertXamlToRtf(blubb);
+
+            File.AppendAllText(dlg.FileName,test);
+
+
+        }
+
+        private static string ConvertXamlToRtf(string xamlContent)
+        {
+            var assembly = Assembly.GetAssembly(typeof(System.Windows.FrameworkElement));
+            var xamlRtfConverterType = assembly.GetType("System.Windows.Documents.XamlRtfConverter");
+            var xamlRtfConverter = Activator.CreateInstance(xamlRtfConverterType, true);
+            var convertXamlToRtf = xamlRtfConverterType.GetMethod("ConvertXamlToRtf", BindingFlags.Instance | BindingFlags.NonPublic);
+            var rtfContent = (string)convertXamlToRtf.Invoke(xamlRtfConverter, new object[] { xamlContent });
+            return rtfContent;
+        }
+
+        public static void SaveFile(string fileName, FlowDocument flowDocument)
+        {
+            if (fileName.EndsWith(".rtf"))
+            {
+                using (FileStream fs = new FileStream(fileName, FileMode.OpenOrCreate, FileAccess.ReadWrite))
+                {
+                    //var textRange = new TextRange(flowDocument.ContentStart, flowDocument.ContentEnd);
+                    //textRange.Save(fs, System.Windows.DataFormats.Rtf);
+                }
+            }
+            else if (fileName.EndsWith(".rtxt"))
+            {
+                var format = System.Windows.DataFormats.XamlPackage;
+                var range = new TextRange(flowDocument.ContentStart, flowDocument.ContentEnd);
+                var fStream = new FileStream(fileName, FileMode.Create);
+                range.Save(fStream, format);
+                fStream.Close();
+            }
+            else
+            {
+                throw new Exception("Falsche Dateiendung");
+            }
         }
     }
 }
