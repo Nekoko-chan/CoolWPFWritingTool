@@ -16,7 +16,3 @@ Data/bin/
 Data/obj/
 FileExporter/bin/
 FileExporter/obj/
-XamlRtfConverter/
-.vs/SimpleWriter/v15/Server/sqlite3/storage.ide
-.vs/SimpleWriter/v15/Server/sqlite3/db.lock
-.vs/SimpleWriter/v15/.suo
