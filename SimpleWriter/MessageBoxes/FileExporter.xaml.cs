@@ -305,30 +305,31 @@ namespace ComplexWriter.MessageBoxes
 
             foreach (var source in info.Items)
             {
-                var file = TextFile.Load(source.Filename);
-
-                file.Document.UpdateBreaks();
-
-                if (file.Document?.Blocks.FirstBlock == null)
+                try
                 {
-                    failcounter ++;
-                    var doub = ((double)index/length)*100;
+                    var file = TextFile.Load(source.Filename);
+
+                    file.Document.UpdateBreaks();
+
+                    var title = string.IsNullOrWhiteSpace(file.Title)
+                        ? Path.GetFileNameWithoutExtension(source.Filename)
+                        : file.Title;
+
+                    document = document.AddFlowDocument(file.Document, title, counter != 0, info.TextSize, info.TitleSize, info.UseUnderline,info.UseBold);
+
+                    index++;
+                    counter++;
+
+                    var doub2 = ((double)index/length)*100;
+                    _worker.ReportProgress((int)doub2, new ExportStepInfo { Filename = Path.GetFileNameWithoutExtension(source.Filename), Success = true });
+                }
+                catch 
+                {
+                    failcounter++;
+                    var doub = ((double)index / length) * 100;
                     _worker.ReportProgress((int)doub, new ExportStepInfo { Filename = Path.GetFileNameWithoutExtension(source.Filename), Success = false });
                     index++;
-                    continue;
                 }
-
-                var title = string.IsNullOrWhiteSpace(file.Title)
-                    ? Path.GetFileNameWithoutExtension(source.Filename)
-                    : file.Title;
-
-                document = document.AddFlowDocument(file.Document, title, counter != 0, info.TextSize, info.TitleSize, info.UseUnderline,info.UseBold);
-
-                index++;
-                counter++;
-
-                var doub2 = ((double)index/length)*100;
-                _worker.ReportProgress((int)doub2, new ExportStepInfo { Filename = Path.GetFileNameWithoutExtension(source.Filename), Success = true });
             }
             document.SaveAsRtfFile(info.Filename);
 
