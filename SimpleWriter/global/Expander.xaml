@@ -146,6 +146,76 @@
         </Setter>
     </Style>
 
+    <Style x:Key="ToggleBtnStyleLeft2" TargetType="ToggleButton">
+        <Setter Property="Cursor" Value="{StaticResource overCursor}"/>
+        <Setter Property="Margin" Value="0,0,0,0"></Setter>
+        <Setter Property="Foreground" Value="{DynamicResource BackColorBrush}"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    <Border Background="{DynamicResource BackColorBrush}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Border Width="24" Height="24" Name="Border" Margin="0,0,10,0" HorizontalAlignment="left" Background="{DynamicResource TitleBrush}"
+                                RenderTransformOrigin="0.5,0.5" RenderOptions.BitmapScalingMode="HighQuality">
+                                <Border.OpacityMask>
+                                    <ImageBrush ImageSource="/Images/arrowDown.png" Stretch="Uniform" />
+                                </Border.OpacityMask>
+                                <Border.RenderTransform>
+                                    <TransformGroup>
+                                        <ScaleTransform ScaleX="{StaticResource MinScale}"
+                                                    ScaleY="{StaticResource MinScale}" x:Name="theScale" />
+                                        <RotateTransform Angle="-90" x:Name="theAngle" />
+                                    </TransformGroup>
+                                </Border.RenderTransform>
+                            </Border>
+                            <ContentPresenter HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Column="1"/>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="theAngle" Storyboard.TargetProperty="Angle" To="0" Duration="00:00:00.300"></DoubleAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="theAngle" Storyboard.TargetProperty="Angle" To="-90" Duration="00:00:00.300"></DoubleAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="theScale" Storyboard.TargetProperty="ScaleX" To="{StaticResource MaxScale}" Duration="00:00:00.300"></DoubleAnimation>
+                                        <DoubleAnimation Storyboard.TargetName="theScale" Storyboard.TargetProperty="ScaleY" To="{StaticResource MaxScale}" Duration="00:00:00.300"></DoubleAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="theScale" Storyboard.TargetProperty="ScaleX" To="{StaticResource MinScale}" Duration="00:00:00.300"></DoubleAnimation>
+                                        <DoubleAnimation Storyboard.TargetName="theScale" Storyboard.TargetProperty="ScaleY" To="{StaticResource MinScale}" Duration="00:00:00.300"></DoubleAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style x:Key="ToggleBtnStyle2" TargetType="ToggleButton">
         <Setter Property="Cursor" Value="{StaticResource overCursor}"/>
         <Setter Property="Margin" Value="0,0,0,0"></Setter>
@@ -419,7 +489,40 @@ Storyboard.TargetProperty="(FrameworkElement.LayoutTransform).(ScaleTransform.Sc
                         <DockPanel>
                             <ToggleButton DockPanel.Dock="Top" Focusable="False"
                                       BorderBrush="{DynamicResource BackColorBrush}" Style="{StaticResource ToggleBtnStyleLeft}" IsChecked="{Binding RelativeSource={RelativeSource TemplatedParent},Path=IsExpanded, Mode=TwoWay}">
-                                <ContentPresenter   Margin="10,5" Content="{TemplateBinding Header}" IsHitTestVisible="False"
+                                <ContentPresenter   Margin="10,5" Content="{TemplateBinding Header}" 
+                                                  TextBlock.Foreground="{DynamicResource PlayerTitleBrush}"
+                                                  TextBlock.FontFamily="{DynamicResource GroupBoxTitle}"
+                                                  TextBlock.FontSize="{DynamicResource TitleFontSize}" />
+                            </ToggleButton>
+                            <Border  DockPanel.Dock="Top"  ClipToBounds="True" Name="ClipBorder" Visibility="Collapsed" >
+                                <Border Name="ContentBorder" 
+                                    Padding="{TemplateBinding Padding}">
+                                    <ContentPresenter Content="{TemplateBinding Content}" />
+                                </Border>
+                            </Border>
+                        </DockPanel>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsExpanded" Value="True">
+                            <Setter TargetName="ClipBorder" Property="Visibility" Value="Visible"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="TheExpanderLeft2" TargetType="Expander">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Expander">
+                    <Border 
+          Background="{TemplateBinding Background}" CornerRadius="3"
+                SnapsToDevicePixels="true">
+                        <DockPanel>
+                            <ToggleButton DockPanel.Dock="Top" Focusable="False"
+                                      BorderBrush="{DynamicResource BackColorBrush}" Style="{StaticResource ToggleBtnStyleLeft2}" IsChecked="{Binding RelativeSource={RelativeSource TemplatedParent},Path=IsExpanded, Mode=TwoWay}">
+                                <ContentPresenter   Margin="10,5" Content="{TemplateBinding Header}" 
                                                   TextBlock.Foreground="{DynamicResource PlayerTitleBrush}"
                                                   TextBlock.FontFamily="{DynamicResource GroupBoxTitle}"
                                                   TextBlock.FontSize="{DynamicResource TitleFontSize}" />

@@ -12,6 +12,7 @@
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:system="clr-namespace:System;assembly=mscorlib"
         xmlns:p="clr-namespace:ComplexWriter.Properties"
+        xmlns:data="clr-namespace:Writer.Data;assembly=Writer.Data"
         Title="{x:Static p:Resources.UpdateFont}" >
     <Window.InputBindings>
         <KeyBinding Key="A" Modifiers="Alt" Command="{x:Static commands1:CancelCommand.CancelOnA}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=messageBoxes:FontStyleWindow}}" />
@@ -210,7 +211,7 @@
                             </GroupStyle>
                         </ListBox.GroupStyle>
                         <ListBox.ItemTemplate>
-                            <DataTemplate DataType="complexWriter:FontElement">
+                            <DataTemplate DataType="data:FontElement">
                                 <Border Background="Transparent">
                                     <TextBlock Padding="4" FontFamily="{Binding Family}" IsHitTestVisible="False"
                                                FontSize="{StaticResource fontSizeExtraLarge}"

@@ -98,9 +98,9 @@ namespace ComplexWriter.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("State1")]
-        public global::ComplexWriter.ButtonState QuoteStyle {
+        public global::Writer.Data.ButtonState QuoteStyle {
             get {
-                return ((global::ComplexWriter.ButtonState)(this["QuoteStyle"]));
+                return ((global::Writer.Data.ButtonState)(this["QuoteStyle"]));
             }
             set {
                 this["QuoteStyle"] = value;
@@ -530,6 +530,18 @@ namespace ComplexWriter.Properties {
             }
             set {
                 this["ShowTagList"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool ShowTitleLine {
+            get {
+                return ((bool)(this["ShowTitleLine"]));
+            }
+            set {
+                this["ShowTitleLine"] = value;
             }
         }
     }

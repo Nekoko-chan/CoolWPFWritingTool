@@ -20,7 +20,7 @@
     <Setting Name="UseFrenchQuotes" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
-    <Setting Name="QuoteStyle" Type="ComplexWriter.ButtonState" Scope="User">
+    <Setting Name="QuoteStyle" Type="Writer.Data.ButtonState" Scope="User">
       <Value Profile="(Default)">State1</Value>
     </Setting>
     <Setting Name="LastSizeErrorWindow" Type="System.Windows.Size" Scope="User">
@@ -41,10 +41,10 @@
     <Setting Name="OpenFilenames" Type="ComplexWriter.OpenFiles" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="Style" Type="ComplexWriter.ComplexStyle" Scope="User">
+    <Setting Name="Style" Type="Writer.Data.ComplexStyle" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="Styles" Type="ComplexWriter.ComplexStyles" Scope="User">
+    <Setting Name="Styles" Type="Writer.Data.ComplexStyles" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="WatermarkPath" Type="System.String" Scope="User">
@@ -129,6 +129,9 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="ShowTagList" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="ShowTitleLine" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
   </Settings>

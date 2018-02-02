@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -59,6 +60,18 @@ namespace Writer.Data
             get { return _printBackground; }
             set { _printBackground = value;
                 PrintBackgroundString = value== null ? string.Empty:XamlWriter.Save(value); OnPropertyChanged(); }
+        }
+
+        public string Title 
+        {
+            get { return _title; }
+            set
+            {
+                if (string.Equals(_title, value)) return;
+                IsChanged = true;
+                _title = value;
+                OnPropertyChanged();
+            }
         }
 
         public string PrintBackgroundString { get; set; }
@@ -327,6 +340,9 @@ namespace Writer.Data
                         break;
                     case "Tags":
                         LoadTags(info); break;
+                    case "Title":
+                        Title = info.GetString("Title");
+                        break;
                 }
             }
         }
@@ -652,22 +668,7 @@ namespace Writer.Data
                 Watermark = new Watermark{Size = new Size(1,1),Opacity = 1d};
             }
         }
-
-       
-
-        //private void LoadCaretPosition(SerializationInfo info)
-        //{
-        //    try
-        //    {
-        //        var offset = (int) info.GetValue("CaretOffset", typeof (int));
-        //        CaretPosition = Document.ContentStart.GetPositionAtOffset(offset);
-        //    }
-        //    catch
-        //    {
-        //        CaretPosition = null;
-        //    }
-        //}
-
+        
         private void LoadDocument(SerializationInfo info)
         {
             try
@@ -685,8 +686,6 @@ namespace Writer.Data
                     {
                         Document = new FlowDocument();
                         var ran = new TextRange(Document.ContentStart, Document.ContentEnd);
-
-
                         ran.Load(stream, DataFormats.XamlPackage);
                     }
                 }
@@ -860,11 +859,7 @@ namespace Writer.Data
             var converter = new ComplexStylesConverter();
             string value = converter.ConvertTo(Styles, typeof(string)) as string;
             info.AddValue("ComplexStyles", value);
-
-            //var converter2 = new ComplexStyleConverter();
-            //string value2 = converter2.ConvertTo(DefaultStyle, typeof(string)) as string;
-            //info.AddValue("DefaultStyle", value2);
-
+        
             if (!string.IsNullOrEmpty(Password))
                 info.AddValue("Password", Password);
 
@@ -893,8 +888,6 @@ namespace Writer.Data
 
             info.AddValue("Characters",Character.ToXmlString(Characters));
 
-          
-            //info.AddValue("Language", Language);
 
             //Letzte Property... hier nach darf nichts mehr kommen!
             if (Watermark?.ImageSource != null)
@@ -908,6 +901,7 @@ namespace Writer.Data
             }
 
             info.AddValue("Tags",Tags);
+            info.AddValue("Title",Title);
         }
 
         private void SaveBrush(SerializationInfo info)
@@ -964,6 +958,7 @@ namespace Writer.Data
         private List<string> _tags = new List<string>();
 
         private bool _markeChanged;
+        private string _title;
 
         public bool Save(string fileName, out bool saveas)
         {
@@ -976,7 +971,6 @@ namespace Writer.Data
                 if (fileName.EndsWith(".etf"))
                 {
                     var formater = new BinaryFormatter();
-                    var r = new TextRange(flowDocument.ContentStart, flowDocument.ContentEnd);
                     using (
                         var stream = new FileStream(fileName, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.None))
                     {

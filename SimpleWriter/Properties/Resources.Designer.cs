@@ -160,6 +160,24 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Would you like to export the title as well?.
+        /// </summary>
+        public static string AddTitle {
+            get {
+                return ResourceManager.GetString("AddTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add title.
+        /// </summary>
+        public static string AddTitleCaption {
+            get {
+                return ResourceManager.GetString("AddTitleCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Show password if the tab is changed.
         /// </summary>
         public static string AksForPasswordTabs {
@@ -350,6 +368,15 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Use bold tite.
+        /// </summary>
+        public static string BoldTitle {
+            get {
+                return ResourceManager.GetString("BoldTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         public static string Cancel {
@@ -429,6 +456,24 @@ namespace ComplexWriter.Properties {
         public static string Characters {
             get {
                 return ResourceManager.GetString("Characters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose all.
+        /// </summary>
+        public static string ChooseAll {
+            get {
+                return ResourceManager.GetString("ChooseAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose base folder.
+        /// </summary>
+        public static string ChooseDirectory {
+            get {
+                return ResourceManager.GetString("ChooseDirectory", resourceCulture);
             }
         }
         
@@ -672,6 +717,15 @@ namespace ComplexWriter.Properties {
         public static string ColorSettingTitleColor {
             get {
                 return ResourceManager.GetString("ColorSettingTitleColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Export complete: {0} failed.
+        /// </summary>
+        public static string CompleteMessage {
+            get {
+                return ResourceManager.GetString("CompleteMessage", resourceCulture);
             }
         }
         
@@ -1157,11 +1211,58 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Export multiple files.
+        /// </summary>
+        public static string ExportBook {
+            get {
+                return ResourceManager.GetString("ExportBook", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The following files could not be opened:
+        ///
+        ///{0}.
+        /// </summary>
+        public static string ExportBookFailed {
+            get {
+                return ResourceManager.GetString("ExportBookFailed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The files are exported successfully.
+        /// </summary>
+        public static string ExportBookSuccess {
+            get {
+                return ResourceManager.GetString("ExportBookSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Export as Rich text file....
         /// </summary>
         public static string ExportRTF {
             get {
                 return ResourceManager.GetString("ExportRTF", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}% : Adding file {1} failed.
+        /// </summary>
+        public static string ExportStepTextFail {
+            get {
+                return ResourceManager.GetString("ExportStepTextFail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}% : Adding file {1} was successful.
+        /// </summary>
+        public static string ExportStepTextSuccess {
+            get {
+                return ResourceManager.GetString("ExportStepTextSuccess", resourceCulture);
             }
         }
         
@@ -2563,6 +2664,15 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Export as single RTF file.
+        /// </summary>
+        public static string SaveAsSingleFile {
+            get {
+                return ResourceManager.GetString("SaveAsSingleFile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save automatically.
         /// </summary>
         public static string SaveAutomatical {
@@ -3163,11 +3273,29 @@ namespace ComplexWriter.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Text size:.
+        /// </summary>
+        public static string TextFontSize {
+            get {
+                return ResourceManager.GetString("TextFontSize", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cool Writer.
         /// </summary>
         public static string Title {
             get {
                 return ResourceManager.GetString("Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Title size:.
+        /// </summary>
+        public static string TitleFontSize {
+            get {
+                return ResourceManager.GetString("TitleFontSize", resourceCulture);
             }
         }
         
@@ -3213,6 +3341,15 @@ namespace ComplexWriter.Properties {
         public static string UnderlineOnOf {
             get {
                 return ResourceManager.GetString("UnderlineOnOf", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use underlined title.
+        /// </summary>
+        public static string UnderlineTitle {
+            get {
+                return ResourceManager.GetString("UnderlineTitle", resourceCulture);
             }
         }
         

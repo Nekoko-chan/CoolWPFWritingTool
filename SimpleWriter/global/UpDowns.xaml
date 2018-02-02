@@ -14,8 +14,8 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="RepeatButton">
-                            <Grid Margin="2">
-                                <Border Width="16" Height="16" RenderTransformOrigin="0.5,0.5" RenderOptions.BitmapScalingMode="HighQuality" Name="cont" Background="{TemplateBinding Foreground}">
+                            <Grid>
+                                <Border  Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" RenderTransformOrigin="0.5,0.5" RenderOptions.BitmapScalingMode="HighQuality" Name="cont" Background="{TemplateBinding Foreground}">
                                     <Border.OpacityMask>
                                         <ImageBrush ImageSource="../Images/upCycle.png"/>
                                     </Border.OpacityMask>
@@ -47,8 +47,8 @@
                 <Setter Property="Template">
                     <Setter.Value>
                         <ControlTemplate TargetType="RepeatButton">
-                            <Grid Margin="2">
-                                <Border Width="16" Height="16" RenderTransformOrigin="0.5,0.5" RenderOptions.BitmapScalingMode="HighQuality" Name="cont" Background="{TemplateBinding Foreground}">
+                            <Grid>
+                                <Border Width="{TemplateBinding Width}" Height="{TemplateBinding Height}" RenderTransformOrigin="0.5,0.5" RenderOptions.BitmapScalingMode="HighQuality" Name="cont" Background="{TemplateBinding Foreground}">
                                     <Border.OpacityMask>
                                         <ImageBrush ImageSource="../Images/downCycle.png"/>
                                     </Border.OpacityMask>
@@ -75,88 +75,145 @@
             </Style>
             <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
 
-    <Style TargetType="{x:Type xceed:ButtonSpinner}" x:Key="btnSpinner">
-        <Setter Property="Background" Value="Transparent" />
-        <Setter Property="BorderBrush" Value="Transparent" />
-        <Setter Property="BorderThickness" Value="1" />
+            <Style x:Key="btnSpinner" TargetType="{x:Type xceed:ButtonSpinner}">
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="BorderBrush" Value="Transparent" />
+                <Setter Property="BorderThickness" Value="1" />
                 <Setter Property="Focusable" Value="False" />
                 <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-        <Setter Property="IsTabStop" Value="True" />
-        <Setter Property="Padding" Value="1" />
-        <Setter Property="VerticalContentAlignment" Value="Center" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type xceed:ButtonSpinner}">
-                    <Border x:Name="Border" SnapsToDevicePixels="True"  BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" >
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-                            <ContentPresenter Focusable="False" Margin="{TemplateBinding Padding}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" TextBlock.Foreground="{DynamicResource TitleBrush}"/>
+                <Setter Property="IsTabStop" Value="True" />
+                <Setter Property="Padding" Value="1" />
+                <Setter Property="VerticalContentAlignment" Value="Center" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type xceed:ButtonSpinner}">
+                            <Border x:Name="Border" SnapsToDevicePixels="True"  BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" >
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <ContentPresenter Focusable="False" Margin="{TemplateBinding Padding}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" TextBlock.Foreground="{DynamicResource TitleBrush}"/>
 
-                            <Grid Grid.Column="1" Visibility="{TemplateBinding ShowButtonSpinner, Converter={StaticResource BooleanToVisibilityConverter}}">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                </Grid.RowDefinitions>
+                                    <Grid Grid.Column="1" Visibility="{TemplateBinding ShowButtonSpinner, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
 
-                                <RepeatButton x:Name="PART_IncreaseButton" 
+                                        <RepeatButton x:Name="PART_IncreaseButton" 
                                    Style="{StaticResource repeaterUp}"
-                                              Foreground="{TemplateBinding Foreground}"
+                                              Foreground="{TemplateBinding Foreground}" Width="16" Height="16" Margin="2"
                                    IsTabStop="{TemplateBinding IsTabStop}">
-                                </RepeatButton>
+                                        </RepeatButton>
 
-                                <RepeatButton x:Name="PART_DecreaseButton" 
+                                        <RepeatButton x:Name="PART_DecreaseButton" 
                                    Grid.Row="1"
-                                   Style="{StaticResource repeaterDown}" Foreground="{TemplateBinding Foreground}"
+                                   Style="{StaticResource repeaterDown}" Foreground="{TemplateBinding Foreground}"  Width="16" Height="16" Margin="2"
                                    IsTabStop="{TemplateBinding IsTabStop}">
-                                </RepeatButton>
+                                        </RepeatButton>
 
-                            </Grid>
-                        </Grid>
-                    </Border>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsEnabled" Value="False">
-                            <Setter Property="Background" Value="Transparent" />
-                        </Trigger>
-                        <Trigger SourceName="PART_IncreaseButton" Property="IsEnabled" Value="False">
-                            <Setter TargetName="PART_IncreaseButton" Property="Opacity" Value="0.5" />
-                        </Trigger>
-                        <Trigger SourceName="PART_DecreaseButton" Property="IsEnabled" Value="False">
-                            <Setter TargetName="PART_DecreaseButton" Property="Opacity" Value="0.5" />
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
+                                    </Grid>
+                                </Grid>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter Property="Background" Value="Transparent" />
+                                </Trigger>
+                                <Trigger SourceName="PART_IncreaseButton" Property="IsEnabled" Value="False">
+                                    <Setter TargetName="PART_IncreaseButton" Property="Opacity" Value="0.5" />
+                                </Trigger>
+                                <Trigger SourceName="PART_DecreaseButton" Property="IsEnabled" Value="False">
+                                    <Setter TargetName="PART_DecreaseButton" Property="Opacity" Value="0.5" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
 
-    <DataTemplate x:Key="DefaultWatermarkTemplate">
+            <Style x:Key="btnSpinnerSmall" TargetType="{x:Type xceed:ButtonSpinner}">
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="BorderBrush" Value="Transparent" />
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="Focusable" Value="False" />
+                <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                <Setter Property="IsTabStop" Value="True" />
+                <Setter Property="Padding" Value="1" />
+                <Setter Property="VerticalContentAlignment" Value="Center" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type xceed:ButtonSpinner}">
+                            <Border x:Name="Border" SnapsToDevicePixels="True"  BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" >
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+                                    <ContentPresenter Focusable="False" Margin="{TemplateBinding Padding}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" TextBlock.Foreground="{DynamicResource TitleBrush}"/>
+
+                                    <Grid Grid.Column="1" Visibility="{TemplateBinding ShowButtonSpinner, Converter={StaticResource BooleanToVisibilityConverter}}">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto" />
+                                            <RowDefinition Height="Auto" />
+                                        </Grid.RowDefinitions>
+
+                                        <RepeatButton x:Name="PART_IncreaseButton" 
+                                   Style="{StaticResource repeaterUp}"
+                                              Foreground="{TemplateBinding Foreground}" Width="10" Height="10" Margin="1"
+                                   IsTabStop="{TemplateBinding IsTabStop}">
+                                        </RepeatButton>
+
+                                        <RepeatButton x:Name="PART_DecreaseButton" 
+                                   Grid.Row="1"
+                                   Style="{StaticResource repeaterDown}" Foreground="{TemplateBinding Foreground}"  Width="10" Height="10" Margin="1"
+                                   IsTabStop="{TemplateBinding IsTabStop}">
+                                        </RepeatButton>
+
+                                    </Grid>
+                                </Grid>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter Property="Background" Value="Transparent" />
+                                </Trigger>
+                                <Trigger SourceName="PART_IncreaseButton" Property="IsEnabled" Value="False">
+                                    <Setter TargetName="PART_IncreaseButton" Property="Opacity" Value="0.5" />
+                                </Trigger>
+                                <Trigger SourceName="PART_DecreaseButton" Property="IsEnabled" Value="False">
+                                    <Setter TargetName="PART_DecreaseButton" Property="Opacity" Value="0.5" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <DataTemplate x:Key="DefaultWatermarkTemplate">
         <ContentControl Content="{Binding}" Foreground="Gray" FontFamily="{StaticResource defaultFont}" Background="Transparent" Focusable="False" />
     </DataTemplate>
 
-    <Style x:Key="NumericUpDown" TargetType="{x:Type prim:InputBase}">
-        <Setter Property="Background" Value="Transparent" />
-        <Setter Property="BorderThickness" Value="1" />
-        <Setter Property="Foreground" Value="{DynamicResource TitleBrush}" />
-        <Setter Property="HorizontalContentAlignment" Value="Left" />
-        <Setter Property="IsTabStop" Value="False" />
-        <Setter Property="VerticalContentAlignment" Value="Center" />
-        <Setter Property="TextAlignment" Value="Left" />
-        <Setter Property="WatermarkTemplate" Value="{StaticResource DefaultWatermarkTemplate}" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="Control">
-                    <Border Margin="2">
-                        <xceed:ButtonSpinner x:Name="PART_Spinner"
+            <Style x:Key="NumericUpDown" TargetType="{x:Type prim:InputBase}">
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="BorderThickness" Value="1" />
+                <Setter Property="Foreground" Value="{DynamicResource TitleBrush}" />
+                <Setter Property="HorizontalContentAlignment" Value="Left" />
+                <Setter Property="IsTabStop" Value="False" />
+                <Setter Property="VerticalContentAlignment" Value="Center" />
+                <Setter Property="TextAlignment" Value="Left" />
+                <Setter Property="WatermarkTemplate" Value="{StaticResource DefaultWatermarkTemplate}" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Control">
+                            <Border Margin="2">
+                                <xceed:ButtonSpinner x:Name="PART_Spinner"
                                              IsTabStop="False"
                                              Style="{StaticResource btnSpinner}"
                                              Background="Transparent"
                                              BorderThickness="{TemplateBinding BorderThickness}"
                                              AllowSpin="{Binding AllowSpin, RelativeSource={RelativeSource TemplatedParent}}"
                                              ShowButtonSpinner="{Binding ShowButtonSpinner, RelativeSource={RelativeSource TemplatedParent}}">
-                            <xceed:WatermarkTextBox x:Name="PART_TextBox"
+                                    <xceed:WatermarkTextBox x:Name="PART_TextBox"
                                                     BorderThickness="0"
                                                     Background="Transparent"
                                                     Cursor="{StaticResource Beam}"
@@ -181,21 +238,79 @@
                                                     VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
                                                     Watermark="{Binding Watermark, RelativeSource={RelativeSource TemplatedParent}}"
                                                     WatermarkTemplate="{Binding WatermarkTemplate, RelativeSource={RelativeSource TemplatedParent}}" />
-                        </xceed:ButtonSpinner></Border>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsEnabled" Value="False">
+                                </xceed:ButtonSpinner>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsEnabled" Value="False">
                                     <Setter TargetName="PART_TextBox" Property="Opacity" Value="0.5"></Setter>
                                 </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
 
-    <!-- =============================================================================== -->
+            <Style x:Key="NumericUpDownSmall" TargetType="{x:Type prim:InputBase}">
+                <Setter Property="Background" Value="Transparent" />
+                <Setter Property="BorderThickness" Value="0" />
+                <Setter Property="Foreground" Value="{DynamicResource TitleBrush}" />
+                <Setter Property="HorizontalContentAlignment" Value="Left" />
+                <Setter Property="IsTabStop" Value="False" />
+                <Setter Property="VerticalContentAlignment" Value="Center" />
+                <Setter Property="TextAlignment" Value="Left" />
+                <Setter Property="WatermarkTemplate" Value="{StaticResource DefaultWatermarkTemplate}" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Control">
+                            <Border Margin="2">
+                                <xceed:ButtonSpinner x:Name="PART_Spinner"
+                                             IsTabStop="False" VerticalAlignment="Center"
+                                             Style="{StaticResource btnSpinnerSmall}"
+                                             BorderThickness="{TemplateBinding BorderThickness}"
+                                             AllowSpin="{Binding AllowSpin, RelativeSource={RelativeSource TemplatedParent}}"
+                                             ShowButtonSpinner="{Binding ShowButtonSpinner, RelativeSource={RelativeSource TemplatedParent}}">
+                                    <xceed:WatermarkTextBox x:Name="PART_TextBox"
+                                                    BorderThickness="0"
+                                                    Background="Transparent"
+                                                    Cursor="{StaticResource Beam}"
+                                                    ContextMenu="{TemplateBinding ContextMenu}"
+                                                    FontFamily="{TemplateBinding FontFamily}"
+                                                    FontSize="{TemplateBinding FontSize}"
+                                                    FontStretch="{TemplateBinding FontStretch}"
+                                                    FontStyle="{TemplateBinding FontStyle}"
+                                                    CaretBrush="{TemplateBinding Foreground}"
+                                                    FontWeight="{TemplateBinding FontWeight}"
+                                                    Foreground="{TemplateBinding Foreground}"
+                                                    HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                    IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource TemplatedParent}}"
+                                                    MinWidth="20"
+                                                    AcceptsReturn="False"
+                                                    Padding="0"
+                                                    IsEnabled="True"
+                                                    SelectAllOnGotFocus="{Binding SelectAllOnGotFocus, RelativeSource={RelativeSource TemplatedParent}}"
+                                                    TextAlignment="{Binding TextAlignment, RelativeSource={RelativeSource TemplatedParent}}"
+                                                    TextWrapping="NoWrap"
+                                                    TabIndex="{TemplateBinding TabIndex}"
+                                                    VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                    Watermark="{Binding Watermark, RelativeSource={RelativeSource TemplatedParent}}" VerticalAlignment="Center"
+                                                    WatermarkTemplate="{Binding WatermarkTemplate, RelativeSource={RelativeSource TemplatedParent}}" />
+                                </xceed:ButtonSpinner>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter TargetName="PART_TextBox" Property="Opacity" Value="0.5"></Setter>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <!-- =============================================================================== -->
     <!-- DoubleUpDown                                                                    -->
     <!-- =============================================================================== -->
             <Style x:Key="doubleTest" TargetType="{x:Type xceed:DoubleUpDown}" BasedOn="{StaticResource NumericUpDown}" />
+            <Style x:Key="smallDoubleControl" TargetType="{x:Type xceed:DoubleUpDown}" BasedOn="{StaticResource NumericUpDownSmall}" />
             <Style x:Key="doubleTest2" TargetType="{x:Type xceed:DoubleUpDown}" BasedOn="{StaticResource NumericUpDown}">
                 <Setter Property="Foreground" Value="Black"/>
             </Style>

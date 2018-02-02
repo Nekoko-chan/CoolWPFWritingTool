@@ -1,0 +1,277 @@
+﻿<messageBoxes:MessageResultWindow x:Class="ComplexWriter.MessageBoxes.FileExporter"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:customControls="clr-namespace:CustomControls;assembly=CustomControls"
+        WindowStartupLocation="CenterOwner"
+        xmlns:messageBoxes="clr-namespace:ComplexWriter.MessageBoxes"
+        xmlns:commands1="clr-namespace:ComplexWriter.Commands"
+        xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
+        xmlns:global="clr-namespace:ComplexWriter.global"
+        xmlns:complexWriter1="clr-namespace:ComplexWriter"
+        xmlns:p="clr-namespace:ComplexWriter.Properties"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        Title="{x:Static p:Resources.ExportBook}" >
+    <Window.InputBindings>
+        <KeyBinding Key="O" Command="{x:Static commands1:OkCommand.OkOnEnterOrO}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=messageBoxes:FileExporter}}" />
+        <KeyBinding Key="Enter" Command="{x:Static commands1:OkCommand.OkOnEnterOrO}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=messageBoxes:FileExporter}}" />
+        <KeyBinding Key="Escape" Command="{x:Static commands1:OkCommand.OkOnEnterOrO}" CommandParameter="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType=messageBoxes:FileExporter}}" />
+    </Window.InputBindings>
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Dictionaries/FileExporterDictionary.xaml"/>
+                <ResourceDictionary Source="../global/global.xaml"/>
+                <ResourceDictionary Source="../global/Scrollbars.xaml"/>
+                <ResourceDictionary Source="../global/ListBoxForCheck.xaml"/>
+                <ResourceDictionary Source="../global/UpDowns.xaml"/>
+                <ResourceDictionary Source="../global/checkbox.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="../global/Combobox.xaml"/>
+                <ResourceDictionary Source="Dictionaries/FileExporterDictionary.xaml"/>
+                <ResourceDictionary>
+                    <global:FolderStyleConverter x:Key="FolderStyleConverter"/>
+                    <CollectionViewSource x:Key="Files" IsLiveSortingRequested="True" Source="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:FileExporter},Path=TextFileItems}" >
+                        <CollectionViewSource.GroupDescriptions>
+                            <PropertyGroupDescription PropertyName="Folder"></PropertyGroupDescription>
+                        </CollectionViewSource.GroupDescriptions>
+                        <CollectionViewSource.SortDescriptions>
+                            <componentModel:SortDescription PropertyName="Filename" Direction="Ascending"/>
+                        </CollectionViewSource.SortDescriptions>
+                    </CollectionViewSource>
+                </ResourceDictionary>
+                <ResourceDictionary>
+                    <Style x:Key="bord" TargetType="Border">
+                        <Setter Property="Margin" Value="-5,0,30,0"/>
+                    </Style>
+                    <Style x:Key="BorderStyle" TargetType="Border">
+                        <Setter Property="BorderBrush" Value="{DynamicResource TitleBrush}"/>
+                        <Setter Property="BorderThickness" Value="1"/>
+                        <Setter Property="SnapsToDevicePixels" Value="True"/>
+                        <Setter Property="Margin" Value="2"/>
+                        <Setter Property="Height" Value="35"/>
+                    </Style>
+                 
+                  
+
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Border Grid.Row="1" Grid.Column="1"  Style="{StaticResource bord}" BorderThickness="1" BorderBrush="#FF054049"></Border>
+        <Border Grid.Row="1" Grid.Column="1" Style="{StaticResource bord}"  Background="{StaticResource BackgroundBrush}" SnapsToDevicePixels="True">
+         
+            <Grid>
+                <Border Visibility="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:FileExporter},Path=MainVisibility}" BorderBrush="{StaticResource BackColorBrush}" BorderThickness="2" Margin="10,27,45,15" Cursor="{StaticResource standardCursor}">
+                    <Grid>
+                      <Border >
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Border BorderBrush="{StaticResource BackColorBrush}" SnapsToDevicePixels="True"
+                                                BorderThickness="0,0,0,2">
+                                    <StackPanel Orientation="Horizontal">
+                                        <customControls:GlassButton3 Style="{StaticResource GlassButtonStyle}"
+                                                                     Content="{x:Static p:Resources.ChooseDirectory}"
+                                                                     Click="ChooseBaseFolder" />
+
+                                        <Border Width="3" BorderBrush="{StaticResource BackColorBrush}" SnapsToDevicePixels="True"
+                                                BorderThickness="2,0,0,0" />
+
+                                        <TextBlock Text="{x:Static p:Resources.TitleFontSize}" Margin="10,0,0,0"
+                                                   VerticalAlignment="Center" FontFamily="{StaticResource defaultFont}"
+                                                   FontSize="{StaticResource fontSizeMedium}" />
+                                        <Border Background="{DynamicResource BackColorBrush}"
+                                                BorderBrush="{DynamicResource BackColorBrush}" CornerRadius="4"
+                                                BorderThickness="1"
+                                                Cursor="{StaticResource standardCursor}" Margin="10,4">
+                                            <xctk:DoubleUpDown Style="{StaticResource smallDoubleControl}"
+                                                               PreviewTextInput="CheckText" VerticalAlignment="Stretch"
+                                                               Increment="0.25"
+                                                               Cursor="{StaticResource overCursor}" Width="80"
+                                                               Minimum="0" Maximum="2000"
+                                                               FontSize="{StaticResource fontSizeSmall}"
+                                                               Value="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:FileExporter},Path=TitleFontSize,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                               FontFamily="{StaticResource numberFont}" />
+                                        </Border>
+                                        <TextBlock VerticalAlignment="Center"
+                                                   Text="{x:Static p:Resources.TextFontSize}"
+                                                   FontFamily="{StaticResource defaultFont}"
+                                                   FontSize="{StaticResource fontSizeMedium}" />
+                                        <Border Background="{DynamicResource BackColorBrush}"
+                                                BorderBrush="{DynamicResource BackColorBrush}" CornerRadius="4"
+                                                BorderThickness="1"
+                                                Cursor="{StaticResource standardCursor}" Margin="10,4">
+                                            <xctk:DoubleUpDown Style="{StaticResource smallDoubleControl}" Width="80"
+                                                               PreviewTextInput="CheckText" VerticalAlignment="Stretch"
+                                                               Increment="0.25"
+                                                               Cursor="{StaticResource overCursor}"
+                                                               Minimum="0" Maximum="2000"
+                                                               FontSize="{StaticResource fontSizeSmall}"
+                                                               Value="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:FileExporter},Path=TextFontSize,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                               FontFamily="{StaticResource numberFont}" />
+                                        </Border>
+                                        <Border Width="3" BorderBrush="{StaticResource BackColorBrush}" SnapsToDevicePixels="True"
+                                                BorderThickness="2,0,0,0" />
+                                        <customControls:MaskedToggleButtonEnlarge Margin="10,0,0,0"
+                                                                                  IsChecked="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:FileExporter},Path=HasBoldTitle,Mode=TwoWay}"
+
+                                                                                  Width="32"
+                                                                                  Height="32"
+                                                                                  ButtonMask="../Images/Bold.png"
+                                                                                  ButtonColor="Black">
+                                            <ToggleButton.ToolTip>
+                                                <ToolTip Style="{StaticResource tipTest}"
+                                                         Content="{x:Static p:Resources.BoldTitle}" />
+                                            </ToggleButton.ToolTip>
+                                        </customControls:MaskedToggleButtonEnlarge>
+                                        <customControls:MaskedToggleButtonEnlarge Margin="0,0,0,0"
+                                                                                  IsChecked="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:FileExporter},Path=HasUnderlinedTitle,Mode=TwoWay}"
+
+                                                                                  Width="32"
+                                                                                  Height="32"
+                                                                                  ButtonMask="../Images/Underline.png"
+                                                                                  ButtonColor="Black">
+                                            <ToggleButton.ToolTip>
+                                                <ToolTip Style="{StaticResource tipTest}"
+                                                         Content="{x:Static p:Resources.UnderlineTitle}" />
+                                            </ToggleButton.ToolTip>
+                                        </customControls:MaskedToggleButtonEnlarge>
+                                    </StackPanel></Border>
+                                
+
+                                <CheckBox Style="{StaticResource  globalCheckbox}" IsEnabled="True" Grid.Row="1" Content="{x:Static p:Resources.ChooseAll}" Checked="CheckAll" Unchecked="UncheckAll" Margin="0,5"></CheckBox>
+                                <ListBox Style="{StaticResource AListBox}" Grid.Row="2" ItemsSource="{Binding Source={StaticResource Files}}">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate DataType="{x:Type complexWriter1:TextFileItem}">
+                                            <CheckBox Style="{StaticResource globalCheckbox}"  Content="{Binding Filename}" FontSize="{Binding IsFolder, Converter={StaticResource FolderStyleConverter}}" IsChecked="{Binding IsChecked}" Tag="{Binding}" Foreground="Black"/>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                    <ListBox.GroupStyle>
+                                        <GroupStyle>
+                                            <GroupStyle.Panel>
+                                                <ItemsPanelTemplate>
+                                                    <DockPanel />
+                                                </ItemsPanelTemplate>
+                                            </GroupStyle.Panel>
+                                            <GroupStyle.ContainerStyle>
+                                                <Style TargetType="{x:Type GroupItem}">
+                                                    <Setter Property="Tag" Value=""/>
+                                                    <Setter Property="DockPanel.Dock" Value="Top"></Setter>
+                                                    <Setter Property="Template">
+                                                        <Setter.Value>
+                                                            <ControlTemplate TargetType="{x:Type GroupItem}">
+                                                                <Expander IsExpanded="True" Style="{StaticResource TheExpanderLeft2}"
+                                                              Margin="5" VerticalAlignment="Top"
+                                                              BorderBrush="{DynamicResource BackColorBrush}" HorizontalAlignment="Stretch">
+                                                                    <Expander.Header>
+                                                                        <CheckBox Tag="{Binding Name, Mode=OneWay}" Style="{StaticResource globalCheckbox}" Checked="UpdateChildFiles" Unchecked="UpdateChildFiles" Foreground="{StaticResource TitleBrush}">
+                                                                            <TextBlock
+                                                                                FontFamily="{StaticResource defaultFont}"
+                                                                                FontSize="{StaticResource fontSizeLarge}"
+                                                                                Foreground="{DynamicResource TitleBrush}">
+                                                                                <Run Text="{Binding Name,Mode=OneWay}" />
+                                                                                (
+                                                                                <Run
+                                                                                    Text="{Binding ItemCount,Mode=OneWay}">
+                                                                                </Run>
+                                                                                )
+                                                                            </TextBlock></CheckBox>
+                                                                    </Expander.Header>
+                                                                    <ItemsPresenter />
+                                                                </Expander>
+                                                            </ControlTemplate>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </Style>
+                                            </GroupStyle.ContainerStyle>
+                                        </GroupStyle>
+                                    </ListBox.GroupStyle>
+                                </ListBox>
+                                <customControls:GlassButton3 Style="{StaticResource GlassButtonStyle}"  Grid.Row="3" Content="{x:Static p:Resources.SaveAsSingleFile}"  Click="ToSingleFile"></customControls:GlassButton3>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                </Border>
+                <Border Visibility="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:FileExporter},Path=InfoVisibility}" BorderBrush="{StaticResource BackColorBrush}" BorderThickness="2" Margin="10,27,45,15" Cursor="{StaticResource standardCursor}">
+                    <ScrollViewer Margin="10" x:Name="viewer" Style="{StaticResource testScroller}" VerticalScrollBarVisibility="Auto">
+                        <ItemsControl
+                            ItemsSource="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:FileExporter},Path=ConverterItems}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate DataType="{x:Type messageBoxes:ExportStepInfo}">
+                                    <StackPanel Orientation="Horizontal" Margin="0,5">
+                                        <TextBlock Text="{Binding Percentage, Converter={StaticResource PercentTextConverter}}" Width="80"
+                                                   VerticalAlignment="Center"
+                                                   Foreground="Black" FontSize="{StaticResource fontSizeMedium}"
+                                                   FontFamily="{StaticResource defaultFont}" />
+                                        <TextBlock Text="{Binding Filename}" Foreground="Black"
+                                                   VerticalAlignment="Center"
+                                                   FontSize="{StaticResource fontSizeMedium}"
+                                                   FontFamily="{StaticResource defaultFont}" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl></ScrollViewer>
+                </Border>
+                        
+                <Thumb  Grid.Row="0" VerticalAlignment="Top" Height="10" Margin="0,-3,20,0"
+                                                   Cursor="{StaticResource moveCursor}" DragDelta="MoveWindow"
+                                                   Tag="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}}">
+                    <Thumb.Template>
+                        <ControlTemplate TargetType="Thumb">
+                            <Border Background="{StaticResource BackColorBrush}" CornerRadius="10,0,10,10" />
+                        </ControlTemplate>
+                    </Thumb.Template>
+                </Thumb>
+            </Grid>
+        </Border>
+        <Border Grid.Column="1" Grid.Row="1" Style="{StaticResource bord}" Background="{StaticResource background}" IsHitTestVisible="False" BorderBrush="{DynamicResource BackColorBrush}" BorderThickness="1,1" SnapsToDevicePixels="True"/>
+        <Border  Grid.Row="1" Grid.Column="1" Style="{StaticResource HookBorder}" Margin="-40,7,0,7" >
+            <Thumb  Grid.Row="0" VerticalAlignment="Top" Height="10" Margin="0"
+                                                   Cursor="{StaticResource moveCursor}" DragDelta="MoveWindow"
+                                                   Tag="{Binding RelativeSource={RelativeSource AncestorType={x:Type Window}}}">
+                <Thumb.Template>
+                    <ControlTemplate TargetType="Thumb">
+                        <Border Background="{StaticResource BackColorBrush}" CornerRadius="10,0,10,10" />
+                    </ControlTemplate>
+                </Thumb.Template>
+            </Thumb>
+        </Border>
+
+        <Border Grid.Column="0" Grid.Row="1" IsHitTestVisible="False"  Background="{StaticResource BackColorBrush}"  MinWidth="22" Padding="4,10" CornerRadius="10,0,0,10"  Margin="0,-3,0,15">
+           
+        </Border>
+
+        <Border Name="buttonBorder" Grid.Column="1" Grid.Row="2" HorizontalAlignment="right" Margin="0,-2,20,0" Background="{StaticResource BackColorBrush}" SnapsToDevicePixels="True" CornerRadius="5,5,5,10">
+            <StackPanel Orientation="Horizontal" >
+                <customControls:GlassButton3 Style="{StaticResource GlassButtonStyle}" x:Name="ForFocus" Click="CloseWithTag">
+                    <TextBlock Text="{x:Static p:Resources.Close}" Width="100" TextAlignment="Center">
+                        
+                    </TextBlock>
+                    <customControls:GlassButton3.Tag>
+                        <x:Static Member="MessageBoxResult.OK"/>
+                    </customControls:GlassButton3.Tag>
+                </customControls:GlassButton3>
+               
+            </StackPanel>
+        </Border>
+        
+    </Grid>
+</messageBoxes:MessageResultWindow>

@@ -142,6 +142,9 @@ DependencyProperty.Register("TagHandler", typeof(TagHandler), typeof(MainWindow)
         public static readonly DependencyProperty ShowTaglistProperty =
 DependencyProperty.Register("ShowTaglist", typeof(bool), typeof(MainWindow), new UIPropertyMetadata(true));
 
+        public static readonly DependencyProperty ShowTitleLineProperty =
+DependencyProperty.Register("ShowTitleLine", typeof(bool), typeof(MainWindow), new UIPropertyMetadata(true));
+
         private readonly string _isOpendWithWindow = string.Empty;
         private readonly Object _savelock = new object();
         private readonly Timer _t = new Timer {Interval = TimeSpan.FromSeconds(Settings.Default.AutoSaveInterval).TotalMilliseconds};
@@ -196,6 +199,7 @@ DependencyProperty.Register("ShowTaglist", typeof(bool), typeof(MainWindow), new
             CountDown.Elapsed += CountDown_Elapsed;
             ApplyableStyles = null;
             AddToSplash(Properties.Resources.SetVariables);
+            ShowTitleLine = Settings.Default.ShowTitleLine;
             UiServices.InitCursor((Cursor) FindResource("waitCursor"));
 
             FontFamilies = Utilities.PossibleFonts;
@@ -406,6 +410,18 @@ DependencyProperty.Register("ShowTaglist", typeof(bool), typeof(MainWindow), new
             get { return (FontElement) GetValue(CurrentFontFamilyProperty); }
             set { SetValue(CurrentFontFamilyProperty, value); }
         }
+
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool ShowTitleLine
+        {
+            get { return (bool)GetValue(ShowTitleLineProperty); }
+            set { SetValue(ShowTitleLineProperty, value); }
+        }
+
 
         public string CustomDictEnglish { get; set; }
         public string CustomDict { get; set; }
@@ -806,7 +822,7 @@ DependencyProperty.Register("ShowTaglist", typeof(bool), typeof(MainWindow), new
 
         private void RichTextBox_ContextMenuOpening(object sender, ContextMenuEventArgs e)
         {
-            var standard = GetStandardCommands();
+            var standard = GetStandardCommands(true);
             var spell = GetSpellingSuggestions();
             var other = GetOtherCommands();
             ContextMenu.Items.Clear();
@@ -1245,6 +1261,104 @@ DependencyProperty.Register("ShowTaglist", typeof(bool), typeof(MainWindow), new
             return spellingSuggestions;
         }
 
+        private IEnumerable<object> GetSpellingSuggestionsForTextBox()
+        {
+            var spellingSuggestions = new List<Control>();
+            var spellingError = TheTbx.GetSpellingError(TheTbx.CaretIndex);
+            if (spellingError == null) return Enumerable.Empty<Control>();
+
+            var text = TheTbx.Text.Substring(TheTbx.GetSpellingErrorStart(TheTbx.CaretIndex),
+                TheTbx.GetSpellingErrorLength(TheTbx.CaretIndex));
+
+            var suggestions = spellingError.Suggestions.ToList();
+
+            if (suggestions.Count <= 15)
+            {
+                spellingSuggestions.AddRange(suggestions.Select(str => new MenuItem
+                {
+                    Header = str,
+                    Icon = BuildIcon("DictionaryEntry"),
+                    Command = EditingCommands.CorrectSpellingError,
+                    CommandParameter = str,
+                    ToolTip = BuildToolTip(string.Format(Properties.Resources.ReplaceText, text, str)),
+                    Style = FindResource("menuItem") as Style,
+                    CommandTarget = TheTbx
+                }));
+            }
+            else
+            {
+                var possibles = new MenuItem
+                {
+                    Header = "Mögliche Ersetzungen",
+                    Icon = BuildIcon("DictionaryEntry"),
+                    Command = EditingCommands.IgnoreSpellingError,
+                    CommandTarget = TheTbx,
+                    Style = FindResource("menuItem") as Style
+                };
+
+                possibles.Items.AddRange(suggestions.Select(str => new MenuItem
+                {
+                    Header = str,
+                    Icon = BuildIcon("DictionaryEntry"),
+                    ToolTip = BuildToolTip(string.Format(Properties.Resources.ReplaceText, text, str)),
+                    Command = EditingCommands.CorrectSpellingError,
+                    CommandParameter = str,
+                    Style = FindResource("menuItem") as Style,
+                    CommandTarget = TheTbx
+                }));
+                spellingSuggestions.Add(possibles);
+                var addToDictionary2 = TestItem(false, TheTbx, text);
+                spellingSuggestions.Add(addToDictionary2);
+
+                addToDictionary2 = TestItem(true, TheTbx, text);
+                spellingSuggestions.Add(addToDictionary2);
+            }
+
+            if (suggestions.Any())
+                spellingSuggestions.Add(BuildSeperator(string.Empty));
+
+            var ignoreAll = new MenuItem
+            {
+                Header = Properties.Resources.IgnorenAll,
+                Icon = BuildIcon("IgnoreEntry"),
+                Command = EditingCommands.IgnoreSpellingError,
+                CommandTarget = TheTbx,
+                ToolTip = BuildToolTip(Properties.Resources.IgnoreAllHint),
+                Style = FindResource("menuItem") as Style
+            };
+
+            spellingSuggestions.Add(ignoreAll);
+
+            var addToDictionary = TestItem(false, TheTbx, text);
+            spellingSuggestions.Add(addToDictionary);
+
+            addToDictionary = TestItem(true, TheTbx, text);
+            spellingSuggestions.Add(addToDictionary);
+
+            return spellingSuggestions;
+        }
+
+        private MenuItem TestItem(bool isName,System.Windows.Controls.TextBox box,string errortext)
+        {
+            var text = isName ? Properties.Resources.SpecialEntryAddedToNames : Properties.Resources.SpecialEntryAddedToDictionary;
+            var tooltip = isName ? Properties.Resources.EntryIsAddedToNames : Properties.Resources.EntryIsAddedToDictionary;
+
+            var header = string.Format(text,errortext, TextLanguage);
+
+            var addToDictionary = new MenuItem
+            {
+                Header = header,
+                Icon = BuildIcon("bookOpenEdit.png"),
+                Command = EditingCommands.IgnoreSpellingError,
+                ToolTip = BuildToolTip(tooltip),
+                CommandTarget = box,
+                Style = FindResource("menuItem") as Style
+            };
+
+            addToDictionary.Click += (o, rea) => AddToDictionary(Box.CaretPosition, isName ? NameDict : CurrentTextIsEnglish() ? CustomDictEnglish : CustomDict);
+            return addToDictionary;
+        }
+
         private object BuildToolTip(string str)
         {
             var tip = new ToolTip
@@ -1265,6 +1379,7 @@ DependencyProperty.Register("ShowTaglist", typeof(bool), typeof(MainWindow), new
             {
                 Style = FindResource("tootipBox") as Style, Margin = new Thickness(2), Padding = new Thickness(5)
             };
+            rich.Paste();
             Grid.SetRow(rich, 1);
 
             var bord = new Border
@@ -1400,7 +1515,7 @@ DependencyProperty.Register("ShowTaglist", typeof(bool), typeof(MainWindow), new
            InsertName((string)itm.Tag);
         }
 
-        private IEnumerable<Control> GetStandardCommands()
+        private IEnumerable<Control> GetStandardCommands(bool withTextOnly)
         {
             var standardCommands = new List<Control>();
 
@@ -1424,7 +1539,7 @@ DependencyProperty.Register("ShowTaglist", typeof(bool), typeof(MainWindow), new
 
             try
             {
-                if (!Clipboard.ContainsText()) return standardCommands;
+                if (!withTextOnly ||!Clipboard.ContainsText()) return standardCommands;
 
                 standardCommands.Add(BuildSeperator(string.Empty));
 
@@ -1493,6 +1608,8 @@ DependencyProperty.Register("ShowTaglist", typeof(bool), typeof(MainWindow), new
             //Settings.Default.CheckSpelling = SpellCheckEnabled;
             Settings.Default.TopMost = IsTopMost;
             Settings.Default.Styles = ApplyableStyles;
+            Settings.Default.ShowTitleLine = ShowTitleLine;
+
 
             if (WindowState == WindowState.Normal)
             {
@@ -2151,7 +2268,25 @@ DependencyProperty.Register("ShowTaglist", typeof(bool), typeof(MainWindow), new
             HandleKey(e);
 
             if (!Settings.Default.AutoSaveOnBreak) return;
-            debounceTimer.Debounce((int)TimeSpan.FromSeconds(3).TotalMilliseconds, (p) =>
+            debounceTimer.Debounce((int)TimeSpan.FromSeconds(2).TotalMilliseconds, (p) =>
+            {
+                UpdateCurrentText();
+
+                var observableCollection =
+                    TextFiles.Where(te => !string.IsNullOrEmpty(te.Filepath) && (te.IsChanged || te.ReadOnly));
+                if (!observableCollection.Any()) return;
+
+                _worker.RunWorkerAsync(observableCollection);
+                NotifySave();
+            });
+        }
+
+        private void HandleKeysPreview2(object sender, KeyEventArgs e)
+        {
+            CurrentText.IsChanged = true;
+
+            if (!Settings.Default.AutoSaveOnBreak) return;
+            debounceTimer.Debounce((int)TimeSpan.FromSeconds(2).TotalMilliseconds, (p) =>
             {
                 UpdateCurrentText();
 
@@ -4288,9 +4423,22 @@ DependencyProperty.Register("ShowTaglist", typeof(bool), typeof(MainWindow), new
                 DefaultExt = "rtf",
                 Filter = "Rich Text Files|*.rtf"
             };
-            if (dlg.ShowDialog(this) == true)
+
+            if (dlg.ShowDialog(this) != true) return;
+
+            try
             {
-                TextFile.SaveFile(dlg.FileName,CurrentText.Document);
+                var res =string.IsNullOrEmpty(CurrentText.Title)? MessageBoxResult.No : QuestionBox.ShowMessage(this, Properties.Resources.AddTitle, Properties.Resources.AddTitleCaption);
+                if (res == MessageBoxResult.Cancel) return;
+
+                var expo = CurrentText.Document.CopyWithTickness(new Thickness(0));
+                var test = expo.PrepareForRtfExport(res == MessageBoxResult.Yes? CurrentText.Title :string.Empty);
+                test.SaveAsRtfFile(dlg.FileName);
+                Process.Start(dlg.FileName);
+            }
+            catch (Exception exception)
+            {
+                AddException(exception);
             }
         }
 
@@ -4543,5 +4691,23 @@ DependencyProperty.Register("ShowTaglist", typeof(bool), typeof(MainWindow), new
             CurrentText.IsChanged = true;
         }
 
+        private void UpadateMenue(object sender, ContextMenuEventArgs e)
+        {
+            var standard = GetStandardCommands(false);
+            var suggest = GetSpellingSuggestionsForTextBox();
+
+            var con = ((System.Windows.Controls.TextBox) sender).ContextMenu;
+            if(con == null) return;
+
+            con.Items.Clear();
+            con.Items.AddRange(standard);
+            con.Items.AddRange(suggest);
+
+        }
+
+        private void ExportBook(object sender, RoutedEventArgs e)
+        {
+            new MessageBoxes.FileExporter().ShowDialog();
+        }
     }
 }

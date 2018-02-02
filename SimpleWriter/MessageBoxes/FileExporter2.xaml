@@ -1,21 +1,28 @@
-﻿<Window x:Class="FileExporter.MainWindow"
+﻿<Window x:Class="ComplexWriter.MessageBoxes.FileExporter"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:FileExporter"
         xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
+        xmlns:global="clr-namespace:ComplexWriter.global"
+        xmlns:complexWriter="clr-namespace:ComplexWriter.MessageBoxes"
+        xmlns:complexWriter1="clr-namespace:ComplexWriter"
         mc:Ignorable="d"
-        Title="MainWindow" Height="650" Width="650">
+        Title="File Exporter" Height="650" Width="650">
     <Window.Resources>
         <ResourceDictionary>
-            <local:FolderStyleConverter x:Key="FolderStyleConverter"/>
-
-            <CollectionViewSource x:Key="Files" IsLiveSortingRequested="True" Source="{Binding RelativeSource={RelativeSource AncestorType=local:MainWindow},Path=TextFileItems}" >
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Dictionaries/FileExporterDictionary.xaml"/>
+                <ResourceDictionary>
+                     <global:FolderStyleConverter x:Key="FolderStyleConverter"/>
+            <CollectionViewSource x:Key="Files" IsLiveSortingRequested="True" Source="{Binding RelativeSource={RelativeSource AncestorType=complexWriter:FileExporter},Path=TextFileItems}" >
                 <CollectionViewSource.SortDescriptions>
                     <componentModel:SortDescription PropertyName="Filename" Direction="Ascending"/>
                 </CollectionViewSource.SortDescriptions>
             </CollectionViewSource>
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+           
         </ResourceDictionary>
     </Window.Resources>
     <Grid>
@@ -27,12 +34,12 @@
         </Grid.RowDefinitions>
         <StackPanel Orientation="Horizontal">
             <Button Content="Choose base folder" Click="ChooseBaseFolder"/>
-            <TextBlock Text="{Binding RelativeSource={RelativeSource AncestorType=local:MainWindow},Path=BaseFolder}"/>
+            <TextBlock Text="{Binding RelativeSource={RelativeSource AncestorType=complexWriter:FileExporter},Path=BaseFolder}"/>
         </StackPanel>
         <CheckBox Grid.Row="1" Content="Choose all" Checked="CheckAll" Unchecked="UncheckAll"></CheckBox>
         <ListBox Grid.Row="2" ItemsSource="{Binding  Source={StaticResource Files}}">
             <ListBox.ItemTemplate>
-                <DataTemplate DataType="{x:Type local:TextFileItem}">
+                <DataTemplate DataType="{x:Type complexWriter1:TextFileItem}">
                     <CheckBox Content="{Binding Filename}" FontSize="{Binding IsFolder, Converter={StaticResource FolderStyleConverter}}" IsChecked="{Binding IsChecked}" Tag="{Binding}" Checked="UpdateChildFiles" Unchecked="UpdateChildFiles"/>
                 </DataTemplate>
             </ListBox.ItemTemplate>

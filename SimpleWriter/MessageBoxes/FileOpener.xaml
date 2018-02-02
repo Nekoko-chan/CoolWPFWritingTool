@@ -103,11 +103,13 @@
                 <Border Grid.Column="4">
                     <Grid>
                         <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="Auto"/>
                             <RowDefinition Height="Auto"/>
                         </Grid.RowDefinitions>
-                        <RichTextBox IsReadOnly="True" VerticalScrollBarVisibility="Auto" x:Name="Content"
+                        <TextBlock Text="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:FileOpener},Path=FileTitle}" FontSize="{StaticResource fontSizeLarge}" FontFamily="{StaticResource defaultFont}"></TextBlock>
+                        <RichTextBox Grid.Row="1" IsReadOnly="True" VerticalScrollBarVisibility="Auto" x:Name="Content"
                                      Background="Transparent" BorderBrush="Transparent" BorderThickness="0">
                             <RichTextBox.Resources>
                                 <ResourceDictionary>
@@ -127,7 +129,7 @@
                                 </ResourceDictionary>
                             </RichTextBox.Resources>
                         </RichTextBox>
-                        <Border Grid.Row="2" Visibility="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:FileOpener},Path=CharacterlistVisibility}">
+                        <Border Grid.Row="3" Visibility="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:FileOpener},Path=CharacterlistVisibility}">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>
@@ -169,7 +171,7 @@
                                 </ItemsControl>
                             </Grid>
                         </Border>
-                        <Border Grid.Row="1" Visibility="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:FileOpener},Path=Showtags}">
+                        <Border Grid.Row="2" Visibility="{Binding RelativeSource={RelativeSource AncestorType=messageBoxes:FileOpener},Path=Showtags}">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="Auto"/>

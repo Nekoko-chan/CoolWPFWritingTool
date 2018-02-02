@@ -79,5 +79,7 @@
     <global:QuoteButtonBackgroundConverter x:Key="QuoteButtonBackgroundConverter"/>
     <global:LanguageTextConverter x:Key="LanguageTextConverter"/>
     <global:MaxHeightConverter x:Key="MaxHeightConverter"/>
-
+    <global:BoolColorMultiConverter x:Key="BoolColorMultiConverter"/>
+    <global:StatusColorConverter x:Key="StatusColorConverter"/>
+    <global:PercentTextConverter x:Key="PercentTextConverter"/>
 </ResourceDictionary>

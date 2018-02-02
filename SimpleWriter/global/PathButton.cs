@@ -4,7 +4,7 @@ using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 using System.Windows.Shapes;
 
-namespace TestElements
+namespace ComplexWriter.global
 {
     [TemplatePart(Name = "PART_Path", Type = typeof(Path))]
     public class PathButton : Button

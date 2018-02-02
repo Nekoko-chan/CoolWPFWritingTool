@@ -12,6 +12,7 @@
         xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
         xmlns:system="clr-namespace:System;assembly=mscorlib"
         xmlns:wpfTagControl="clr-namespace:WPFTagControl;assembly=WPFTagControl"
+        xmlns:global="clr-namespace:ComplexWriter.global"
         Title="{x:Static p:Resources.Title}" Height="444" Width="616">
     <Window.Resources>
         <ResourceDictionary>
@@ -26,6 +27,7 @@
                 <ResourceDictionary Source="global/MenuItem.xaml"/>
                 <ResourceDictionary Source="ColorSet/Colors.xaml"/>
                 <ResourceDictionary Source="global/TagStyles.xaml"/>
+                <ResourceDictionary Source="global/PathButtons.xaml"/>
                 <ResourceDictionary>
                     <Cursor x:Key="waitCursor">Images/Wait.ani</Cursor>
 
@@ -366,6 +368,7 @@
             <Grid Margin="0,10,35,28" >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
@@ -376,10 +379,50 @@
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
                 </Grid.ColumnDefinitions>
-                <Border Grid.Column="1" Padding="40,0" Visibility="{Binding RelativeSource={RelativeSource AncestorType=complexWriter:MainWindow},Path=CurrentText.ReadOnly,Converter={StaticResource falseCollapsedConverter}}" HorizontalAlignment="Center" BorderBrush="{StaticResource BackColorBrush}" BorderThickness="0,0,0,1">
-                    <TextBlock Text="{x:Static p:Resources.ReadOnlyDescription}" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,2" FontFamily="{StaticResource defaultFont}"/>
+                <Border  BorderBrush="Black" BorderThickness="0,0,1.5,2.5" SnapsToDevicePixels="True" CornerRadius="0,0,5,0" Grid.Column="1" Margin="1,-3,10,0" VerticalAlignment="Top">
+                    <Border.Background>
+                        <MultiBinding Converter="{StaticResource BoolColorMultiConverter}">
+                            <Binding RelativeSource="{RelativeSource AncestorType=complexWriter:MainWindow}" Path="ShowTitleLine"/>
+                            <Binding>
+                                <Binding.Source>
+                                    <SolidColorBrush Color="Transparent"/>
+                                </Binding.Source>
+                            </Binding>
+                            <Binding Source="{StaticResource BackColorBrush}"/>
+                        </MultiBinding>
+                    </Border.Background>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBox Margin="2.5" SpellCheck.IsEnabled="true" x:Name="TheTbx"
+                                 PreviewKeyDown="HandleKeysPreview2"
+                                 Visibility="{Binding RelativeSource={RelativeSource AncestorType=complexWriter:MainWindow},Path=ShowTitleLine,Converter={StaticResource falseCollapsedConverter}}" 
+                                 Style="{StaticResource smallerTextBox}" 
+                                 FontSize="{StaticResource fontSizeSmall}" ContextMenuOpening="UpadateMenue"
+                                 Text="{Binding RelativeSource={RelativeSource AncestorType=complexWriter:MainWindow},Path=CurrentText.Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 >
+                            <TextBox.ContextMenu>
+                                <ContextMenu MaxHeight="{Binding RelativeSource={RelativeSource Self},Path=Height, Converter={StaticResource MaxHeightConverter}}" Name="contextMenuSingle" Style="{StaticResource context}">
+                                    <ContextMenu.CommandBindings>
+                                        <CommandBinding Command="commands:OwnPasteCommand.Paste"
+                                                    CanExecute="CanExecuteRerollCommand"
+                                                    Executed="ExecuteRerollCommand" />
+                                    </ContextMenu.CommandBindings>
+                                  
+                                </ContextMenu>
+                            </TextBox.ContextMenu>
+                        </TextBox>
+                        <Border SnapsToDevicePixels="True" Grid.Column="1" Background="{StaticResource BackColorBrush}" CornerRadius="0,0,5,0">
+                            <global:PathToggleButton Margin="0,0,1,1" Style="{StaticResource upDownToggle}" IsChecked="{Binding RelativeSource={RelativeSource AncestorType=complexWriter:MainWindow},Path=ShowTitleLine, Mode=TwoWay}" VerticalAlignment="Bottom"></global:PathToggleButton>
+                        </Border>
+                    </Grid>
                 </Border>
-                <Border Grid.Column="1" Grid.Row="1" Margin="5,0,5,10" IsHitTestVisible="False">
+                <Border Grid.Row="1" Grid.Column="1" Padding="40,0" Visibility="{Binding RelativeSource={RelativeSource AncestorType=complexWriter:MainWindow},Path=CurrentText.ReadOnly,Converter={StaticResource falseCollapsedConverter}}" HorizontalAlignment="Center" BorderBrush="{StaticResource BackColorBrush}" BorderThickness="0,0,0,1">
+                    <TextBlock Text="{x:Static p:Resources.ReadOnlyDescription}" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,0,0,-1" FontFamily="{StaticResource defaultFont}"/>
+                </Border>
+                <Border Grid.Column="1" Grid.Row="2" Margin="5,0,5,10" IsHitTestVisible="False">
                     <Image VerticalAlignment="Bottom" HorizontalAlignment="Right" RenderOptions.BitmapScalingMode="HighQuality" 
                            Source="{Binding RelativeSource={RelativeSource AncestorType=complexWriter:MainWindow},Path=CurrentText.Watermark.ImageSource}"
                            Width="{Binding RelativeSource={RelativeSource AncestorType=complexWriter:MainWindow},Path=CurrentText.Watermark.Size.Width}"
@@ -387,7 +430,7 @@
                            Opacity="{Binding RelativeSource={RelativeSource AncestorType=complexWriter:MainWindow},Path=CurrentText.Watermark.Opacity}"
                            />
                 </Border>
-                <RichTextBox Grid.Column="1" Margin="0,-3,-11,3" Grid.Row="1" x:Name="Box" 
+                <RichTextBox Grid.Column="1" Margin="0,-3,-11,3" Grid.Row="2" x:Name="Box" 
                                  ScrollViewer.ScrollChanged="ScrollChanged" SnapsToDevicePixels="False"
                                  SpellCheck.IsEnabled="{Binding RelativeSource={RelativeSource AncestorType=complexWriter:MainWindow},Path=CurrentText.SpellCheckEnabled}"
                                  IsInactiveSelectionHighlightEnabled="True" AutoWordSelection="False"
@@ -441,7 +484,7 @@
                     </RichTextBox.Resources>
                 </RichTextBox>
 
-                <Border Grid.Row="0" Grid.RowSpan="3" Grid.Column="2" VerticalAlignment="Top" IsEnabled="{Binding RelativeSource={RelativeSource AncestorType=complexWriter:MainWindow},Path=CurrentText.ReadOnly,Converter={StaticResource InvertBoolConverter}}"
+                <Border Grid.Row="0" Grid.RowSpan="4" Grid.Column="2" VerticalAlignment="Top" IsEnabled="{Binding RelativeSource={RelativeSource AncestorType=complexWriter:MainWindow},Path=CurrentText.ReadOnly,Converter={StaticResource InvertBoolConverter}}"
                          Visibility="{Binding ElementName=options,Path=IsChecked, Converter={StaticResource falseHideConverter}}"
                         >
                     <Grid Margin="12,-15,-48,0">
@@ -838,10 +881,10 @@
 
                         </Border></Grid>
                 </Border>
-                <Border Width="150" Visibility="{Binding RelativeSource={RelativeSource AncestorType=complexWriter:MainWindow},Path=ShowNameList,Converter={StaticResource falseCollapsedConverter}}" Grid.Row="0" Grid.RowSpan="3" Margin="0,-5,0,0" Grid.Column="0" >
+                <Border Width="150" Visibility="{Binding RelativeSource={RelativeSource AncestorType=complexWriter:MainWindow},Path=ShowNameList,Converter={StaticResource falseCollapsedConverter}}" Grid.Row="0" Grid.RowSpan="4" Margin="0,-5,0,0" Grid.Column="0" >
                     <characterNames:CharacterNameControl Names="{Binding RelativeSource={RelativeSource AncestorType=complexWriter:MainWindow},Path=CurrentText.Characters}" TextClicked="TextClicked"/>
                 </Border>
-                <Border Grid.Row="2" Grid.Column="1" Visibility="{Binding RelativeSource={RelativeSource AncestorType=complexWriter:MainWindow},Path=ShowTaglist,Converter={StaticResource falseCollapsedConverter}}" BorderBrush="{DynamicResource BackColorBrush}" Background="{DynamicResource BackColorBrush}" Margin="0,-7,-16,0">
+                <Border Grid.Row="3" Grid.Column="1" Visibility="{Binding RelativeSource={RelativeSource AncestorType=complexWriter:MainWindow},Path=ShowTaglist,Converter={StaticResource falseCollapsedConverter}}" BorderBrush="{DynamicResource BackColorBrush}" Background="{DynamicResource BackColorBrush}" Margin="0,-7,-16,0">
                     <wpfTagControl:TagControl Margin="5,0,0,10"
                                                SelectedTags="{Binding RelativeSource={RelativeSource AncestorType= complexWriter:MainWindow},Path=CurrentText.Tags}"
                          SuggestedTags="{Binding RelativeSource={RelativeSource AncestorType=complexWriter:MainWindow},Path=TagHandler.Suggestions,Converter={StaticResource debugConverter}}"
@@ -854,7 +897,7 @@
                          TagEdited="Ctl_Tags_OnTagEdited"
                          ShowSeperateAddButton="False"></wpfTagControl:TagControl>
                 </Border>
-                <searchAndReplace:SearchAndReplaceControl Grid.Column="0" Grid.ColumnSpan="3" IsClosedFromWithin="FocusTextbox" MatchingChanged="UpdateView" Grid.Row="3" Visibility="Collapsed" x:Name="SearchAndReplaceControl" Margin="0,0,25,0"/>
+                <searchAndReplace:SearchAndReplaceControl Grid.Column="0" Grid.ColumnSpan="3" IsClosedFromWithin="FocusTextbox" MatchingChanged="UpdateView" Grid.Row="4" Visibility="Collapsed" x:Name="SearchAndReplaceControl" Margin="0,0,25,0"/>
             
             </Grid>
 
@@ -1027,6 +1070,11 @@
                                         <customControls:MaskedImageButtonEnlarge Name="richExport" Style="{StaticResource rimageButton}" ButtonMask="Images/rtf.png" Click="ExportRtf">
                                             <Button.ToolTip>
                                                 <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.ExportRTF}"></ToolTip>
+                                            </Button.ToolTip>
+                                        </customControls:MaskedImageButtonEnlarge>
+                                        <customControls:MaskedImageButtonEnlarge Name="richExportLarge" Style="{StaticResource rimageButton}" ButtonMask="Images/book.png" Click="ExportBook">
+                                            <Button.ToolTip>
+                                                <ToolTip Style="{StaticResource tipTest}" Content="{x:Static p:Resources.ExportBook}"></ToolTip>
                                             </Button.ToolTip>
                                         </customControls:MaskedImageButtonEnlarge>
                                         <customControls:MaskedImageButtonEnlarge Name="xamlExport" Style="{StaticResource rimageButton}" ButtonMask="Images/Xaml.png" Click="ExportXaml">
@@ -1702,4 +1750,10 @@
 
                     </Grid>
 </Window>
+
+
+
+
+
+
 

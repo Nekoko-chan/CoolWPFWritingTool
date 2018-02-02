@@ -1304,4 +1304,51 @@ Would you like to close it anyway?</value>
   <data name="TotalEntries" xml:space="preserve">
     <value>Total entries: {0}</value>
   </data>
+  <data name="ChooseAll" xml:space="preserve">
+    <value>Choose all</value>
+  </data>
+  <data name="ChooseDirectory" xml:space="preserve">
+    <value>Choose base folder</value>
+  </data>
+  <data name="ExportBook" xml:space="preserve">
+    <value>Export multiple files</value>
+  </data>
+  <data name="ExportBookFailed" xml:space="preserve">
+    <value>The following files could not be opened:
+
+{0}</value>
+  </data>
+  <data name="ExportBookSuccess" xml:space="preserve">
+    <value>The files are exported successfully</value>
+  </data>
+  <data name="SaveAsSingleFile" xml:space="preserve">
+    <value>Export as single RTF file</value>
+  </data>
+  <data name="AddTitle" xml:space="preserve">
+    <value>Would you like to export the title as well?</value>
+  </data>
+  <data name="AddTitleCaption" xml:space="preserve">
+    <value>Add title</value>
+  </data>
+  <data name="BoldTitle" xml:space="preserve">
+    <value>Use bold tite</value>
+  </data>
+  <data name="CompleteMessage" xml:space="preserve">
+    <value>Export complete: {0} failed</value>
+  </data>
+  <data name="ExportStepTextFail" xml:space="preserve">
+    <value>{0}% : Adding file {1} failed</value>
+  </data>
+  <data name="ExportStepTextSuccess" xml:space="preserve">
+    <value>{0}% : Adding file {1} was successful</value>
+  </data>
+  <data name="TextFontSize" xml:space="preserve">
+    <value>Text size:</value>
+  </data>
+  <data name="TitleFontSize" xml:space="preserve">
+    <value>Title size:</value>
+  </data>
+  <data name="UnderlineTitle" xml:space="preserve">
+    <value>Use underlined title</value>
+  </data>
 </root>

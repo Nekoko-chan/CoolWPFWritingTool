@@ -142,6 +142,22 @@ namespace ComplexWriter.MessageBoxes
         }
 
         /// <summary>
+        /// DependencyProperty for 'FileTitle'
+        /// </summary>
+        public static readonly DependencyProperty FileTitleProperty =
+        DependencyProperty.Register("FileTitle", typeof(string), typeof(FileOpener), new UIPropertyMetadata(string.Empty));
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public string FileTitle
+        {
+            get { return (string)GetValue(FileTitleProperty); }
+            set { SetValue(FileTitleProperty, value); }
+        }
+
+
+        /// <summary>
         /// DependencyProperty for 'InitialDirectory'
         /// </summary>
         public static readonly DependencyProperty InitialDirectoryProperty =
@@ -310,6 +326,7 @@ namespace ComplexWriter.MessageBoxes
             var file = TextFile.Load(add.Last());
 
             Content.Document = file.Document;
+            FileTitle = file.Title;
             CharacterList = file.Characters?.OrderByDescending(GetOrderNumber).Take(5) ?? Enumerable.Empty<Character>();
             Tags = file.Tags ?? Enumerable.Empty<string>();
             Showtags = Tags.Any() ? Visibility.Visible : Visibility.Collapsed;

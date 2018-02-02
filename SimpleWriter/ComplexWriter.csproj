@@ -150,6 +150,7 @@
     <Compile Include="ClickOpensContextMenuBehavior.cs" />
     <Compile Include="DebounceDispatcher.cs" />
     <Compile Include="Extensions.cs" />
+    <Compile Include="global\PathButton.cs" />
     <Compile Include="imageScaler.xaml.cs" />
     <Compile Include="MessageBoxes\ColorSettings.xaml.cs">
       <DependentUpon>ColorSettings.xaml</DependentUpon>
@@ -157,11 +158,19 @@
     <Compile Include="MessageBoxes\Dictionaries\ColorSettingsDictionary.xaml.cs">
       <DependentUpon>ColorSettingsDictionary.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MessageBoxes\Dictionaries\FileExporterDictionary.xaml.cs">
+      <DependentUpon>FileExporterDictionary.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MessageBoxes\DocumentExtensions.cs" />
     <Compile Include="MessageBoxes\FileOpener.xaml.cs">
       <DependentUpon>FileOpener.xaml</DependentUpon>
     </Compile>
     <Compile Include="MessageBoxes\Dictionaries\FileOpenerDictionary.xaml.cs">
       <DependentUpon>FileOpenerDictionary.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MessageBoxes\TextFileItem.cs" />
+    <Compile Include="MessageBoxes\FileExporter.xaml.cs">
+      <DependentUpon>FileExporter.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\Resources.de.Designer.cs">
@@ -175,6 +184,7 @@
     <Content Include="Fonts\readme.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Resource Include="Images\book.png" />
     <Resource Include="Images\capital.png" />
     <Resource Include="Images\ColorSchemes.png" />
     <EmbeddedResource Include="global\Colors.txt" />
@@ -378,6 +388,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="global\ListBoxForCheck.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="global\ListElementsForOpener.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -409,6 +423,10 @@
     <Page Include="global\PageViewer.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="global\PathButtons.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="global\RepeatButtons.xaml">
       <SubType>Designer</SubType>
@@ -523,6 +541,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="MessageBoxes\Dictionaries\ColorSettingsDictionary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="MessageBoxes\Dictionaries\FileExporterDictionary.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -655,6 +677,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
       <DependentUpon>ColorWindow.xaml</DependentUpon>
+    </Page>
+    <Page Include="MessageBoxes\FileExporter.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="MessageBoxes\XamlMessageBoxDictionary.xaml">
       <Generator>MSBuild:Compile</Generator>

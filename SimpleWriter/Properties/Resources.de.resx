@@ -1305,4 +1305,51 @@ Would you like to close it anyway?</value>
   <data name="TotalEntries" xml:space="preserve">
     <value>Einträge insgesamt: {0}</value>
   </data>
+  <data name="ChooseAll" xml:space="preserve">
+    <value>Alle auswählen</value>
+  </data>
+  <data name="ChooseDirectory" xml:space="preserve">
+    <value>Ausgangsordner wählen</value>
+  </data>
+  <data name="ExportBook" xml:space="preserve">
+    <value>Mehrere Datein exportieren</value>
+  </data>
+  <data name="ExportBookFailed" xml:space="preserve">
+    <value>Die folgenden Dateien konnten nicht geladen werden:
+
+{0}</value>
+  </data>
+  <data name="ExportBookSuccess" xml:space="preserve">
+    <value>Die Dateien wurden erfolgreich exportiert</value>
+  </data>
+  <data name="SaveAsSingleFile" xml:space="preserve">
+    <value>Als einzelne RTF-Datei exportieren</value>
+  </data>
+  <data name="AddTitle" xml:space="preserve">
+    <value>Soll der Titel des Dokumentes ebenfalls ausgegeben werden?</value>
+  </data>
+  <data name="AddTitleCaption" xml:space="preserve">
+    <value>Titel hinzufügen</value>
+  </data>
+  <data name="BoldTitle" xml:space="preserve">
+    <value>Titel fett drucken</value>
+  </data>
+  <data name="CompleteMessage" xml:space="preserve">
+    <value>Export beendet: {0} fehlgeschlagen</value>
+  </data>
+  <data name="ExportStepTextFail" xml:space="preserve">
+    <value>{0}% : Datei {1} konnte nicht hinzugefügt werden</value>
+  </data>
+  <data name="ExportStepTextSuccess" xml:space="preserve">
+    <value>)e.ar</value>
+  </data>
+  <data name="TextFontSize" xml:space="preserve">
+    <value>Textgröße:</value>
+  </data>
+  <data name="TitleFontSize" xml:space="preserve">
+    <value>Titelgröße:</value>
+  </data>
+  <data name="UnderlineTitle" xml:space="preserve">
+    <value>Titel unterstreichen</value>
+  </data>
 </root>

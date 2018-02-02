@@ -1656,6 +1656,33 @@ namespace ComplexWriter.global
         #endregion
     }
 
+    internal class BoolColorMultiConverter: IMultiValueConverter
+    {
+        #region Implementation for the interface IValueConverter
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            try
+            {
+                var val1 = (bool)values[0];
+                var is1 = values[1] as Brush;
+                var is2 = values[2] as Brush;
+
+                return val1 ? is1 : is2;
+
+            }
+            catch (Exception)
+            {
+                return Brushes.Transparent;
+            }
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            return null;
+        }
+        #endregion
+    }
+
 
     internal class IsNewestElementMultiConverter : IMultiValueConverter
     {
@@ -2365,6 +2392,48 @@ namespace ComplexWriter.global
         }
 
         public object ConvertBack(object value, Type type, object parameter, CultureInfo culture)
+        {
+            throw new NotSupportedException();
+        }
+    }
+
+    public class FolderStyleConverter : IValueConverter
+    {
+        public object Convert(object o, Type type, object parameter, CultureInfo culture)
+        {
+            var val = (bool)o;
+            return val ? 17d : 12d;
+        }
+
+        public object ConvertBack(object o, Type type, object parameter, CultureInfo culture)
+        {
+            throw new NotSupportedException();
+        }
+    }
+
+    public class StatusColorConverter : IValueConverter
+    {
+        public object Convert(object o, Type type, object parameter, CultureInfo culture)
+        {
+            var val = (bool)o;
+            return val ? Colors.Transparent : Colors.OrangeRed;
+        }
+
+        public object ConvertBack(object o, Type type, object parameter, CultureInfo culture)
+        {
+            throw new NotSupportedException();
+        }
+    }
+
+    public class PercentTextConverter : IValueConverter
+    {
+        public object Convert(object o, Type type, object parameter, CultureInfo culture)
+        {
+            var val = (int)o;
+            return val < 0 ? string.Empty : $"{val}%";
+        }
+
+        public object ConvertBack(object o, Type type, object parameter, CultureInfo culture)
         {
             throw new NotSupportedException();
         }

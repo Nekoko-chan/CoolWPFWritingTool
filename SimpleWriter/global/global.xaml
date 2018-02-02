@@ -253,40 +253,81 @@
             <Style x:Key="MultiLineReadOnlyTextbox" TargetType="{x:Type TextBox}">
                 <Setter Property="Cursor" Value="{StaticResource Beam}"></Setter>
                 <Setter Property="FontSize" Value="{DynamicResource fontSizeMedium}"/>
+                    
                 <Setter Property="SelectionBrush" Value="{DynamicResource SelectionBrush}"/>
                 <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type TextBox}">
-                    <Border CornerRadius="5,10,5,10" BorderThickness="1.5" Name="theBorder">
-                        <Grid Margin="0,0,0,0">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type TextBox}">
+                            <Border CornerRadius="5,10,5,10" BorderThickness="1.5" Name="theBorder">
+                                <Grid Margin="0,0,0,0">
                                     <TextBlock VerticalAlignment="{Binding AcceptsReturn, Converter={StaticResource multilieHelperConverter}}" Text="{TemplateBinding Tag}" Foreground="{TemplateBinding Foreground}" OpacityMask="#49000000" FontFamily="{StaticResource defaultFont}" FontSize="{StaticResource fontSizeMedium}">
-                                <TextBlock.Visibility>
-                                    <MultiBinding Converter="{StaticResource textInputToVisibilityConverter}">
-                                        <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Text.IsEmpty" />
-                                        <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="IsFocused" />
-                                        <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="IsReadOnly" />
-                                        <Binding>
-                                            <Binding.Source>
-                                                <sys:Boolean>True</sys:Boolean>
-                                            </Binding.Source>
-                                        </Binding>
-                                    </MultiBinding>
-                                </TextBlock.Visibility>
-                            </TextBlock>
-                            <ScrollViewer x:Name="PART_ContentHost" VerticalAlignment="{Binding AcceptsReturn, Converter={StaticResource multilieHelperConverter}}" Foreground="{TemplateBinding Foreground}" BorderBrush="Transparent" Background="Transparent" BorderThickness="0" FontFamily="{TemplateBinding FontFamily}" FontSize="{TemplateBinding FontSize}" Height="Auto" />
-                        </Grid>
-                    </Border>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsReadOnly" Value="true">
-                            <Setter Property="BorderBrush" TargetName="theBorder" Value="Transparent"/>
-                            <Setter Property="Background" TargetName="theBorder" Value="Transparent"/>
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
+                                        <TextBlock.Visibility>
+                                            <MultiBinding Converter="{StaticResource textInputToVisibilityConverter}">
+                                                <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Text.IsEmpty" />
+                                                <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="IsFocused" />
+                                                <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="IsReadOnly" />
+                                                <Binding>
+                                                    <Binding.Source>
+                                                        <sys:Boolean>True</sys:Boolean>
+                                                    </Binding.Source>
+                                                </Binding>
+                                            </MultiBinding>
+                                        </TextBlock.Visibility>
+                                    </TextBlock>
+                                    <ScrollViewer x:Name="PART_ContentHost" VerticalAlignment="{Binding AcceptsReturn, Converter={StaticResource multilieHelperConverter}}" Foreground="{TemplateBinding Foreground}" BorderBrush="Transparent" Background="Transparent" BorderThickness="0" FontFamily="{TemplateBinding FontFamily}" FontSize="{TemplateBinding FontSize}" Height="Auto" />
+                                </Grid>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsReadOnly" Value="true">
+                                    <Setter Property="BorderBrush" TargetName="theBorder" Value="Transparent"/>
+                                    <Setter Property="Background" TargetName="theBorder" Value="Transparent"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
     </Style>
 
+            <Style x:Key="smallerTextBox" TargetType="{x:Type TextBox}">
+                <Setter Property="Cursor" Value="{StaticResource Beam}"></Setter>
+                <Setter Property="SelectionBrush" Value="{DynamicResource SelectionBrush}"/>
+                <Setter Property="AcceptsReturn" Value="False"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type TextBox}">
+                                <Grid Margin="2.5">
+                                    <TextBlock VerticalAlignment="{Binding AcceptsReturn, Converter={StaticResource multilieHelperConverter}}" Text="{TemplateBinding Tag}" Foreground="{TemplateBinding Foreground}" OpacityMask="#49000000" FontFamily="{TemplateBinding FontFamily}" FontSize="{TemplateBinding FontSize}">
+                                        <TextBlock.Visibility>
+                                            <MultiBinding Converter="{StaticResource textInputToVisibilityConverter}">
+                                                <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Text.IsEmpty" />
+                                                <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="IsFocused" />
+                                                <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="IsReadOnly" />
+                                                <Binding>
+                                                    <Binding.Source>
+                                                        <sys:Boolean>True</sys:Boolean>
+                                                    </Binding.Source>
+                                                </Binding>
+                                            </MultiBinding>
+                                        </TextBlock.Visibility>
+                                    </TextBlock>
+                                    <Border Margin="0" Padding="0">
+                                        <ScrollViewer Margin="0" x:Name="PART_ContentHost"
+                                                      VerticalAlignment="{Binding AcceptsReturn, Converter={StaticResource multilieHelperConverter}}"
+                                                      Foreground="{TemplateBinding Foreground}"
+                                                      BorderBrush="Transparent" Background="Transparent"
+                                                      BorderThickness="0" FontFamily="{TemplateBinding FontFamily}"
+                                                      FontSize="{TemplateBinding FontSize}" Height="Auto" />
+                                    </Border>
+                                </Grid>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsReadOnly" Value="true">
+                                    <Setter Property="Opacity"  Value="0.7"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
 
 
 
