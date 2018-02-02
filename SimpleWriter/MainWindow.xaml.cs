@@ -4707,7 +4707,7 @@ DependencyProperty.Register("ShowTitleLine", typeof(bool), typeof(MainWindow), n
 
         private void ExportBook(object sender, RoutedEventArgs e)
         {
-            new MessageBoxes.FileExporter().ShowDialog();
+            new MessageBoxes.FileExporter().Show();
         }
     }
 }

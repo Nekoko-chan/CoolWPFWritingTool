@@ -2416,7 +2416,7 @@ namespace ComplexWriter.global
         public object Convert(object o, Type type, object parameter, CultureInfo culture)
         {
             var val = (bool)o;
-            return val ? Colors.Transparent : Colors.OrangeRed;
+            return val ? Brushes.Transparent : Brushes.OrangeRed;
         }
 
         public object ConvertBack(object o, Type type, object parameter, CultureInfo culture)

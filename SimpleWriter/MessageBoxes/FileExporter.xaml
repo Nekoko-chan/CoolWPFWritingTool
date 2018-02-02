@@ -216,13 +216,13 @@
                             </ItemsControl.ItemsPanel>
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate DataType="{x:Type messageBoxes:ExportStepInfo}">
-                                    <StackPanel Orientation="Horizontal" Margin="0,5">
+                                    <StackPanel Orientation="Horizontal" Margin="0,5" >
                                         <TextBlock Text="{Binding Percentage, Converter={StaticResource PercentTextConverter}}" Width="80"
-                                                   VerticalAlignment="Center"
+                                                   VerticalAlignment="Center" Background="{Binding Success,Converter={StaticResource StatusColorConverter}}"
                                                    Foreground="Black" FontSize="{StaticResource fontSizeMedium}"
                                                    FontFamily="{StaticResource defaultFont}" />
                                         <TextBlock Text="{Binding Filename}" Foreground="Black"
-                                                   VerticalAlignment="Center"
+                                                   VerticalAlignment="Center" Background="{Binding Success,Converter={StaticResource StatusColorConverter}}"
                                                    FontSize="{StaticResource fontSizeMedium}"
                                                    FontFamily="{StaticResource defaultFont}" />
                                     </StackPanel>
