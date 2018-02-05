@@ -16,3 +16,5 @@ Data/bin/
 Data/obj/
 FileExporter/bin/
 FileExporter/obj/
+FileExporter/FileExporter.xaml
+FileExporter/
